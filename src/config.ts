@@ -1,8 +1,7 @@
 // Configuration file for CommuteTimely
 export const config = {
   // Google Form URL for waitlist signups
-  // Replace this with your actual Google Form URL
-  GOOGLE_FORM_URL: 'YOUR_GOOGLE_FORM_URL_HERE',
+  GOOGLE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeRJwfZSSbOO9Wk1KXyNA76KUxX7z5u1e6OffhpedktAjRzTA/viewform?usp=sharing&ouid=110482851055122385002',
   
   // App settings
   APP_NAME: 'CommuteTimely',
