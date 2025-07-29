@@ -27,28 +27,28 @@ const BenefitsSection: React.FC = () => {
   return (
     <section className="section-padding bg-black">
       <div className="container-max">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 fade-in">
+        <div className="text-center mb-12 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 lg:mb-6 fade-in">
             Why CommuteTimely?
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto fade-in">
+          <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto fade-in px-4">
             Simple, smart, and always on time
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 px-4 lg:px-0">
           {benefits.map((benefit, index) => (
             <div key={index} className="text-center group scale-in">
-              <div className="card h-full flex flex-col">
-                <div className="w-20 h-20 bg-gray-800/50 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-8 border border-gray-700 group-hover:border-gray-600 transition-all duration-500 ease-in-out group-hover:scale-110">
-                  <span className="text-3xl">{benefit.icon}</span>
+              <div className="card h-full flex flex-col p-6 lg:p-8">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-800/50 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 lg:mb-8 border border-gray-700 group-hover:border-gray-600 transition-all duration-500 ease-in-out group-hover:scale-110">
+                  <span className="text-2xl sm:text-3xl">{benefit.icon}</span>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-white mb-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 lg:mb-4">
                   {benefit.title}
                 </h3>
                 
-                <p className="text-gray-400 leading-relaxed flex-1">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed flex-1">
                   {benefit.description}
                 </p>
               </div>
@@ -57,13 +57,13 @@ const BenefitsSection: React.FC = () => {
         </div>
 
         {/* Additional highlight */}
-        <div className="mt-20 text-center fade-in">
-          <div className="card max-w-4xl mx-auto bg-gradient-to-r from-gray-900/80 to-gray-800/80 border-gray-700">
-            <div className="text-5xl mb-6">🎯</div>
-            <h3 className="text-3xl font-bold text-white mb-4">
+        <div className="mt-12 lg:mt-20 text-center fade-in px-4 lg:px-0">
+          <div className="card max-w-4xl mx-auto bg-gradient-to-r from-gray-900/80 to-gray-800/80 border-gray-700 p-6 lg:p-8">
+            <div className="text-4xl sm:text-5xl mb-4 lg:mb-6">🎯</div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 lg:mb-4">
               Arrive on time, every time
             </h3>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
               Join thousands of commuters who have eliminated the stress of being late with our smart timing system.
             </p>
           </div>
