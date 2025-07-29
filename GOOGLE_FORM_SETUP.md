@@ -64,7 +64,7 @@ Add these questions to your form:
 
 ```typescript
 export const config = {
-  GOOGLE_FORM_URL: 'https://forms.gle/YOUR_ACTUAL_FORM_ID',
+  GOOGLE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeRJwfZSSbOO9Wk1KXyNA76KUxX7z5u1e6OffhpedktAjRzTA/viewform?usp=sharing&ouid=110482851055122385002',
   // ... other config
 };
 ```
