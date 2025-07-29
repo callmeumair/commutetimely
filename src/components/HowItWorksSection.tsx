@@ -23,54 +23,55 @@ const HowItWorksSection: React.FC = () => {
   ];
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-gray-900/50 backdrop-blur-sm">
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 fade-in">
             How It Works
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto fade-in">
             Three simple steps to never be late again
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {steps.map((step, index) => (
-            <div key={index} className="text-center">
+            <div key={index} className="text-center scale-in">
               {/* Step number and icon */}
               <div className="relative mb-6">
-                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gray-800/50 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-700 hover:border-gray-600 transition-all duration-500 ease-in-out hover:scale-110">
                   <span className="text-2xl">{step.icon}</span>
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full flex items-center justify-center text-sm font-bold glow">
                   {step.number}
                 </div>
               </div>
 
               {/* Step content */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 {step.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              
+              <p className="text-gray-400 leading-relaxed">
                 {step.description}
               </p>
 
               {/* Connector line (except for last step) */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-gray-200 transform -translate-y-1/2 z-0"></div>
+                <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-gray-700 transform -translate-y-1/2 z-0"></div>
               )}
             </div>
           ))}
         </div>
 
         {/* Visual flow indicator */}
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex justify-center fade-in">
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-primary-600 rounded-full"></div>
-            <div className="w-8 h-0.5 bg-gray-300"></div>
-            <div className="w-3 h-3 bg-primary-600 rounded-full"></div>
-            <div className="w-8 h-0.5 bg-gray-300"></div>
-            <div className="w-3 h-3 bg-primary-600 rounded-full"></div>
+            <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full glow"></div>
+            <div className="w-8 h-0.5 bg-gray-700"></div>
+            <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full glow"></div>
+            <div className="w-8 h-0.5 bg-gray-700"></div>
+            <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full glow"></div>
           </div>
         </div>
       </div>
