@@ -1,6 +1,12 @@
 import React from 'react';
+import { config } from '../config';
 
 const HeroSection: React.FC = () => {
+  const handleJoinWaitlist = () => {
+    // Open Google Form in a new tab
+    window.open(config.GOOGLE_FORM_URL, '_blank');
+  };
+
   return (
     <section className="section-padding bg-gradient-to-br from-primary-50 to-white">
       <div className="container-max">
@@ -13,7 +19,10 @@ const HeroSection: React.FC = () => {
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
               Get one daily push notification that tells you exactly when to leave.
             </p>
-            <button className="btn-primary text-lg px-8 py-4">
+            <button 
+              onClick={handleJoinWaitlist}
+              className="btn-primary text-lg px-8 py-4"
+            >
               Join Waitlist →
             </button>
           </div>

@@ -1,16 +1,12 @@
 import React from 'react';
+import { config } from '../config';
 
-interface EmailCaptureSectionProps {
-  email: string;
-  setEmail: (email: string) => void;
-  onSubmit: (e: React.FormEvent) => void;
-}
+const EmailCaptureSection: React.FC = () => {
+  const handleJoinWaitlist = () => {
+    // Open Google Form in a new tab
+    window.open(config.GOOGLE_FORM_URL, '_blank');
+  };
 
-const EmailCaptureSection: React.FC<EmailCaptureSectionProps> = ({ 
-  email, 
-  setEmail, 
-  onSubmit 
-}) => {
   return (
     <section className="section-padding bg-primary-600">
       <div className="container-max">
@@ -23,26 +19,16 @@ const EmailCaptureSection: React.FC<EmailCaptureSectionProps> = ({
             No spam, just one email when we're ready.
           </p>
 
-          <form onSubmit={onSubmit} className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50 text-gray-900 placeholder-gray-500"
-                required
-              />
-              <button
-                type="submit"
-                className="bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap"
-              >
-                Notify Me
-              </button>
-            </div>
-          </form>
+          <div className="max-w-md mx-auto">
+            <button
+              onClick={handleJoinWaitlist}
+              className="w-full bg-white text-primary-600 font-semibold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-lg"
+            >
+              Join Waitlist →
+            </button>
+          </div>
 
-          <p className="text-sm text-primary-200 mt-4">
+          <p className="text-sm text-primary-200 mt-6">
             🔒 We respect your privacy. Unsubscribe at any time.
           </p>
         </div>
