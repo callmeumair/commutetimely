@@ -157,11 +157,6 @@ export default function RootLayout({
           Skip to main content
         </a>
         
-        {/* Animated gradient background */}
-        <div className="fixed inset-0 -z-10 bg-gradient-radial from-brand-light/40 via-brand-dark/60 to-black animate-gradient-move" />
-        {/* Animated blobs */}
-        <div className="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-brand-accent/30 rounded-full blur-3xl animate-blob1 -z-10" />
-        <div className="fixed bottom-[-10%] right-[-10%] w-[30vw] h-[30vw] bg-brand-light/20 rounded-full blur-2xl animate-blob2 -z-10" />
         {/* Sticky header */}
         <StickyHeader />
         {/* Sticky header placeholder */}

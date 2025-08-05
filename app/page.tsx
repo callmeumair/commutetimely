@@ -44,12 +44,16 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Enhanced animated background */}
-      <div className="animated-bg"></div>
-      <div className="stars"></div>
-      <div className="diagonal-lines"></div>
+      {/* Modern Premium Background System */}
+      <div className="premium-bg"></div>
+      <div className="premium-bg-overlay"></div>
+      <div className="premium-glow"></div>
       
-      {/* Additional floating blobs */}
+      {/* Enhanced Animated Radial Gradient Backgrounds */}
+      <div className="animated-radial-bg"></div>
+      <div className="subtle-pulse-bg"></div>
+      
+      {/* Enhanced floating blobs with subtle animations */}
       <div className="floating-blob-1"></div>
       <div className="floating-blob-2"></div>
       <div className="floating-blob-3"></div>
