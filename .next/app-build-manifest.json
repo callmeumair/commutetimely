@@ -1,0 +1,51 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-cf35d93b2af4e5c4.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-02efbd2195ef91bd.js",
+      "static/chunks/main-app-00d9db03a97a4c35.js",
+      "static/chunks/app/_not-found/page-d140fc6b4077f808.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-cf35d93b2af4e5c4.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-02efbd2195ef91bd.js",
+      "static/chunks/main-app-00d9db03a97a4c35.js",
+      "static/css/4304dc3632b306cd.css",
+      "static/chunks/410-c6c798bd365ea244.js",
+      "static/chunks/app/layout-1f3c190be2a1abba.js"
+    ],
+    "/sitemap.xml/route": [
+      "static/chunks/webpack-cf35d93b2af4e5c4.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-02efbd2195ef91bd.js",
+      "static/chunks/main-app-00d9db03a97a4c35.js",
+      "static/chunks/app/sitemap.xml/route-62032f03ed150fe2.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-cf35d93b2af4e5c4.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-02efbd2195ef91bd.js",
+      "static/chunks/main-app-00d9db03a97a4c35.js",
+      "static/chunks/5ffe1889-a2d02bef6304532e.js",
+      "static/chunks/410-c6c798bd365ea244.js",
+      "static/chunks/81-2adbeed56f054dd2.js",
+      "static/chunks/app/page-9ade6201f4e7472f.js"
+    ],
+    "/privacy-policy/page": [
+      "static/chunks/webpack-cf35d93b2af4e5c4.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-02efbd2195ef91bd.js",
+      "static/chunks/main-app-00d9db03a97a4c35.js",
+      "static/chunks/app/privacy-policy/page-62032f03ed150fe2.js"
+    ],
+    "/terms-of-service/page": [
+      "static/chunks/webpack-cf35d93b2af4e5c4.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-02efbd2195ef91bd.js",
+      "static/chunks/main-app-00d9db03a97a4c35.js",
+      "static/chunks/app/terms-of-service/page-62032f03ed150fe2.js"
+    ]
+  }
+}
