@@ -10,6 +10,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Ensure proper output for Vercel
+  distDir: '.next',
+  trailingSlash: false,
 }
 
 module.exports = nextConfig 
