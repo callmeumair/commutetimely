@@ -6,10 +6,12 @@ import { config } from "@/lib/config"
 import { Download, Menu, X } from "lucide-react"
 
 const MENU = [
-  { label: "Features", href: "#features" },
-  { label: "How it Works", href: "#how-it-works" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "/features" },
+  { label: "How it Works", href: "/how-it-works" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Support", href: "/support" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export default function StickyHeader() {
