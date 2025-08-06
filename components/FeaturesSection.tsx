@@ -8,25 +8,25 @@ const features = [
     icon: Clock,
     title: "Leave On Time",
     description: "Get precise departure times based on real-time traffic conditions and your commute patterns.",
-    color: "from-blue-500 to-cyan-500"
+    color: "from-[#0f3d3e] to-[#d4af37]"
   },
   {
     icon: Bell,
     title: "Smart Notifications",
     description: "Receive intelligent alerts that adapt to traffic changes, weather, and your schedule.",
-    color: "from-purple-500 to-pink-500"
+    color: "from-[#1a1a1a] to-[#2c2c2c]"
   },
   {
     icon: Car,
     title: "Multi-Mode Support",
     description: "Works with car, bus, train, walking, and cycling. Optimize any commute type.",
-    color: "from-green-500 to-emerald-500"
+    color: "from-[#d4af37] to-[#b8941f]"
   },
   {
     icon: Zap,
     title: "Instant Setup",
     description: "One-tap setup with your regular routes. No complex configuration needed.",
-    color: "from-orange-500 to-red-500"
+    color: "from-[#0f3d3e] to-[#1a1a1a]"
   }
 ]
 
@@ -112,7 +112,7 @@ const FeaturesSection = () => {
 
         {/* Additional feature highlight */}
         <motion.div 
-          className="mt-16 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-8 border border-blue-500/20"
+          className="mt-16 bg-gradient-to-r from-[#0f3d3e]/20 to-[#d4af37]/20 rounded-3xl p-8 border border-[#d4af37]/30"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -120,7 +120,7 @@ const FeaturesSection = () => {
         >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center">
                 <Shield className="w-10 h-10 text-white" />
               </div>
             </div>

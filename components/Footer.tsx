@@ -20,7 +20,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-xl flex items-center justify-center">
                 <span className="text-white font-bold text-lg">CT</span>
               </div>
               <span className="text-2xl font-bold text-white">CommuteTimely</span>
@@ -33,7 +33,7 @@ const Footer = () => {
                 href={config.TWITTER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#d4af37] transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -43,7 +43,7 @@ const Footer = () => {
                 href={config.GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#d4af37] transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -51,7 +51,7 @@ const Footer = () => {
               </motion.a>
               <motion.a
                 href="mailto:support@commutetimely.com"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#d4af37] transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >

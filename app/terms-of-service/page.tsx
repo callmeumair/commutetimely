@@ -78,7 +78,7 @@ export default function TermsOfServicePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">7. Limitation of Liability</h2>
             <p className="text-gray-300 mb-4">
-              CommuteTimely is provided "as is" without warranties of any kind. We are not liable for any damages arising from the use of our service, including but not limited to:
+              CommuteTimely is provided &ldquo;as is&rdquo; without warranties of any kind. We are not liable for any damages arising from the use of our service, including but not limited to:
             </p>
             <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
               <li>Inaccurate arrival time predictions</li>

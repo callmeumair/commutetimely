@@ -36,9 +36,9 @@ const HeroSection = () => {
   return (
     <section className="section-padding bg-transparent relative overflow-hidden">
       {/* Hero animated background shapes */}
-      <div className="absolute -top-32 -left-32 w-[40vw] h-[40vw] bg-brand-accent/20 rounded-full blur-3xl z-0 animate-blob1" />
-      <div className="absolute -bottom-32 -right-32 w-[30vw] h-[30vw] bg-brand-light/10 rounded-full blur-2xl z-0 animate-blob2" />
-      <div className="absolute inset-0 bg-gradient-radial from-brand-light/10 via-transparent to-transparent z-0 pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-[40vw] h-[40vw] bg-[#0f3d3e]/20 rounded-full blur-3xl z-0 animate-blob1" />
+      <div className="absolute -bottom-32 -right-32 w-[30vw] h-[30vw] bg-[#d4af37]/15 rounded-full blur-2xl z-0 animate-blob2" />
+      <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/10 via-transparent to-transparent z-0 pointer-events-none" />
       <div className="container-max relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left side - Content */}
@@ -125,20 +125,20 @@ const HeroSection = () => {
                 <div className="w-full h-full bg-gray-800 rounded-2xl p-4 sm:p-6 flex flex-col">
                   {/* App header */}
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-xl flex items-center justify-center">
                       <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     </div>
                     <div className="text-xs sm:text-sm font-semibold text-white">CommuteTimely</div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#1a1a1a] rounded-full flex items-center justify-center">
                       <span className="text-gray-400 text-xs">⚙️</span>
                     </div>
                   </div>
                   
                   {/* Notification */}
                   <motion.div 
-                    className="bg-gray-700/50 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-gray-600"
+                    className="bg-[#1a1a1a]/70 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-[#d4af37]/30"
                     animate={{ 
-                      boxShadow: ["0 0 0 rgba(59, 130, 246, 0)", "0 0 20px rgba(59, 130, 246, 0.5)", "0 0 0 rgba(59, 130, 246, 0)"]
+                      boxShadow: ["0 0 0 rgba(212, 175, 55, 0)", "0 0 20px rgba(212, 175, 55, 0.4)", "0 0 0 rgba(212, 175, 55, 0)"]
                     }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
@@ -164,18 +164,18 @@ const HeroSection = () => {
                       8:12 AM
                     </motion.div>
                     <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">Departure time</div>
-                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mx-auto"></div>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-full mx-auto"></div>
                   </div>
                   
                   {/* Bottom nav */}
-                  <div className="flex justify-around pt-4 sm:pt-6 border-t border-gray-700">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+                  <div className="flex justify-around pt-4 sm:pt-6 border-t border-[#1a1a1a]">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-lg flex items-center justify-center">
                       <span className="text-white text-xs">🏠</span>
                     </div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
                       <span className="text-gray-400 text-xs">📊</span>
                     </div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
                       <span className="text-gray-400 text-xs">👤</span>
                     </div>
                   </div>
@@ -184,14 +184,14 @@ const HeroSection = () => {
               
               {/* Enhanced floating elements */}
               <motion.div 
-                className="absolute -top-6 -right-6 w-20 h-20 bg-cyan-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-cyan-500/30 hidden sm:flex"
+                className="absolute -top-6 -right-6 w-20 h-20 bg-[#0f3d3e]/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-[#0f3d3e]/40 hidden sm:flex"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
                 <span className="text-2xl">🚗</span>
               </motion.div>
               <motion.div 
-                className="absolute -bottom-6 -left-6 w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-500/30 hidden sm:flex"
+                className="absolute -bottom-6 -left-6 w-16 h-16 bg-[#d4af37]/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-[#d4af37]/40 hidden sm:flex"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >

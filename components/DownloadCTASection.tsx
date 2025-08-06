@@ -74,7 +74,7 @@ const DownloadCTASection = () => {
             viewport={{ once: true }}
           >
             <div className="text-center glass p-6 hover:scale-105 transition-transform duration-200">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Smartphone className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Free to Download</h3>
@@ -82,7 +82,7 @@ const DownloadCTASection = () => {
             </div>
 
             <div className="text-center glass p-6 hover:scale-105 transition-transform duration-200">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">4.8★ Rating</h3>
@@ -90,7 +90,7 @@ const DownloadCTASection = () => {
             </div>
 
             <div className="text-center glass p-6 hover:scale-105 transition-transform duration-200">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Download className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Instant Setup</h3>
@@ -100,7 +100,7 @@ const DownloadCTASection = () => {
 
           {/* Social proof */}
           <motion.div 
-            className="glass rounded-3xl p-8 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300"
+            className="glass rounded-3xl p-8 border border-[#d4af37]/30 hover:border-[#d4af37]/50 transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -112,7 +112,7 @@ const DownloadCTASection = () => {
                   Join 10,000+ Users
                 </h3>
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  "CommuteTimely has saved me countless hours of stress. I never worry about traffic anymore!"
+                  &ldquo;CommuteTimely has saved me countless hours of stress. I never worry about traffic anymore!&rdquo;
                 </p>
                 <div className="flex items-center space-x-4">
                   <div className="flex space-x-1">

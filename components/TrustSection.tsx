@@ -137,7 +137,7 @@ export default function TrustSection() {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-300 mb-4 italic">"{review.text}"</p>
+              <p className="text-gray-300 mb-4 italic">&ldquo;{review.text}&rdquo;</p>
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">— {review.author}</span>
                 <span className="text-gray-400">{review.count} reviews</span>

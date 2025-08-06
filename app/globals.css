@@ -68,15 +68,15 @@
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/50;
+    @apply bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50 shadow-lg hover:shadow-xl;
   }
   
   .btn-secondary {
-    @apply bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500/50;
+    @apply bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] hover:from-[#2c2c2c] hover:to-[#1a1a1a] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50 border border-[#d4af37]/20;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#d4af37] to-[#e6c244] bg-clip-text text-transparent;
   }
   
   .glow {
@@ -90,19 +90,19 @@
   /* Modern Premium Background System */
   .premium-bg {
     @apply fixed inset-0;
-    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.05) 30%, rgba(0, 0, 0, 0) 70%);
+    background: radial-gradient(ellipse at center, rgba(15, 61, 62, 0.15) 0%, rgba(212, 175, 55, 0.08) 30%, rgba(0, 0, 0, 0) 70%);
   }
   
   .premium-bg-overlay {
     @apply fixed inset-0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.6) 50%, rgba(0, 0, 0, 0.9) 100%);
   }
   
   .premium-glow {
     @apply fixed inset-0;
-    background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 80%, rgba(15, 61, 62, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(26, 26, 26, 0.1) 0%, transparent 50%);
     animation: premium-glow 20s ease-in-out infinite alternate;
   }
   
@@ -110,31 +110,34 @@
   .animated-radial-bg {
     @apply fixed inset-0;
     background: 
-      radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.04) 0%, transparent 50%),
-      radial-gradient(circle at 0% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 0% 0%, rgba(15, 61, 62, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 100% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(26, 26, 26, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(15, 61, 62, 0.07) 0%, transparent 50%);
     animation: radial-shift 30s ease-in-out infinite;
   }
   
   .subtle-pulse-bg {
     @apply fixed inset-0;
-    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
     animation: subtle-pulse 15s ease-in-out infinite;
   }
   
   .floating-blob-1 {
-    @apply fixed top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl;
+    @apply fixed top-20 left-20 w-32 h-32 rounded-full blur-3xl;
+    background-color: rgba(15, 61, 62, 0.15);
     animation: float-blob-1 25s ease-in-out infinite;
   }
   
   .floating-blob-2 {
-    @apply fixed top-40 right-20 w-24 h-24 bg-cyan-500/10 rounded-full blur-3xl;
+    @apply fixed top-40 right-20 w-24 h-24 rounded-full blur-3xl;
+    background-color: rgba(212, 175, 55, 0.12);
     animation: float-blob-2 30s ease-in-out infinite;
   }
   
   .floating-blob-3 {
-    @apply fixed bottom-20 left-1/2 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl;
+    @apply fixed bottom-20 left-1/2 w-40 h-40 rounded-full blur-3xl;
+    background-color: rgba(26, 26, 26, 0.1);
     animation: float-blob-3 35s ease-in-out infinite;
   }
   
@@ -143,7 +146,7 @@
   }
   
   .floating-chat {
-    @apply fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-3 rounded-full shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 animate-pulse-glow z-50;
+    @apply fixed bottom-6 right-6 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-4 py-3 rounded-full shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 animate-pulse-glow z-50;
   }
   
   .fade-in {
@@ -314,12 +317,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #d4af37;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2563eb;
+  background: #b8941f;
 }
 
 /* Smooth scrolling */
@@ -329,7 +332,7 @@ html {
 
 /* Focus styles for accessibility */
 *:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #d4af37;
   outline-offset: 2px;
 }
 
@@ -337,9 +340,9 @@ html {
 button:focus,
 a:focus,
 [role="button"]:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #d4af37;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
 }
 
 /* Skip link for keyboard navigation */
@@ -347,7 +350,7 @@ a:focus,
   position: absolute;
   top: -40px;
   left: 6px;
-  background: #3b82f6;
+  background: #d4af37;
   color: white;
   padding: 8px;
   text-decoration: none;

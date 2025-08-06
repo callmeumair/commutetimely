@@ -159,8 +159,6 @@ export default function RootLayout({
         
         {/* Sticky header */}
         <StickyHeader />
-        {/* Sticky header placeholder */}
-        <div className="h-20 md:h-24" />
         <main id="main-content">
           {children}
         </main>
