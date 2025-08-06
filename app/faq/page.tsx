@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'FAQ - CommuteTimely',
@@ -107,7 +108,7 @@ export default function FAQPage() {
                 <h3 className="text-lg font-semibold mb-3">Can I delete my data?</h3>
                 <p className="text-gray-300">
                   Yes, you can delete your account and all associated data at any time through the app 
-                  settings. We'll permanently remove all your information from our systems.
+                  settings. We&apos;ll permanently remove all your information from our systems.
                 </p>
               </div>
             </div>
@@ -191,18 +192,18 @@ export default function FAQPage() {
               Can&apos;t find the answer you&apos;re looking for? Our support team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
+              <Link 
                 href="/contact"
                 className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-lg px-6 py-3 transition-all duration-200"
               >
                 Contact Support
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/support"
                 className="border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black font-semibold rounded-lg px-6 py-3 transition-all duration-200"
               >
                 Visit Support Center
-              </a>
+              </Link>
             </div>
           </section>
         </div>

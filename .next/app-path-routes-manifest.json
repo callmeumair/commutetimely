@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/page": "/",
+  "/contact/page": "/contact",
+  "/features/page": "/features",
+  "/support/page": "/support",
+  "/faq/page": "/faq",
+  "/privacy-policy/page": "/privacy-policy",
+  "/how-it-works/page": "/how-it-works",
+  "/terms-of-service/page": "/terms-of-service",
+  "/testimonials/page": "/testimonials"
+}

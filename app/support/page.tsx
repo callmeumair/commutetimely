@@ -21,7 +21,7 @@ export default function SupportPage() {
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
                 <h3 className="text-lg font-medium text-[#d4af37] mb-3">Getting Started</h3>
                 <div className="space-y-3 text-gray-300">
-                  <p>1. Download the app from your device's app store</p>
+                  <p>1. Download the app from your device&apos;s app store</p>
                   <p>2. Create an account or sign in</p>
                   <p>3. Add your home and work addresses</p>
                   <p>4. Set your preferred arrival time</p>
@@ -79,12 +79,12 @@ export default function SupportPage() {
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
                 <h3 className="text-lg font-medium text-[#d4af37] mb-3">FAQ</h3>
                 <p className="text-gray-300 mb-3">Find answers to common questions</p>
-                <a 
-                  href="/#faq"
+                <Link 
+                  href="/faq"
                   className="inline-block bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-lg px-4 py-2 text-sm transition-all duration-200"
                 >
                   View FAQ
-                </a>
+                </Link>
               </div>
               
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
