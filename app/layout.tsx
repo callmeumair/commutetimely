@@ -151,7 +151,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} scroll-snap-container`}>
         {/* Skip link for keyboard navigation */}
         <a href="#main-content" className="skip-link">
           Skip to main content
@@ -159,7 +159,7 @@ export default function RootLayout({
         
         {/* Sticky header */}
         <StickyHeader />
-        <main id="main-content">
+        <main id="main-content" className="scroll-snap-wrapper">
           {children}
         </main>
         <Analytics />

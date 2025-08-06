@@ -34,13 +34,13 @@ const HeroSection = () => {
   }, [])
 
   return (
-    <section className="section-padding bg-transparent relative overflow-hidden">
+    <section className="hero-section bg-transparent relative overflow-hidden">
       {/* Hero animated background shapes */}
       <div className="absolute -top-32 -left-32 w-[40vw] h-[40vw] bg-[#0f3d3e]/20 rounded-full blur-3xl z-0 animate-blob1" />
       <div className="absolute -bottom-32 -right-32 w-[30vw] h-[30vw] bg-[#d4af37]/15 rounded-full blur-2xl z-0 animate-blob2" />
       <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/10 via-transparent to-transparent z-0 pointer-events-none" />
-      <div className="container-max relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              <div className="container-max relative z-10 w-full h-full flex items-center justify-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-7xl mx-auto w-full">
           {/* Left side - Content */}
           <motion.div 
             className="text-center lg:text-left space-y-6 lg:space-y-8 order-2 lg:order-1"
@@ -50,7 +50,7 @@ const HeroSection = () => {
           >
             <div className="space-y-4 lg:space-y-6">
               <motion.h1 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -59,7 +59,7 @@ const HeroSection = () => {
                 <span className="block gradient-text">Again.</span>
               </motion.h1>
               <motion.p 
-                className="text-lg sm:text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -76,16 +76,16 @@ const HeroSection = () => {
             >
               <button 
                 onClick={handleAppStoreClick}
-                className="btn-primary flex items-center justify-center space-x-2 px-6 py-3 transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+                className="btn-primary flex items-center justify-center space-x-2 px-4 sm:px-6 py-3 sm:py-4 h-12 sm:h-auto transition-transform duration-200 hover:scale-105 hover:shadow-lg text-sm sm:text-base"
               >
-                <Download className="w-5 h-5 transition-transform duration-200 group-hover:scale-125" />
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" />
                 <span>App Store</span>
               </button>
               <button 
                 onClick={handlePlayStoreClick}
-                className="btn-secondary flex items-center justify-center space-x-2 px-6 py-3 transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+                className="btn-secondary flex items-center justify-center space-x-2 px-4 sm:px-6 py-3 sm:py-4 h-12 sm:h-auto transition-transform duration-200 hover:scale-105 hover:shadow-lg text-sm sm:text-base"
               >
-                <Download className="w-5 h-5 transition-transform duration-200 group-hover:scale-125" />
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" />
                 <span>Play Store</span>
               </button>
             </motion.div>
@@ -118,7 +118,7 @@ const HeroSection = () => {
             <div className="relative">
               {/* Phone mockup with glassmorphism */}
               <motion.div 
-                className="w-64 sm:w-72 h-80 sm:h-96 glass p-2 shadow-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 ease-in-out"
+                className="w-56 sm:w-64 md:w-72 h-72 sm:h-80 md:h-96 glass p-2 shadow-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 ease-in-out"
                 whileHover={{ scale: 1.05, rotateY: 5 }}
                 whileTap={{ scale: 0.95 }}
               >

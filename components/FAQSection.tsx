@@ -45,19 +45,19 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="section-padding bg-black relative">
-      <div className="container-max">
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             Frequently Asked <span className="gradient-text">Questions</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
             Everything you need to know about CommuteTimely
           </p>
         </motion.div>

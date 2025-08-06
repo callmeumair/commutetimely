@@ -56,6 +56,72 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Scroll Snap Container */
+  .scroll-snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .scroll-snap-wrapper {
+    scroll-snap-type: y mandatory;
+  }
+  
+  /* Fullscreen Section */
+  .fullscreen-section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Hero Section Specific */
+  .hero-section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem 1rem;
+    width: 100%;
+  }
+  
+  /* Mobile Dynamic Viewport */
+  @media (max-width: 767px) {
+    .fullscreen-section,
+    .hero-section {
+      min-height: 100dvh;
+    }
+  }
+  
+  @media (min-width: 640px) {
+    .hero-section {
+      padding: 4rem 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding: 6rem 4rem;
+    }
+  }
+  
+  /* Ensure smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
 }
 
 @layer components {
@@ -68,11 +134,11 @@
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50 shadow-lg hover:shadow-xl min-h-[48px];
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] hover:from-[#2c2c2c] hover:to-[#1a1a1a] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50 border border-[#d4af37]/20;
+    @apply bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] hover:from-[#2c2c2c] hover:to-[#1a1a1a] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50 border border-[#d4af37]/20 min-h-[48px];
   }
   
   .gradient-text {

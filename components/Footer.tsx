@@ -8,12 +8,12 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-black border-t border-gray-800">
-      <div className="container-max py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+    <footer className="fullscreen-section bg-black border-t border-gray-800">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Brand */}
           <motion.div 
-            className="md:col-span-2"
+            className="sm:col-span-2"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}

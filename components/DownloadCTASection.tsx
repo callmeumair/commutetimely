@@ -14,8 +14,8 @@ const DownloadCTASection = () => {
   }
 
   return (
-    <section className="section-padding bg-black relative">
-      <div className="container-max">
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
         <motion.div 
           className="text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -23,16 +23,16 @@ const DownloadCTASection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             Download <span className="gradient-text">CommuteTimely</span> Today
           </h2>
-          <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
             Join thousands of users who never worry about being late again. Available on iOS and Android.
           </p>
 
           {/* Download buttons */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -40,26 +40,26 @@ const DownloadCTASection = () => {
           >
             <motion.button 
               onClick={handleAppStoreClick}
-              className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg"
+              className="btn-primary flex items-center space-x-3 px-6 sm:px-8 py-4 h-12 sm:h-auto text-base sm:text-lg w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Download className="w-6 h-6" />
+              <Download className="w-5 h-5 sm:w-6 sm:h-6" />
               <div className="text-left">
-                <div className="text-sm opacity-90">Download on the</div>
+                <div className="text-xs sm:text-sm opacity-90">Download on the</div>
                 <div className="font-bold">App Store</div>
               </div>
             </motion.button>
 
             <motion.button 
               onClick={handlePlayStoreClick}
-              className="btn-secondary flex items-center space-x-3 px-8 py-4 text-lg"
+              className="btn-secondary flex items-center space-x-3 px-6 sm:px-8 py-4 h-12 sm:h-auto text-base sm:text-lg w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Download className="w-6 h-6" />
+              <Download className="w-5 h-5 sm:w-6 sm:h-6" />
               <div className="text-left">
-                <div className="text-sm opacity-90">Get it on</div>
+                <div className="text-xs sm:text-sm opacity-90">Get it on</div>
                 <div className="font-bold">Google Play</div>
               </div>
             </motion.button>
@@ -67,7 +67,7 @@ const DownloadCTASection = () => {
 
           {/* Features grid */}
           <motion.div 
-            className="grid md:grid-cols-3 gap-8 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
