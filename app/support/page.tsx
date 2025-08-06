@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Support - CommuteTimely',
@@ -89,23 +90,23 @@ export default function SupportPage() {
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
                 <h3 className="text-lg font-medium text-[#d4af37] mb-3">User Guide</h3>
                 <p className="text-gray-300 mb-3">Learn how to use all features</p>
-                <a 
+                <Link 
                   href="/how-it-works"
                   className="inline-block bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-lg px-4 py-2 text-sm transition-all duration-200"
                 >
                   Read Guide
-                </a>
+                </Link>
               </div>
               
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
                 <h3 className="text-lg font-medium text-[#d4af37] mb-3">Report a Bug</h3>
                 <p className="text-gray-300 mb-3">Help us improve the app</p>
-                <a 
+                <Link 
                   href="/contact"
                   className="inline-block bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-lg px-4 py-2 text-sm transition-all duration-200"
                 >
                   Report Bug
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -115,8 +116,8 @@ export default function SupportPage() {
         <div className="mt-12 bg-gradient-to-r from-[#0f3d3e] to-[#1a1a1a] rounded-lg p-8 border border-[#d4af37]/20">
           <h2 className="text-2xl font-semibold mb-4">Response Time</h2>
           <p className="text-gray-300">
-            Our support team typically responds to all inquiries within 24 hours during business days. 
-            For urgent issues, please include "URGENT" in your email subject line.
+                         Our support team typically responds to all inquiries within 24 hours during business days. 
+             For urgent issues, please include &quot;URGENT&quot; in your email subject line.
           </p>
         </div>
       </div>

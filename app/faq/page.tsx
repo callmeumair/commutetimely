@@ -118,7 +118,7 @@ export default function FAQPage() {
             <h2 className="text-2xl font-semibold mb-6 text-[#d4af37]">Troubleshooting</h2>
             <div className="space-y-4">
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
-                <h3 className="text-lg font-semibold mb-3">I'm not receiving notifications. What should I do?</h3>
+                <h3 className="text-lg font-semibold mb-3">I&apos;m not receiving notifications. What should I do?</h3>
                 <p className="text-gray-300">
                   First, check that notifications are enabled in your device settings and that location 
                   services are turned on. Also ensure the app has permission to send notifications. 
@@ -139,7 +139,7 @@ export default function FAQPage() {
                 <h3 className="text-lg font-semibold mb-3">The app crashes or freezes. How can I fix this?</h3>
                 <p className="text-gray-300">
                   Try closing and reopening the app, or restart your device. If the problem continues, 
-                  uninstall and reinstall the app from your device's app store. Make sure you have the 
+                  uninstall and reinstall the app from your device&apos;s app store. Make sure you have the 
                   latest version installed.
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function FAQPage() {
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
                 <h3 className="text-lg font-semibold mb-3">How do I update my commute settings?</h3>
                 <p className="text-gray-300">
-                  Go to the app settings and select "Commute Settings." You can modify addresses, 
+                  Go to the app settings and select &quot;Commute Settings.&quot; You can modify addresses, 
                   arrival times, transport modes, and notification preferences at any time.
                 </p>
               </div>
@@ -177,7 +177,7 @@ export default function FAQPage() {
               <div className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700">
                 <h3 className="text-lg font-semibold mb-3">When will the app be available in my country?</h3>
                 <p className="text-gray-300">
-                  We're constantly expanding to new regions. If CommuteTimely isn't available in your 
+                  We&apos;re constantly expanding to new regions. If CommuteTimely isn&apos;t available in your 
                   country yet, you can sign up for our waitlist to be notified when we launch there.
                 </p>
               </div>
@@ -188,7 +188,7 @@ export default function FAQPage() {
           <section className="bg-gradient-to-r from-[#0f3d3e] to-[#1a1a1a] rounded-2xl p-8 border border-[#d4af37]/20">
             <h2 className="text-2xl font-semibold mb-4">Still Have Questions?</h2>
             <p className="text-gray-300 mb-6">
-              Can't find the answer you're looking for? Our support team is here to help.
+              Can&apos;t find the answer you&apos;re looking for? Our support team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a 

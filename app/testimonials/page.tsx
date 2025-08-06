@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Testimonials - CommuteTimely',
@@ -28,8 +29,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300 mb-4">
-                  "Finally, an app that actually helps me be on time! I used to be late to meetings constantly, 
-                  but now I get perfect notifications that tell me exactly when to leave. Game changer!"
+                  &quot;Finally, an app that actually helps me be on time! I used to be late to meetings constantly, 
+                  but now I get perfect notifications that tell me exactly when to leave. Game changer!&quot;
                 </p>
                 <div className="flex text-[#d4af37]">
                   <span>★★★★★</span>
@@ -48,8 +49,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300 mb-4">
-                  "The AI learning is incredible. After a week, it knew my commute better than I did. 
-                  The predictions are spot-on, even with traffic changes."
+                  &quot;The AI learning is incredible. After a week, it knew my commute better than I did. 
+                  The predictions are spot-on, even with traffic changes.&quot;
                 </p>
                 <div className="flex text-[#d4af37]">
                   <span>★★★★★</span>
@@ -68,8 +69,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300 mb-4">
-                  "As a teacher, being on time is crucial. This app has eliminated my stress about 
-                  traffic and made my mornings so much smoother. Highly recommend!"
+                  &quot;As a teacher, being on time is crucial. This app has eliminated my stress about 
+                  traffic and made my mornings so much smoother. Highly recommend!&quot;
                 </p>
                 <div className="flex text-[#d4af37]">
                   <span>★★★★★</span>
@@ -94,8 +95,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300">
-                  "I travel between multiple clients throughout the day. This app handles all my routes 
-                  perfectly and keeps me on schedule. It's like having a personal assistant!"
+                  &quot;I travel between multiple clients throughout the day. This app handles all my routes 
+                  perfectly and keeps me on schedule. It&apos;s like having a personal assistant!&quot;
                 </p>
               </div>
 
@@ -111,8 +112,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300">
-                  "Working in healthcare means I can't be late. This app has been a lifesaver. 
-                  The notifications are reliable and the timing is always perfect."
+                  &quot;Working in healthcare means I can&apos;t be late. This app has been a lifesaver. 
+                  The notifications are reliable and the timing is always perfect.&quot;
                 </p>
               </div>
 
@@ -128,8 +129,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300">
-                  "I drive for a living and this app has improved my efficiency dramatically. 
-                  It knows the traffic patterns better than any GPS I've used."
+                  &quot;I drive for a living and this app has improved my efficiency dramatically. 
+                  It knows the traffic patterns better than any GPS I&apos;ve used.&quot;
                 </p>
               </div>
 
@@ -145,8 +146,8 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <p className="text-gray-300">
-                  "As a student, I'm always rushing between classes. This app has made my campus 
-                  commute so much easier. I never miss a lecture anymore!"
+                  &quot;As a student, I&apos;m always rushing between classes. This app has made my campus 
+                  commute so much easier. I never miss a lecture anymore!&quot;
                 </p>
               </div>
             </div>
@@ -179,22 +180,22 @@ export default function TestimonialsPage() {
           <section className="text-center">
             <h2 className="text-2xl font-semibold mb-4">Join Thousands of Happy Users</h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Don't just take our word for it. Join the thousands of users who have transformed 
+              Don&apos;t just take our word for it. Join the thousands of users who have transformed 
               their daily commute with CommuteTimely.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <Link 
                 href="/#download"
                 className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white font-semibold rounded-lg px-8 py-3 text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Download Now
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/contact"
                 className="border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black font-semibold rounded-lg px-8 py-3 text-lg transition-all duration-200"
               >
                 Share Your Story
-              </a>
+              </Link>
             </div>
           </section>
         </div>

@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
                   <h2 className="text-3xl font-bold">Smart Notifications</h2>
                 </div>
                 <p className="text-gray-300 mb-6">
-                  When it's time to leave, you'll receive a smart notification that tells you exactly 
+                  When it&apos;s time to leave, you&apos;ll receive a smart notification that tells you exactly 
                   when to depart. The app considers all factors and gives you the optimal departure time 
                   to ensure you arrive on time.
                 </p>
