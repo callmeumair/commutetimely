@@ -6,6 +6,7 @@ import { config } from '@/lib/config'
 import { useEffect, useState } from 'react'
 import Lottie from 'lottie-react'
 import phoneAnimation from '@/public/lottie/phone-screen.json'
+import AnimatedButton from './AnimatedButton'
 
 const HeroSection = () => {
   const handleJoinWaitlist = () => {
@@ -82,20 +83,26 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <button 
+              <AnimatedButton 
                 onClick={handleAppStoreClick}
-                className="btn-primary flex items-center justify-center space-x-2 px-4 sm:px-6 py-3 sm:py-4 h-12 sm:h-auto transition-transform duration-200 hover:scale-105 hover:shadow-lg text-sm sm:text-base"
+                variant="primary"
+                size="lg"
+                withSparkle={true}
+                className="flex items-center justify-center space-x-2"
               >
                 <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" />
                 <span>App Store</span>
-              </button>
-              <button 
+              </AnimatedButton>
+              <AnimatedButton 
                 onClick={handlePlayStoreClick}
-                className="btn-secondary flex items-center justify-center space-x-2 px-4 sm:px-6 py-3 sm:py-4 h-12 sm:h-auto transition-transform duration-200 hover:scale-105 hover:shadow-lg text-sm sm:text-base"
+                variant="outline"
+                size="lg"
+                withSparkle={true}
+                className="flex items-center justify-center space-x-2"
               >
                 <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" />
                 <span>Play Store</span>
-              </button>
+              </AnimatedButton>
             </motion.div>
 
             {/* Social proof */}
@@ -116,7 +123,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
           
-          {/* Right side - Lottie Animation */}
+          {/* Right side - Lottie Animation with Parallax */}
           <motion.div 
             className="flex justify-center lg:justify-end order-1 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
@@ -124,11 +131,25 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Lottie phone screen animation */}
+              {/* Lottie phone screen animation with parallax */}
               <motion.div 
                 className="w-56 sm:w-64 md:w-72 h-72 sm:h-80 md:h-96 glass p-2 shadow-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 ease-in-out"
-                whileHover={{ scale: 1.05, rotateY: 5 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 5,
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
                 whileTap={{ scale: 0.95 }}
+                animate={{ 
+                  y: [0, -5, 0],
+                  rotateY: [0, 2, 0]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
                 <div className="w-full h-full bg-gray-800 rounded-2xl p-4 sm:p-6 flex flex-col">
                   {/* App header */}

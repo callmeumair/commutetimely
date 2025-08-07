@@ -1,0 +1,91 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
+
+interface AnimatedButtonProps {
+  children: ReactNode
+  onClick?: () => void
+  className?: string
+  variant?: 'primary' | 'secondary' | 'outline'
+  size?: 'sm' | 'md' | 'lg'
+  disabled?: boolean
+  withSparkle?: boolean
+  withRipple?: boolean
+}
+
+const AnimatedButton = ({
+  children,
+  onClick,
+  className = '',
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  withSparkle = false,
+  withRipple = true
+}: AnimatedButtonProps) => {
+  const baseClasses = 'font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
+  
+  const variantClasses = {
+    primary: 'bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white shadow-lg hover:shadow-xl',
+    secondary: 'bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] hover:from-[#2c2c2c] hover:to-[#1a1a1a] text-white border border-gray-600 hover:border-gray-500',
+    outline: 'border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black'
+  }
+  
+  const sizeClasses = {
+    sm: 'px-4 py-2 text-sm',
+    md: 'px-6 py-3 text-base',
+    lg: 'px-8 py-4 text-lg'
+  }
+  
+  const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} ${withSparkle ? 'sparkle' : ''} ${withRipple ? 'ripple-button' : ''}`
+  
+  const handleClick = (e: React.MouseEvent) => {
+    if (withRipple) {
+      const button = e.currentTarget
+      const ripple = document.createElement('span')
+      const rect = button.getBoundingClientRect()
+      const size = Math.max(rect.width, rect.height)
+      const x = e.clientX - rect.left - size / 2
+      const y = e.clientY - rect.top - size / 2
+      
+      ripple.style.width = ripple.style.height = size + 'px'
+      ripple.style.left = x + 'px'
+      ripple.style.top = y + 'px'
+      ripple.classList.add('ripple')
+      
+      button.appendChild(ripple)
+      
+      setTimeout(() => {
+        ripple.remove()
+      }, 600)
+    }
+    
+    onClick?.()
+  }
+  
+  return (
+    <motion.button
+      className={buttonClasses}
+      onClick={handleClick}
+      disabled={disabled}
+      whileHover={{ 
+        scale: 1.05,
+        y: -2,
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ 
+        scale: 0.95,
+        y: 0,
+        transition: { duration: 0.1 }
+      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.button>
+  )
+}
+
+export default AnimatedButton 

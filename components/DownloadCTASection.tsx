@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Download, Smartphone, Star } from 'lucide-react'
 import { config } from '@/lib/config'
+import AnimatedButton from './AnimatedButton'
 
 const DownloadCTASection = () => {
   const handleAppStoreClick = () => {
@@ -44,31 +45,33 @@ const DownloadCTASection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <motion.button 
+            <AnimatedButton 
               onClick={handleAppStoreClick}
-              className="btn-primary flex items-center space-x-3 px-6 sm:px-8 py-4 h-12 sm:h-auto text-base sm:text-lg w-full sm:w-auto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              variant="primary"
+              size="lg"
+              withSparkle={true}
+              className="flex items-center space-x-3 w-full sm:w-auto"
             >
               <Download className="w-5 h-5 sm:w-6 sm:h-6" />
               <div className="text-left">
                 <div className="text-xs sm:text-sm opacity-90">Download on the</div>
                 <div className="font-bold">App Store</div>
               </div>
-            </motion.button>
+            </AnimatedButton>
 
-            <motion.button 
+            <AnimatedButton 
               onClick={handlePlayStoreClick}
-              className="btn-secondary flex items-center space-x-3 px-6 sm:px-8 py-4 h-12 sm:h-auto text-base sm:text-lg w-full sm:w-auto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              variant="outline"
+              size="lg"
+              withSparkle={true}
+              className="flex items-center space-x-3 w-full sm:w-auto"
             >
               <Download className="w-5 h-5 sm:w-6 sm:h-6" />
               <div className="text-left">
                 <div className="text-xs sm:text-sm opacity-90">Get it on</div>
                 <div className="font-bold">Google Play</div>
               </div>
-            </motion.button>
+            </AnimatedButton>
           </motion.div>
 
           {/* Features grid */}
@@ -79,29 +82,65 @@ const DownloadCTASection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="text-center glass p-6 hover:scale-105 transition-transform duration-200">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <motion.div 
+              className="text-center glass p-6"
+              whileHover={{ 
+                scale: 1.05, 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Smartphone className="w-8 h-8 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold text-white mb-2">Free to Download</h3>
               <p className="text-gray-400">No upfront cost, start optimizing your commute today</p>
-            </div>
+            </motion.div>
 
-            <div className="text-center glass p-6 hover:scale-105 transition-transform duration-200">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <motion.div 
+              className="text-center glass p-6"
+              whileHover={{ 
+                scale: 1.05, 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Star className="w-8 h-8 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold text-white mb-2">4.8★ Rating</h3>
               <p className="text-gray-400">Trusted by thousands of users worldwide</p>
-            </div>
+            </motion.div>
 
-            <div className="text-center glass p-6 hover:scale-105 transition-transform duration-200">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <motion.div 
+              className="text-center glass p-6"
+              whileHover={{ 
+                scale: 1.05, 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Download className="w-8 h-8 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold text-white mb-2">Instant Setup</h3>
               <p className="text-gray-400">Get started in minutes with one-tap configuration</p>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Social proof */}

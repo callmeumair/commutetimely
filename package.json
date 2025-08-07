@@ -30,6 +30,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.52.1",
+    "react-scroll-parallax": "^3.4.5",
     "swiper": "^11.1.6",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
