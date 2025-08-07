@@ -99,6 +99,7 @@ const FeaturesSection = () => {
                   className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                   whileHover={{ rotate: 360, scale: 1.15 }}
                   transition={{ duration: 0.6 }}
+                  aria-hidden="true"
                 >
                   <feature.icon className="w-8 h-8 text-white transition-colors duration-200 group-hover:text-brand-accent" />
                 </motion.div>
@@ -126,7 +127,7 @@ const FeaturesSection = () => {
         >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center" aria-hidden="true">
                 <Shield className="w-10 h-10 text-white" />
               </div>
             </div>

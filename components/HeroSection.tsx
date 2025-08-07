@@ -89,8 +89,9 @@ const HeroSection = () => {
                 size="lg"
                 withSparkle={true}
                 className="flex items-center justify-center space-x-2"
+                aria-label="Download CommuteTimely from Apple App Store"
               >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" />
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" aria-hidden="true" />
                 <span>App Store</span>
               </AnimatedButton>
               <AnimatedButton 
@@ -99,8 +100,9 @@ const HeroSection = () => {
                 size="lg"
                 withSparkle={true}
                 className="flex items-center justify-center space-x-2"
+                aria-label="Download CommuteTimely from Google Play Store"
               >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" />
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" aria-hidden="true" />
                 <span>Play Store</span>
               </AnimatedButton>
             </motion.div>

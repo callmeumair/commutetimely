@@ -84,11 +84,14 @@ export default function SupportBot() {
       {/* Chat Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 w-14 h-14 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center"
+        className="fixed bottom-6 left-6 w-14 h-14 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        aria-label="Open support chat"
+        aria-expanded={isOpen}
+        aria-controls="support-chat-modal"
       >
-        <MessageCircle className="w-6 h-6 text-white" />
+        <MessageCircle className="w-6 h-6 text-white" aria-hidden="true" />
       </motion.button>
 
       {/* Chat Modal */}
@@ -98,6 +101,10 @@ export default function SupportBot() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end justify-end p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="chat-title"
+          id="support-chat-modal"
         >
           <motion.div
             initial={{ scale: 0.9, y: 20 }}
@@ -108,14 +115,15 @@ export default function SupportBot() {
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-white/10">
                 <div className="flex items-center space-x-2">
-                  <Bot className="w-5 h-5 text-brand-accent" />
-                  <span className="font-semibold text-white">CommuteTimely Assistant</span>
+                  <Bot className="w-5 h-5 text-brand-accent" aria-hidden="true" />
+                  <span id="chat-title" className="font-semibold text-white">CommuteTimely Assistant</span>
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-1 hover:bg-white/10 rounded-full transition-colors duration-200"
+                  className="p-1 hover:bg-white/10 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black"
+                  aria-label="Close chat"
                 >
-                  <X className="w-5 h-5 text-white" />
+                  <X className="w-5 h-5 text-white" aria-hidden="true" />
                 </button>
               </div>
 
@@ -171,9 +179,10 @@ export default function SupportBot() {
                   <button
                     type="submit"
                     disabled={!inputValue.trim()}
-                    className="p-2 bg-brand-accent rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-accent/80 transition-colors duration-200"
+                    className="p-2 bg-brand-accent rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-accent/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black"
+                    aria-label="Send message"
                   >
-                    <Send className="w-4 h-4 text-white" />
+                    <Send className="w-4 h-4 text-white" aria-hidden="true" />
                   </button>
                 </div>
               </form>

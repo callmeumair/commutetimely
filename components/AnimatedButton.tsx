@@ -69,6 +69,7 @@ const AnimatedButton = ({
       className={buttonClasses}
       onClick={handleClick}
       disabled={disabled}
+      aria-disabled={disabled}
       whileHover={{ 
         scale: 1.05,
         y: -2,

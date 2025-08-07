@@ -22,13 +22,13 @@
   "app/page.tsx -> @/components/Footer": {
     "id": 6109,
     "files": [
-      "static/chunks/109.10c7bbc0d0a55d1e.js"
+      "static/chunks/109.995885f9b0309b99.js"
     ]
   },
   "app/page.tsx -> @/components/SupportBot": {
     "id": 9344,
     "files": [
-      "static/chunks/344.a6cca522348b437d.js"
+      "static/chunks/344.cf7bc50f734465a7.js"
     ]
   },
   "app/page.tsx -> @/components/TestimonialsSection": {
