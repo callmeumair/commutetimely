@@ -84,7 +84,7 @@ export default function SupportBot() {
       {/* Chat Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 w-14 h-14 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black"
+        className="fixed bottom-6 left-6 w-14 h-14 bg-gradient-to-r from-[#FFC773] to-[#E6B35C] rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#FFC773]/50 focus:ring-offset-2 focus:ring-offset-black"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         aria-label="Open support chat"
@@ -120,7 +120,7 @@ export default function SupportBot() {
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-1 hover:bg-white/10 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black"
+                  className="p-1 hover:bg-white/10 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FFC773]/50 focus:ring-offset-2 focus:ring-offset-black"
                   aria-label="Close chat"
                 >
                   <X className="w-5 h-5 text-white" aria-hidden="true" />
@@ -179,7 +179,7 @@ export default function SupportBot() {
                   <button
                     type="submit"
                     disabled={!inputValue.trim()}
-                    className="p-2 bg-brand-accent rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-accent/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black"
+                    className="p-2 bg-brand-accent rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-accent/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FFC773]/50 focus:ring-offset-2 focus:ring-offset-black"
                     aria-label="Send message"
                   >
                     <Send className="w-4 h-4 text-white" aria-hidden="true" />

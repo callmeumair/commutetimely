@@ -27,9 +27,9 @@ const AnimatedButton = ({
   const baseClasses = 'font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
   
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c244] hover:to-[#d4af37] text-white shadow-lg hover:shadow-xl',
+    primary: 'bg-gradient-to-r from-[#FFC773] to-[#E6B35C] hover:from-[#FFD494] hover:to-[#FFC773] text-white shadow-lg hover:shadow-xl',
     secondary: 'bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] hover:from-[#2c2c2c] hover:to-[#1a1a1a] text-white border border-gray-600 hover:border-gray-500',
-    outline: 'border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black'
+    outline: 'border-2 border-[#2EBFA5] text-[#2EBFA5] hover:bg-[#2EBFA5] hover:text-white'
   }
   
   const sizeClasses = {

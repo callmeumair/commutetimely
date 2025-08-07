@@ -89,7 +89,7 @@ const DownloadCTASection = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#FFC773] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               >
@@ -109,7 +109,7 @@ const DownloadCTASection = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                className="w-16 h-16 bg-gradient-to-r from-[#FFC773] to-[#E6B35C] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               >
@@ -142,7 +142,7 @@ const DownloadCTASection = () => {
 
           {/* Social proof */}
           <motion.div 
-            className="glass rounded-3xl p-8 border border-[#d4af37]/30 hover:border-[#d4af37]/50 transition-all duration-300"
+            className="glass rounded-3xl p-8 border border-[#FFC773]/30 hover:border-[#FFC773]/50 transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}

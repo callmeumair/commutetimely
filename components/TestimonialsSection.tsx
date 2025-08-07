@@ -97,14 +97,14 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
         >
           <div className="glass p-8 rounded-2xl text-center">
-            <Quote className="w-12 h-12 text-[#d4af37] mx-auto mb-6" />
+            <Quote className="w-12 h-12 text-[#FFC773] mx-auto mb-6" />
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               &ldquo;{preLaunchMessage.description}&rdquo;
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
               {preLaunchMessage.features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3 text-gray-400">
-                  <div className="w-2 h-2 bg-[#d4af37] rounded-full"></div>
+                  <div className="w-2 h-2 bg-[#FFC773] rounded-full"></div>
                   <span>{feature}</span>
                 </div>
               ))}
