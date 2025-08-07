@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 import TestimonialVideoModal from './TestimonialVideoModal'
 
 const preLaunchMessage = {
-  title: "Coming September 2025",
-  subtitle: "Be one of our first users",
-  description: "We're working closely with early users to perfect CommuteTimely. Real testimonials will be added after our September 2025 launch.",
+  title: "Launching September 2025",
+  subtitle: "Sign up now to get early access",
+  description: "Be the first to try CommuteTimely. Real testimonials will be added after our September 2025 launch.",
   features: [
     "Smart traffic notifications",
     "Real-time weather integration", 

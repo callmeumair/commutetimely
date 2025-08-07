@@ -140,7 +140,7 @@ const DownloadCTASection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Social proof */}
+          {/* Social proof - REPLACE with pre-launch messaging */}
           <motion.div 
             className="glass rounded-3xl p-8 border border-[#2EBFA5]/30 hover:border-[#2EBFA5]/50 transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
@@ -148,28 +148,17 @@ const DownloadCTASection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Join 10,000+ Users
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  &ldquo;CommuteTimely has saved me countless hours of stress. I never worry about traffic anymore!&rdquo;
-                </p>
-                <div className="flex items-center space-x-4">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <span className="text-gray-400">4.8/5 from 2,500+ reviews</span>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold gradient-text mb-2">
-                  99%
-                </div>
-                <div className="text-gray-400">User Satisfaction</div>
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Launching September 2025
+              </h3>
+              <p className="text-gray-300 leading-relaxed mb-6">
+                Sign up now to get early access and be the first to try CommuteTimely.
+              </p>
+              <div className="flex justify-center gap-4 opacity-80 text-sm">
+                <span>Early Access</span>
+                <span>App Store</span>
+                <span>Google Play</span>
               </div>
             </div>
           </motion.div>

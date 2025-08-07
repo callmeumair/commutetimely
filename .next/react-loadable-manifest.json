@@ -8,7 +8,7 @@
   "app/page.tsx -> @/components/DownloadCTASection": {
     "id": 7581,
     "files": [
-      "static/chunks/581.4a74236fe38b03b9.js"
+      "static/chunks/581.b4c4861d061634d0.js"
     ]
   },
   "app/page.tsx -> @/components/FAQSection": {
@@ -37,7 +37,7 @@
       "static/chunks/5ffe1889.a2d02bef6304532e.js",
       "static/chunks/140.f6e0290467c37782.js",
       "static/chunks/252.8ea07adca853db9d.js",
-      "static/chunks/23.a81ef3a3595ac75b.js"
+      "static/chunks/23.6145f99fdacb3253.js"
     ]
   },
   "app/page.tsx -> @/components/TrustSection": {

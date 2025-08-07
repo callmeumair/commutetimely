@@ -19,7 +19,7 @@ export default function TestimonialVideoModal({
   onClose,
   videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder
   title = "See CommuteTimely in Action",
-  description = "Watch how Sarah uses CommuteTimely to never be late again."
+  description = "See how CommuteTimely will work for you."
 }: TestimonialVideoModalProps) {
   const [isPlaying, setIsPlaying] = useState(false)
 
