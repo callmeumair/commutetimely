@@ -72,6 +72,7 @@ export default function StickyHeader() {
                 key={item.href}
                 href={item.href}
                 className="text-gray-300 hover:text-white font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black rounded"
+                title={`Learn more about ${item.label.toLowerCase()}`}
               >
                 {item.label}
               </a>
@@ -145,6 +146,7 @@ export default function StickyHeader() {
                     href={item.href}
                     onClick={toggleMobileMenu}
                     className="block text-lg text-white hover:text-[#d4af37] font-medium transition-colors duration-200 py-3 border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black rounded"
+                    title={`Learn more about ${item.label.toLowerCase()}`}
                   >
                     {item.label}
                   </a>

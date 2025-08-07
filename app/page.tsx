@@ -8,29 +8,152 @@ import FeaturesSection from '@/components/FeaturesSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
 import { config } from '@/lib/config'
 
+import LoadingPlaceholder from '@/components/LoadingPlaceholder'
+
 // Dynamically import non-critical components
 const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
-  loading: () => <div className="h-screen bg-black" />
+  loading: () => (
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="text-center mb-12">
+          <LoadingPlaceholder height="h-8" width="w-64" className="mx-auto mb-4" />
+          <LoadingPlaceholder height="h-4" width="w-96" className="mx-auto" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="glass p-6 rounded-xl">
+              <LoadingPlaceholder height="h-4" width="w-3/4" className="mb-4" />
+              <LoadingPlaceholder height="h-3" width="w-full" className="mb-2" />
+              <LoadingPlaceholder height="h-3" width="w-2/3" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 })
 
 const FAQSection = dynamic(() => import('@/components/FAQSection'), {
-  loading: () => <div className="h-screen bg-black" />
+  loading: () => (
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="text-center mb-12">
+          <LoadingPlaceholder height="h-8" width="w-48" className="mx-auto mb-4" />
+          <LoadingPlaceholder height="h-4" width="w-80" className="mx-auto" />
+        </div>
+        <div className="max-w-4xl mx-auto space-y-4">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="glass p-6 rounded-xl">
+              <LoadingPlaceholder height="h-5" width="w-3/4" className="mb-3" />
+              <LoadingPlaceholder height="h-3" width="w-full" className="mb-2" />
+              <LoadingPlaceholder height="h-3" width="w-2/3" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 })
 
 const DownloadCTASection = dynamic(() => import('@/components/DownloadCTASection'), {
-  loading: () => <div className="h-screen bg-black" />
+  loading: () => (
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="text-center mb-12">
+          <LoadingPlaceholder height="h-8" width="w-72" className="mx-auto mb-4" />
+          <LoadingPlaceholder height="h-4" width="w-96" className="mx-auto" />
+        </div>
+        <div className="flex justify-center space-x-4 mb-8">
+          <LoadingPlaceholder height="h-12" width="w-48" />
+          <LoadingPlaceholder height="h-12" width="w-48" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="glass p-6 rounded-xl text-center">
+              <LoadingPlaceholder height="h-16" width="w-16" className="mx-auto mb-4 rounded-full" />
+              <LoadingPlaceholder height="h-5" width="w-3/4" className="mx-auto mb-2" />
+              <LoadingPlaceholder height="h-3" width="w-full" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 })
 
 const Footer = dynamic(() => import('@/components/Footer'), {
-  loading: () => <div className="h-32 bg-black" />
+  loading: () => (
+    <footer className="fullscreen-section bg-black border-t border-gray-800">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="sm:col-span-2">
+            <LoadingPlaceholder height="h-8" width="w-48" className="mb-4" />
+            <LoadingPlaceholder height="h-4" width="w-64" className="mb-6" />
+            <div className="flex space-x-4">
+              {[...Array(3)].map((_, i) => (
+                <LoadingPlaceholder key={i} height="h-10" width="w-10" className="rounded-full" />
+              ))}
+            </div>
+          </div>
+          {[...Array(2)].map((_, i) => (
+            <div key={i}>
+              <LoadingPlaceholder height="h-5" width="w-24" className="mb-4" />
+              <div className="space-y-3">
+                {[...Array(4)].map((_, j) => (
+                  <LoadingPlaceholder key={j} height="h-4" width="w-20" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </footer>
+  )
 })
 
 const TrustSection = dynamic(() => import('@/components/TrustSection'), {
-  loading: () => <div className="h-screen bg-black" />
+  loading: () => (
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="text-center mb-12">
+          <LoadingPlaceholder height="h-8" width="w-56" className="mx-auto mb-4" />
+          <LoadingPlaceholder height="h-4" width="w-80" className="mx-auto" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="text-center">
+              <LoadingPlaceholder height="h-12" width="w-12" className="mx-auto mb-3 rounded-full" />
+              <LoadingPlaceholder height="h-4" width="w-20" className="mx-auto" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 })
 
 const CommuteCalculator = dynamic(() => import('@/components/CommuteCalculator'), {
-  loading: () => <div className="h-screen bg-black" />
+  loading: () => (
+    <section className="fullscreen-section bg-black relative">
+      <div className="container-max w-full h-full flex flex-col justify-center">
+        <div className="text-center mb-12">
+          <LoadingPlaceholder height="h-8" width="w-64" className="mx-auto mb-4" />
+          <LoadingPlaceholder height="h-4" width="w-96" className="mx-auto" />
+        </div>
+        <div className="max-w-2xl mx-auto glass p-8 rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {[...Array(4)].map((_, i) => (
+              <div key={i}>
+                <LoadingPlaceholder height="h-4" width="w-24" className="mb-2" />
+                <LoadingPlaceholder height="h-10" width="w-full" />
+              </div>
+            ))}
+          </div>
+          <LoadingPlaceholder height="h-12" width="w-48" className="mx-auto" />
+        </div>
+      </div>
+    </section>
+  )
 })
 
 const SupportBot = dynamic(() => import('@/components/SupportBot'), {

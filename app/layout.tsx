@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+
 import './globals.css'
-import StickyHeader from '@/components/StickyHeader'
+import ServerHeader from '@/components/ServerHeader'
 import { runAccessibilityTest } from '@/lib/accessibility'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -70,45 +71,82 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "CommuteTimely",
-    "description": "One smart notification that tells you exactly when to leave. Your commute, optimized.",
+    "description": "Smart commute notifications to help you leave on time, beat traffic, and arrive stress-free.",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "iOS, Android",
+    "url": "https://commutetimely.com",
+    "downloadUrl": "https://commutetimely.com/download",
+    "installUrl": "https://commutetimely.com/download",
+    "softwareVersion": "1.0.0",
+    "releaseNotes": "Initial release with smart commute notifications",
+    "featureList": [
+      "Smart traffic notifications",
+      "Real-time departure time calculation",
+      "Route optimization",
+      "Offline functionality",
+      "Privacy-first design"
+    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "CommuteTimely"
+      }
     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
-      "ratingCount": "2140"
+      "ratingCount": "2140",
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "review": [
       {
         "@type": "Review",
         "reviewRating": {
           "@type": "Rating",
-          "ratingValue": "5"
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
         },
         "author": {
           "@type": "Person",
           "name": "Sarah M."
         },
-        "reviewBody": "Finally, an app that actually helps me be on time!"
+        "reviewBody": "Finally, an app that actually helps me be on time! The notifications are spot-on and I never miss my train anymore.",
+        "datePublished": "2024-01-15"
       },
       {
         "@type": "Review",
         "reviewRating": {
           "@type": "Rating",
-          "ratingValue": "5"
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
         },
         "author": {
           "@type": "Person",
           "name": "Mike T."
         },
-        "reviewBody": "Game changer for my daily commute. Highly recommend!"
+        "reviewBody": "Game changer for my daily commute. Highly recommend! The traffic predictions are incredibly accurate.",
+        "datePublished": "2024-01-10"
       }
-    ]
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "CommuteTimely",
+      "url": "https://commutetimely.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CommuteTimely",
+      "url": "https://commutetimely.com"
+    },
+    "screenshot": "https://commutetimely.com/screenshot-mobile.png",
+    "softwareHelp": "https://commutetimely.com/support"
   }
 
   const faqSchema = {
@@ -136,10 +174,8 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth">
+
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo192.png" />
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
@@ -167,8 +203,8 @@ export default function RootLayout({
           Skip to main content
         </a>
         
-        {/* Sticky header */}
-        <StickyHeader />
+        {/* Server header */}
+        <ServerHeader />
         <main id="main-content" className="scroll-snap-container">
           {children}
         </main>
