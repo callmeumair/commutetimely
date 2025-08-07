@@ -8,7 +8,7 @@
   "app/page.tsx -> @/components/DownloadCTASection": {
     "id": 7581,
     "files": [
-      "static/chunks/581.c2f9638999e4b7a9.js"
+      "static/chunks/581.4a74236fe38b03b9.js"
     ]
   },
   "app/page.tsx -> @/components/FAQSection": {
@@ -22,13 +22,13 @@
   "app/page.tsx -> @/components/Footer": {
     "id": 6109,
     "files": [
-      "static/chunks/109.5d7a786cac71b5be.js"
+      "static/chunks/109.219f3ebbd75fddce.js"
     ]
   },
   "app/page.tsx -> @/components/SupportBot": {
     "id": 9344,
     "files": [
-      "static/chunks/344.93851f780189b465.js"
+      "static/chunks/344.8fa2bbddffc26f06.js"
     ]
   },
   "app/page.tsx -> @/components/TestimonialsSection": {
@@ -37,7 +37,7 @@
       "static/chunks/5ffe1889.a2d02bef6304532e.js",
       "static/chunks/140.f6e0290467c37782.js",
       "static/chunks/252.8ea07adca853db9d.js",
-      "static/chunks/23.f69a28196ede1d3d.js"
+      "static/chunks/23.a81ef3a3595ac75b.js"
     ]
   },
   "app/page.tsx -> @/components/TrustSection": {

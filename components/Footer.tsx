@@ -20,7 +20,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-3 mb-4">
-                              <div className="w-10 h-10 bg-gradient-to-r from-[#0f3d3e] to-[#FFC773] rounded-xl flex items-center justify-center" aria-hidden="true">
+                              <div className="w-10 h-10 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-xl flex items-center justify-center" aria-hidden="true">
                 <span className="text-white font-bold text-lg">CT</span>
               </div>
               <span className="text-2xl font-bold text-white">CommuteTimely</span>
@@ -33,7 +33,7 @@ const Footer = () => {
                 href={config.TWITTER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#FFC773] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FFC773]/50 focus:ring-offset-2 focus:ring-offset-black"
+                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#2EBFA5] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Follow us on Twitter"
@@ -44,7 +44,7 @@ const Footer = () => {
                 href={config.GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#FFC773] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FFC773]/50 focus:ring-offset-2 focus:ring-offset-black"
+                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#2EBFA5] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="View our GitHub repository"
@@ -53,7 +53,7 @@ const Footer = () => {
               </motion.a>
               <motion.a
                 href="mailto:support@commutetimely.com"
-                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#FFC773] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FFC773]/50 focus:ring-offset-2 focus:ring-offset-black"
+                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#2EBFA5] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Contact us via email"

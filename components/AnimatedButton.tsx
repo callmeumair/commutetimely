@@ -27,10 +27,15 @@ const AnimatedButton = ({
   const baseClasses = 'font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
   
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-[#FFC773] to-[#E6B35C] hover:from-[#FFD494] hover:to-[#FFC773] text-white shadow-lg hover:shadow-xl',
-    secondary: 'bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] hover:from-[#2c2c2c] hover:to-[#1a1a1a] text-white border border-gray-600 hover:border-gray-500',
+    primary: 'bg-[#2EBFA5] text-white shadow-lg hover:shadow-xl',
+    secondary: 'bg-transparent border-2 border-[#2EBFA5] text-[#2EBFA5] hover:bg-[#2EBFA5] hover:text-white',
     outline: 'border-2 border-[#2EBFA5] text-[#2EBFA5] hover:bg-[#2EBFA5] hover:text-white'
   }
+  // Add inline style for gradient and glow
+  const gradientStyle = variant === 'primary' ? {
+    background: 'linear-gradient(90deg, #2EBFA5 0%, #1E8372 100%)',
+    boxShadow: withSparkle ? '0 0 10px rgba(46,191,165,0.3)' : undefined
+  } : {}
   
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
@@ -67,6 +72,7 @@ const AnimatedButton = ({
   return (
     <motion.button
       className={buttonClasses}
+      style={gradientStyle}
       onClick={handleClick}
       disabled={disabled}
       aria-disabled={disabled}

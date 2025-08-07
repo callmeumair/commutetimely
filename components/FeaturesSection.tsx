@@ -8,7 +8,7 @@ const features = [
     icon: Clock,
     title: "Leave On Time",
     description: "Get precise departure times based on real-time traffic conditions and your commute patterns.",
-          color: "from-[#0f3d3e] to-[#FFC773]"
+          color: "from-[#0f3d3e] to-[#2EBFA5]"
   },
   {
     icon: Bell,
@@ -20,7 +20,7 @@ const features = [
     icon: Car,
     title: "Multi-Mode Support",
     description: "Works with car, bus, train, walking, and cycling. Optimize any commute type.",
-          color: "from-[#FFC773] to-[#E6B35C]"
+          color: "from-[#2EBFA5] to-[#1E8372]"
   },
   {
     icon: Zap,
@@ -119,7 +119,7 @@ const FeaturesSection = () => {
 
         {/* Additional feature highlight */}
         <motion.div 
-                      className="mt-16 bg-gradient-to-r from-[#0f3d3e]/20 to-[#FFC773]/20 rounded-3xl p-8 border border-[#FFC773]/30"
+                      className="mt-16 bg-gradient-to-r from-[#0f3d3e]/20 to-[#2EBFA5]/20 rounded-3xl p-8 border border-[#2EBFA5]/30"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -127,7 +127,7 @@ const FeaturesSection = () => {
         >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 bg-gradient-to-r from-[#0f3d3e] to-[#FFC773] rounded-2xl flex items-center justify-center" aria-hidden="true">
+              <div className="w-20 h-20 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-2xl flex items-center justify-center" aria-hidden="true">
                 <Shield className="w-10 h-10 text-white" />
               </div>
             </div>
