@@ -54,7 +54,7 @@
         "via.placeholder.com"
       ],
       "disableStaticImages": false,
-      "minimumCacheTTL": 60,
+      "minimumCacheTTL": 31536000,
       "formats": [
         "image/webp",
         "image/avif"
@@ -90,7 +90,9 @@
       "keepAlive": true
     },
     "logging": {},
-    "compiler": {},
+    "compiler": {
+      "removeConsole": true
+    },
     "expireTime": 31536000,
     "staticPageGenerationTimeout": 60,
     "modularizeImports": {

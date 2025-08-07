@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Bell, CheckCircle } from 'lucide-react'
-import Lottie from 'lottie-react'
 import stepAnimation from '@/public/lottie/step-animation.json'
+import LazyLottie from './LazyLottie'
 
 const steps = [
   {
@@ -84,7 +84,7 @@ const HowItWorksSection = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className={`w-24 h-24 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg p-2`}>
-                    <Lottie 
+                    <LazyLottie 
                       animationData={stepAnimation} 
                       loop={true} 
                       className="w-full h-full"

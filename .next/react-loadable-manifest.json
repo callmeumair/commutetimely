@@ -1,1 +1,56 @@
-{}
+{
+  "app/page.tsx -> @/components/CommuteCalculator": {
+    "id": 1761,
+    "files": [
+      "static/chunks/761.c3674f891495d71c.js"
+    ]
+  },
+  "app/page.tsx -> @/components/DownloadCTASection": {
+    "id": 6222,
+    "files": [
+      "static/chunks/222.40e7a2e62186eeaa.js"
+    ]
+  },
+  "app/page.tsx -> @/components/FAQSection": {
+    "id": 9261,
+    "files": [
+      "static/chunks/140.f6e0290467c37782.js",
+      "static/chunks/633.7c1cc896c911b535.js",
+      "static/chunks/261.705731d9d128ea8d.js"
+    ]
+  },
+  "app/page.tsx -> @/components/Footer": {
+    "id": 6109,
+    "files": [
+      "static/chunks/109.10c7bbc0d0a55d1e.js"
+    ]
+  },
+  "app/page.tsx -> @/components/SupportBot": {
+    "id": 9344,
+    "files": [
+      "static/chunks/344.a6cca522348b437d.js"
+    ]
+  },
+  "app/page.tsx -> @/components/TestimonialsSection": {
+    "id": 5023,
+    "files": [
+      "static/chunks/5ffe1889.a2d02bef6304532e.js",
+      "static/chunks/140.f6e0290467c37782.js",
+      "static/chunks/155.b163480c035d4cb1.js",
+      "static/chunks/23.18f0ed8eecd2decb.js"
+    ]
+  },
+  "app/page.tsx -> @/components/TrustSection": {
+    "id": 1064,
+    "files": [
+      "static/chunks/64.5862fe416e5225ec.js"
+    ]
+  },
+  "components/LazyLottie.tsx -> lottie-react": {
+    "id": 3770,
+    "files": [
+      "static/chunks/dc112a36.18ebd3355a5fca7a.js",
+      "static/chunks/770.c8043d62f80f3a93.js"
+    ]
+  }
+}

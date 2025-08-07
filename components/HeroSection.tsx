@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import { Clock, Smartphone, Download } from 'lucide-react'
 import { config } from '@/lib/config'
 import { useEffect, useState } from 'react'
-import Lottie from 'lottie-react'
 import phoneAnimation from '@/public/lottie/phone-screen.json'
 import AnimatedButton from './AnimatedButton'
+import LazyLottie from './LazyLottie'
 
 const HeroSection = () => {
   const handleJoinWaitlist = () => {
@@ -163,9 +163,9 @@ const HeroSection = () => {
                     </div>
                   </div>
                   
-                  {/* Lottie Animation */}
+                  {/* Lazy Lottie Animation */}
                   <div className="flex-1 flex items-center justify-center">
-                    <Lottie 
+                    <LazyLottie 
                       animationData={phoneAnimation} 
                       loop={true} 
                       className="w-full h-auto max-w-full"

@@ -2,17 +2,41 @@
 
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import HeroSection from '@/components/HeroSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
-import TestimonialsSection from '@/components/TestimonialsSection'
-import FAQSection from '@/components/FAQSection'
-import DownloadCTASection from '@/components/DownloadCTASection'
-import Footer from '@/components/Footer'
-import TrustSection from '@/components/TrustSection'
-import CommuteCalculator from '@/components/CommuteCalculator'
 import { config } from '@/lib/config'
-import SupportBot from '@/components/SupportBot'
+
+// Dynamically import non-critical components
+const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
+  loading: () => <div className="h-screen bg-black" />
+})
+
+const FAQSection = dynamic(() => import('@/components/FAQSection'), {
+  loading: () => <div className="h-screen bg-black" />
+})
+
+const DownloadCTASection = dynamic(() => import('@/components/DownloadCTASection'), {
+  loading: () => <div className="h-screen bg-black" />
+})
+
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div className="h-32 bg-black" />
+})
+
+const TrustSection = dynamic(() => import('@/components/TrustSection'), {
+  loading: () => <div className="h-screen bg-black" />
+})
+
+const CommuteCalculator = dynamic(() => import('@/components/CommuteCalculator'), {
+  loading: () => <div className="h-screen bg-black" />
+})
+
+const SupportBot = dynamic(() => import('@/components/SupportBot'), {
+  ssr: false,
+  loading: () => null
+})
 
 export default function HomePage() {
   useEffect(() => {

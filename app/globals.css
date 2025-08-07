@@ -175,6 +175,22 @@
     transform: scale(1.2) rotate(15deg);
   }
   
+  /* Performance optimizations */
+  .lazy-lottie-container {
+    will-change: opacity;
+  }
+  
+  /* Critical animations only */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-blob1,
+    .animate-blob2,
+    .floating-blob-1,
+    .floating-blob-2,
+    .floating-blob-3 {
+      animation: none;
+    }
+  }
+  
   /* Fullscreen Section */
   .fullscreen-section {
     min-height: 100vh;

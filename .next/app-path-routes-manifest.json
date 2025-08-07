@@ -1,13 +1,13 @@
 {
-  "/_not-found/page": "/_not-found",
   "/sitemap.xml/route": "/sitemap.xml",
+  "/_not-found/page": "/_not-found",
   "/page": "/",
   "/contact/page": "/contact",
-  "/faq/page": "/faq",
-  "/features/page": "/features",
-  "/privacy-policy/page": "/privacy-policy",
-  "/terms-of-service/page": "/terms-of-service",
-  "/how-it-works/page": "/how-it-works",
   "/support/page": "/support",
-  "/testimonials/page": "/testimonials"
+  "/privacy-policy/page": "/privacy-policy",
+  "/features/page": "/features",
+  "/faq/page": "/faq",
+  "/how-it-works/page": "/how-it-works",
+  "/testimonials/page": "/testimonials",
+  "/terms-of-service/page": "/terms-of-service"
 }
