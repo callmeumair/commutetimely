@@ -36,7 +36,13 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="fullscreen-section bg-black relative">
+    <motion.section 
+      className="fullscreen-section bg-black relative"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="container-max w-full h-full flex flex-col justify-center">
         <motion.div 
           className="text-center mb-12 sm:mb-16"
@@ -129,7 +135,7 @@ const HowItWorksSection = () => {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
