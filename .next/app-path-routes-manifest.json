@@ -3,11 +3,11 @@
   "/sitemap.xml/route": "/sitemap.xml",
   "/page": "/",
   "/contact/page": "/contact",
-  "/features/page": "/features",
-  "/faq/page": "/faq",
-  "/how-it-works/page": "/how-it-works",
   "/support/page": "/support",
-  "/terms-of-service/page": "/terms-of-service",
+  "/faq/page": "/faq",
   "/privacy-policy/page": "/privacy-policy",
+  "/terms-of-service/page": "/terms-of-service",
+  "/how-it-works/page": "/how-it-works",
+  "/features/page": "/features",
   "/testimonials/page": "/testimonials"
 }

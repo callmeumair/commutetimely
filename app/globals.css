@@ -64,6 +64,25 @@
     overflow-x: hidden;
   }
   
+  /* Disable scroll-snap on mobile for more natural scrolling */
+  @media (max-width: 768px) {
+    html, body {
+      scroll-snap-type: none;
+    }
+    
+    .scroll-snap-container {
+      scroll-snap-type: none;
+    }
+    
+    .scroll-snap-wrapper {
+      scroll-snap-type: none;
+    }
+    
+    section {
+      scroll-snap-align: none;
+    }
+  }
+  
   body {
     @apply bg-background text-foreground;
   }
@@ -94,6 +113,16 @@
   .hero-section {
     scroll-snap-align: start;
     transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Mobile-specific section adjustments */
+  @media (max-width: 768px) {
+    .fullscreen-section,
+    .hero-section {
+      scroll-snap-align: none;
+      min-height: auto;
+      padding: 4rem 0;
+    }
   }
   
   /* Enhanced scroll behavior for better UX */
