@@ -43,7 +43,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-black relative scroll-snap-container">
+    <div className="min-h-screen bg-black relative">
       {/* Modern Premium Background System */}
       <div className="premium-bg"></div>
       <div className="premium-bg-overlay"></div>
