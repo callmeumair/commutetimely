@@ -34,7 +34,7 @@ const HeroSection = () => {
   }, [])
 
   return (
-    <section className="hero-section bg-transparent relative overflow-hidden">
+    <section className="hero-section bg-transparent relative">
       {/* Hero animated background shapes */}
       <div className="absolute -top-32 -left-32 w-[40vw] h-[40vw] bg-[#0f3d3e]/20 rounded-full blur-3xl z-0 animate-blob1" />
       <div className="absolute -bottom-32 -right-32 w-[30vw] h-[30vw] bg-[#d4af37]/15 rounded-full blur-2xl z-0 animate-blob2" />

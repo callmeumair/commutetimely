@@ -59,13 +59,13 @@
   
   /* Scroll Snap Container */
   .scroll-snap-container {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     overflow-y: auto;
     height: 100vh;
   }
   
   .scroll-snap-wrapper {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
   }
   
   /* Fullscreen Section */
@@ -116,11 +116,14 @@
   /* Ensure smooth scrolling */
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
   /* Prevent horizontal scroll */
   body {
     overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
