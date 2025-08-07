@@ -135,56 +135,97 @@ const HeroSection = () => {
             <div className="relative">
               {/* Lottie phone screen animation with parallax */}
               <motion.div 
-                className="w-56 sm:w-64 md:w-72 h-72 sm:h-80 md:h-96 glass p-2 shadow-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 ease-in-out"
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 5,
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
+                className="w-56 sm:w-64 md:w-72 h-72 sm:h-80 md:h-96 glass p-2 shadow-2xl border border-gray-800 hover:border-[#2EBFA5] transition-all duration-500 ease-in-out bg-gradient-to-br from-[#23272f] to-[#181c22]"
+                whileHover={{ scale: 1.05, rotateY: 5, y: -10, boxShadow: '0 0 24px #2EBFA5' }}
                 whileTap={{ scale: 0.95 }}
-                animate={{ 
-                  y: [0, -5, 0],
-                  rotateY: [0, 2, 0]
-                }}
-                transition={{ 
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+                animate={{ y: [0, -5, 0], rotateY: [0, 2, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               >
-                <div className="w-full h-full bg-gray-800 rounded-2xl p-4 sm:p-6 flex flex-col">
+                <div className="w-full h-full bg-[#181c22] rounded-2xl p-3 sm:p-5 flex flex-col">
                   {/* App header */}
-                  <div className="flex items-center justify-between mb-4 sm:mb-6">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#0f3d3e] to-[#FFC773] rounded-xl flex items-center justify-center">
+                  <div className="flex items-center justify-between mb-3 sm:mb-5">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-xl flex items-center justify-center">
                       <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     </div>
-                    <div className="text-xs sm:text-sm font-semibold text-white">CommuteTimely</div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#1a1a1a] rounded-full flex items-center justify-center">
-                      <span className="text-gray-400 text-xs">⚙️</span>
+                    <div className="text-xs sm:text-sm font-semibold text-white tracking-wide">CommuteTimely</div>
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#23272f] rounded-full flex items-center justify-center hover:bg-[#2EBFA5]/20 transition-colors">
+                      <span className="text-[#2EBFA5] text-xs">⚙️</span>
                     </div>
                   </div>
-                  
-                  {/* Lazy Lottie Animation */}
-                  <div className="flex-1 flex items-center justify-center">
-                    <LazyLottie 
-                      animationData={phoneAnimation} 
-                      loop={true} 
-                      className="w-full h-auto max-w-full"
-                      style={{ maxHeight: '400px' }}
-                    />
+                  {/* Commute status card */}
+                  <motion.div 
+                    className="rounded-xl bg-gradient-to-r from-[#23272f] to-[#1e8372]/30 p-3 flex items-center mb-3 shadow-md border border-[#2EBFA5]/10"
+                    whileHover={{ boxShadow: '0 0 12px #2EBFA5', scale: 1.03 }}
+                  >
+                    <div className="flex-1">
+                      <div className="text-xs text-gray-400 mb-1">Next commute</div>
+                      <div className="text-lg font-bold text-white flex items-center gap-2">
+                        <span>Leave in</span>
+                        <span className="text-[#2EBFA5] animate-pulse">12 mins</span>
+                      </div>
+                      <div className="text-xs text-gray-400 mt-1">ETA: 8:42 AM</div>
+                    </div>
+                    <div className="ml-3 flex flex-col items-center">
+                      <div className="w-8 h-8 rounded-full bg-[#2EBFA5]/10 flex items-center justify-center mb-1 border border-[#2EBFA5]/30">
+                        <span className="text-[#2EBFA5] text-lg">🚗</span>
+                      </div>
+                      <div className="text-[10px] text-[#2EBFA5] font-semibold">Car</div>
+                    </div>
+                  </motion.div>
+                  {/* Transport mode toggle */}
+                  <div className="flex items-center justify-between mb-3">
+                    {[
+                      { icon: '🚗', label: 'Car' },
+                      { icon: '🚌', label: 'Bus' },
+                      { icon: '🚲', label: 'Bike' },
+                      { icon: '🚶‍♂️', label: 'Walk' }
+                    ].map((mode, idx) => (
+                      <motion.button
+                        key={mode.label}
+                        className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center border-2 ${mode.label === 'Car' ? 'bg-[#2EBFA5] border-[#2EBFA5] text-white shadow-md' : 'bg-[#23272f] border-[#2EBFA5]/30 text-[#2EBFA5]'} hover:shadow-lg transition-all duration-200`}
+                        whileHover={{ scale: 1.15, boxShadow: '0 0 8px #2EBFA5' }}
+                        aria-label={mode.label}
+                      >
+                        <span className="text-lg">{mode.icon}</span>
+                      </motion.button>
+                    ))}
                   </div>
-                  
+                  {/* Destination preview/map mini-snippet */}
+                  <motion.div 
+                    className="rounded-xl bg-[#23272f] border border-[#2EBFA5]/10 p-2 flex items-center mb-3 hover:border-[#2EBFA5]/40 transition-colors"
+                    whileHover={{ scale: 1.02, boxShadow: '0 0 8px #2EBFA5' }}
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2EBFA5]/30 to-[#1e8372]/30 flex items-center justify-center mr-2">
+                      <span className="text-2xl">🏢</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs text-gray-400">Destination</div>
+                      <div className="text-sm font-semibold text-white truncate">Acme HQ, 123 Main St</div>
+                      <div className="text-[10px] text-[#2EBFA5]">7.2 mi • 18 min</div>
+                    </div>
+                    <div className="ml-2 w-8 h-8 rounded-lg bg-[#2EBFA5]/10 flex items-center justify-center">
+                      <span className="text-[#2EBFA5] text-lg">🗺️</span>
+                    </div>
+                  </motion.div>
+                  {/* Notification toggle/ETA bar */}
+                  <motion.div 
+                    className="w-full h-4 rounded-full bg-[#23272f] border border-[#2EBFA5]/10 flex items-center overflow-hidden relative"
+                    whileHover={{ boxShadow: '0 0 8px #2EBFA5' }}
+                  >
+                    <div className="h-full bg-[#2EBFA5] rounded-full animate-pulse" style={{ width: '60%' }} />
+                    <div className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-white font-semibold">Notifications On</div>
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-[#2EBFA5] font-semibold">ETA: 8:42 AM</div>
+                  </motion.div>
                   {/* Bottom nav */}
-                  <div className="flex justify-around pt-4 sm:pt-6 border-t border-[#1a1a1a]">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-[#0f3d3e] to-[#FFC773] rounded-lg flex items-center justify-center">
+                  <div className="flex justify-around pt-4 sm:pt-6 border-t border-[#1a1a1a] mt-auto">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-lg flex items-center justify-center hover:shadow-md hover:bg-[#2EBFA5]/20 transition-all">
                       <span className="text-white text-xs">🏠</span>
                     </div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
-                      <span className="text-gray-400 text-xs">📊</span>
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#23272f] rounded-lg flex items-center justify-center hover:shadow-md hover:bg-[#2EBFA5]/20 transition-all">
+                      <span className="text-[#2EBFA5] text-xs">📊</span>
                     </div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center">
-                      <span className="text-gray-400 text-xs">👤</span>
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#23272f] rounded-lg flex items-center justify-center hover:shadow-md hover:bg-[#2EBFA5]/20 transition-all">
+                      <span className="text-[#2EBFA5] text-xs">👤</span>
                     </div>
                   </div>
                 </div>
