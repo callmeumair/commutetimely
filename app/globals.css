@@ -342,10 +342,6 @@
     animation: float-blob-3 35s ease-in-out infinite;
   }
   
-  .floating-clock {
-    @apply fixed top-1/2 right-10 text-white/20 animate-float;
-  }
-  
   .floating-chat {
     @apply fixed bottom-6 right-6 bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] text-white px-4 py-3 rounded-full shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 animate-pulse-glow z-50;
   }

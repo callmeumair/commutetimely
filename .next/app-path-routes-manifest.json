@@ -1,13 +1,13 @@
 {
   "/sitemap.xml/route": "/sitemap.xml",
-  "/page": "/",
   "/_not-found/page": "/_not-found",
-  "/features/page": "/features",
+  "/page": "/",
   "/contact/page": "/contact",
   "/faq/page": "/faq",
+  "/features/page": "/features",
   "/privacy-policy/page": "/privacy-policy",
-  "/terms-of-service/page": "/terms-of-service",
   "/support/page": "/support",
+  "/terms-of-service/page": "/terms-of-service",
   "/how-it-works/page": "/how-it-works",
   "/testimonials/page": "/testimonials"
 }

@@ -156,11 +156,6 @@ const CommuteCalculator = dynamic(() => import('@/components/CommuteCalculator')
   )
 })
 
-const SupportBot = dynamic(() => import('@/components/SupportBot'), {
-  ssr: false,
-  loading: () => null
-})
-
 export default function HomePage() {
   useEffect(() => {
     // Scroll animation observer
@@ -204,15 +199,6 @@ export default function HomePage() {
       <div className="floating-blob-1"></div>
       <div className="floating-blob-2"></div>
       <div className="floating-blob-3"></div>
-      
-      {/* Floating clock icon */}
-      <div className="floating-clock" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
-          <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </div>
-      
       {/* Content */}
       <div className="relative z-10">
         <HeroSection />
@@ -225,23 +211,7 @@ export default function HomePage() {
         <DownloadCTASection />
         <Footer />
       </div>
-
-      {/* Floating chat bubble */}
-      <motion.button 
-        className="floating-chat focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:ring-offset-2 focus:ring-offset-black" 
-        onClick={handleChatClick}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Join waitlist for early access"
-      >
-        <div className="flex items-center space-x-2">
-          <span className="text-sm font-medium">Notify Me</span>
-          <span className="text-lg" aria-hidden="true">💬</span>
-        </div>
-      </motion.button>
-
-      {/* Support Bot */}
-      <SupportBot />
+      {/* (Removed floating chat bubble and SupportBot) */}
     </div>
   )
 } 

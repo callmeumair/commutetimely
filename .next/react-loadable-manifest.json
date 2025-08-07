@@ -25,12 +25,6 @@
       "static/chunks/109.219f3ebbd75fddce.js"
     ]
   },
-  "app/page.tsx -> @/components/SupportBot": {
-    "id": 9344,
-    "files": [
-      "static/chunks/344.8fa2bbddffc26f06.js"
-    ]
-  },
   "app/page.tsx -> @/components/TestimonialsSection": {
     "id": 5023,
     "files": [
