@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Bell, CheckCircle } from 'lucide-react'
+import Lottie from 'lottie-react'
+import stepAnimation from '@/public/lottie/step-animation.json'
 
 const steps = [
   {
@@ -75,14 +77,19 @@ const HowItWorksSection = () => {
                 transition={{ duration: 0.8, delay: step.delay }}
                 viewport={{ once: true }}
               >
-                {/* Icon */}
+                {/* Lottie Animation */}
                 <motion.div 
                   className="relative flex-shrink-0"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className={`w-20 h-20 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg`}>
-                    <step.icon className="w-10 h-10 text-white" />
+                  <div className={`w-24 h-24 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg p-2`}>
+                    <Lottie 
+                      animationData={stepAnimation} 
+                      loop={true} 
+                      className="w-full h-full"
+                      style={{ maxWidth: '80px', maxHeight: '80px' }}
+                    />
                   </div>
                   {/* Timeline dot */}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-black rounded-full border-4 border-blue-500 hidden lg:block"></div>

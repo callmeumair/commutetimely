@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { Clock, Smartphone, Download } from 'lucide-react'
 import { config } from '@/lib/config'
 import { useEffect, useState } from 'react'
+import Lottie from 'lottie-react'
+import phoneAnimation from '@/public/lottie/phone-screen.json'
 
 const HeroSection = () => {
   const handleJoinWaitlist = () => {
@@ -114,7 +116,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
           
-          {/* Right side - App mockup */}
+          {/* Right side - Lottie Animation */}
           <motion.div 
             className="flex justify-center lg:justify-end order-1 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
@@ -122,7 +124,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Phone mockup with glassmorphism */}
+              {/* Lottie phone screen animation */}
               <motion.div 
                 className="w-56 sm:w-64 md:w-72 h-72 sm:h-80 md:h-96 glass p-2 shadow-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 ease-in-out"
                 whileHover={{ scale: 1.05, rotateY: 5 }}
@@ -140,37 +142,14 @@ const HeroSection = () => {
                     </div>
                   </div>
                   
-                  {/* Notification */}
-                  <motion.div 
-                    className="bg-[#1a1a1a]/70 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-[#d4af37]/30"
-                    animate={{ 
-                      boxShadow: ["0 0 0 rgba(212, 175, 55, 0)", "0 0 20px rgba(212, 175, 55, 0.4)", "0 0 0 rgba(212, 175, 55, 0)"]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <div className="flex items-center mb-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                      <span className="text-xs text-gray-400">Now</span>
-                    </div>
-                    <div className="text-xs sm:text-sm font-semibold text-white mb-1">
-                      Time to leave!
-                    </div>
-                    <div className="text-xs text-gray-400">
-                      Leave at 8:12 AM to arrive on time
-                    </div>
-                  </motion.div>
-                  
-                  {/* Time display */}
-                  <div className="text-center flex-1 flex flex-col justify-center">
-                    <motion.div 
-                      className="text-2xl sm:text-4xl font-bold gradient-text mb-2 sm:mb-3"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      8:12 AM
-                    </motion.div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">Departure time</div>
-                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-[#0f3d3e] to-[#d4af37] rounded-full mx-auto"></div>
+                  {/* Lottie Animation */}
+                  <div className="flex-1 flex items-center justify-center">
+                    <Lottie 
+                      animationData={phoneAnimation} 
+                      loop={true} 
+                      className="w-full h-auto max-w-full"
+                      style={{ maxHeight: '400px' }}
+                    />
                   </div>
                   
                   {/* Bottom nav */}
