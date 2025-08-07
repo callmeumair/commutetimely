@@ -109,26 +109,6 @@ const DownloadCTASection = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Star className="w-8 h-8 text-white" />
-              </motion.div>
-              <h3 className="text-xl font-semibold text-white mb-2">4.8★ Rating</h3>
-              <p className="text-gray-400">Trusted by thousands of users worldwide</p>
-            </motion.div>
-
-            <motion.div 
-              className="text-center glass p-6"
-              whileHover={{ 
-                scale: 1.05, 
-                y: -5,
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div 
                 className="w-16 h-16 bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}

@@ -4,10 +4,10 @@
   "/page": "/",
   "/contact/page": "/contact",
   "/faq/page": "/faq",
-  "/features/page": "/features",
   "/privacy-policy/page": "/privacy-policy",
   "/support/page": "/support",
+  "/features/page": "/features",
   "/terms-of-service/page": "/terms-of-service",
-  "/how-it-works/page": "/how-it-works",
-  "/testimonials/page": "/testimonials"
+  "/testimonials/page": "/testimonials",
+  "/how-it-works/page": "/how-it-works"
 }
