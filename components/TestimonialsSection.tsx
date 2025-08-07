@@ -5,48 +5,17 @@ import { Star, Quote, Play } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import TestimonialVideoModal from './TestimonialVideoModal'
 
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    role: "Marketing Manager",
-    company: "TechCorp",
-    rating: 5,
-    text: "CommuteTimely has completely changed my morning routine. I used to stress about traffic, but now I get notified exactly when to leave. Never been late to work since!",
-    avatar: "👩‍💼"
-  },
-  {
-    name: "Mike Chen",
-    role: "Software Engineer",
-    company: "StartupXYZ",
-    rating: 5,
-    text: "The app is incredibly accurate. It even accounts for weather and special events. My commute time predictions are spot-on every time.",
-    avatar: "👨‍💻"
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Teacher",
-    company: "City Schools",
-    rating: 5,
-    text: "As a teacher, being on time is crucial. CommuteTimely helps me arrive at school with time to spare, even on busy days.",
-    avatar: "👩‍🏫"
-  },
-  {
-    name: "David Thompson",
-    role: "Sales Executive",
-    company: "Global Sales",
-    rating: 5,
-    text: "I travel between multiple client locations daily. This app has been a game-changer for my productivity and punctuality.",
-    avatar: "👨‍💼"
-  },
-  {
-    name: "Lisa Wang",
-    role: "Healthcare Worker",
-    company: "City Hospital",
-    rating: 5,
-    text: "Working in healthcare means every minute counts. CommuteTimely ensures I'm never late for my shifts, even during emergencies.",
-    avatar: "👩‍⚕️"
-  }
-]
+const preLaunchMessage = {
+  title: "Coming September 2025",
+  subtitle: "Be one of our first users",
+  description: "We're working closely with early users to perfect CommuteTimely. Real testimonials will be added after our September 2025 launch.",
+  features: [
+    "Smart traffic notifications",
+    "Real-time weather integration", 
+    "Multi-transport support",
+    "Privacy-first design"
+  ]
+}
 
 const TestimonialsSection = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
@@ -72,28 +41,29 @@ const TestimonialsSection = () => {
     }
   }
 
-  // Animated counters for stats
-  const [users, setUsers] = useState(0)
-  const [rating, setRating] = useState(0)
-  const [accuracy, setAccuracy] = useState(0)
-  const [cities, setCities] = useState(0)
-  useEffect(() => {
-    let u = 0, r = 0, a = 0, c = 0
-    const uEnd = 10000, rEnd = 4.8, aEnd = 99, cEnd = 50
-    const step = () => {
-      if (u < uEnd) u += 200
-      if (r < rEnd) r += 0.2
-      if (a < aEnd) a += 2
-      if (c < cEnd) c += 2
-      setUsers(u > uEnd ? uEnd : u)
-      setRating(r > rEnd ? rEnd : Math.round(r * 10) / 10)
-      setAccuracy(a > aEnd ? aEnd : a)
-      setCities(c > cEnd ? cEnd : c)
-      if (u < uEnd || r < rEnd || a < aEnd || c < cEnd) setTimeout(step, 32)
+  // Pre-launch stats
+  const preLaunchStats = [
+    {
+      label: "Launch Date",
+      value: "September 2025",
+      icon: "🚀"
+    },
+    {
+      label: "Platforms",
+      value: "App Store & Play Store",
+      icon: "📱"
+    },
+    {
+      label: "Data Sources",
+      value: "Real-time traffic, transit & weather",
+      icon: "🌐"
+    },
+    {
+      label: "Early Access",
+      value: "Be one of our first users",
+      icon: "⭐"
     }
-    step()
-    // eslint-disable-next-line
-  }, [])
+  ]
 
   return (
     <motion.section 
@@ -112,105 +82,60 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-            What Our <span className="gradient-text">Users Say</span>
+            {preLaunchMessage.title}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
-            Join thousands of users who never worry about being late again
+            {preLaunchMessage.subtitle}
           </p>
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          className="max-w-4xl mx-auto mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              className="card group transition-transform duration-200 hover:scale-105 hover:shadow-xl glass"
-              variants={itemVariants}
-              whileHover={{ scale: 1.04 }}
-            >
-              <div className="space-y-4">
-                {/* Quote icon */}
-                <div className="flex justify-between items-start">
-                  <Quote className="w-8 h-8 text-blue-500/50" />
-                  <div className="flex space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
+          <div className="glass p-8 rounded-2xl text-center">
+            <Quote className="w-12 h-12 text-[#d4af37] mx-auto mb-6" />
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
+              &ldquo;{preLaunchMessage.description}&rdquo;
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+              {preLaunchMessage.features.map((feature, index) => (
+                <div key={index} className="flex items-center space-x-3 text-gray-400">
+                  <div className="w-2 h-2 bg-[#d4af37] rounded-full"></div>
+                  <span>{feature}</span>
                 </div>
-
-                {/* Testimonial text */}
-                <p className="text-gray-300 leading-relaxed">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-
-                {/* Author info */}
-                <div className="flex items-center space-x-3 pt-4 border-t border-gray-700">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-2xl">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-sm text-gray-400">
-                      {testimonial.role} at {testimonial.company}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Watch Video button for first testimonial */}
-                {index === 0 && (
-                  <button
-                    onClick={() => setIsVideoModalOpen(true)}
-                    className="w-full mt-4 px-4 py-2 bg-brand-accent/20 hover:bg-brand-accent/30 text-brand-accent font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-                  >
-                    <Play className="w-4 h-4" />
-                    <span>Watch Video</span>
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          ))}
+              ))}
+            </div>
+          </div>
         </motion.div>
 
-        {/* Stats */}
+        {/* Pre-launch Stats */}
         <motion.div 
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-              {users.toLocaleString()}+
-            </div>
-            <div className="text-gray-400">Active Users</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-              {rating}★
-            </div>
-            <div className="text-gray-400">App Store Rating</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-              {accuracy}%
-            </div>
-            <div className="text-gray-400">Accuracy Rate</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-              {cities}+
-            </div>
-            <div className="text-gray-400">Cities Supported</div>
-          </div>
+          {preLaunchStats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className="text-center glass p-6 rounded-xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 * index }}
+              viewport={{ once: true }}
+            >
+              <div className="text-3xl mb-3">{stat.icon}</div>
+              <div className="text-lg md:text-xl font-bold text-white mb-2">
+                {stat.value}
+              </div>
+              <div className="text-sm text-gray-400">{stat.label}</div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
 

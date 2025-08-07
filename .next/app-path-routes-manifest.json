@@ -5,9 +5,9 @@
   "/contact/page": "/contact",
   "/faq/page": "/faq",
   "/features/page": "/features",
-  "/how-it-works/page": "/how-it-works",
-  "/privacy-policy/page": "/privacy-policy",
-  "/terms-of-service/page": "/terms-of-service",
   "/support/page": "/support",
+  "/how-it-works/page": "/how-it-works",
+  "/terms-of-service/page": "/terms-of-service",
+  "/privacy-policy/page": "/privacy-policy",
   "/testimonials/page": "/testimonials"
 }

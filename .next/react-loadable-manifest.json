@@ -6,9 +6,9 @@
     ]
   },
   "app/page.tsx -> @/components/DownloadCTASection": {
-    "id": 6222,
+    "id": 7581,
     "files": [
-      "static/chunks/222.40e7a2e62186eeaa.js"
+      "static/chunks/581.b866a4b0a0e20d2c.js"
     ]
   },
   "app/page.tsx -> @/components/FAQSection": {
@@ -36,14 +36,14 @@
     "files": [
       "static/chunks/5ffe1889.a2d02bef6304532e.js",
       "static/chunks/140.f6e0290467c37782.js",
-      "static/chunks/155.b163480c035d4cb1.js",
-      "static/chunks/23.18f0ed8eecd2decb.js"
+      "static/chunks/252.8ea07adca853db9d.js",
+      "static/chunks/23.bc503313b65daa2d.js"
     ]
   },
   "app/page.tsx -> @/components/TrustSection": {
     "id": 1064,
     "files": [
-      "static/chunks/64.5862fe416e5225ec.js"
+      "static/chunks/64.62e41a2526fd4b04.js"
     ]
   },
   "components/LazyLottie.tsx -> lottie-react": {

@@ -84,30 +84,30 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <AnimatedButton 
-                onClick={handleAppStoreClick}
+                onClick={handleJoinWaitlist}
                 variant="primary"
                 size="lg"
                 withSparkle={true}
                 className="flex items-center justify-center space-x-2"
-                aria-label="Download CommuteTimely from Apple App Store"
+                aria-label="Join waitlist for early access to CommuteTimely"
               >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" aria-hidden="true" />
-                <span>App Store</span>
+                <span className="text-2xl">🚀</span>
+                <span>Join Waitlist</span>
               </AnimatedButton>
               <AnimatedButton 
-                onClick={handlePlayStoreClick}
+                onClick={handleJoinWaitlist}
                 variant="outline"
                 size="lg"
                 withSparkle={true}
                 className="flex items-center justify-center space-x-2"
-                aria-label="Download CommuteTimely from Google Play Store"
+                aria-label="Get notified when CommuteTimely launches"
               >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-125" aria-hidden="true" />
-                <span>Play Store</span>
+                <span className="text-2xl">🔔</span>
+                <span>Get Notified</span>
               </AnimatedButton>
             </motion.div>
 
-            {/* Social proof */}
+            {/* Pre-launch status */}
             <motion.div 
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-8 text-gray-500 text-sm"
               initial={{ opacity: 0, y: 30 }}
@@ -115,12 +115,12 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span><motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.2 }}>{downloads}+</motion.span> downloads</span>
+                <div className="w-2 h-2 bg-[#d4af37] rounded-full"></div>
+                <span>Launching September 2025</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span>Launch Q3 2025</span>
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>App Store & Play Store</span>
               </div>
             </motion.div>
           </motion.div>

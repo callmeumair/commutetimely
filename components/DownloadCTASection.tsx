@@ -6,12 +6,9 @@ import { config } from '@/lib/config'
 import AnimatedButton from './AnimatedButton'
 
 const DownloadCTASection = () => {
-  const handleAppStoreClick = () => {
-    window.open(config.APP_STORE_URL, '_blank')
-  }
-
-  const handlePlayStoreClick = () => {
-    window.open(config.PLAY_STORE_URL, '_blank')
+  const handleJoinWaitlist = () => {
+    // TODO: Implement waitlist signup
+    alert('Join our waitlist for early access!')
   }
 
   return (
@@ -31,13 +28,13 @@ const DownloadCTASection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Download <span className="gradient-text">CommuteTimely</span> Today
+            Coming <span className="gradient-text">September 2025</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
-            Join thousands of users who never worry about being late again. Available on iOS and Android.
+            Be one of our first users and help shape the future of commute planning. Available on iOS and Android.
           </p>
 
-          {/* Download buttons */}
+          {/* Pre-launch CTA */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 30 }}
@@ -46,30 +43,30 @@ const DownloadCTASection = () => {
             viewport={{ once: true }}
           >
             <AnimatedButton 
-              onClick={handleAppStoreClick}
+              onClick={handleJoinWaitlist}
               variant="primary"
               size="lg"
               withSparkle={true}
               className="flex items-center space-x-3 w-full sm:w-auto"
             >
-              <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="text-2xl">🚀</span>
               <div className="text-left">
-                <div className="text-xs sm:text-sm opacity-90">Download on the</div>
-                <div className="font-bold">App Store</div>
+                <div className="text-xs sm:text-sm opacity-90">Join our</div>
+                <div className="font-bold">Waitlist</div>
               </div>
             </AnimatedButton>
 
             <AnimatedButton 
-              onClick={handlePlayStoreClick}
+              onClick={handleJoinWaitlist}
               variant="outline"
               size="lg"
               withSparkle={true}
               className="flex items-center space-x-3 w-full sm:w-auto"
             >
-              <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="text-2xl">🔔</span>
               <div className="text-left">
-                <div className="text-xs sm:text-sm opacity-90">Get it on</div>
-                <div className="font-bold">Google Play</div>
+                <div className="text-xs sm:text-sm opacity-90">Get</div>
+                <div className="font-bold">Notified</div>
               </div>
             </AnimatedButton>
           </motion.div>
