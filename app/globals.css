@@ -250,6 +250,16 @@
   }
 }
 
+@media (max-width: 768px) {
+  body, html { overflow-x: hidden; }
+  img, video { max-width: 100%; height: auto; }
+  .container-max { padding-left: 1rem; padding-right: 1rem; }
+  h1 { font-size: clamp(1.5rem, 6vw, 2rem); }
+  h2 { font-size: clamp(1.25rem, 5vw, 1.75rem); }
+  p { font-size: clamp(0.95rem, 3.8vw, 1rem); }
+  .fullscreen-section { min-height: auto; padding-top: 4rem; padding-bottom: 4rem; }
+}
+
 @layer components {
   .container-max {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "npm run type-check && npm run lint && npm run build",
+    "posttest": "node scripts/auto-commit.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

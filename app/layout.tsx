@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 
 import './globals.css'
-import ServerHeader from '@/components/ServerHeader'
+import ResponsiveHeader from '@/components/ResponsiveHeader'
 import { runAccessibilityTest } from '@/lib/accessibility'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -204,7 +204,7 @@ export default function RootLayout({
         </a>
         
         {/* Server header */}
-        <ServerHeader />
+        <ResponsiveHeader />
         <main id="main-content" className="scroll-snap-container">
           {children}
         </main>

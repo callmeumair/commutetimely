@@ -2,12 +2,12 @@
   "/sitemap.xml/route": "/sitemap.xml",
   "/_not-found/page": "/_not-found",
   "/page": "/",
+  "/features/page": "/features",
+  "/privacy-policy/page": "/privacy-policy",
   "/contact/page": "/contact",
   "/faq/page": "/faq",
-  "/privacy-policy/page": "/privacy-policy",
-  "/support/page": "/support",
-  "/features/page": "/features",
+  "/how-it-works/page": "/how-it-works",
   "/terms-of-service/page": "/terms-of-service",
-  "/testimonials/page": "/testimonials",
-  "/how-it-works/page": "/how-it-works"
+  "/support/page": "/support",
+  "/testimonials/page": "/testimonials"
 }

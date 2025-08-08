@@ -6,9 +6,9 @@
     ]
   },
   "app/page.tsx -> @/components/DownloadCTASection": {
-    "id": 1242,
+    "id": 6222,
     "files": [
-      "static/chunks/242.3c6dd215b8262532.js"
+      "static/chunks/222.2762f2e95ebb4f1a.js"
     ]
   },
   "app/page.tsx -> @/components/FAQSection": {
