@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import './critical.css'
 import ResponsiveHeader from '@/components/ResponsiveHeader'
 import Footer from '@/components/Footer'
 
@@ -8,6 +9,7 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | CommuteTimely'
   },
   description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling. Join the waitlist for early access.',
-  keywords: ['commute', 'notifications', 'traffic', 'smart notifications', 'leave on time', 'commute app', 'traffic alerts', 'public transport', 'walking', 'cycling', 'car', 'bus', 'train'],
+  keywords: ['commute', 'notifications', 'traffic', 'smart notifications', 'leave on time', 'commute app', 'traffic alerts', 'public transport', 'walking', 'cycling', 'waitlist'],
   authors: [{ name: 'CommuteTimely Team' }],
   creator: 'CommuteTimely',
   publisher: 'CommuteTimely',
@@ -30,27 +32,26 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
+    type: 'website',
+    locale: 'en_US',
     url: 'https://commutetimely.com',
+    title: 'CommuteTimely - Never Be Late Again',
+    description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling.',
     siteName: 'CommuteTimely',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CommuteTimely - Smart commute notifications app',
+        alt: 'CommuteTimely - Smart commute notifications',
       },
     ],
-    locale: 'en_US',
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
+    description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling.',
     images: ['/og-image.jpg'],
-    creator: '@commutetimely',
   },
   robots: {
     index: true,
@@ -66,16 +67,6 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
-  other: {
-    'mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'CommuteTimely',
-    'application-name': 'CommuteTimely',
-    'msapplication-TileColor': '#2EBFA5',
-    'theme-color': '#2EBFA5',
-    'color-scheme': 'dark',
-  },
 }
 
 export default function RootLayout({
@@ -84,101 +75,98 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+    <html lang="en" className={inter.variable}>
       <head>
-        {/* Mobile Viewport Optimization */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
-        
-        {/* Mobile Performance Optimizations */}
-        <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="CommuteTimely" />
-        
-        {/* PWA Meta Tags */}
-        <meta name="application-name" content="CommuteTimely" />
-        <meta name="msapplication-TileColor" content="#2EBFA5" />
-        <meta name="theme-color" content="#2EBFA5" />
-        <meta name="color-scheme" content="dark" />
-        
-        {/* Performance Optimizations */}
+        {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://via.placeholder.com" />
         
-        {/* Preload Critical Resources */}
-        <link rel="preload" href="/lottie/phone-screen.json" as="fetch" crossOrigin="anonymous" />
-        <link rel="preload" href="/lottie/step-animation.json" as="fetch" crossOrigin="anonymous" />
-        
-        {/* DNS Prefetch for External Resources */}
+        {/* DNS prefetch for additional performance */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//images.unsplash.com" />
         
-        {/* Security Headers */}
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
-        <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+        {/* Preload critical resources */}
+        <link rel="preload" href="/critical.css" as="style" />
+        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         
-        {/* Accessibility */}
-        <meta name="accessibility" content="high" />
-        <meta name="accessibility-feature" content="high-contrast, reduced-motion, large-text" />
+        {/* Prefetch non-critical resources */}
+        <link rel="prefetch" href="/non-critical.css" as="style" />
         
-        {/* Mobile App Manifest */}
-        <link rel="manifest" href="/manifest.json" />
+        {/* Critical CSS inlining for above-the-fold content */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Critical above-the-fold styles */
+            :root {
+              --background: 0 0% 100%;
+              --foreground: 222.2 84% 4.9%;
+              --brand-primary: 174 64% 41%;
+              --brand-primary-light: 174 64% 51%;
+              --brand-secondary: 180 67% 15%;
+              --brand-accent: 39 100% 71%;
+            }
+            * { box-sizing: border-box; }
+            body {
+              margin: 0;
+              padding: 0;
+              min-height: 100vh;
+              background-color: hsl(var(--background));
+              color: hsl(var(--foreground));
+              font-family: 'Inter', system-ui, -apple-system, sans-serif;
+              line-height: 1.5;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
+            h1, h2, h3, h4, h5, h6 {
+              margin: 0 0 1rem 0;
+              font-weight: 700;
+              line-height: 1.2;
+            }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.25rem; }
+            h3 { font-size: 1.875rem; }
+            .container-max {
+              width: 100%;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 1rem;
+            }
+            @media (min-width: 640px) {
+              .container-max { padding: 0 1.5rem; }
+            }
+            @media (min-width: 768px) {
+              .container-max { padding: 0 2rem; }
+            }
+            @media (min-width: 1024px) {
+              .container-max { padding: 0 3rem; }
+            }
+            .btn-primary {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              padding: 1rem 2rem;
+              background: hsl(var(--brand-primary));
+              color: white;
+              border: none;
+              border-radius: 0.375rem;
+              font-size: 1.125rem;
+              font-weight: 600;
+              text-decoration: none;
+              cursor: pointer;
+            }
+            .btn-primary:hover {
+              background: hsl(var(--brand-primary-light));
+            }
+            *:focus-visible {
+              outline: 2px solid hsl(var(--brand-primary));
+              outline-offset: 2px;
+            }
+          `
+        }} />
         
-        {/* Favicon and App Icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/logo192.png" type="image/png" sizes="192x192" />
-        <link rel="icon" href="/logo512.png" type="image/png" sizes="512x512" />
-        <link rel="apple-touch-icon" href="/logo192.png" />
-        
-        {/* Structured Data for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "MobileApplication",
-              "name": "CommuteTimely",
-              "description": "Smart notifications that tell you exactly when to leave for your commute",
-              "url": "https://commutetimely.com",
-              "applicationCategory": "ProductivityApplication",
-              "operatingSystem": "iOS, Android",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD",
-                "availability": "https://schema.org/PreOrder"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "150"
-              }
-            })
-          }}
-        />
-      </head>
-      <body className={`${inter.className} antialiased bg-black text-white overflow-x-hidden`}>
-        {/* Skip Link for Accessibility */}
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        
-        {/* Header */}
-        <ResponsiveHeader />
-        
-        {/* Main Content */}
-        <main id="main-content" className="relative z-10">
-          {children}
-        </main>
-        
-        {/* Footer */}
-        <Footer />
-        
-        {/* Performance Monitoring */}
+        {/* Performance monitoring */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -188,48 +176,101 @@ export default function RootLayout({
                   setTimeout(() => {
                     const perfData = performance.getEntriesByType('navigation')[0];
                     if (perfData) {
-                      console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-                      console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+                      console.log('Performance Metrics:', {
+                        'Time to First Byte': perfData.responseStart - perfData.requestStart + 'ms',
+                        'DOM Content Loaded': perfData.domContentLoadedEventEnd - perfData.navigationStart + 'ms',
+                        'Load Complete': perfData.loadEventEnd - perfData.navigationStart + 'ms'
+                      });
                     }
                   }, 0);
                 });
               }
               
-              // Mobile detection
-              const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-              if (isMobile) {
-                document.documentElement.classList.add('mobile-device');
+              // CLS monitoring
+              let clsValue = 0;
+              let clsEntries = [];
+              
+              function updateCLS() {
+                clsValue = clsEntries.reduce((sum, entry) => sum + entry.value, 0);
+                console.log('Current CLS:', clsValue);
               }
               
-              // Touch event optimization
-              let touchStartY = 0;
-              let touchEndY = 0;
+              if ('PerformanceObserver' in window) {
+                const observer = new PerformanceObserver((list) => {
+                  for (const entry of list.getEntries()) {
+                    if (entry.entryType === 'layout-shift' && !entry.hadRecentInput) {
+                      clsEntries.push(entry);
+                      updateCLS();
+                    }
+                  }
+                });
+                observer.observe({ entryTypes: ['layout-shift'] });
+              }
+            `
+          }}
+        />
+      </head>
+      <body className={inter.className}>
+        {/* Skip link for accessibility */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        
+        <ResponsiveHeader />
+        
+        <main id="main-content" role="main">
+          {children}
+        </main>
+        
+        <Footer />
+        
+        {/* Performance optimization: Lazy load non-critical resources */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Lazy load non-critical resources
+              function lazyLoadCSS(href) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                document.head.appendChild(link);
+              }
               
-              document.addEventListener('touchstart', (e) => {
-                touchStartY = e.touches[0].clientY;
-              }, { passive: true });
+              // Load non-critical CSS after page load
+              window.addEventListener('load', () => {
+                setTimeout(() => {
+                  lazyLoadCSS('/non-critical.css');
+                }, 1000);
+              });
               
-              document.addEventListener('touchend', (e) => {
-                touchEndY = e.changedTouches[0].clientY;
-                const touchDiff = touchStartY - touchEndY;
-                
-                // Prevent accidental navigation on small swipes
-                if (Math.abs(touchDiff) < 50) {
-                  e.preventDefault();
+              // Load non-critical CSS when user starts interacting
+              let userInteracted = false;
+              const interactionEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+              
+              function handleUserInteraction() {
+                if (!userInteracted) {
+                  userInteracted = true;
+                  lazyLoadCSS('/non-critical.css');
+                  // Remove event listeners after first interaction
+                  interactionEvents.forEach(event => {
+                    document.removeEventListener(event, handleUserInteraction);
+                  });
                 }
-              }, { passive: false });
+              }
               
-              // Intersection Observer for performance
+              interactionEvents.forEach(event => {
+                document.addEventListener(event, handleUserInteraction, { passive: true });
+              });
+              
+              // Intersection Observer for lazy loading images
               if ('IntersectionObserver' in window) {
                 const imageObserver = new IntersectionObserver((entries, observer) => {
                   entries.forEach(entry => {
                     if (entry.isIntersecting) {
                       const img = entry.target;
-                      if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        observer.unobserve(img);
-                      }
+                      img.src = img.dataset.src;
+                      img.classList.remove('lazy');
+                      observer.unobserve(img);
                     }
                   });
                 });
