@@ -3,7 +3,6 @@ import { Suspense } from 'react'
 import HeroSection from '@/components/HeroSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
-import TestimonialsSection from '@/components/TestimonialsSection'
 import FAQSection from '@/components/FAQSection'
 import DownloadCTASection from '@/components/DownloadCTASection'
 import TrustSection from '@/components/TrustSection'
@@ -92,13 +91,6 @@ export default function Home() {
       <section id="trust" className="relative">
         <Suspense fallback={<LoadingPlaceholder />}>
           <TrustSection />
-        </Suspense>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="relative">
-        <Suspense fallback={<LoadingPlaceholder />}>
-          <TestimonialsSection />
         </Suspense>
       </section>
 
