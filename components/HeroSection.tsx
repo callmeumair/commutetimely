@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { Clock, Smartphone, Download } from 'lucide-react'
-import { config } from '@/lib/config'
+import { config } from '../lib/config'
 import { useEffect, useState } from 'react'
-import phoneAnimation from '@/public/lottie/phone-screen.json'
+import phoneAnimation from '../public/lottie/phone-screen.json'
 import AnimatedButton from './AnimatedButton'
 import LazyLottie from './LazyLottie'
 

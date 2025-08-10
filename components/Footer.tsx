@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Twitter, Github, Mail, Heart } from 'lucide-react'
-import { config } from '@/lib/config'
+import { config } from '../lib/config'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/lib/utils/classNames';
+import { cn } from '../../lib/utils/classNames';
 
 // Enhanced Button Component
 interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

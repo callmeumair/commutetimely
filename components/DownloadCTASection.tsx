@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Download, Smartphone, Star } from 'lucide-react'
-import { config } from '@/lib/config'
+import { config } from '../lib/config'
 import AnimatedButton from './AnimatedButton'
 
 const DownloadCTASection = () => {
