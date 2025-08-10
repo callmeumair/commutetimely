@@ -15,7 +15,17 @@ const MENU = [
 
 export default function ResponsiveHeader() {
   const [open, setOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const panelRef = useRef<HTMLDivElement | null>(null)
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Prevent background scroll when menu is open
   useEffect(() => {
@@ -46,26 +56,43 @@ export default function ResponsiveHeader() {
     return () => document.removeEventListener('mousedown', onClick)
   }, [open])
 
+  // Close on escape key
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape' && open) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open])
+
   const closeMenu = () => setOpen(false)
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-xl bg-gradient-to-r from-[#0f3d3e]/90 via-[#1a1a1a]/90 to-[#0f3d3e]/90 shadow-lg border-b border-[#2EBFA5]/20">
-      <div className="container-max flex items-center justify-between h-20 md:h-24 px-4">
+    <header 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-lg border-b ${
+        isScrolled 
+          ? 'bg-[#008080] shadow-xl border-[#2EBFA5]/30' 
+          : 'bg-[#008080]/95 backdrop-blur-sm border-[#2EBFA5]/20'
+      }`}
+    >
+      <div className="container-max flex items-center justify-between h-16 sm:h-18 md:h-20 px-4 sm:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2 group" aria-label="CommuteTimely - Navigate to home page">
-          <div className="w-9 h-9 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-xl flex items-center justify-center">
-            <span className="text-white font-bold text-lg" aria-hidden="true">CT</span>
+        <Link href="/" className="flex items-center space-x-2 group touch-target" aria-label="CommuteTimely - Navigate to home page">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-xl flex items-center justify-center">
+            <span className="text-white font-bold text-base sm:text-lg" aria-hidden="true">CT</span>
           </div>
-          <span className="text-xl font-bold text-white group-hover:text-[#2EBFA5] transition-colors duration-200">CommuteTimely</span>
+          <span className="text-lg sm:text-xl font-bold text-white group-hover:text-[#2EBFA5] transition-colors duration-200">CommuteTimely</span>
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center space-x-8" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" aria-label="Main navigation">
           {MENU.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-gray-300 hover:text-white font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black rounded"
+              className="text-white/90 hover:text-white font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#008080] rounded px-3 py-2 min-h-[44px] flex items-center touch-target"
               title={`Learn more about ${item.label.toLowerCase()}`}
             >
               {item.label}
@@ -76,7 +103,7 @@ export default function ResponsiveHeader() {
         {/* Desktop CTA */}
         <Link
           href="/#download"
-          className="hidden md:block relative group bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-5 py-2.5 md:px-6 md:py-3 text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+          className="hidden md:block relative group bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-5 py-2.5 md:px-6 md:py-3 text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#008080] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 min-h-[48px] flex items-center touch-target"
           aria-label="Download CommuteTimely app"
         >
           <Download className="w-5 h-5 mr-2 inline" aria-hidden="true" />
@@ -86,7 +113,7 @@ export default function ResponsiveHeader() {
         {/* Mobile Hamburger */}
         <button
           onClick={() => setOpen(true)}
-          className="lg:hidden w-10 h-10 flex items-center justify-center text-white hover:text-[#2EBFA5] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black rounded"
+          className="lg:hidden w-12 h-12 flex items-center justify-center text-white hover:text-[#2EBFA5] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#008080] rounded-lg min-h-[48px] touch-target"
           aria-label="Open mobile menu"
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -98,19 +125,29 @@ export default function ResponsiveHeader() {
       {/* Mobile Menu Overlay */}
       {open && (
         <div className="lg:hidden fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/60" />
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+            onClick={closeMenu}
+          />
+          
+          {/* Menu Panel */}
           <div
             ref={panelRef}
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
-            className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-[#0f1115] border-l border-white/10 shadow-2xl transform transition-transform duration-300"
+            className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-[#0f1115] border-l border-white/10 shadow-2xl transform transition-transform duration-300 ease-out"
+            style={{
+              transform: open ? 'translateX(0)' : 'translateX(100%)'
+            }}
           >
-            <div className="flex items-center justify-between px-4 h-16 border-b border-white/10">
-              <span className="text-white font-semibold">Menu</span>
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 sm:px-6 h-16 border-b border-white/10">
+              <span className="text-white font-semibold text-lg">Menu</span>
               <button
                 onClick={closeMenu}
-                className="w-10 h-10 flex items-center justify-center text-white hover:text-[#2EBFA5] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black rounded"
+                className="w-12 h-12 flex items-center justify-center text-white hover:text-[#2EBFA5] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0f1115] rounded-lg min-h-[48px] transition-colors duration-200 touch-target"
                 aria-label="Close mobile menu"
                 aria-expanded={open}
                 aria-controls="mobile-menu"
@@ -118,24 +155,31 @@ export default function ResponsiveHeader() {
                 <X className="w-6 h-6" aria-hidden="true" />
               </button>
             </div>
-            <nav className="px-4 py-4 space-y-2" aria-label="Mobile navigation">
+            
+            {/* Navigation */}
+            <nav className="px-4 sm:px-6 py-6 space-y-2" aria-label="Mobile navigation">
               {MENU.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={closeMenu}
-                  className="block w-full text-left text-white/90 hover:text-white rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50"
+                  className="block w-full text-left text-white/90 hover:text-white rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0f1115] transition-colors duration-200 min-h-[48px] flex items-center touch-target"
                 >
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/#download"
-                onClick={closeMenu}
-                className="mt-4 block text-center bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50"
-              >
-                Download
-              </Link>
+              
+              {/* Mobile CTA */}
+              <div className="pt-4 border-t border-white/10">
+                <Link
+                  href="/#download"
+                  onClick={closeMenu}
+                  className="block w-full text-center bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0f1115] transition-all duration-200 min-h-[48px] flex items-center justify-center touch-target"
+                >
+                  <Download className="w-5 h-5 mr-2" aria-hidden="true" />
+                  Download App
+                </Link>
+              </div>
             </nav>
           </div>
         </div>

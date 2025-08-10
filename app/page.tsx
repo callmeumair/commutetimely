@@ -1,217 +1,120 @@
-'use client'
-
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
-import dynamic from 'next/dynamic'
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import HeroSection from '@/components/HeroSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
-import { config } from '@/lib/config'
-
+import TestimonialsSection from '@/components/TestimonialsSection'
+import FAQSection from '@/components/FAQSection'
+import DownloadCTASection from '@/components/DownloadCTASection'
+import TrustSection from '@/components/TrustSection'
 import LoadingPlaceholder from '@/components/LoadingPlaceholder'
 
-// Dynamically import non-critical components
-const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
-  loading: () => (
-    <section className="fullscreen-section bg-black relative">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="text-center mb-12">
-          <LoadingPlaceholder height="h-8" width="w-64" className="mx-auto mb-4" />
-          <LoadingPlaceholder height="h-4" width="w-96" className="mx-auto" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="glass p-6 rounded-xl">
-              <LoadingPlaceholder height="h-4" width="w-3/4" className="mb-4" />
-              <LoadingPlaceholder height="h-3" width="w-full" className="mb-2" />
-              <LoadingPlaceholder height="h-3" width="w-2/3" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-})
+export const metadata: Metadata = {
+  title: 'CommuteTimely - Never Be Late Again | Smart Commute Notifications',
+  description: 'Get intelligent notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling. Join the waitlist for early access.',
+  keywords: 'commute, notifications, traffic, smart notifications, leave on time, commute app, traffic alerts, public transport, walking, cycling, car, bus, train',
+  authors: [{ name: 'CommuteTimely Team' }],
+  creator: 'CommuteTimely',
+  publisher: 'CommuteTimely',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://commutetimely.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'CommuteTimely - Never Be Late Again',
+    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
+    url: 'https://commutetimely.com',
+    siteName: 'CommuteTimely',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'CommuteTimely - Smart commute notifications app',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CommuteTimely - Never Be Late Again',
+    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
+    images: ['/og-image.jpg'],
+    creator: '@commutetimely',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+}
 
-const FAQSection = dynamic(() => import('@/components/FAQSection'), {
-  loading: () => (
-    <section className="fullscreen-section bg-black relative">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="text-center mb-12">
-          <LoadingPlaceholder height="h-8" width="w-48" className="mx-auto mb-4" />
-          <LoadingPlaceholder height="h-4" width="w-80" className="mx-auto" />
-        </div>
-        <div className="max-w-4xl mx-auto space-y-4">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="glass p-6 rounded-xl">
-              <LoadingPlaceholder height="h-5" width="w-3/4" className="mb-3" />
-              <LoadingPlaceholder height="h-3" width="w-full" className="mb-2" />
-              <LoadingPlaceholder height="h-3" width="w-2/3" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-})
-
-const DownloadCTASection = dynamic(() => import('@/components/DownloadCTASection'), {
-  loading: () => (
-    <section className="fullscreen-section bg-black relative">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="text-center mb-12">
-          <LoadingPlaceholder height="h-8" width="w-72" className="mx-auto mb-4" />
-          <LoadingPlaceholder height="h-4" width="w-96" className="mx-auto" />
-        </div>
-        <div className="flex justify-center space-x-4 mb-8">
-          <LoadingPlaceholder height="h-12" width="w-48" />
-          <LoadingPlaceholder height="h-12" width="w-48" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="glass p-6 rounded-xl text-center">
-              <LoadingPlaceholder height="h-16" width="w-16" className="mx-auto mb-4 rounded-full" />
-              <LoadingPlaceholder height="h-5" width="w-3/4" className="mx-auto mb-2" />
-              <LoadingPlaceholder height="h-3" width="w-full" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-})
-
-const Footer = dynamic(() => import('@/components/Footer'), {
-  loading: () => (
-    <footer className="fullscreen-section bg-black border-t border-gray-800">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="sm:col-span-2">
-            <LoadingPlaceholder height="h-8" width="w-48" className="mb-4" />
-            <LoadingPlaceholder height="h-4" width="w-64" className="mb-6" />
-            <div className="flex space-x-4">
-              {[...Array(3)].map((_, i) => (
-                <LoadingPlaceholder key={i} height="h-10" width="w-10" className="rounded-full" />
-              ))}
-            </div>
-          </div>
-          {[...Array(2)].map((_, i) => (
-            <div key={i}>
-              <LoadingPlaceholder height="h-5" width="w-24" className="mb-4" />
-              <div className="space-y-3">
-                {[...Array(4)].map((_, j) => (
-                  <LoadingPlaceholder key={j} height="h-4" width="w-20" />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </footer>
-  )
-})
-
-const TrustSection = dynamic(() => import('@/components/TrustSection'), {
-  loading: () => (
-    <section className="fullscreen-section bg-black relative">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="text-center mb-12">
-          <LoadingPlaceholder height="h-8" width="w-56" className="mx-auto mb-4" />
-          <LoadingPlaceholder height="h-4" width="w-80" className="mx-auto" />
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="text-center">
-              <LoadingPlaceholder height="h-12" width="w-12" className="mx-auto mb-3 rounded-full" />
-              <LoadingPlaceholder height="h-4" width="w-20" className="mx-auto" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-})
-
-const CommuteCalculator = dynamic(() => import('@/components/CommuteCalculator'), {
-  loading: () => (
-    <section className="fullscreen-section bg-black relative">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="text-center mb-12">
-          <LoadingPlaceholder height="h-8" width="w-64" className="mx-auto mb-4" />
-          <LoadingPlaceholder height="h-4" width="w-96" className="mx-auto" />
-        </div>
-        <div className="max-w-2xl mx-auto glass p-8 rounded-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {[...Array(4)].map((_, i) => (
-              <div key={i}>
-                <LoadingPlaceholder height="h-4" width="w-24" className="mb-2" />
-                <LoadingPlaceholder height="h-10" width="w-full" />
-              </div>
-            ))}
-          </div>
-          <LoadingPlaceholder height="h-12" width="w-48" className="mx-auto" />
-        </div>
-      </div>
-    </section>
-  )
-})
-
-export default function HomePage() {
-  useEffect(() => {
-    // Scroll animation observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-        }
-      })
-    }, observerOptions)
-
-    // Observe all animated elements
-    const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in')
-    animatedElements.forEach(el => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handleChatClick = () => {
-    // Open Google Form in a new tab
-    window.open(config.GOOGLE_FORM_URL, '_blank')
-  }
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Modern Premium Background System */}
-      <div className="premium-bg"></div>
-      <div className="premium-bg-overlay"></div>
-      <div className="premium-glow"></div>
-      
-      {/* Enhanced Animated Radial Gradient Backgrounds */}
-      <div className="animated-radial-bg"></div>
-      <div className="subtle-pulse-bg"></div>
-      
-      {/* Enhanced floating blobs with subtle animations */}
-      <div className="floating-blob-1"></div>
-      <div className="floating-blob-2"></div>
-      <div className="floating-blob-3"></div>
-      {/* Content */}
-      <div className="relative z-10">
-        <HeroSection />
-        <FeaturesSection />
-        <HowItWorksSection />
-        <CommuteCalculator />
-        <TestimonialsSection />
-        <TrustSection />
-        <FAQSection />
-        <DownloadCTASection />
-        <Footer />
-      </div>
-      {/* (Removed floating chat bubble and SupportBot) */}
-    </div>
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Hero Section */}
+      <section id="hero" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <HeroSection />
+        </Suspense>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <FeaturesSection />
+        </Suspense>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <HowItWorksSection />
+        </Suspense>
+      </section>
+
+      {/* Trust Section */}
+      <section id="trust" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <TrustSection />
+        </Suspense>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <TestimonialsSection />
+        </Suspense>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <FAQSection />
+        </Suspense>
+      </section>
+
+      {/* Download CTA Section */}
+      <section id="download" className="relative">
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <DownloadCTASection />
+        </Suspense>
+      </section>
+    </main>
   )
 } 
