@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { Download, Menu, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const MENU = [
   { label: 'Features', href: '#features' },
@@ -123,61 +124,66 @@ export default function ResponsiveHeader() {
       {open && (
         <div className="lg:hidden fixed inset-0 z-50">
           {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+          <motion.div 
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             onClick={closeMenu}
           />
           
           {/* Menu Panel */}
-          <div
+          <motion.div
             ref={panelRef}
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
-            className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-[#0C3F3F] border-l border-white/10 shadow-2xl transform transition-transform duration-300 ease-out"
-            style={{
-              transform: open ? 'translateX(0)' : 'translateX(100%)'
-            }}
+            className="absolute top-0 right-0 h-full w-full max-w-sm bg-[#0C3F3F] border-l border-white/10 shadow-2xl"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 sm:px-6 h-16 border-b border-white/10">
-              <span className="text-white font-semibold text-lg">Menu</span>
+            <div className="flex items-center justify-between px-6 h-20 border-b border-white/10">
+              <span className="text-white font-semibold text-xl">Menu</span>
               <button
                 onClick={closeMenu}
                 className="w-12 h-12 flex items-center justify-center text-white hover:text-[#2EBFA5] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0C3F3F] rounded-lg min-h-[48px] transition-colors duration-200 touch-target"
                 aria-label="Close mobile menu"
-                aria-expanded={open}
-                aria-controls="mobile-menu"
               >
                 <X className="w-6 h-6" aria-hidden="true" />
               </button>
             </div>
             
             {/* Navigation */}
-            <nav className="px-4 sm:px-6 py-6 space-y-2" aria-label="Mobile navigation">
+            <nav className="px-6 py-8 space-y-4" aria-label="Mobile navigation">
               {MENU.map((item) => (
-                <button
+                <motion.button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-white/90 hover:text-white rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0C3F3F] transition-colors duration-200 min-h-[48px] flex items-center touch-target"
+                  className="block w-full text-left text-white/90 hover:text-white rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0C3F3F] transition-all duration-200 min-h-[56px] flex items-center touch-target hover:bg-white/5"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {item.label}
-                </button>
+                  <span className="text-lg font-medium">{item.label}</span>
+                </motion.button>
               ))}
               
               {/* Mobile CTA */}
-              <div className="pt-4 border-t border-white/10">
+              <div className="pt-6 border-t border-white/10">
                 <Link
                   href="#download"
                   onClick={closeMenu}
-                  className="block w-full text-center bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0C3F3F] transition-all duration-200 min-h-[48px] flex items-center justify-center touch-target"
+                  className="block w-full text-center bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-[#0C3F3F] transition-all duration-200 min-h-[56px] flex items-center justify-center touch-target shadow-lg hover:shadow-xl"
                 >
-                  <Download className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Download App
+                  <Download className="w-5 h-5 mr-3" aria-hidden="true" />
+                  <span className="text-lg">Download App</span>
                 </Link>
               </div>
             </nav>
-          </div>
+          </motion.div>
         </div>
       )}
     </header>

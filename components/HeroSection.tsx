@@ -128,7 +128,7 @@ const HeroSection = () => {
           
           {/* Right side - Lottie Animation with Parallax */}
           <motion.div 
-            className="flex justify-center lg:justify-end order-1 lg:order-2 px-4 sm:px-6 lg:px-0"
+            className="flex justify-center lg:justify-end order-1 lg:order-2 px-4 sm:px-6 lg:px-0 mb-8 lg:mb-0"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -136,7 +136,7 @@ const HeroSection = () => {
             <div className="relative">
               {/* Lottie phone screen animation with parallax */}
               <motion.div 
-                className="w-56 sm:w-64 md:w-72 lg:w-80 h-72 sm:h-80 md:h-88 lg:h-96 glass p-3 sm:p-4 md:p-5 shadow-2xl border border-gray-800 hover:border-[#2EBFA5] transition-all duration-500 ease-in-out bg-gradient-to-br from-[#23272f] to-[#181c22]"
+                className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96 glass p-3 sm:p-4 md:p-5 shadow-2xl border border-gray-800 hover:border-[#2EBFA5] transition-all duration-500 ease-in-out bg-gradient-to-br from-[#23272f] to-[#181c22]"
                 whileHover={{ scale: 1.05, rotateY: 5, y: -10, boxShadow: '0 0 24px #2EBFA5' }}
                 whileTap={{ scale: 0.95 }}
                 animate={{ y: [0, -5, 0], rotateY: [0, 2, 0] }}

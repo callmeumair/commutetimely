@@ -61,6 +61,7 @@
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
+    -webkit-overflow-scrolling: touch;
   }
   
   body {
@@ -73,6 +74,29 @@
     max-width: 100vw;
     margin: 0;
     padding: 0;
+  }
+  
+  /* Enhanced smooth scrolling for mobile */
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Smooth scroll to sections */
+    section {
+      scroll-margin-top: 5rem;
+    }
+    
+    /* Better mobile scrolling performance */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
   }
   
   /* Prevent horizontal scroll on all devices */
@@ -97,6 +121,134 @@
     padding-right: 1rem;
     margin: 0 auto;
     overflow-x: hidden;
+  }
+
+  /* Enhanced mobile layout fixes */
+  @media (max-width: 768px) {
+    /* Prevent overlapping elements */
+    .hero-section {
+      padding: 5rem 1rem 2rem 1rem;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    
+    /* Ensure proper grid stacking on mobile */
+    .grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+    
+    /* Fix phone animation sizing on mobile */
+    .glass {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    
+    /* Improve button spacing on mobile */
+    .flex.flex-col > * + * {
+      margin-top: 1rem !important;
+    }
+    
+    /* Better text sizing for mobile */
+    h1 {
+      font-size: 2.5rem !important;
+      line-height: 1.2 !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    h2 {
+      font-size: 2rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 0.75rem !important;
+    }
+    
+    p {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    /* Improve button layout on mobile */
+    .flex.flex-col.sm\\:flex-row {
+      flex-direction: column !important;
+    }
+    
+    .flex.flex-col.sm\\:flex-row > * + * {
+      margin-top: 1rem !important;
+      margin-left: 0 !important;
+    }
+    
+    /* Better spacing for mobile sections */
+    .space-y-6 > * + * {
+      margin-top: 1.5rem !important;
+    }
+    
+    .space-y-8 > * + * {
+      margin-top: 2rem !important;
+    }
+    
+    /* Fix container padding on mobile */
+    .container-max {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+    
+    /* Ensure proper touch targets */
+    button, 
+    [role="button"],
+    .btn,
+    a[href],
+    .touch-target {
+      min-height: 48px !important;
+      min-width: 48px !important;
+      padding: 0.75rem 1rem !important;
+    }
+    
+    /* Better mobile navigation */
+    .lg\\:hidden {
+      display: block !important;
+    }
+    
+    .hidden.lg\\:flex {
+      display: none !important;
+    }
+    
+    /* Mobile-specific animations */
+    .animate-blob1,
+    .animate-blob2 {
+      display: none !important;
+    }
+    
+    /* Improve mobile performance */
+    * {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+    .hero-section {
+      padding: 4rem 0.75rem 1.5rem 0.75rem;
+    }
+    
+    .container-max {
+      padding-left: 0.75rem !important;
+      padding-right: 0.75rem !important;
+    }
+    
+    h1 {
+      font-size: 2rem !important;
+    }
+    
+    h2 {
+      font-size: 1.75rem !important;
+    }
+    
+    .glass {
+      width: 100% !important;
+      max-width: 280px !important;
+    }
   }
   
   @media (min-width: 640px) {
@@ -749,25 +901,97 @@
   @media (max-width: 768px) {
     /* Reduce shadow complexity for mobile */
     .shadow-lg {
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
     }
     
     .shadow-xl {
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
     }
     
-    /* Optimize backdrop-filter for mobile */
+    /* Optimize backdrop blur for mobile */
     .backdrop-blur-sm {
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(2px) !important;
+      -webkit-backdrop-filter: blur(2px) !important;
     }
     
     .backdrop-blur-md {
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
     }
     
-    /* Reduce animation complexity on mobile */
+    /* Optimize transitions for mobile */
     .transition-all {
-      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, text-decoration-color 0.15s ease-in-out, fill 0.15s ease-in-out, stroke 0.15s ease-in-out, opacity 0.15s ease-in-out, box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out, filter 0.15s ease-in-out, backdrop-filter 0.15s ease-in-out;
+      transition: all 0.2s ease-in-out !important;
+    }
+    
+    /* Mobile-specific animations */
+    .mobile-fade-in {
+      animation: mobileFadeIn 0.5s ease-out forwards;
+    }
+    
+    .mobile-slide-up {
+      animation: mobileSlideUp 0.6s ease-out forwards;
+    }
+    
+    .mobile-scale-in {
+      animation: mobileScaleIn 0.4s ease-out forwards;
+    }
+    
+    /* Mobile menu animations */
+    .mobile-menu-enter {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    
+    .mobile-menu-enter-active {
+      transform: translateX(0);
+      opacity: 1;
+      transition: all 0.3s ease-out;
+    }
+    
+    .mobile-menu-exit {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    
+    .mobile-menu-exit-active {
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.3s ease-in;
+    }
+  }
+
+  /* Mobile animation keyframes */
+  @keyframes mobileFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mobileSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mobileScaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
