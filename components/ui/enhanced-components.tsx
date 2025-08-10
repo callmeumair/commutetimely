@@ -164,7 +164,7 @@ export const EnhancedImage: React.FC<EnhancedImageProps> = ({
   
   return (
     <div className={enhancedClasses}>
-      <img {...props} className="w-full h-auto" />
+      <img {...props} className="w-full h-auto" alt={props.alt || "Enhanced image"} />
     </div>
   );
 };
@@ -246,6 +246,7 @@ export const EnhancedTooltip: React.FC<EnhancedTooltipProps> = ({
     <div 
       className={cn('tooltip inline-block', className)}
       data-tooltip={tooltip}
+      data-position={position}
     >
       {children}
     </div>
