@@ -46,13 +46,13 @@ const faqs = [
 const FAQSection = () => {
   return (
     <motion.section 
-      className="fullscreen-section bg-black relative"
+      className="w-full bg-black relative"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container-max w-full h-full flex flex-col justify-center">
+      <div className="w-full h-full flex flex-col justify-center">
         <motion.div 
           className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -60,10 +60,10 @@ const FAQSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6">
             Frequently Asked <span className="gradient-text">Questions</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
             Everything you need to know about CommuteTimely
           </p>
         </motion.div>
@@ -88,11 +88,11 @@ const FAQSection = () => {
                   value={`item-${index}`}
                   className="glass border border-white/10 hover:border-white/20 transition-all duration-200"
                 >
-                  <AccordionTrigger className="text-left text-white hover:text-brand-accent transition-colors duration-200 px-6 py-4">
-                    <span className="text-lg font-semibold">{faq.question}</span>
+                  <AccordionTrigger className="text-left text-white hover:text-brand-accent transition-colors duration-200 px-4 sm:px-6 py-3 sm:py-4">
+                    <span className="text-base sm:text-lg font-semibold">{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4">
-                    <p className="text-gray-300 leading-relaxed">
+                  <AccordionContent className="px-4 sm:px-6 pb-3 sm:pb-4">
+                    <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                       {faq.answer}
                     </p>
                   </AccordionContent>
@@ -104,20 +104,20 @@ const FAQSection = () => {
 
         {/* Contact CTA */}
         <motion.div 
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-8 border border-blue-500/20">
-            <h3 className="text-2xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-6 sm:p-8 border border-blue-500/20">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
               Still Have Questions?
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
               Our support team is here to help you get the most out of CommuteTimely
             </p>
-            <button className="btn-primary px-8 py-3">
+            <button className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base">
               Contact Support
             </button>
           </div>

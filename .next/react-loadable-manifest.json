@@ -1,45 +1,4 @@
 {
-  "app/page.tsx -> @/components/CommuteCalculator": {
-    "id": 1761,
-    "files": [
-      "static/chunks/761.c3674f891495d71c.js"
-    ]
-  },
-  "app/page.tsx -> @/components/DownloadCTASection": {
-    "id": 6222,
-    "files": [
-      "static/chunks/222.2762f2e95ebb4f1a.js"
-    ]
-  },
-  "app/page.tsx -> @/components/FAQSection": {
-    "id": 9261,
-    "files": [
-      "static/chunks/140.f6e0290467c37782.js",
-      "static/chunks/633.7c1cc896c911b535.js",
-      "static/chunks/261.705731d9d128ea8d.js"
-    ]
-  },
-  "app/page.tsx -> @/components/Footer": {
-    "id": 6109,
-    "files": [
-      "static/chunks/109.219f3ebbd75fddce.js"
-    ]
-  },
-  "app/page.tsx -> @/components/TestimonialsSection": {
-    "id": 5023,
-    "files": [
-      "static/chunks/5ffe1889.a2d02bef6304532e.js",
-      "static/chunks/140.f6e0290467c37782.js",
-      "static/chunks/252.8ea07adca853db9d.js",
-      "static/chunks/23.6145f99fdacb3253.js"
-    ]
-  },
-  "app/page.tsx -> @/components/TrustSection": {
-    "id": 1064,
-    "files": [
-      "static/chunks/64.62e41a2526fd4b04.js"
-    ]
-  },
   "components/LazyLottie.tsx -> lottie-react": {
     "id": 3770,
     "files": [

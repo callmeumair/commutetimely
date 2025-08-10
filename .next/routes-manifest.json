@@ -12,7 +12,58 @@
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
     }
   ],
-  "headers": [],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        }
+      ],
+      "regex": "^(?:/(.*))(?:/)?$"
+    },
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "regex": "^/_next/static(?:/(.*))(?:/)?$"
+    },
+    {
+      "source": "/(.*)\\.(jpg|jpeg|gif|png|svg|webp|avif|ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "regex": "^(?:/(.*))\\.(jpg|jpeg|gif|png|svg|webp|avif|ico)(?:/)?$"
+    }
+  ],
   "rewrites": {
     "beforeFiles": [],
     "afterFiles": [],
@@ -79,12 +130,6 @@
       "regex": "^/terms\\-of\\-service(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/terms\\-of\\-service(?:/)?$"
-    },
-    {
-      "page": "/testimonials",
-      "regex": "^/testimonials(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/testimonials(?:/)?$"
     }
   ],
   "dataRoutes": [],

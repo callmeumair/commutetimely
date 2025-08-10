@@ -38,7 +38,7 @@ const HeroSection = () => {
 
   return (
     <motion.section 
-      className="hero-section bg-transparent relative min-h-screen flex items-center justify-center pb-16 sm:pb-20 md:pb-24"
+      className="w-full min-h-screen flex items-center justify-center py-16 sm:py-20 md:py-24"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -49,18 +49,18 @@ const HeroSection = () => {
       <div className="absolute -bottom-32 -right-32 w-[30vw] h-[30vw] bg-[#FFC773]/15 rounded-full blur-2xl z-0 animate-blob2 hidden md:block" />
       <div className="absolute inset-0 bg-gradient-radial from-[#FFC773]/10 via-transparent to-transparent z-0 pointer-events-none hidden md:block" />
       
-      <div className="container-max relative z-10 w-full h-full flex items-center justify-center">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-7xl mx-auto w-full">
+      <div className="relative z-10 w-full h-full flex items-center justify-center">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center w-full">
           {/* Left side - Content */}
           <motion.div 
-            className="text-center lg:text-left space-y-6 sm:space-y-8 lg:space-y-10 order-2 lg:order-1 px-4 sm:px-6 lg:px-0"
+            className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 xl:space-y-10 order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+            <div className="space-y-3 sm:space-y-4 lg:space-y-6 xl:space-y-8">
               <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -69,7 +69,7 @@ const HeroSection = () => {
                 <span className="block gradient-text">Again.</span>
               </motion.h1>
               <motion.p 
-                className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -79,7 +79,7 @@ const HeroSection = () => {
             </div>
             
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -89,173 +89,128 @@ const HeroSection = () => {
                 variant="primary"
                 size="lg"
                 withSparkle={true}
-                className="flex items-center justify-center space-x-3 w-full sm:w-auto touch-target"
+                className="flex items-center justify-center space-x-2 sm:space-x-3 w-full sm:w-auto touch-target text-sm sm:text-base lg:text-lg"
                 aria-label="Join waitlist for early access to CommuteTimely"
               >
-                <span className="text-xl sm:text-2xl">🚀</span>
+                <span className="text-lg sm:text-xl lg:text-2xl">🚀</span>
                 <span>Join Waitlist</span>
               </AnimatedButton>
               <AnimatedButton 
                 onClick={handleJoinWaitlist}
                 variant="outline"
                 size="lg"
-                withSparkle={true}
-                className="flex items-center justify-center space-x-3 w-full sm:w-auto touch-target"
-                aria-label="Get notified when CommuteTimely launches"
+                className="flex items-center justify-center space-x-2 sm:space-x-3 w-full sm:w-auto touch-target text-sm sm:text-base lg:text-lg"
+                aria-label="Learn more about CommuteTimely features"
               >
-                <span className="text-xl sm:text-2xl">🔔</span>
-                <span>Get Notified</span>
+                <span className="text-lg sm:text-xl lg:text-2xl">ℹ️</span>
+                <span>Learn More</span>
               </AnimatedButton>
             </motion.div>
 
-            {/* Pre-launch status */}
+            {/* Stats */}
             <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-8 lg:space-x-10 text-gray-500 text-sm sm:text-base"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center lg:justify-start pt-4 sm:pt-6 lg:pt-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-[#FFC773] rounded-full"></div>
-                <span>Launching September 2025</span>
+              <div className="text-center lg:text-left">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2EBFA5]">{downloads}+</div>
+                <div className="text-sm sm:text-base text-gray-400">Downloads</div>
               </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                <span>App Store & Play Store</span>
+              <div className="text-center lg:text-left">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFC773]">4.9★</div>
+                <div className="text-sm sm:text-base text-gray-400">Rating</div>
+              </div>
+              <div className="text-center lg:text-left">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">24/7</div>
+                <div className="text-sm sm:text-base text-gray-400">Support</div>
               </div>
             </motion.div>
           </motion.div>
-          
-          {/* Right side - Lottie Animation with Parallax */}
+
+          {/* Right side - Phone Mockup */}
           <motion.div 
-            className="flex justify-center lg:justify-end order-1 lg:order-2 px-4 sm:px-6 lg:px-0 mb-8 lg:mb-0"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative">
-              {/* Lottie phone screen animation with parallax */}
-              <motion.div 
-                className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96 glass p-3 sm:p-4 md:p-5 shadow-2xl border border-gray-800 hover:border-[#2EBFA5] transition-all duration-500 ease-in-out bg-gradient-to-br from-[#23272f] to-[#181c22]"
-                whileHover={{ scale: 1.05, rotateY: 5, y: -10, boxShadow: '0 0 24px #2EBFA5' }}
-                whileTap={{ scale: 0.95 }}
-                animate={{ y: [0, -5, 0], rotateY: [0, 2, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <div className="w-full h-full bg-[#181c22] rounded-2xl p-3 sm:p-4 md:p-6 flex flex-col">
-                  {/* App header */}
-                  <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-xl flex items-center justify-center">
-                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
-                    </div>
-                    <div className="text-sm sm:text-base md:text-lg font-semibold text-white tracking-wide">CommuteTimely</div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-[#23272f] rounded-full flex items-center justify-center hover:bg-[#2EBFA5]/20 transition-colors touch-target">
-                      <span className="text-[#2EBFA5] text-sm">⚙️</span>
-                    </div>
-                  </div>
-                  
-                  {/* Commute status card */}
-                  <motion.div 
-                    className="rounded-xl bg-gradient-to-r from-[#23272f] to-[#1e8372]/30 p-3 sm:p-4 flex items-center mb-3 sm:mb-4 shadow-md border border-[#2EBFA5]/10"
+            <motion.div 
+              className="relative group"
+              whileHover={{ scale: 1.05, rotateY: 5, y: -10, boxShadow: '0 0 24px #2EBFA5' }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              {/* Phone frame */}
+              <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-[32rem] sm:h-[36rem] md:h-[40rem] lg:h-[44rem] bg-gradient-to-br from-[#23272f] to-[#181c22] rounded-[3rem] shadow-2xl border border-[#2EBFA5]/20 hover:border-[#2EBFA5] transition-all duration-[var(--duration-slow)] ease-in-out bg-gradient-to-br from-[#23272f] to-[#181c22]">
+                {/* Screen */}
+                <div className="absolute inset-2 sm:inset-3 md:inset-4 lg:inset-5 bg-black rounded-[2.5rem] sm:rounded-[2.75rem] md:rounded-[3rem] lg:rounded-[3.25rem] overflow-hidden flex items-center justify-center hover:bg-[#2EBFA5]/20 transition-colors touch-target">
+                  <motion.div
                     whileHover={{ boxShadow: '0 0 12px #2EBFA5', scale: 1.03 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                   >
-                    <div className="flex-1">
-                      <div className="text-sm text-gray-400 mb-2">Next commute</div>
-                      <div className="text-base sm:text-lg md:text-xl font-bold text-white flex items-center gap-2">
-                        <span>Leave in</span>
-                        <span className="text-[#2EBFA5] animate-pulse">12 mins</span>
-                      </div>
-                      <div className="text-sm text-gray-400 mt-2">ETA: 8:42 AM</div>
-                    </div>
-                    <div className="ml-3 sm:ml-4 flex flex-col items-center">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#2EBFA5]/10 flex items-center justify-center mb-2 border border-[#2EBFA5]/30">
-                        <span className="text-[#2EBFA5] text-lg sm:text-xl">🚗</span>
-                      </div>
-                      <div className="text-xs sm:text-sm text-[#2EBFA5] font-semibold">Car</div>
-                    </div>
+                    <LazyLottie 
+                      animationData={phoneAnimation} 
+                      className="w-full h-full"
+                    />
                   </motion.div>
-                  
-                  {/* Transport mode toggle */}
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    {[
-                      { icon: '🚗', label: 'Car' },
-                      { icon: '🚌', label: 'Bus' },
-                      { icon: '🚲', label: 'Bike' },
-                      { icon: '🚶‍♂️', label: 'Walk' }
-                    ].map((mode, idx) => (
-                      <motion.button
-                        key={mode.label}
-                        className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-11 rounded-full flex items-center justify-center border-2 ${mode.label === 'Car' ? 'bg-[#2EBFA5] border-[#2EBFA5] text-white shadow-md' : 'bg-[#23272f] border-[#2EBFA5]/30 text-[#2EBFA5]'} hover:shadow-lg transition-all duration-200 touch-target`}
-                        whileHover={{ scale: 1.15, boxShadow: '0 0 8px #2EBFA5' }}
-                        aria-label={mode.label}
-                      >
-                        <span className="text-lg sm:text-xl">{mode.icon}</span>
-                      </motion.button>
-                    ))}
-                  </div>
-                  
-                  {/* Destination preview/map mini-snippet */}
-                  <motion.div 
-                    className="rounded-xl bg-[#23272f] border border-[#2EBFA5]/10 p-3 flex items-center mb-3 sm:mb-4 hover:border-[#2EBFA5]/40 transition-colors"
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 8px #2EBFA5' }}
-                  >
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-[#2EBFA5]/30 to-[#1e8372]/30 flex items-center justify-center mr-3">
-                      <span className="text-xl sm:text-2xl">🏢</span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm text-gray-400">Destination</div>
-                      <div className="text-sm sm:text-base font-semibold text-white truncate">Acme HQ, 123 Main St</div>
-                      <div className="text-xs sm:text-sm text-[#2EBFA5]">7.2 mi • 18 min</div>
-                    </div>
-                    <div className="ml-3 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-[#2EBFA5]/10 flex items-center justify-center">
-                      <span className="text-[#2EBFA5] text-lg sm:text-xl">🗺️</span>
-                    </div>
-                  </motion.div>
-                  
-                  {/* Notification toggle/ETA bar */}
-                  <motion.div 
-                    className="w-full h-4 sm:h-5 rounded-full bg-[#23272f] border border-[#2EBFA5]/10 flex items-center overflow-hidden relative"
-                    whileHover={{ boxShadow: '0 0 8px #2EBFA5' }}
-                  >
-                    <div className="h-full bg-[#2EBFA5] rounded-full animate-pulse" style={{ width: '60%' }} />
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-xs sm:text-sm text-white font-semibold">Notifications On</div>
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs sm:text-sm text-[#2EBFA5] font-semibold">ETA: 8:42 AM</div>
-                  </motion.div>
-                  
-                  {/* Bottom nav */}
-                  <div className="flex justify-around pt-4 sm:pt-5 md:pt-6 border-t border-[#1a1a1a] mt-auto">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-lg flex items-center justify-center hover:shadow-md hover:bg-[#2EBFA5]/20 transition-all touch-target">
-                      <span className="text-white text-sm">🏠</span>
-                    </div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-[#23272f] rounded-lg flex items-center justify-center hover:shadow-md hover:bg-[#2EBFA5]/20 transition-all touch-target">
-                      <span className="text-[#2EBFA5] text-sm">📊</span>
-                    </div>
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-[#23272f] rounded-lg flex items-center justify-center hover:shadow-md hover:bg-[#2EBFA5]/20 transition-all touch-target">
-                      <span className="text-[#2EBFA5] text-sm">👤</span>
-                    </div>
-                  </div>
                 </div>
-              </motion.div>
-              
-              {/* Enhanced floating elements - hidden on very small screens */}
+                
+                {/* Home indicator */}
+                <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 lg:bottom-7 left-1/2 transform -translate-x-1/2 w-24 sm:w-28 md:w-32 lg:w-36 h-1 bg-white rounded-full opacity-60" />
+              </div>
+
+              {/* Floating elements */}
               <motion.div 
-                className="absolute -top-6 sm:-top-8 -right-6 sm:-right-8 w-20 h-20 sm:w-24 sm:h-24 bg-[#0f3d3e]/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-[#0f3d3e]/40 hidden sm:flex"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 sm:-top-5 md:-top-6 lg:-top-7 -right-4 sm:-right-5 md:-right-6 lg:-right-7 w-16 sm:w-18 md:w-20 lg:w-22 h-16 sm:h-18 md:h-20 lg:h-22 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target"
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <span className="text-xl sm:text-2xl">🚗</span>
+                <Clock className="w-8 sm:w-9 md:w-10 lg:w-11 h-8 sm:h-9 md:h-10 lg:h-11 text-white" />
               </motion.div>
+
               <motion.div 
-                className="absolute -bottom-6 sm:-bottom-8 -left-6 sm:-left-8 w-16 h-16 sm:w-20 sm:h-20 bg-[#FFC773]/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-[#FFC773]/40 hidden sm:flex"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-4 sm:-bottom-5 md:-bottom-6 lg:-bottom-7 -left-4 sm:-left-5 md:-left-6 lg:-left-7 w-16 sm:w-18 md:w-20 lg:w-22 h-16 sm:h-18 md:h-20 lg:h-22 bg-gradient-to-br from-[#FFC773] to-[#E6B85C] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target"
+                whileHover={{ scale: 1.1, rotate: -360 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <span className="text-lg sm:text-xl">⏰</span>
+                <Smartphone className="w-8 sm:w-9 md:w-10 lg:w-11 h-8 sm:h-9 md:h-10 lg:h-11 text-white" />
               </motion.div>
-            </div>
+
+              <motion.div 
+                className="absolute top-1/2 -right-8 sm:-right-10 md:-right-12 lg:-right-14 transform -translate-y-1/2 w-14 sm:w-16 md:w-18 lg:w-20 h-14 sm:h-16 md:h-18 lg:h-20 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target"
+                whileHover={{ scale: 1.1, y: -10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <Download className="w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-white" />
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 text-white/60 hover:text-white transition-colors duration-[var(--duration-normal)] cursor-pointer touch-target"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.0 }}
+        onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+        aria-label="Scroll to features section"
+      >
+        <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
+          <motion.div 
+            className="w-1 h-3 bg-current rounded-full mt-2"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+        <span className="text-sm font-medium">Scroll to explore</span>
+      </motion.div>
     </motion.section>
   )
 }

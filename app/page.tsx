@@ -65,48 +65,48 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="w-full bg-black text-white overflow-x-hidden">
       {/* Hero Section */}
-      <section id="hero" className="relative">
+      <section id="hero" className="relative w-full flex items-center justify-center min-h-screen">
         <Suspense fallback={<LoadingPlaceholder />}>
           <HeroSection />
         </Suspense>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="relative">
+      <section id="features" className="relative w-full flex items-center justify-center py-16 sm:py-20 md:py-24 lg:py-32">
         <Suspense fallback={<LoadingPlaceholder />}>
           <FeaturesSection />
         </Suspense>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative">
+      <section id="how-it-works" className="relative w-full flex items-center justify-center py-16 sm:py-20 md:py-24 lg:py-32">
         <Suspense fallback={<LoadingPlaceholder />}>
           <HowItWorksSection />
         </Suspense>
       </section>
 
       {/* Trust Section */}
-      <section id="trust" className="relative">
+      <section id="trust" className="relative w-full flex items-center justify-center py-16 sm:py-20 md:py-24 lg:py-32">
         <Suspense fallback={<LoadingPlaceholder />}>
           <TrustSection />
         </Suspense>
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="relative">
+      <section id="faq" className="relative w-full flex items-center justify-center py-16 sm:py-20 md:py-24 lg:py-32">
         <Suspense fallback={<LoadingPlaceholder />}>
           <FAQSection />
         </Suspense>
       </section>
 
       {/* Download CTA Section */}
-      <section id="download" className="relative">
+      <section id="download" className="relative w-full flex items-center justify-center py-16 sm:py-20 md:py-24 lg:py-32">
         <Suspense fallback={<LoadingPlaceholder />}>
           <DownloadCTASection />
         </Suspense>
       </section>
-    </main>
+    </div>
   )
 } 

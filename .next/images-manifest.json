@@ -34,8 +34,8 @@
       "image/webp",
       "image/avif"
     ],
-    "dangerouslyAllowSVG": false,
-    "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
+    "dangerouslyAllowSVG": true,
+    "contentSecurityPolicy": "default-src 'self'; script-src 'none'; sandbox;",
     "contentDispositionType": "attachment",
     "remotePatterns": [],
     "unoptimized": false,

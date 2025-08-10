@@ -59,8 +59,8 @@
         "image/webp",
         "image/avif"
       ],
-      "dangerouslyAllowSVG": false,
-      "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
+      "dangerouslyAllowSVG": true,
+      "contentSecurityPolicy": "default-src 'self'; script-src 'none'; sandbox;",
       "contentDispositionType": "attachment",
       "remotePatterns": [],
       "unoptimized": false
@@ -103,7 +103,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/apple/Downloads/commutetimely",
+    "outputFileTracingRoot": "/Users/apple/commutetimely",
     "experimental": {
       "useSkewCookie": false,
       "nodeMiddleware": false,
@@ -295,10 +295,18 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.js",
     "turbopack": {
-      "root": "/Users/apple/Downloads/commutetimely"
+      "rules": {
+        "*.svg": {
+          "loaders": [
+            "@svgr/webpack"
+          ],
+          "as": "*.js"
+        }
+      },
+      "root": "/Users/apple/commutetimely"
     }
   },
-  "appDir": "/Users/apple/Downloads/commutetimely",
+  "appDir": "/Users/apple/commutetimely",
   "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",

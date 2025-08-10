@@ -1,4 +1,4 @@
-// File: /Users/apple/Downloads/commutetimely/app/privacy-policy/page.tsx
+// File: /Users/apple/commutetimely/app/privacy-policy/page.tsx
 import * as entry from '../../../../app/privacy-policy/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
