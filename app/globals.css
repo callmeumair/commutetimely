@@ -610,3 +610,107 @@ select:focus {
 .shadow-xl-enhanced {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
+/* Mobile preview responsive utilities */
+.mobile-preview-container {
+  /* Ensure proper scaling on all devices */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  /* Fallback for modern browsers */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Retina display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mobile-preview-container {
+    /* Enhanced rendering for high-DPI displays */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .mobile-preview-container img,
+  .mobile-preview-container svg {
+    /* Ensure sharp rendering on retina displays */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Responsive phone mockup scaling */
+.phone-mockup-responsive {
+  /* Maintain aspect ratio across all breakpoints */
+  aspect-ratio: 9/19.5;
+  /* Ensure smooth scaling */
+  transform-origin: center center;
+  /* Optimize for performance */
+  will-change: transform;
+  /* Prevent layout shift */
+  contain: layout style paint;
+}
+
+/* Floating elements responsive positioning */
+.floating-element {
+  /* Ensure elements don't overlap at any breakpoint */
+  z-index: 10;
+  /* Smooth transitions */
+  transition: all var(--duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  /* Prevent text selection */
+  user-select: none;
+  /* Optimize for touch devices */
+  touch-action: manipulation;
+}
+
+/* Responsive grid for mobile preview content */
+.mobile-preview-grid {
+  /* Ensure grid items scale proportionally */
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  /* Maintain consistent spacing */
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  /* Prevent overflow */
+  overflow: hidden;
+}
+
+/* Responsive text scaling */
+.mobile-preview-text {
+  /* Scale text proportionally with container */
+  font-size: clamp(0.75rem, 2.5vw, 1.125rem);
+  /* Ensure readable line height */
+  line-height: 1.4;
+  /* Prevent text overflow */
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Responsive icon scaling */
+.mobile-preview-icon {
+  /* Scale icons proportionally */
+  width: clamp(1.5rem, 4vw, 3rem);
+  height: clamp(1.5rem, 4vw, 3rem);
+  /* Maintain aspect ratio */
+  aspect-ratio: 1;
+  /* Ensure crisp rendering */
+  flex-shrink: 0;
+}
+
+/* Container max-width constraints for large screens */
+@media (min-width: 1280px) {
+  .mobile-preview-container {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1536px) {
+  .mobile-preview-container {
+    max-width: 520px;
+  }
+}
+
+/* Ensure proper spacing on ultra-wide screens */
+@media (min-width: 1920px) {
+  .mobile-preview-container {
+    max-width: 560px;
+  }
+}

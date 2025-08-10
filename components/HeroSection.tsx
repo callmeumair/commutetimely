@@ -6,7 +6,7 @@ import { config } from '../lib/config'
 import { useEffect, useState } from 'react'
 import phoneAnimation from '../public/lottie/phone-screen.json'
 import AnimatedButton from './AnimatedButton'
-import LazyLottie from './LazyLottie'
+import MobilePreview from './MobilePreview'
 
 const HeroSection = () => {
   const handleJoinWaitlist = () => {
@@ -131,59 +131,61 @@ const HeroSection = () => {
 
           {/* Right side - Phone Mockup */}
           <motion.div 
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end w-full"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.div 
-              className="relative group"
+              className="relative group max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px] 2xl:max-w-[480px] w-full mx-auto lg:mx-0 mobile-preview-container"
               whileHover={{ scale: 1.05, rotateY: 5, y: -10, boxShadow: '0 0 24px #2EBFA5' }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {/* Phone frame */}
-              <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-[32rem] sm:h-[36rem] md:h-[40rem] lg:h-[44rem] bg-gradient-to-br from-[#23272f] to-[#181c22] rounded-[3rem] shadow-2xl border border-[#2EBFA5]/20 hover:border-[#2EBFA5] transition-all duration-[var(--duration-slow)] ease-in-out bg-gradient-to-br from-[#23272f] to-[#181c22]">
+              {/* Phone frame - Responsive sizing with aspect ratio */}
+              <div className="relative w-full aspect-[9/19.5] bg-gradient-to-br from-[#23272f] to-[#181c22] rounded-[2.5rem] sm:rounded-[2.75rem] md:rounded-[3rem] lg:rounded-[3.25rem] xl:rounded-[3.5rem] shadow-2xl border border-[#2EBFA5]/20 hover:border-[#2EBFA5] transition-all duration-[var(--duration-slow)] ease-in-out phone-mockup-responsive">
                 {/* Screen */}
-                <div className="absolute inset-2 sm:inset-3 md:inset-4 lg:inset-5 bg-black rounded-[2.5rem] sm:rounded-[2.75rem] md:rounded-[3rem] lg:rounded-[3.25rem] overflow-hidden flex items-center justify-center hover:bg-[#2EBFA5]/20 transition-colors touch-target">
+                <div className="absolute inset-[0.5rem] sm:inset-[0.75rem] md:inset-[1rem] lg:inset-[1.25rem] xl:inset-[1.5rem] bg-black rounded-[2rem] sm:rounded-[2.25rem] md:rounded-[2.5rem] lg:rounded-[2.75rem] xl:rounded-[3rem] overflow-hidden flex items-center justify-center hover:bg-[#2EBFA5]/20 transition-colors touch-target">
                   <motion.div
                     whileHover={{ boxShadow: '0 0 12px #2EBFA5', scale: 1.03 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="w-full h-full"
                   >
-                    <LazyLottie 
-                      animationData={phoneAnimation} 
+                    <MobilePreview 
+                      animationData={phoneAnimation}
+                      fallbackType="auto"
                       className="w-full h-full"
                     />
                   </motion.div>
                 </div>
                 
                 {/* Home indicator */}
-                <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 lg:bottom-7 left-1/2 transform -translate-x-1/2 w-24 sm:w-28 md:w-32 lg:w-36 h-1 bg-white rounded-full opacity-60" />
+                <div className="absolute bottom-[1rem] sm:bottom-[1.25rem] md:bottom-[1.5rem] lg:bottom-[1.75rem] xl:bottom-[2rem] left-1/2 transform -translate-x-1/2 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-1 bg-white rounded-full opacity-60" />
               </div>
 
-              {/* Floating elements */}
+              {/* Floating elements - Responsive positioning and sizing */}
               <motion.div 
-                className="absolute -top-4 sm:-top-5 md:-top-6 lg:-top-7 -right-4 sm:-right-5 md:-right-6 lg:-right-7 w-16 sm:w-18 md:w-20 lg:w-22 h-16 sm:h-18 md:h-20 lg:h-22 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target"
+                className="absolute -top-2 sm:-top-3 md:-top-4 lg:-top-5 xl:-top-6 -right-2 sm:-right-3 md:-right-4 lg:-right-5 xl:-right-6 w-12 sm:w-14 md:w-16 lg:w-18 xl:w-20 h-12 sm:h-14 md:h-16 lg:h-18 xl:h-20 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target floating-element"
                 whileHover={{ scale: 1.1, rotate: 360 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <Clock className="w-8 sm:w-9 md:w-10 lg:w-11 h-8 sm:h-9 md:h-10 lg:h-11 text-white" />
+                <Clock className="w-6 sm:w-7 md:w-8 lg:w-9 xl:w-10 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 text-white mobile-preview-icon" />
               </motion.div>
 
               <motion.div 
-                className="absolute -bottom-4 sm:-bottom-5 md:-bottom-6 lg:-bottom-7 -left-4 sm:-left-5 md:-left-6 lg:-left-7 w-16 sm:w-18 md:w-20 lg:w-22 h-16 sm:h-18 md:h-20 lg:h-22 bg-gradient-to-br from-[#FFC773] to-[#E6B85C] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target"
+                className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 lg:-bottom-5 xl:-bottom-6 -left-2 sm:-left-3 md:-left-4 lg:-left-5 xl:-left-6 w-12 sm:w-14 md:w-16 lg:w-18 xl:w-20 h-12 sm:h-14 md:h-16 lg:h-18 xl:h-20 bg-gradient-to-br from-[#FFC773] to-[#E6B85C] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target floating-element"
                 whileHover={{ scale: 1.1, rotate: -360 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <Smartphone className="w-8 sm:w-9 md:w-10 lg:w-11 h-8 sm:h-9 md:h-10 lg:h-11 text-white" />
+                <Smartphone className="w-6 sm:w-7 md:w-8 lg:w-9 xl:w-10 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 text-white mobile-preview-icon" />
               </motion.div>
 
               <motion.div 
-                className="absolute top-1/2 -right-8 sm:-right-10 md:-right-12 lg:-right-14 transform -translate-y-1/2 w-14 sm:w-16 md:w-18 lg:w-20 h-14 sm:h-16 md:h-18 lg:h-20 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target"
+                className="absolute top-1/2 -right-6 sm:-right-8 md:-right-10 lg:-right-12 xl:-right-14 transform -translate-y-1/2 w-10 sm:w-12 md:w-14 lg:w-16 xl:w-18 h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target floating-element"
                 whileHover={{ scale: 1.1, y: -10 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <Download className="w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-white" />
+                <Download className="w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 text-white mobile-preview-icon" />
               </motion.div>
             </motion.div>
           </motion.div>
