@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Clock, MapPin, Car, Bus, Train, Bike, Footprints } from 'lucide-react'
+import { Clock, Car, Bus, Train, Bike, Footprints } from 'lucide-react'
 
 interface CalculatorForm {
   destination: string
@@ -159,7 +159,7 @@ export default function CommuteCalculator() {
                     <button
                       key={mode.id}
                       type="button"
-                      onClick={() => setForm({ ...form, transportMode: mode.id as any })}
+                      onClick={() => setForm({ ...form, transportMode: mode.id as 'car' | 'bus' | 'train' | 'bike' | 'walking' })}
                       className={`p-3 rounded-lg border transition-all duration-200 ${
                         form.transportMode === mode.id
                           ? 'border-brand-accent bg-brand-accent/20'
@@ -183,7 +183,7 @@ export default function CommuteCalculator() {
                     <button
                       key={level.id}
                       type="button"
-                      onClick={() => setForm({ ...form, trafficLevel: level.id as any })}
+                      onClick={() => setForm({ ...form, trafficLevel: level.id as 'low' | 'medium' | 'high' })}
                       className={`p-3 rounded-lg border transition-all duration-200 ${
                         form.trafficLevel === level.id
                           ? 'border-brand-accent bg-brand-accent/20'

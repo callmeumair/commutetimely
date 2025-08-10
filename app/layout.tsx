@@ -4,6 +4,7 @@ import './globals.css'
 import './critical.css'
 import ResponsiveHeader from '@/components/ResponsiveHeader'
 import Footer from '@/components/Footer'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -166,7 +167,7 @@ export default function RootLayout({
           `
         }} />
         
-        {/* Performance monitoring */}
+        {/* Performance monitoring and error logging */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -176,11 +177,17 @@ export default function RootLayout({
                   setTimeout(() => {
                     const perfData = performance.getEntriesByType('navigation')[0];
                     if (perfData) {
-                      console.log('Performance Metrics:', {
+                      const metrics = {
                         'Time to First Byte': perfData.responseStart - perfData.requestStart + 'ms',
                         'DOM Content Loaded': perfData.domContentLoadedEventEnd - perfData.navigationStart + 'ms',
                         'Load Complete': perfData.loadEventEnd - perfData.navigationStart + 'ms'
-                      });
+                      };
+                      console.log('Performance Metrics:', metrics);
+                      
+                      // Send to analytics if available
+                      if (window.gtag) {
+                        window.gtag('event', 'performance_metrics', metrics);
+                      }
                     }
                   }, 0);
                 });
@@ -193,6 +200,11 @@ export default function RootLayout({
               function updateCLS() {
                 clsValue = clsEntries.reduce((sum, entry) => sum + entry.value, 0);
                 console.log('Current CLS:', clsValue);
+                
+                // Send to analytics if available
+                if (window.gtag && clsValue > 0.1) {
+                  window.gtag('event', 'high_cls', { value: clsValue });
+                }
               }
               
               if ('PerformanceObserver' in window) {
@@ -205,6 +217,60 @@ export default function RootLayout({
                   }
                 });
                 observer.observe({ entryTypes: ['layout-shift'] });
+              }
+              
+              // Error logging and monitoring
+              window.addEventListener('error', (event) => {
+                console.error('JavaScript Error:', event.error);
+                
+                // Send to analytics if available
+                if (window.gtag) {
+                  window.gtag('event', 'exception', {
+                    description: event.error?.message || 'Unknown error',
+                    fatal: false
+                  });
+                }
+              });
+              
+              // Unhandled promise rejection monitoring
+              window.addEventListener('unhandledrejection', (event) => {
+                console.error('Unhandled Promise Rejection:', event.reason);
+                
+                // Send to analytics if available
+                if (window.gtag) {
+                  window.gtag('event', 'exception', {
+                    description: 'Unhandled promise rejection: ' + (event.reason?.message || 'Unknown'),
+                    fatal: false
+                  });
+                }
+              });
+              
+              // Core Web Vitals monitoring
+              if ('PerformanceObserver' in window) {
+                // LCP monitoring
+                const lcpObserver = new PerformanceObserver((list) => {
+                  const entries = list.getEntries();
+                  const lastEntry = entries[entries.length - 1];
+                  console.log('LCP:', lastEntry.startTime + 'ms');
+                  
+                  if (window.gtag) {
+                    window.gtag('event', 'lcp', { value: lastEntry.startTime });
+                  }
+                });
+                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+                
+                // FID monitoring
+                const fidObserver = new PerformanceObserver((list) => {
+                  const entries = list.getEntries();
+                  entries.forEach(entry => {
+                    console.log('FID:', entry.processingStart - entry.startTime + 'ms');
+                    
+                    if (window.gtag) {
+                      window.gtag('event', 'fid', { value: entry.processingStart - entry.startTime });
+                    }
+                  });
+                });
+                fidObserver.observe({ entryTypes: ['first-input'] });
               }
             `
           }}
@@ -223,6 +289,9 @@ export default function RootLayout({
         </main>
         
         <Footer />
+        
+        {/* Analytics */}
+        <Analytics />
         
         {/* Performance optimization: Lazy load non-critical resources */}
         <script

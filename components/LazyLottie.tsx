@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 
@@ -13,13 +13,15 @@ const Lottie = dynamic(() => import('lottie-react'), {
 })
 
 interface LazyLottieProps {
-  animationData: any
+  animationData: object
   className?: string
   style?: React.CSSProperties
   loop?: boolean
   autoplay?: boolean
   width?: number | string
   height?: number | string
+  onDOMLoaded?: () => void
+  onError?: () => void
 }
 
 const LazyLottie = ({
@@ -29,10 +31,14 @@ const LazyLottie = ({
   loop = true,
   autoplay = true,
   width,
-  height
+  height,
+  onDOMLoaded,
+  onError
 }: LazyLottieProps) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Simulate loading delay for better UX
@@ -44,6 +50,9 @@ const LazyLottie = ({
   }, [])
 
   useEffect(() => {
+    const currentRef = containerRef.current
+    if (!currentRef) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -56,29 +65,57 @@ const LazyLottie = ({
       }
     )
 
-    const element = document.querySelector('.lazy-lottie-container')
-    if (element) {
-      observer.observe(element)
-    }
+    observer.observe(currentRef)
 
     return () => {
-      if (element) {
-        observer.unobserve(element)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [])
 
+  // Handle successful load
+  const handleLoad = () => {
+    setIsLoaded(true)
+    setHasError(false)
+    onDOMLoaded?.()
+  }
+
+  // Handle error
+  const handleError = () => {
+    setHasError(true)
+    setIsLoaded(false)
+    onError?.()
+  }
+
   if (!isLoaded) {
     return (
       <div 
+        ref={containerRef}
         className={`lazy-lottie-container bg-gray-800 rounded-lg animate-pulse ${className}`}
         style={{ width, height, ...style }}
       />
     )
   }
 
+  if (hasError) {
+    return (
+      <div 
+        ref={containerRef}
+        className={`lazy-lottie-container bg-gray-700 rounded-lg flex items-center justify-center ${className}`}
+        style={{ width, height, ...style }}
+      >
+        <div className="text-center p-4">
+          <div className="text-2xl mb-2">⚠️</div>
+          <div className="text-sm text-gray-400">Animation failed to load</div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <motion.div
+      ref={containerRef}
       className={`lazy-lottie-container ${className}`}
       style={{ width, height, ...style }}
       initial={{ opacity: 0 }}
@@ -91,6 +128,8 @@ const LazyLottie = ({
           loop={loop}
           autoplay={autoplay}
           className="w-full h-full"
+          onDOMLoaded={handleLoad}
+          onError={handleError}
         />
       )}
     </motion.div>

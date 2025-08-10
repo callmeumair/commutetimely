@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils/classNames';
+import Image from 'next/image';
 
 // Enhanced Button Component
 interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -145,9 +146,13 @@ export const EnhancedFeatureList: React.FC<EnhancedFeatureListProps> = ({
 };
 
 // Enhanced Image Component
-interface EnhancedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  overlay?: boolean;
+interface EnhancedImageProps {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
   className?: string;
+  overlay?: boolean;
 }
 
 export const EnhancedImage: React.FC<EnhancedImageProps> = ({
@@ -164,7 +169,13 @@ export const EnhancedImage: React.FC<EnhancedImageProps> = ({
   
   return (
     <div className={enhancedClasses}>
-      <img {...props} className="w-full h-auto" alt={props.alt || "Enhanced image"} />
+      <Image 
+        src={props.src} 
+        alt={props.alt} 
+        width={typeof props.width === 'number' ? props.width : 400}
+        height={typeof props.height === 'number' ? props.height : 300}
+        className="w-full h-auto"
+      />
     </div>
   );
 };

@@ -1,14 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Smartphone, Clock, MapPin, Zap, Star, Download } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Clock, MapPin, Zap } from 'lucide-react'
 import { COLORS } from '../lib/constants/colors'
 import LazyLottie from './LazyLottie'
 
 interface MobilePreviewProps {
   className?: string
-  animationData?: any
+  animationData?: object
   fallbackType?: 'branding' | 'screenshots' | 'demo' | 'auto'
 }
 
@@ -232,7 +232,7 @@ const MobilePreview = ({
     >
       {/* Animated transport modes */}
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-5 mb-4 sm:mb-5 md:mb-6 lg:mb-8 w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[320px] mobile-preview-grid">
-        {demoContent.elements.map((element, index) => (
+        {demoContent.elements.map((element) => (
           <motion.div
             key={element.label}
             className="flex flex-col items-center p-2 sm:p-3 md:p-4 lg:p-5 bg-gray-800/50 rounded-xl"
@@ -309,7 +309,7 @@ const MobilePreview = ({
             <LazyLottie
               animationData={animationData}
               className="w-full h-full"
-              onLoad={handleAnimationLoad}
+              onDOMLoaded={handleAnimationLoad}
               onError={handleAnimationError}
             />
           </motion.div>

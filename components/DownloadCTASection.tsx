@@ -1,8 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Download, Smartphone, Star } from 'lucide-react'
-import { config } from '../lib/config'
+import { Download, Smartphone } from 'lucide-react'
 import AnimatedButton from './AnimatedButton'
 
 const DownloadCTASection = () => {

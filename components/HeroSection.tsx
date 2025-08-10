@@ -13,13 +13,7 @@ const HeroSection = () => {
     window.open(config.GOOGLE_FORM_URL, '_blank')
   }
 
-  const handleAppStoreClick = () => {
-    window.open(config.APP_STORE_URL, '_blank')
-  }
 
-  const handlePlayStoreClick = () => {
-    window.open(config.PLAY_STORE_URL, '_blank')
-  }
 
   // Animated counter for downloads
   const [downloads, setDownloads] = useState(0)

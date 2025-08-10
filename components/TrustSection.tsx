@@ -1,8 +1,6 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Star, Award, Users, Globe } from 'lucide-react'
-import { useEffect, useState } from 'react'
 
 const preLaunchData = {
   title: "Launching September 2025",

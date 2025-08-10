@@ -3,7 +3,7 @@
  * Helper functions for responsive design and device detection
  */
 
-import { BREAKPOINTS } from '../constants';
+
 
 // Device type detection
 export type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'unknown';

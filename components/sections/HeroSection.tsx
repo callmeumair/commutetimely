@@ -4,12 +4,10 @@ import { motion } from 'framer-motion'
 import { Clock } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { config } from '../../lib/config'
-import { COLORS, ANIMATIONS, SPACING } from '../../lib/constants'
+import { COLORS, ANIMATIONS } from '../../lib/constants'
 import { cn, conditionalClass } from '../../lib/utils/index'
 import { BaseComponentProps } from '../../lib/types/components'
 import AnimatedButton from '../AnimatedButton'
-import LazyLottie from '../LazyLottie'
-import phoneAnimation from '../../public/lottie/phone-screen.json'
 
 interface HeroSectionProps extends BaseComponentProps {
   onJoinWaitlist?: () => void
