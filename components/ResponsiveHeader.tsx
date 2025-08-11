@@ -196,7 +196,12 @@ export default function ResponsiveHeader() {
 
   return (
     <header 
-      className="fixed top-0 left-0 w-full z-50 bg-[#0C3F3F]/95 backdrop-blur-md shadow-lg border-b border-[#2EBFA5]/20"
+      className="fixed top-0 left-0 w-full z-50 bg-white/10 dark:bg-black/30 backdrop-blur-[12px] shadow-lg border-b border-white/20 dark:border-white/20"
+      style={{
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+      }}
       role="banner"
     >
       <div className="container-max flex items-center justify-between h-16 sm:h-18 md:h-20 px-4 sm:px-6">
@@ -216,9 +221,13 @@ export default function ResponsiveHeader() {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className={`relative text-white/90 hover:text-white font-medium transition-all duration-[var(--duration-normal)] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-[#0C3F3F] rounded-lg px-3 py-2 min-h-[44px] flex items-center touch-target hover:bg-white/10 hover:scale-105 transform ${
-                  isActive ? 'text-white bg-white/20' : ''
+                className={`relative text-white/90 hover:text-white font-medium transition-all duration-[var(--duration-normal)] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-white/20 dark:focus:ring-offset-black/20 rounded-lg px-3 py-2 min-h-[44px] flex items-center touch-target hover:scale-105 transform backdrop-blur-sm ${
+                  isActive ? 'text-white bg-white/25 dark:bg-white/25' : 'hover:bg-white/15 dark:hover:bg-white/15'
                 }`}
+                style={{
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)'
+                }}
                 title={`Learn more about ${item.label.toLowerCase()}`}
               >
                 {item.label}
@@ -284,7 +293,7 @@ export default function ResponsiveHeader() {
         <div className="lg:hidden fixed inset-0 z-50">
           {/* Backdrop */}
           <motion.div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-md"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
@@ -300,7 +309,12 @@ export default function ResponsiveHeader() {
             aria-modal="true"
             aria-label="Mobile navigation menu"
             aria-describedby="mobile-menu-description"
-            className="absolute top-0 right-0 h-full w-full max-w-sm bg-[#0C3F3F]/98 backdrop-blur-xl border-l border-[#2EBFA5]/30 shadow-2xl"
+            className="absolute top-0 right-0 h-full w-full max-w-sm bg-white/15 dark:bg-black/30 backdrop-blur-[12px] border-l border-white/20 dark:border-white/20 shadow-2xl"
+            style={{
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+            }}
             initial={{ x: '100%', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
@@ -312,15 +326,19 @@ export default function ResponsiveHeader() {
             
             {/* Header */}
             <motion.div 
-              className="flex items-center justify-between px-6 h-20 border-b border-[#2EBFA5]/20 bg-[#0C3F3F]/50"
+              className="flex items-center justify-between px-6 h-20 border-b border-white/20 dark:border-white/20 bg-white/10 dark:bg-black/20 backdrop-blur-[8px]"
+              style={{
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)'
+              }}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <span className="text-white font-semibold text-xl">Menu</span>
+              <span className="text-white font-semibold text-xl drop-shadow-sm">Menu</span>
               <button
                 onClick={closeMenu}
-                className="w-12 h-12 flex items-center justify-center text-white hover:text-[#2EBFA5] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-[#0C3F3F] rounded-lg min-h-[48px] transition-all duration-[var(--duration-normal)] touch-target hover:bg-white/10 hover:scale-105 transform"
+                className="w-12 h-12 flex items-center justify-center text-white hover:text-[#2EBFA5] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-white/20 dark:focus:ring-offset-black/20 rounded-lg min-h-[48px] transition-all duration-[var(--duration-normal)] touch-target hover:bg-white/20 dark:hover:bg-white/20 hover:scale-105 transform backdrop-blur-sm"
                 aria-label="Close mobile menu"
               >
                 <X className="w-6 h-6" aria-hidden="true" />
@@ -337,9 +355,13 @@ export default function ResponsiveHeader() {
                     ref={index === 0 ? firstMenuItemRef : index === MENU.length - 1 ? lastMenuItemRef : null}
                     data-menu-item={index}
                     onClick={() => scrollToSection(item.href)}
-                    className={`block w-full text-left text-white/90 hover:text-white rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-[#0C3F3F] transition-all duration-[var(--duration-normal)] min-h-[56px] flex items-center touch-target hover:bg-white/10 hover:scale-105 transform ${
-                      isActive ? 'text-white bg-white/20' : ''
+                    className={`block w-full text-left text-white/90 hover:text-white rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-white/20 dark:focus:ring-offset-black/20 transition-all duration-[var(--duration-normal)] min-h-[56px] flex items-center touch-target hover:scale-105 transform backdrop-blur-sm ${
+                      isActive ? 'text-white bg-white/25 dark:bg-white/25' : 'hover:bg-white/15 dark:hover:bg-white/15'
                     }`}
+                    style={{
+                      backdropFilter: 'blur(8px)',
+                      WebkitBackdropFilter: 'blur(8px)'
+                    }}
                     whileHover={{ scale: 1.02, x: 4 }}
                     whileTap={{ scale: 0.98 }}
                     initial={{ x: 50, opacity: 0 }}
@@ -347,7 +369,7 @@ export default function ResponsiveHeader() {
                     transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
                     aria-label={`Navigate to ${item.label} section`}
                   >
-                    <span className="text-lg font-medium">{item.label}</span>
+                    <span className="text-lg font-medium drop-shadow-sm">{item.label}</span>
                     {isActive && (
                       <motion.div
                         className="ml-auto w-2 h-2 bg-[#2EBFA5] rounded-full"
@@ -362,7 +384,7 @@ export default function ResponsiveHeader() {
               
               {/* Mobile CTA */}
               <motion.div 
-                className="pt-6 border-t border-[#2EBFA5]/20"
+                className="pt-6 border-t border-white/20 dark:border-white/20"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
@@ -370,7 +392,11 @@ export default function ResponsiveHeader() {
                 <Link
                   href="#download"
                   onClick={closeMenu}
-                  className="block w-full text-center bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-[#0C3F3F] transition-all duration-[var(--duration-normal)] min-h-[56px] flex items-center justify-center touch-target shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="block w-full text-center bg-gradient-to-r from-[#2EBFA5] to-[#1E8372] hover:from-[#24A892] hover:to-[#1E8372] text-white font-semibold rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2EBFA5] focus:ring-offset-2 focus:ring-offset-white/20 dark:focus:ring-offset-black/20 transition-all duration-[var(--duration-normal)] min-h-[56px] flex items-center justify-center touch-target shadow-lg hover:shadow-xl transform hover:scale-105 backdrop-blur-sm"
+                  style={{
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)'
+                  }}
                   aria-label="Download CommuteTimely app"
                 >
                   <Download className="w-5 h-5 mr-3" aria-hidden="true" />
