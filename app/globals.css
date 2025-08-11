@@ -620,6 +620,11 @@ select:focus {
   /* Fallback for modern browsers */
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+  /* GPU acceleration and performance optimizations */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Retina display optimizations */
@@ -648,18 +653,33 @@ select:focus {
   will-change: transform;
   /* Prevent layout shift */
   contain: layout style paint;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Floating elements responsive positioning */
 .floating-element {
   /* Ensure elements don't overlap at any breakpoint */
   z-index: 10;
-  /* Smooth transitions */
+  /* Smooth transitions with GPU acceleration */
   transition: all var(--duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
   /* Prevent text selection */
   user-select: none;
   /* Optimize for touch devices */
   touch-action: manipulation;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Performance optimizations */
+  will-change: transform;
+}
+
+/* Enhanced hover states for floating elements */
+.floating-element:hover {
+  transform: translateZ(0) scale(1.1);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive grid for mobile preview content */
@@ -670,6 +690,8 @@ select:focus {
   gap: clamp(0.5rem, 2vw, 1.5rem);
   /* Prevent overflow */
   overflow: hidden;
+  /* GPU acceleration */
+  transform: translateZ(0);
 }
 
 /* Responsive text scaling */
@@ -681,6 +703,8 @@ select:focus {
   /* Prevent text overflow */
   overflow-wrap: break-word;
   word-break: break-word;
+  /* GPU acceleration */
+  transform: translateZ(0);
 }
 
 /* Responsive icon scaling */
@@ -692,6 +716,9 @@ select:focus {
   aspect-ratio: 1;
   /* Ensure crisp rendering */
   flex-shrink: 0;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Container max-width constraints for large screens */
@@ -712,5 +739,31 @@ select:focus {
 @media (min-width: 1920px) {
   .mobile-preview-container {
     max-width: 560px;
+  }
+}
+
+/* Performance optimizations for animations */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-preview-container * {
+    /* Enable GPU acceleration for all child elements */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  .floating-element {
+    /* Smooth hover transitions */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-preview-container *,
+  .floating-element {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
   }
 }

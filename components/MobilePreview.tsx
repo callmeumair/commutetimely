@@ -34,13 +34,13 @@ const MobilePreview = ({
     }
   }, [fallbackType, animationData])
 
-  // Show fallback after a delay if animation doesn't load
+  // Show fallback after a shorter delay if animation doesn't load
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isAnimationLoaded) {
         setShowFallback(true)
       }
-    }, 2000)
+    }, 800) // Reduced from 2000ms to 800ms
 
     return () => clearTimeout(timer)
   }, [isAnimationLoaded])
@@ -99,26 +99,27 @@ const MobilePreview = ({
   const demoContent = {
     elements: [
       { icon: '🚗', label: 'Car', delay: 0 },
-      { icon: '🚌', label: 'Bus', delay: 0.5 },
-      { icon: '🚲', label: 'Bike', delay: 1 },
-      { icon: '🚶‍♂️', label: 'Walk', delay: 1.5 }
+      { icon: '🚌', label: 'Bus', delay: 0.1 },
+      { icon: '🚲', label: 'Bike', delay: 0.2 },
+      { icon: '🚶‍♂️', label: 'Walk', delay: 0.3 }
     ]
   }
 
-  // Render branding placeholder
+  // Render branding placeholder with optimized animations
   const renderBrandingPlaceholder = () => (
     <motion.div 
       className="w-full h-full flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 lg:p-6 text-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Logo */}
       <motion.div 
         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-4 md:mb-5 lg:mb-6 mobile-preview-icon"
-        initial={{ scale: 0, rotate: -180 }}
+        initial={{ scale: 0.8, rotate: -90 }}
         animate={{ scale: 1, rotate: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        style={{ transform: 'translateZ(0)' }} // GPU acceleration
       >
         {brandingContent.logo}
       </motion.div>
@@ -126,9 +127,10 @@ const MobilePreview = ({
       {/* Title */}
       <motion.h3 
         className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3 md:mb-4 lg:mb-5 mobile-preview-text"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+        style={{ transform: 'translateZ(0)' }}
       >
         {brandingContent.title}
       </motion.h3>
@@ -136,9 +138,10 @@ const MobilePreview = ({
       {/* Subtitle */}
       <motion.p 
         className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-4 sm:mb-5 md:mb-6 lg:mb-8 mobile-preview-text"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+        style={{ transform: 'translateZ(0)' }}
       >
         {brandingContent.subtitle}
       </motion.p>
@@ -149,9 +152,10 @@ const MobilePreview = ({
           <motion.div
             key={feature.text}
             className="flex flex-col items-center p-2 sm:p-3 md:p-4 lg:p-5 bg-gray-800/50 rounded-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+            transition={{ duration: 0.25, delay: 0.2 + index * 0.05, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1 sm:mb-2 mobile-preview-icon">{feature.icon}</span>
             <span className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 text-center leading-tight mobile-preview-text">{feature.text}</span>
@@ -161,20 +165,21 @@ const MobilePreview = ({
     </motion.div>
   )
 
-  // Render app screenshots placeholder
+  // Render app screenshots placeholder with optimized animations
   const renderScreenshotsPlaceholder = () => (
     <motion.div 
       className="w-full h-full flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 lg:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Main screenshot preview */}
       <motion.div 
         className="w-full max-w-[160px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[220px] xl:max-w-[240px] h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl mb-3 sm:mb-4 md:mb-5 lg:mb-6 relative overflow-hidden"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        style={{ transform: 'translateZ(0)' }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20" />
         <div className="absolute top-2 sm:top-3 md:top-4 lg:top-5 left-2 sm:left-3 md:left-4 lg:left-5 right-2 sm:right-3 md:right-4 lg:right-5 h-1 sm:h-1.5 md:h-2 bg-gray-700 rounded-full" />
@@ -191,7 +196,8 @@ const MobilePreview = ({
             className="w-1.5 sm:w-2 md:w-2.5 lg:w-3 h-1.5 sm:h-2 md:h-2.5 lg:h-3 rounded-full bg-gray-600"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
+            transition={{ duration: 0.2, delay: 0.3 + index * 0.05, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           />
         ))}
       </div>
@@ -202,9 +208,10 @@ const MobilePreview = ({
           <motion.div
             key={screenshot.id}
             className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3 lg:space-x-3.5 text-left"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+            transition={{ duration: 0.25, delay: 0.4 + index * 0.05, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <div 
               className="w-6 sm:w-7 md:w-8 lg:w-9 xl:w-10 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 rounded-lg flex items-center justify-center flex-shrink-0 mobile-preview-icon"
@@ -222,13 +229,13 @@ const MobilePreview = ({
     </motion.div>
   )
 
-  // Render demo animation placeholder
+  // Render demo animation placeholder with optimized animations
   const renderDemoPlaceholder = () => (
     <motion.div 
       className="w-full h-full flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 lg:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Animated transport modes */}
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-5 mb-4 sm:mb-5 md:mb-6 lg:mb-8 w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[320px] mobile-preview-grid">
@@ -236,15 +243,17 @@ const MobilePreview = ({
           <motion.div
             key={element.label}
             className="flex flex-col items-center p-2 sm:p-3 md:p-4 lg:p-5 bg-gray-800/50 rounded-xl"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: element.delay }}
+            transition={{ duration: 0.3, delay: element.delay, ease: "easeOut" }}
             whileHover={{ scale: 1.05, y: -5 }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <motion.span 
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-1 sm:mb-2 mobile-preview-icon"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, delay: element.delay }}
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: element.delay, ease: "easeInOut" }}
+              style={{ transform: 'translateZ(0)' }}
             >
               {element.icon}
             </motion.span>
@@ -258,13 +267,15 @@ const MobilePreview = ({
         className="w-full max-w-24 sm:max-w-28 md:max-w-32 lg:max-w-36 xl:max-w-40 h-1.5 sm:h-2 md:h-2.5 lg:h-3 bg-gray-700 rounded-full overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 2 }}
+        transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
+        style={{ transform: 'translateZ(0)' }}
       >
         <motion.div
           className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
           initial={{ width: 0 }}
           animate={{ width: '100%' }}
-          transition={{ duration: 2, delay: 2.5 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+          style={{ transform: 'translateZ(0)' }}
         />
       </motion.div>
 
@@ -273,7 +284,8 @@ const MobilePreview = ({
         className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mt-3 sm:mt-4 md:mt-5 lg:mt-6 text-center leading-tight mobile-preview-text"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 3 }}
+        transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
+        style={{ transform: 'translateZ(0)' }}
       >
         Loading your commute...
       </motion.p>
@@ -304,7 +316,8 @@ const MobilePreview = ({
             className="absolute inset-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: isAnimationLoaded ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <LazyLottie
               animationData={animationData}
@@ -322,25 +335,28 @@ const MobilePreview = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             {renderFallbackContent()}
           </motion.div>
         )}
 
-        {/* Loading state */}
+        {/* Loading state - optimized for faster appearance */}
         {!isAnimationLoaded && !showFallback && (
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <div className="flex flex-col items-center space-y-3">
               <motion.div
                 className="w-8 h-8 border-2 border-gray-600 border-t-blue-500 rounded-full"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                style={{ transform: 'translateZ(0)' }}
               />
               <span className="text-sm text-gray-400">Loading...</span>
             </div>

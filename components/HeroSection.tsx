@@ -161,7 +161,13 @@ const HeroSection = () => {
               <motion.div 
                 className="absolute -top-2 sm:-top-3 md:-top-4 lg:-top-5 xl:-top-6 -right-2 sm:-right-3 md:-right-4 lg:-right-5 xl:-right-6 w-12 sm:w-14 md:w-16 lg:w-18 xl:w-20 h-12 sm:h-14 md:h-16 lg:h-18 xl:h-20 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target floating-element"
                 whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                style={{ transform: 'translateZ(0)' }}
+                role="button"
+                tabIndex={0}
+                aria-label="Clock icon - Smart timing features"
+                onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.click()}
               >
                 <Clock className="w-6 sm:w-7 md:w-8 lg:w-9 xl:w-10 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 text-white mobile-preview-icon" />
               </motion.div>
@@ -169,7 +175,13 @@ const HeroSection = () => {
               <motion.div 
                 className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 lg:-bottom-5 xl:-bottom-6 -left-2 sm:-left-3 md:-left-4 lg:-left-5 xl:-left-6 w-12 sm:w-14 md:w-16 lg:w-18 xl:w-20 h-12 sm:h-14 md:h-16 lg:h-18 xl:h-20 bg-gradient-to-br from-[#FFC773] to-[#E6B85C] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target floating-element"
                 whileHover={{ scale: 1.1, rotate: -360 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                style={{ transform: 'translateZ(0)' }}
+                role="button"
+                tabIndex={0}
+                aria-label="Smartphone icon - Mobile app features"
+                onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.click()}
               >
                 <Smartphone className="w-6 sm:w-7 md:w-8 lg:w-9 xl:w-10 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 text-white mobile-preview-icon" />
               </motion.div>
@@ -177,7 +189,13 @@ const HeroSection = () => {
               <motion.div 
                 className="absolute top-1/2 -right-6 sm:-right-8 md:-right-10 lg:-right-12 xl:-right-14 transform -translate-y-1/2 w-10 sm:w-12 md:w-14 lg:w-16 xl:w-18 h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 bg-gradient-to-br from-[#2EBFA5] to-[#1E8372] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-[var(--duration-normal)] touch-target floating-element"
                 whileHover={{ scale: 1.1, y: -10 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                style={{ transform: 'translateZ(0)' }}
+                role="button"
+                tabIndex={0}
+                aria-label="Download icon - Get the app"
+                onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.click()}
               >
                 <Download className="w-5 sm:w-6 md:w-7 lg:w-8 xl:w-9 h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 text-white mobile-preview-icon" />
               </motion.div>

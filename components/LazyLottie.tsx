@@ -41,10 +41,10 @@ const LazyLottie = ({
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Simulate loading delay for better UX
+    // Reduced loading delay for better UX
     const timer = setTimeout(() => {
       setIsLoaded(true)
-    }, 100)
+    }, 50) // Reduced from 100ms to 50ms
 
     return () => clearTimeout(timer)
   }, [])
