@@ -46,21 +46,21 @@ const faqs = [
 const FAQSection = () => {
   return (
     <motion.section 
-      className="w-full bg-black relative"
+      className="w-full bg-black relative py-12 sm:py-16 md:py-20"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="w-full h-full flex flex-col justify-center">
+      <div className="w-full flex flex-col justify-center">
         <motion.div 
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
             Frequently Asked <span className="gradient-text">Questions</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
@@ -75,7 +75,7 @@ const FAQSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -104,17 +104,17 @@ const FAQSection = () => {
 
         {/* Contact CTA */}
         <motion.div 
-          className="text-center mt-12 sm:mt-16"
+          className="text-center mt-8 sm:mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-6 sm:p-8 border border-blue-500/20">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+          <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-4 sm:p-6 border border-blue-500/20">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">
               Still Have Questions?
             </h3>
-            <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
+            <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">
               Our support team is here to help you get the most out of CommuteTimely
             </p>
             <button className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base">

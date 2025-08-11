@@ -12,13 +12,13 @@ const DownloadCTASection = () => {
 
   return (
     <motion.section 
-      className="fullscreen-section bg-black relative"
+      className="w-full bg-black relative py-12 sm:py-16 md:py-20"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container-max w-full h-full flex flex-col justify-center">
+      <div className="container-max w-full flex flex-col justify-center">
         <motion.div 
           className="text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -26,16 +26,16 @@ const DownloadCTASection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
             Coming <span className="gradient-text">September 2025</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
             Be one of our first users and help shape the future of commute planning. Available on iOS and Android.
           </p>
 
           {/* Pre-launch CTA */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -72,14 +72,14 @@ const DownloadCTASection = () => {
 
           {/* Features grid */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
             <motion.div 
-              className="text-center glass p-6"
+              className="text-center glass p-4 sm:p-6"
               whileHover={{ 
                 scale: 1.05, 
                 y: -5,
@@ -88,7 +88,7 @@ const DownloadCTASection = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                className="w-16 h-16 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               >
@@ -99,7 +99,7 @@ const DownloadCTASection = () => {
             </motion.div>
 
             <motion.div 
-              className="text-center glass p-6"
+              className="text-center glass p-4 sm:p-6"
               whileHover={{ 
                 scale: 1.05, 
                 y: -5,
@@ -108,7 +108,7 @@ const DownloadCTASection = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                className="w-16 h-16 bg-gradient-to-r from-[#1a1a1a] to-[#2c2c2c] rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               >
@@ -121,17 +121,17 @@ const DownloadCTASection = () => {
 
           {/* Social proof - REPLACE with pre-launch messaging */}
           <motion.div 
-            className="glass rounded-3xl p-8 border border-[#2EBFA5]/30 hover:border-[#2EBFA5]/50 transition-all duration-300"
+            className="glass rounded-3xl p-6 sm:p-8 border border-[#2EBFA5]/30 hover:border-[#2EBFA5]/50 transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Launching September 2025
               </h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
+              <p className="text-gray-300 leading-relaxed mb-4">
                 Sign up now to get early access and be the first to try CommuteTimely.
               </p>
               <div className="flex justify-center gap-4 opacity-80 text-sm">

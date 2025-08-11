@@ -17,22 +17,22 @@ export default function TrustSection() {
 
   return (
     <motion.section 
-      className="fullscreen-section bg-black relative"
+      className="w-full bg-black relative py-12 sm:py-16 md:py-20"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container-max w-full h-full flex flex-col justify-center">
+      <div className="container-max w-full flex flex-col justify-center">
         {/* Reviews Section */}
         <motion.div 
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
             {preLaunchData.title}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
@@ -42,23 +42,23 @@ export default function TrustSection() {
 
         {/* Pre-launch Message */}
         <motion.div 
-          className="max-w-4xl mx-auto mb-12"
+          className="max-w-4xl mx-auto mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="glass p-8 rounded-2xl text-center">
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
+          <div className="glass p-6 sm:p-8 rounded-2xl text-center">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               {preLaunchData.description}
             </p>
             
             {/* Platforms */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-6">
               {preLaunchData.platforms.map((platform, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center justify-center space-x-3 p-4 glass rounded-xl"
+                  className="flex items-center justify-center space-x-3 p-3 sm:p-4 glass rounded-xl"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
@@ -80,11 +80,11 @@ export default function TrustSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="glass p-8 rounded-2xl max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
+          <div className="glass p-6 sm:p-8 rounded-2xl max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-3">
               Coming This September
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-gray-300 mb-4">
               Be one of our first users and help shape the future of commute planning
             </p>
             <div className="flex justify-center gap-4 opacity-60 text-sm">
