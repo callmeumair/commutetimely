@@ -611,157 +611,165 @@ select:focus {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* Mobile preview responsive utilities */
-.mobile-preview-container {
-  /* Ensure proper scaling on all devices */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  /* Fallback for modern browsers */
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  /* GPU acceleration and performance optimizations */
+/* Hero section optimizations */
+.hero-section {
+  /* Ensure proper scaling and performance */
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-/* Retina display optimizations */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .mobile-preview-container {
-    /* Enhanced rendering for high-DPI displays */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-  
-  .mobile-preview-container img,
-  .mobile-preview-container svg {
-    /* Ensure sharp rendering on retina displays */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-}
-
-/* Responsive phone mockup scaling */
-.phone-mockup-responsive {
-  /* Maintain aspect ratio across all breakpoints */
-  aspect-ratio: 9/19.5;
-  /* Ensure smooth scaling */
-  transform-origin: center center;
-  /* Optimize for performance */
-  will-change: transform;
   /* Prevent layout shift */
   contain: layout style paint;
+}
+
+/* Hero background elements */
+.hero-bg-element {
+  /* GPU acceleration for background shapes */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Smooth animations */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero text optimizations */
+.hero-headline {
+  /* Ensure crisp text rendering */
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" 1, "kern" 1;
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+.hero-subheadline {
+  /* Optimized line height for readability */
+  line-height: 1.6;
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+/* CTA button optimizations */
+.hero-cta-button {
+  /* Touch-friendly sizing */
+  min-height: 44px;
   /* GPU acceleration */
   transform: translateZ(0);
   backface-visibility: hidden;
+  /* Smooth transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Floating elements responsive positioning */
-.floating-element {
-  /* Ensure elements don't overlap at any breakpoint */
-  z-index: 10;
-  /* Smooth transitions with GPU acceleration */
-  transition: all var(--duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
-  /* Prevent text selection */
-  user-select: none;
-  /* Optimize for touch devices */
-  touch-action: manipulation;
+.hero-cta-button:hover {
+  transform: translateZ(0) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats section optimizations */
+.hero-stats {
+  /* Responsive grid layout */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+.hero-stat-item {
+  /* Center alignment */
+  text-align: center;
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+/* Scroll indicator optimizations */
+.hero-scroll-indicator {
   /* GPU acceleration */
   transform: translateZ(0);
   backface-visibility: hidden;
-  /* Performance optimizations */
-  will-change: transform;
+  /* Smooth hover transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced hover states for floating elements */
-.floating-element:hover {
-  transform: translateZ(0) scale(1.1);
-  filter: brightness(1.1);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+.hero-scroll-indicator:hover {
+  transform: translateZ(0) translateY(-2px);
+  filter: brightness(1.2);
 }
 
-/* Responsive grid for mobile preview content */
-.mobile-preview-grid {
-  /* Ensure grid items scale proportionally */
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  /* Maintain consistent spacing */
-  gap: clamp(0.5rem, 2vw, 1.5rem);
-  /* Prevent overflow */
-  overflow: hidden;
-  /* GPU acceleration */
-  transform: translateZ(0);
-}
-
-/* Responsive text scaling */
-.mobile-preview-text {
-  /* Scale text proportionally with container */
-  font-size: clamp(0.75rem, 2.5vw, 1.125rem);
-  /* Ensure readable line height */
-  line-height: 1.4;
-  /* Prevent text overflow */
-  overflow-wrap: break-word;
-  word-break: break-word;
-  /* GPU acceleration */
-  transform: translateZ(0);
-}
-
-/* Responsive icon scaling */
-.mobile-preview-icon {
-  /* Scale icons proportionally */
-  width: clamp(1.5rem, 4vw, 3rem);
-  height: clamp(1.5rem, 4vw, 3rem);
-  /* Maintain aspect ratio */
-  aspect-ratio: 1;
-  /* Ensure crisp rendering */
-  flex-shrink: 0;
-  /* GPU acceleration */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Container max-width constraints for large screens */
-@media (min-width: 1280px) {
-  .mobile-preview-container {
-    max-width: 480px;
-    margin: 0 auto;
+/* Responsive optimizations */
+@media (max-width: 640px) {
+  .hero-section {
+    /* Mobile-specific optimizations */
+    padding: 2rem 1rem;
+  }
+  
+  .hero-headline {
+    /* Mobile text sizing */
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .hero-subheadline {
+    /* Mobile text sizing */
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+  
+  .hero-cta-button {
+    /* Full width on mobile */
+    width: 100%;
+    /* Touch-friendly height */
+    min-height: 48px;
   }
 }
 
-@media (min-width: 1536px) {
-  .mobile-preview-container {
-    max-width: 520px;
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-section {
+    /* Tablet-specific optimizations */
+    padding: 3rem 2rem;
+  }
+  
+  .hero-headline {
+    /* Tablet text sizing */
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+  
+  .hero-subheadline {
+    /* Tablet text sizing */
+    font-size: clamp(1.25rem, 5vw, 2rem);
   }
 }
 
-/* Ensure proper spacing on ultra-wide screens */
-@media (min-width: 1920px) {
-  .mobile-preview-container {
-    max-width: 560px;
+@media (min-width: 1025px) {
+  .hero-section {
+    /* Desktop-specific optimizations */
+    padding: 4rem 2rem;
+  }
+  
+  .hero-headline {
+    /* Desktop text sizing */
+    font-size: clamp(5rem, 12vw, 7rem);
+  }
+  
+  .hero-subheadline {
+    /* Desktop text sizing */
+    font-size: clamp(2rem, 6vw, 3rem);
   }
 }
 
 /* Performance optimizations for animations */
 @media (prefers-reduced-motion: no-preference) {
-  .mobile-preview-container * {
+  .hero-section * {
     /* Enable GPU acceleration for all child elements */
     transform: translateZ(0);
     backface-visibility: hidden;
   }
   
-  .floating-element {
-    /* Smooth hover transitions */
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  .hero-bg-element {
+    /* Smooth background animations */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .mobile-preview-container *,
-  .floating-element {
+  .hero-section *,
+  .hero-bg-element {
     transition: none !important;
     animation: none !important;
     transform: none !important;
