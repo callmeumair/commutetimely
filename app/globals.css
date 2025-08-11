@@ -613,47 +613,36 @@ select:focus {
 
 /* Hero section optimizations */
 .hero-section {
-  /* Ensure proper scaling and performance */
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
-  /* Prevent layout shift */
   contain: layout style paint;
 }
 
 /* Hero background elements */
 .hero-bg-element {
-  /* GPU acceleration for background shapes */
   transform: translateZ(0);
   backface-visibility: hidden;
-  /* Smooth animations */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hero text optimizations */
 .hero-headline {
-  /* Ensure crisp text rendering */
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga" 1, "kern" 1;
-  /* GPU acceleration */
   transform: translateZ(0);
 }
 
 .hero-subheadline {
-  /* Optimized line height for readability */
   line-height: 1.6;
-  /* GPU acceleration */
   transform: translateZ(0);
 }
 
 /* CTA button optimizations */
 .hero-cta-button {
-  /* Touch-friendly sizing */
   min-height: 44px;
-  /* GPU acceleration */
   transform: translateZ(0);
   backface-visibility: hidden;
-  /* Smooth transitions */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -662,116 +651,31 @@ select:focus {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Stats section optimizations */
-.hero-stats {
-  /* Responsive grid layout */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
-  /* GPU acceleration */
-  transform: translateZ(0);
-}
-
-.hero-stat-item {
-  /* Center alignment */
-  text-align: center;
-  /* GPU acceleration */
-  transform: translateZ(0);
-}
-
-/* Scroll indicator optimizations */
-.hero-scroll-indicator {
-  /* GPU acceleration */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  /* Smooth hover transitions */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hero-scroll-indicator:hover {
-  transform: translateZ(0) translateY(-2px);
-  filter: brightness(1.2);
-}
-
 /* Responsive optimizations */
 @media (max-width: 640px) {
-  .hero-section {
-    /* Mobile-specific optimizations */
-    padding: 2rem 1rem;
-  }
-  
-  .hero-headline {
-    /* Mobile text sizing */
-    font-size: clamp(2rem, 8vw, 3rem);
-  }
-  
-  .hero-subheadline {
-    /* Mobile text sizing */
-    font-size: clamp(1rem, 4vw, 1.25rem);
-  }
-  
-  .hero-cta-button {
-    /* Full width on mobile */
-    width: 100%;
-    /* Touch-friendly height */
-    min-height: 48px;
-  }
+  .hero-section { padding: 2rem 1rem; }
+  .hero-headline { font-size: clamp(2rem, 8vw, 3rem); }
+  .hero-subheadline { font-size: clamp(1rem, 4vw, 1.25rem); }
+  .hero-cta-button { width: 100%; min-height: 48px; }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
-  .hero-section {
-    /* Tablet-specific optimizations */
-    padding: 3rem 2rem;
-  }
-  
-  .hero-headline {
-    /* Tablet text sizing */
-    font-size: clamp(3rem, 10vw, 5rem);
-  }
-  
-  .hero-subheadline {
-    /* Tablet text sizing */
-    font-size: clamp(1.25rem, 5vw, 2rem);
-  }
+  .hero-section { padding: 3rem 2rem; }
+  .hero-headline { font-size: clamp(3rem, 10vw, 5rem); }
+  .hero-subheadline { font-size: clamp(1.25rem, 5vw, 2rem); }
 }
 
 @media (min-width: 1025px) {
-  .hero-section {
-    /* Desktop-specific optimizations */
-    padding: 4rem 2rem;
-  }
-  
-  .hero-headline {
-    /* Desktop text sizing */
-    font-size: clamp(5rem, 12vw, 7rem);
-  }
-  
-  .hero-subheadline {
-    /* Desktop text sizing */
-    font-size: clamp(2rem, 6vw, 3rem);
-  }
+  .hero-section { padding: 4rem 2rem; }
+  .hero-headline { font-size: clamp(5rem, 12vw, 7rem); }
+  .hero-subheadline { font-size: clamp(2rem, 6vw, 3rem); }
 }
 
-/* Performance optimizations for animations */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-section * {
-    /* Enable GPU acceleration for all child elements */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-  
-  .hero-bg-element {
-    /* Smooth background animations */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+  .hero-section * { transform: translateZ(0); backface-visibility: hidden; }
+  .hero-bg-element { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .hero-section *,
-  .hero-bg-element {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
-  }
+  .hero-section *, .hero-bg-element { transition: none !important; animation: none !important; transform: none !important; }
 }

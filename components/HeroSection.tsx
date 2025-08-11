@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { config } from '../lib/config'
-import { useEffect, useState } from 'react'
 import AnimatedButton from './AnimatedButton'
 
 const HeroSection = () => {
@@ -13,21 +12,6 @@ const HeroSection = () => {
   const handleLearnMore = () => {
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
   }
-
-  // Animated counter for downloads
-  const [downloads, setDownloads] = useState(0)
-  useEffect(() => {
-    let start = 0
-    const end = 500
-    if (downloads === end) return
-    const increment = () => {
-      start += Math.ceil((end - start) / 20)
-      setDownloads(start > end ? end : start)
-      if (start < end) setTimeout(increment, 24)
-    }
-    increment()
-    // eslint-disable-next-line
-  }, [])
 
   return (
     <motion.section 
@@ -109,51 +93,8 @@ const HeroSection = () => {
               <span>Learn More</span>
             </AnimatedButton>
           </motion.div>
-
-          {/* Stats Section */}
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-6 sm:gap-8 lg:gap-12 justify-center pt-8 sm:pt-10 lg:pt-12 hero-stats"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-          >
-            <div className="text-center hero-stat-item">
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#2EBFA5]">{downloads}+</div>
-              <div className="text-sm sm:text-base lg:text-lg text-gray-400">Downloads</div>
-            </div>
-            <div className="text-center hero-stat-item">
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFC773]">4.9★</div>
-              <div className="text-sm sm:text-base lg:text-lg text-gray-400">Rating</div>
-            </div>
-            <div className="text-center hero-stat-item">
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">24/7</div>
-              <div className="text-sm sm:text-base lg:text-lg text-gray-400">Support</div>
-            </div>
-          </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 text-white/60 hover:text-white transition-colors duration-[var(--duration-normal)] cursor-pointer touch-target hero-scroll-indicator"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-        onClick={handleLearnMore}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && handleLearnMore()}
-        aria-label="Scroll to features section to learn more"
-      >
-        <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
-          <motion.div 
-            className="w-1 h-3 bg-current rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-        <span className="text-sm font-medium">Scroll to explore</span>
-      </motion.div>
     </motion.section>
   )
 }
