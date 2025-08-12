@@ -124,7 +124,7 @@ export function Download() {
               variants={itemVariants}
             >
               Join thousands of early users who will get exclusive access to CommuteTimely 
-              when we launch in September 2024. Be part of the revolution in smart commuting.
+              when we launch in September 2025. Be part of the revolution in smart commuting.
             </motion.p>
           </motion.div>
           
@@ -134,7 +134,7 @@ export function Download() {
             variants={containerVariants}
           >
             {[
-              { icon: Calendar, title: "Launch Date", subtitle: "September 2024", description: "Mark your calendar" },
+              { icon: Calendar, title: "Launch Date", subtitle: "September 2025", description: "Mark your calendar" },
               { icon: Smartphone, title: "Platforms", subtitle: "iOS & Android", description: "Universal compatibility" },
               { icon: Mail, title: "Early Access", subtitle: "Limited Spots", description: "Be among the first" }
             ].map((item, index) => (

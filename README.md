@@ -21,7 +21,7 @@ A modern, responsive landing page for CommuteTimely, built with Next.js 15, Type
 
 ### Hero Section
 - "Never Be Late Again" headline with blue accent
-- Launch tag (September 2024)
+- Launch tag (September 2025)
 - Feature highlights (Privacy First, Real-time Data, AI Powered, etc.)
 - Interactive mobile app mockup
 - Dual CTA buttons

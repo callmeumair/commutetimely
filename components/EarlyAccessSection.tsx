@@ -44,7 +44,7 @@ export default function EarlyAccessSection() {
             </h2>
             
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Join thousands of early users who will get exclusive access to CommuteTimely when we launch in September 2024. Be part of the revolution in smart commuting.
+              Join thousands of early users who will get exclusive access to CommuteTimely when we launch in September 2025. Be part of the revolution in smart commuting.
             </p>
           </motion.div>
 
@@ -64,7 +64,7 @@ export default function EarlyAccessSection() {
                 <Calendar className="w-6 h-6 text-white" />
               </motion.div>
               <h3 className="text-lg font-bold text-white mb-2">Launch Date</h3>
-              <p className="text-gray-300 text-sm mb-1">September 2024</p>
+              <p className="text-gray-300 text-sm mb-1">September 2025</p>
               <p className="text-gray-400 text-xs">Mark your calendar</p>
             </motion.div>
             
