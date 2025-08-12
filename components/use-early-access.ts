@@ -13,6 +13,10 @@ interface EarlyAccessResponse {
   success: boolean;
   message?: string;
   error?: string;
+  errorCode?: string;
+  timestamp?: string;
+  processingTimeMs?: number;
+  userId?: string;
 }
 
 export function useEarlyAccess() {
@@ -41,7 +45,9 @@ export function useEarlyAccess() {
         console.log('Fetch completed successfully');
       } catch (fetchError) {
         console.error('Fetch error:', fetchError);
-        throw new Error('Network error - failed to connect to server');
+        const errorMessage = 'Network error - failed to connect to server. Please check your internet connection and try again.';
+        setError(errorMessage);
+        return { success: false, error: errorMessage };
       }
 
       console.log('Response status:', response.status);
@@ -57,27 +63,44 @@ export function useEarlyAccess() {
         console.log('Response text:', responseText);
       } catch (textError) {
         console.error('Error reading response text:', textError);
-        throw new Error('Failed to read server response');
+        const errorMessage = 'Failed to read server response. Please try again.';
+        setError(errorMessage);
+        return { success: false, error: errorMessage };
       }
       
-      if (!responseText) {
+      if (!responseText || responseText.trim() === '') {
         console.error('Empty response received');
-        throw new Error('Empty response from server');
+        const errorMessage = 'Empty response from server. Please try again or contact support if the problem persists.';
+        setError(errorMessage);
+        return { success: false, error: errorMessage };
       }
 
-      let result;
+      let result: EarlyAccessResponse;
       try {
         result = JSON.parse(responseText);
         console.log('Parsed result:', result);
       } catch (parseError) {
         console.error('Failed to parse JSON response:', responseText);
         console.error('Parse error:', parseError);
-        throw new Error('Invalid response format from server');
+        const errorMessage = 'Invalid response format from server. Please try again or contact support.';
+        setError(errorMessage);
+        return { success: false, error: errorMessage };
       }
 
+      // Handle API error responses (even with 200 status if success: false)
+      if (!result.success) {
+        const errorMessage = result.error || 'Failed to submit early access request';
+        console.error('API returned error:', result);
+        setError(errorMessage);
+        return result;
+      }
+
+      // Handle HTTP error status codes
       if (!response.ok) {
-        console.error('Response not ok, error:', result.error);
-        throw new Error(result.error || 'Failed to submit early access request');
+        const errorMessage = result.error || `Server error (${response.status}). Please try again.`;
+        console.error('Response not ok, error:', result);
+        setError(errorMessage);
+        return { success: false, error: errorMessage };
       }
 
       console.log('Form submitted successfully');
