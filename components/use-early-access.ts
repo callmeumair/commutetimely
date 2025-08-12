@@ -25,15 +25,48 @@ export function useEarlyAccess() {
     setError(null);
 
     try {
-      const response = await fetch('/api/early-access', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      console.log('Submitting early access data:', data);
+      
+      let response;
+      try {
+        response = await fetch('/api/early-access', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+      } catch (fetchError) {
+        console.error('Fetch error:', fetchError);
+        throw new Error('Network error - failed to connect to server');
+      }
 
-      const result = await response.json();
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+      // Check if response has content
+      let responseText;
+      try {
+        responseText = await response.text();
+      } catch (textError) {
+        console.error('Error reading response text:', textError);
+        throw new Error('Failed to read server response');
+      }
+      
+      console.log('Response text:', responseText);
+      
+      if (!responseText) {
+        throw new Error('Empty response from server');
+      }
+
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log('Parsed result:', result);
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', responseText);
+        throw new Error('Invalid response format from server');
+      }
 
       if (!response.ok) {
         throw new Error(result.error || 'Failed to submit early access request');
@@ -44,6 +77,7 @@ export function useEarlyAccess() {
 
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+      console.error('Error in submitEarlyAccess:', err);
       setError(errorMessage);
       return { success: false, error: errorMessage };
     } finally {

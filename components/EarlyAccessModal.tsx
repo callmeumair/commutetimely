@@ -7,6 +7,102 @@ import { Button } from './button';
 import { Input } from './input';
 import { useEarlyAccess } from './use-early-access';
 
+// Party Popper Animation Component
+function PartyPopperAnimation() {
+  const [confetti, setConfetti] = useState<Array<{
+    id: number;
+    x: number;
+    y: number;
+    rotation: number;
+    scale: number;
+    color: string;
+    shape: string;
+  }>>([]);
+
+  useEffect(() => {
+    // Create confetti particles with different shapes
+    const particles = Array.from({ length: 80 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 120 - 60, // -60 to 60
+      y: Math.random() * 120 - 60, // -60 to 60
+      rotation: Math.random() * 360,
+      scale: Math.random() * 0.8 + 0.3,
+      color: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'][Math.floor(Math.random() * 10)],
+      shape: Math.random() > 0.5 ? 'circle' : 'square'
+    }));
+    
+    setConfetti(particles);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {/* Central burst effect */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 w-4 h-4 bg-yellow-400 rounded-full"
+        initial={{ scale: 0, opacity: 1 }}
+        animate={{ scale: [0, 3, 0], opacity: [1, 0.8, 0] }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      />
+      
+      {confetti.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className={`absolute ${particle.shape === 'circle' ? 'rounded-full' : 'rounded-sm'}`}
+          style={{
+            left: '50%',
+            top: '50%',
+            backgroundColor: particle.color,
+            width: particle.shape === 'circle' ? '8px' : '6px',
+            height: particle.shape === 'circle' ? '8px' : '6px',
+          }}
+          initial={{
+            x: 0,
+            y: 0,
+            opacity: 0,
+            scale: 0,
+            rotate: 0,
+          }}
+          animate={{
+            x: particle.x,
+            y: particle.y,
+            opacity: [0, 1, 0],
+            scale: [0, particle.scale, 0],
+            rotate: particle.rotation,
+          }}
+          transition={{
+            duration: 2.5 + Math.random() * 1.5,
+            delay: Math.random() * 0.8,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+      
+      {/* Sparkle effects */}
+      {Array.from({ length: 20 }).map((_, i) => (
+        <motion.div
+          key={`sparkle-${i}`}
+          className="absolute w-1 h-1 bg-white rounded-full"
+          style={{
+            left: `${50 + (Math.random() * 100 - 50)}%`,
+            top: `${50 + (Math.random() * 100 - 50)}%`,
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ 
+            scale: [0, 1, 0], 
+            opacity: [0, 1, 0] 
+          }}
+          transition={{
+            duration: 1 + Math.random(),
+            delay: 0.5 + Math.random() * 1,
+            repeat: 2,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 interface EarlyAccessModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -236,18 +332,57 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
               </form>
             ) : (
               <motion.div
-                className="text-center py-8"
+                className="text-center py-8 relative overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
+                {/* Party Popper Animation */}
+                <PartyPopperAnimation />
+                
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Welcome to Early Access!</h3>
-                <p className="text-gray-300 text-sm">
+                <motion.h3 
+                  className="text-xl font-bold text-white mb-2"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 300 }}
+                >
+                  🎉 Welcome to Early Access! 🎉
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-300 text-sm"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+                >
                   Thank you for joining! We'll notify you as soon as CommuteTimely launches.
-                </p>
+                </motion.p>
+                
+                {/* Celebration Emojis */}
+                <motion.div 
+                  className="flex justify-center space-x-2 mt-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, type: "spring", stiffness: 300 }}
+                >
+                  {['🚀', '⭐', '🎯', '🔥', '💫'].map((emoji, index) => (
+                    <motion.span
+                      key={index}
+                      className="text-2xl"
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ 
+                        delay: 0.8 + index * 0.1, 
+                        type: "spring", 
+                        stiffness: 300 
+                      }}
+                    >
+                      {emoji}
+                    </motion.span>
+                  ))}
+                </motion.div>
               </motion.div>
             )}
           </div>

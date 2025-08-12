@@ -3,10 +3,14 @@ import { supabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
+    // Log the incoming request
+    console.log('Early access API called');
+    
     const { email, name, useCase, location, commuteChallenge, device } = await request.json();
 
     // Basic validation
     if (!email || !email.includes('@')) {
+      console.log('Validation failed: Invalid email');
       return NextResponse.json(
         { error: 'Valid email is required' },
         { status: 400 }
@@ -21,6 +25,8 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    console.log('Checking for existing user:', email);
 
     // Check if email already exists
     const { data: existingUser, error: checkError } = await supabase
@@ -38,11 +44,14 @@ export async function POST(request: NextRequest) {
     }
 
     if (existingUser) {
+      console.log('User already exists:', email);
       return NextResponse.json(
         { error: 'Email already registered for early access' },
         { status: 409 }
       );
     }
+
+    console.log('Inserting new user:', email);
 
     // Insert new user into database
     const { data: newUser, error: insertError } = await supabase
@@ -75,20 +84,25 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString()
     });
 
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Thank you for joining our early access list!',
-        userId: newUser.id
-      },
-      { status: 200 }
-    );
+    const response = { 
+      success: true, 
+      message: 'Thank you for joining our early access list!',
+      userId: newUser.id
+    };
+
+    console.log('Returning success response:', response);
+    return NextResponse.json(response, { status: 200 });
 
   } catch (error) {
     console.error('Early access API error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    
+    // Ensure we always return valid JSON
+    const errorResponse = { 
+      error: 'Internal server error',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    };
+    
+    console.log('Returning error response:', errorResponse);
+    return NextResponse.json(errorResponse, { status: 500 });
   }
 }
