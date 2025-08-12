@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - CommuteTimely</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            text-align: center;
+            max-width: 500px;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #0ea5e9;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+        
+        .retry-button {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .retry-button:active {
+            transform: translateY(0);
+        }
+        
+        .features {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .features h3 {
+            color: #0ea5e9;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #cbd5e1;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 480px) {
+            .offline-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .offline-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        <h1>You're Offline</h1>
+        <p>Don't worry! CommuteTimely works offline too. While you're here, learn about what makes us special.</p>
+        
+        <div class="features">
+            <h3>What Works Offline:</h3>
+            <ul class="feature-list">
+                <li>View app information and features</li>
+                <li>Access cached content</li>
+                <li>Read about commute planning</li>
+                <li>Learn about our smart notifications</li>
+            </ul>
+        </div>
+        
+        <button class="retry-button" onclick="window.location.reload()">
+            Try Again
+        </button>
+    </div>
+    
+    <script>
+        // Check if we're back online
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Add some interactivity
+        document.querySelector('.retry-button').addEventListener('click', () => {
+            if (navigator.onLine) {
+                window.location.reload();
+            } else {
+                alert('You\'re still offline. Please check your internet connection.');
+            }
+        });
+    </script>
+</body>
+</html>

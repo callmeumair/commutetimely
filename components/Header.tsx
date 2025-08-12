@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Download } from 'lucide-react'
 import { config } from '@/lib/config'
+import AnimatedButton from '@/components/ui/AnimatedButton'
 
 const Header = () => {
   const handleJoinWaitlist = () => {
@@ -36,13 +37,14 @@ const Header = () => {
         </nav>
 
         {/* CTA Button */}
-        <button
+        <AnimatedButton
           onClick={handleJoinWaitlist}
-          className="bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark-950"
+          size="sm"
+          className="flex items-center gap-2"
         >
-          <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2 inline" />
-          Download
-        </button>
+          <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+          Join Waitlist
+        </AnimatedButton>
       </div>
     </header>
   )

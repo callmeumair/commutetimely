@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Clock, Bell, MapPin } from 'lucide-react'
 import { config } from '@/lib/config'
+import { fadeInUp, fadeInDown, scaleIn, float, staggerContainer, staggerItem } from '@/lib/animations'
+import AnimatedButton from '@/components/ui/AnimatedButton'
 
 const HeroSection = () => {
   const handleJoinWaitlist = () => {
@@ -23,40 +25,43 @@ const HeroSection = () => {
       {/* Floating Icons */}
       <motion.div
         className="absolute top-20 left-10 text-primary-400/20"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        variants={float}
+        initial="initial"
+        animate="animate"
       >
         <Clock className="w-16 h-16" />
       </motion.div>
       
       <motion.div
         className="absolute top-32 right-20 text-accent-400/20"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        variants={float}
+        initial="initial"
+        animate="animate"
+        transition={{ delay: 1 }}
       >
         <Bell className="w-12 h-12" />
       </motion.div>
       
       <motion.div
         className="absolute bottom-32 left-20 text-primary-400/20"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        variants={float}
+        initial="initial"
+        animate="animate"
+        transition={{ delay: 2 }}
       >
         <MapPin className="w-14 h-14" />
       </motion.div>
 
       <div className="relative z-10 container-max text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
           className="space-y-6 sm:space-y-8 lg:space-y-10"
         >
           {/* Main Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            variants={fadeInUp}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
           >
             Never Be Late
@@ -65,9 +70,7 @@ const HeroSection = () => {
 
           {/* Subheadline */}
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            variants={fadeInUp}
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-dark-300 max-w-4xl mx-auto leading-relaxed"
           >
             Smart notifications that tell you exactly when to leave. 
@@ -78,33 +81,32 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            variants={staggerItem}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
           >
-            <button
+            <AnimatedButton
               onClick={handleJoinWaitlist}
-              className="btn-primary text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
+              size="lg"
+              className="text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
             >
               <span className="text-2xl">🚀</span>
               <span>Join Waitlist</span>
-            </button>
+            </AnimatedButton>
 
-            <button
+            <AnimatedButton
               onClick={handleLearnMore}
-              className="btn-secondary text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
+              variant="secondary"
+              size="lg"
+              className="text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
             >
               <span className="text-2xl">ℹ️</span>
               <span>Learn More</span>
-            </button>
+            </AnimatedButton>
           </motion.div>
 
           {/* Launch Info */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            variants={scaleIn}
             className="mt-8 sm:mt-12"
           >
             <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-500/30 rounded-full px-6 py-3 text-primary-300">

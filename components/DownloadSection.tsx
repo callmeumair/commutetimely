@@ -3,6 +3,10 @@
 import { motion } from 'framer-motion'
 import { Download, Smartphone, Bell, Clock } from 'lucide-react'
 import { config } from '@/lib/config'
+import { fadeInUp, scaleIn, staggerContainer, staggerItem } from '@/lib/animations'
+import AnimatedButton from '@/components/ui/AnimatedButton'
+import AnimatedCard from '@/components/ui/AnimatedCard'
+import AnimatedGrid, { AnimatedGridItem } from '@/components/ui/AnimatedGrid'
 
 const DownloadSection = () => {
   const handleJoinWaitlist = () => {
@@ -14,9 +18,9 @@ const DownloadSection = () => {
     <section className="section-padding bg-dark-900 relative">
       <div className="container-max">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="text-center mb-16 sm:mb-20"
         >
@@ -30,94 +34,94 @@ const DownloadSection = () => {
 
         {/* Pre-launch CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 sm:mb-20"
         >
-          <button
-            onClick={handleJoinWaitlist}
-            className="btn-primary text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
-          >
-            <span className="text-2xl">🚀</span>
-            <div className="text-left">
-              <div className="text-sm opacity-90">Join our</div>
-              <div className="font-bold">Waitlist</div>
-            </div>
-          </button>
+          <motion.div variants={staggerItem}>
+            <AnimatedButton
+              onClick={handleJoinWaitlist}
+              size="lg"
+              className="text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
+            >
+              <span className="text-2xl">🚀</span>
+              <div className="text-left">
+                <div className="text-sm opacity-90">Join our</div>
+                <div className="font-bold">Waitlist</div>
+              </div>
+            </AnimatedButton>
+          </motion.div>
 
-          <button
-            onClick={handleJoinWaitlist}
-            className="btn-secondary text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
-          >
-            <span className="text-2xl">🔔</span>
-            <div className="text-left">
-              <div className="text-sm opacity-90">Get</div>
-              <div className="font-bold">Notified</div>
-            </div>
-          </button>
+          <motion.div variants={staggerItem}>
+            <AnimatedButton
+              onClick={handleJoinWaitlist}
+              variant="secondary"
+              size="lg"
+              className="text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
+            >
+              <span className="text-2xl">🔔</span>
+              <div className="text-left">
+                <div className="text-sm opacity-90">Get</div>
+                <div className="font-bold">Notified</div>
+              </div>
+            </AnimatedButton>
+          </motion.div>
         </motion.div>
 
         {/* Features grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
+        <AnimatedGrid
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16 sm:mb-20"
         >
-          <motion.div
-            className="card text-center group hover:scale-105 transition-all duration-300"
-            whileHover={{ y: -5 }}
-          >
-            <motion.div
-              className="w-20 h-20 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Smartphone className="w-10 h-10 text-white" />
-            </motion.div>
-            <h3 className="text-xl font-semibold text-white mb-2">Free to Download</h3>
-            <p className="text-dark-300">No upfront cost, start optimizing your commute today</p>
-          </motion.div>
+          <AnimatedGridItem>
+            <AnimatedCard className="text-center">
+              <motion.div
+                className="w-20 h-20 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Smartphone className="w-10 h-10 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-semibold text-white mb-2">Free to Download</h3>
+              <p className="text-dark-300">No upfront cost, start optimizing your commute today</p>
+            </AnimatedCard>
+          </AnimatedGridItem>
 
-          <motion.div
-            className="card text-center group hover:scale-105 transition-all duration-300"
-            whileHover={{ y: -5 }}
-          >
-            <motion.div
-              className="w-20 h-20 bg-gradient-to-r from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Bell className="w-10 h-10 text-white" />
-            </motion.div>
-            <h3 className="text-xl font-semibold text-white mb-2">Smart Notifications</h3>
-            <p className="text-dark-300">Intelligent alerts that adapt to real-time conditions</p>
-          </motion.div>
+          <AnimatedGridItem>
+            <AnimatedCard className="text-center">
+              <motion.div
+                className="w-20 h-20 bg-gradient-to-r from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Bell className="w-10 h-10 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-semibold text-white mb-2">Smart Notifications</h3>
+              <p className="text-dark-300">Intelligent alerts that adapt to real-time conditions</p>
+            </AnimatedCard>
+          </AnimatedGridItem>
 
-          <motion.div
-            className="card text-center group hover:scale-105 transition-all duration-300"
-            whileHover={{ y: -5 }}
-          >
-            <motion.div
-              className="w-20 h-20 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Clock className="w-10 h-10 text-white" />
-            </motion.div>
-            <h3 className="text-xl font-semibold text-white mb-2">Real-Time Updates</h3>
-            <p className="text-dark-300">Live traffic and transit data for accurate timing</p>
-          </motion.div>
-        </motion.div>
+          <AnimatedGridItem>
+            <AnimatedCard className="text-center">
+              <motion.div
+                className="w-20 h-20 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Clock className="w-10 h-10 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-semibold text-white mb-2">Real-Time Updates</h3>
+              <p className="text-dark-300">Live traffic and transit data for accurate timing</p>
+            </AnimatedCard>
+          </AnimatedGridItem>
+        </AnimatedGrid>
 
         {/* Launch Info */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="text-center"
         >
@@ -133,13 +137,14 @@ const DownloadSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-              <button
+              <AnimatedButton
                 onClick={handleJoinWaitlist}
-                className="btn-primary text-lg px-8 py-4 flex items-center justify-center gap-3"
+                size="lg"
+                className="text-lg px-8 py-4 flex items-center justify-center gap-3"
               >
                 <Download className="w-5 h-5" />
                 <span>Join Waitlist Now</span>
-              </button>
+              </AnimatedButton>
             </div>
             
             <div className="flex justify-center gap-6 opacity-80 text-sm">

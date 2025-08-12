@@ -1,6 +1,6 @@
 export const config = {
   // Waitlist form URL - update this with your actual Google Forms or other form URL
-  WAITLIST_FORM_URL: process.env.NEXT_PUBLIC_WAITLIST_FORM_URL || 'https://forms.gle/your-waitlist-form-id',
+  WAITLIST_FORM_URL: process.env.NEXT_PUBLIC_WAITLIST_FORM_URL || 'https://forms.gle/Mk7H6hS7U8a26NWL7',
   
   // App information
   APP_NAME: 'CommuteTimely',
