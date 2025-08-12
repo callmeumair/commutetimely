@@ -1,14 +1,10 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const contentType = 'image/png'
-export const size = {
-  width: 1200,
-  height: 630,
-}
 
 export async function GET() {
-  const { width, height } = size
+  const width = 1200
+  const height = 630
 
   return new ImageResponse(
     (
@@ -69,6 +65,16 @@ export async function GET() {
         </div>
       </div>
     ),
-    { width, height }
+    {
+      width,
+      height,
+      headers: {
+        'content-type': 'image/png',
+        // Cache for 1 day at the edge; revalidate frequently in dev
+        'cache-control': process.env.NODE_ENV === 'development'
+          ? 'no-store'
+          : 'public, max-age=86400, s-maxage=86400, immutable',
+      },
+    }
   )
 }
