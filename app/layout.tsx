@@ -28,10 +28,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'CommuteTimely - Never Be Late Again',
+    default: 'CommuteTimely - Know exactly when to leave',
     template: '%s | CommuteTimely'
   },
-  description: 'Smart notifications that tell you exactly when to leave. Never be late again with AI-powered commute timing that adapts to traffic, weather, and your schedule.',
+  description: 'Get real-time notifications so you leave right on time for your commute.',
   keywords: [
     'commute timing',
     'traffic notifications',
@@ -70,15 +70,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://commutetimely.com',
     siteName: 'CommuteTimely',
-    title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Never be late again with AI-powered commute timing.',
+    title: 'CommuteTimely - Know exactly when to leave',
+    description: 'Get real-time notifications so you leave right on time for your commute.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'CommuteTimely - Smart Commute Notifications',
-        type: 'image/jpeg',
+        alt: 'CommuteTimely - Know exactly when to leave',
+        type: 'image/svg+xml',
       },
     ],
   },
@@ -86,9 +86,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@commutetimely',
     creator: '@commutetimely',
-    title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Never be late again.',
-    images: ['/og-image.jpg'],
+    title: 'CommuteTimely - Know exactly when to leave',
+    description: 'Get real-time notifications so you leave right on time for your commute.',
+    images: ['/og-image.svg'],
   },
   verification: {
     google: 'your-google-verification-code',

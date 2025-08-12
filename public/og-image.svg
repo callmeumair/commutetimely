@@ -1,0 +1,55 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0ea5e9"/>
+  
+  <!-- App Icon (top left) -->
+  <g transform="translate(80, 80)">
+    <!-- Icon background -->
+    <rect x="0" y="0" width="80" height="80" rx="16" fill="#0ea5e9" stroke="white" stroke-width="3"/>
+    <!-- Clock face -->
+    <circle cx="40" cy="40" r="30" fill="none" stroke="white" stroke-width="3"/>
+    <!-- Clock center dot -->
+    <circle cx="40" cy="40" r="3" fill="white"/>
+    <!-- Hour hand pointing to 6 -->
+    <line x1="40" y1="40" x2="40" y2="20" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <!-- Minute hand pointing to 9 -->
+    <line x1="40" y1="40" x2="20" y2="40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  
+  <!-- App Name -->
+  <text x="180" y="120" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="600" fill="white">
+    CommuteTimely
+  </text>
+  
+  <!-- Main Tagline -->
+  <text x="80" y="220" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="white">
+    Know exactly when to leave
+  </text>
+  
+  <!-- Location Pin with Clock (right side) -->
+  <g transform="translate(800, 150)">
+    <!-- Pin shadow -->
+    <circle cx="150" cy="250" r="40" fill="#0891b2" opacity="0.3"/>
+    
+    <!-- Location pin -->
+    <path d="M150 50 L200 200 L150 180 L100 200 Z" fill="white"/>
+    
+    <!-- Pin circle with clock -->
+    <circle cx="150" cy="150" r="60" fill="white"/>
+    <circle cx="150" cy="150" r="50" fill="#0ea5e9"/>
+    <circle cx="150" cy="150" r="45" fill="none" stroke="white" stroke-width="2"/>
+    
+    <!-- Clock center dot -->
+    <circle cx="150" cy="150" r="3" fill="white"/>
+    
+    <!-- Hour hand pointing to 6 -->
+    <line x1="150" y1="150" x2="150" y2="125" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <!-- Minute hand pointing to 9 -->
+    <line x1="150" y1="150" x2="125" y2="150" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Additional subtitle -->
+  <text x="80" y="320" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="400" fill="white" opacity="0.9">
+    Real-time notifications for perfect timing
+  </text>
+</svg>
