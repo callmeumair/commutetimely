@@ -1,40 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Performance optimizations
   poweredByHeader: false,
   compress: true,
   
-  // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     unoptimized: false,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'forms.gle',
-        port: '',
-        pathname: '/**',
-      },
-    ],
   },
 
-  // Experimental features for performance
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
-    optimizeCss: false, // Disabled due to critters error
   },
 
-  // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-  // Headers for security and performance
   async headers() {
     return [
       {
@@ -70,20 +56,15 @@ const nextConfig = {
     ];
   },
 
-  // TypeScript configuration
   typescript: {
     ignoreBuildErrors: false,
   },
 
-  // ESLint configuration
   eslint: {
     ignoreDuringBuilds: false,
   },
 
-  // React strict mode for better development
   reactStrictMode: true,
-  
-
 };
 
 module.exports = nextConfig;

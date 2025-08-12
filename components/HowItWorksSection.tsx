@@ -1,138 +1,320 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { MapPin, Clock, Bell, CheckCircle } from 'lucide-react'
-import { config } from '@/lib/config'
+import { Card, CardContent } from "./card";
+import { MapPin, Clock, Bell, CheckCircle, ArrowRight } from "lucide-react";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 const steps = [
   {
     icon: MapPin,
-    title: "Set Your Route",
-    description: "Add your regular destinations - work, home, gym, or anywhere you go frequently. Set your preferred arrival time.",
-    color: "from-primary-500 to-primary-600",
-    delay: 0
+    title: "Set Your Destinations",
+    description: "Add your regular destinations like work, gym, or appointments with your preferred arrival times.",
+    step: "01",
+    color: "from-blue-500 to-cyan-500",
+    glowColor: "rgba(37, 99, 235, 0.4)"
   },
   {
     icon: Clock,
-    title: "Get Smart Timing",
-    description: "Our AI analyzes real-time traffic patterns, transit schedules, and calculates the perfect departure time for you.",
-    color: "from-accent-500 to-accent-600",
-    delay: 0.2
+    title: "We Monitor Traffic",
+    description: "Our system continuously monitors real-time traffic conditions and learns your commute patterns.",
+    step: "02",
+    color: "from-green-500 to-emerald-500",
+    glowColor: "rgba(34, 197, 94, 0.4)"
   },
   {
     icon: Bell,
-    title: "Receive Notifications",
-    description: "Get timely 'Leave by X:XX AM' alerts that adapt to traffic changes, weather, and your schedule.",
-    color: "from-primary-600 to-primary-700",
-    delay: 0.4
+    title: "Get Smart Alerts",
+    description: "Receive perfectly timed notifications telling you exactly when to leave for optimal arrival.",
+    step: "03",
+    color: "from-orange-500 to-red-500",
+    glowColor: "rgba(251, 146, 60, 0.4)"
   },
   {
     icon: CheckCircle,
     title: "Arrive On Time",
-    description: "Leave with confidence knowing you'll arrive exactly when you need to be there, every single time.",
-    color: "from-accent-600 to-accent-700",
-    delay: 0.6
+    description: "Follow the alert and arrive at your destination right on time, stress-free and prepared.",
+    step: "04",
+    color: "from-purple-500 to-violet-500",
+    glowColor: "rgba(139, 92, 246, 0.4)"
   }
-]
+];
 
-const HowItWorksSection = () => {
+export function HowItWorks() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const
+      }
+    }
+  };
+
   return (
-    <section id="how-it-works" className="section-padding bg-dark-950 relative">
-      <div className="container-max">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 sm:mb-20"
+    <section id="how-it-works" ref={ref} className="py-16 sm:py-20 lg:py-24 bg-black relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        {/* Animated Grid */}
+        <motion.div 
+          className="absolute inset-0 opacity-10 sm:opacity-20"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px sm:60px sm:60px'
+          }}
+          animate={{
+            backgroundPosition: ['0px 0px', '40px 40px', '60px 60px'],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Floating Orbs */}
+        <motion.div 
+          className="absolute top-20 right-10 sm:right-20 w-48 h-48 sm:w-96 sm:h-96 bg-green-600/5 sm:bg-green-600/10 rounded-full blur-2xl sm:blur-3xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            x: [0, -30, 0],
+            y: [0, 15, 0]
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        <motion.div 
+          className="absolute bottom-20 left-10 sm:left-20 w-40 h-40 sm:w-80 sm:h-80 bg-orange-600/5 sm:bg-orange-600/10 rounded-full blur-2xl sm:blur-3xl"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            x: [0, 40, 0],
+            y: [0, -25, 0]
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <motion.div 
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            How It <span className="gradient-text">Works</span>
-          </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-dark-300 max-w-3xl mx-auto">
-            Four simple steps to never be late again
-          </p>
-        </motion.div>
-
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-500 to-accent-500 hidden lg:block"></div>
-          
-          <div className="space-y-12 lg:space-y-16">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: step.delay }}
-                viewport={{ once: true }}
-                className={`flex flex-col lg:flex-row items-center gap-8 ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
+          <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
+            <motion.div 
+              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500/10 via-cyan-400/10 to-purple-500/10 backdrop-blur-sm rounded-full border border-white/10 mb-4 sm:mb-6"
+              whileHover={{ scale: 1.05 }}
+              animate={{
+                boxShadow: [
+                  "0 0 20px rgba(37, 99, 235, 0.3)",
+                  "0 0 40px rgba(6, 182, 212, 0.3)",
+                  "0 0 20px rgba(139, 92, 246, 0.3)",
+                  "0 0 20px rgba(37, 99, 235, 0.3)"
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+              <span className="text-sm sm:font-semibold text-white">How It Works</span>
+            </motion.div>
+            
+            <motion.h2 
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6"
+              variants={itemVariants}
+            >
+              <span className="text-white">Four Simple Steps to </span>
+              <motion.span 
+                className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent"
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
+                }}
+                style={{ backgroundSize: "200% 100%" }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                {/* Icon */}
+                Perfect Timing
+              </motion.span>
+            </motion.h2>
+            
+            <motion.p 
+              className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+              variants={itemVariants}
+            >
+              Transform your daily commute with intelligent alerts that ensure you never arrive late again. 
+              It's that simple.
+            </motion.p>
+          </motion.div>
+        </motion.div>
+        
+        {/* Steps Grid */}
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-12 sm:mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              custom={index}
+              whileHover={{ 
+                scale: 1.05,
+                y: -10
+              }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 25
+              }}
+              className="group relative"
+            >
+              <Card className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden rounded-2xl sm:rounded-3xl">
+                {/* Glow Effect */}
+                <motion.div 
+                  className={`absolute inset-0 bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl sm:rounded-3xl`}
+                  animate={{
+                    opacity: [0, 0.05, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                />
+                
                 <motion.div
-                  className="relative flex-shrink-0"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className={`w-24 h-24 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg p-2`}>
-                    <step.icon className="w-12 h-12 text-white" />
-                  </div>
-                  {/* Timeline dot */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-dark-950 rounded-full border-4 border-primary-500 hidden lg:block"></div>
-                </motion.div>
+                  className="absolute inset-0 rounded-2xl sm:rounded-3xl"
+                  animate={{
+                    boxShadow: [
+                      `0 0 20px ${step.glowColor.replace('0.4', '0.1')}`,
+                      `0 0 40px ${step.glowColor.replace('0.4', '0.2')}`,
+                      `0 0 20px ${step.glowColor.replace('0.4', '0.1')}`
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, delay: index * 0.8 }}
+                />
 
-                {/* Content */}
-                <motion.div
-                  className={`text-center lg:text-left flex-1 ${
-                    index % 2 === 0 ? 'lg:text-left' : 'lg:text-right'
-                  }`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: step.delay + 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="glass p-6 sm:p-8 hover:bg-white/15 transition-all duration-300">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                <CardContent className="relative p-6 sm:p-8 text-center h-full flex flex-col">
+                  {/* Step Number */}
+                  <motion.div 
+                    className="absolute -top-4 left-1/2 transform -translate-x-1/2"
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                  >
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r ${step.color} text-white rounded-full flex items-center justify-center font-bold shadow-2xl border-2 border-white/20`}>
+                      <span className="text-sm sm:text-base">{step.step}</span>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Icon */}
+                  <motion.div 
+                    className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 mt-6 sm:mt-8 shadow-2xl`}
+                    whileHover={{ 
+                      rotate: [0, -10, 10, 0],
+                      scale: 1.1
+                    }}
+                    transition={{ duration: 0.6 }}
+                    animate={{
+                      boxShadow: [
+                        `0 0 30px ${step.glowColor}`,
+                        `0 0 50px ${step.glowColor.replace('0.4', '0.6')}`,
+                        `0 0 30px ${step.glowColor}`
+                      ]
+                    }}
+                  >
+                    <step.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </motion.div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4 group-hover:text-blue-200 transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-lg text-dark-300 leading-relaxed">
+                    
+                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                       {step.description}
                     </p>
                   </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
 
-        {/* Bottom CTA */}
-        <motion.div
+                  {/* Arrow connector (except for last step) */}
+                  {index < steps.length - 1 && (
+                    <motion.div 
+                      className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-cyan-400"
+                      animate={{
+                        x: [0, 5, 0],
+                        opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </motion.div>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+        
+        {/* Platform Availability */}
+        <motion.div 
+          className="text-center"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16 sm:mt-20"
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ delay: 1, duration: 0.8 }}
         >
-          <div className="glass p-8 sm:p-10 border border-primary-500/20 max-w-3xl mx-auto">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              Ready to Get Started?
-            </h3>
-            <p className="text-lg text-dark-300 mb-6">
-              Join our waitlist and be one of the first to experience the future of commute planning
-            </p>
-            <button 
-              onClick={() => window.open(config.WAITLIST_FORM_URL, '_blank')}
-              className="btn-primary text-lg px-8 py-4"
-            >
-              Join Waitlist
-            </button>
-          </div>
+          <motion.div 
+            className="inline-flex items-center space-x-6 sm:space-x-8 px-6 sm:px-8 py-4 sm:py-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl"
+            whileHover={{ scale: 1.02 }}
+            animate={{
+              boxShadow: [
+                "0 0 20px rgba(255, 255, 255, 0.05)",
+                "0 0 40px rgba(37, 99, 235, 0.1)",
+                "0 0 20px rgba(255, 255, 255, 0.05)"
+              ]
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            <span className="text-white font-semibold text-sm sm:text-base">Available on</span>
+            
+            <div className="flex items-center space-x-6 sm:space-x-8">
+              <motion.div 
+                className="flex items-center space-x-2 sm:space-x-3"
+                whileHover={{ scale: 1.1, y: -2 }}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-gray-400 to-gray-600 rounded-lg flex items-center justify-center">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-sm"></div>
+                </div>
+                <span className="text-gray-300 font-medium text-sm sm:text-base">iOS</span>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center space-x-2 sm:space-x-3"
+                whileHover={{ scale: 1.1, y: -2 }}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-sm"></div>
+                </div>
+                <span className="text-gray-300 font-medium text-sm sm:text-base">Android</span>
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
-export default HowItWorksSection
