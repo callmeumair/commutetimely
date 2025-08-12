@@ -75,11 +75,11 @@ export const metadata: Metadata = {
     description: 'Get real-time notifications so you leave right on time for your commute.',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/linkpreview.png',
         width: 1200,
         height: 630,
         alt: 'CommuteTimely - Know exactly when to leave for your commute',
-        type: 'image/svg+xml',
+        type: 'image/png',
       },
     ],
   },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     creator: '@commutetimely',
     title: 'CommuteTimely - Know exactly when to leave',
     description: 'Get real-time notifications so you leave right on time for your commute.',
-    images: ['/og-image.svg'],
+    images: ['/linkpreview.png'],
   },
   verification: {
     google: 'your-google-verification-code',
