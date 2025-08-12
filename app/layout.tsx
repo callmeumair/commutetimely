@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ServiceWorkerProvider from '@/components/providers/ServiceWorkerProvider'
+import { config } from '@/lib/config'
 
 // Optimized font loading with fallbacks
 const inter = Inter({
@@ -57,9 +58,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://commutetimely.com'),
+  metadataBase: new URL(process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : config.WEBSITE_URL),
   alternates: {
-    canonical: '/',
+    canonical: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : config.WEBSITE_URL,
     languages: {
       'en-US': '/en-US',
       'en': '/en',
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://commutetimely.com',
+    url: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : config.WEBSITE_URL,
     siteName: 'CommuteTimely',
     title: 'CommuteTimely - Know exactly when to leave',
     description: 'Get real-time notifications so you leave right on time for your commute.',
