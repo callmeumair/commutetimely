@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'CommuteTimely - Smart Commute Alerts',
-  description: 'Intelligent leave alerts using real-time traffic data to help you arrive on time, every time. Launching September 2024 on iOS and Android.',
+  description: 'Intelligent leave alerts using real-time traffic data to help you arrive on time, every time. Launching September 2025 on iOS and Android.',
   keywords: ['commute timing', 'traffic notifications', 'smart commute', 'arrival time', 'traffic alerts'],
   authors: [{ name: 'CommuteTimely Team' }],
   creator: 'CommuteTimely',

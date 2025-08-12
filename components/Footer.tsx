@@ -111,7 +111,7 @@ export function Footer() {
             
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm sm:text-base">
               Intelligent leave alerts using real-time traffic data to help you arrive on time, every time. 
-              <span className="text-blue-300 font-medium"> Launching September 2024</span> on iOS and Android.
+              <span className="text-blue-300 font-medium"> Launching September 2025</span> on iOS and Android.
             </p>
             
             <div className="flex items-center space-x-6">

@@ -10,7 +10,7 @@ const steps = [
     icon: MapPin,
     title: "Set Your Destinations",
     description: "Add your regular destinations like work, gym, or appointments with your preferred arrival times.",
-    step: "01",
+    step: "1",
     color: "from-blue-500 to-cyan-500",
     glowColor: "rgba(37, 99, 235, 0.4)"
   },
@@ -18,7 +18,7 @@ const steps = [
     icon: Clock,
     title: "We Monitor Traffic",
     description: "Our system continuously monitors real-time traffic conditions and learns your commute patterns.",
-    step: "02",
+    step: "2",
     color: "from-green-500 to-emerald-500",
     glowColor: "rgba(34, 197, 94, 0.4)"
   },
@@ -26,7 +26,7 @@ const steps = [
     icon: Bell,
     title: "Get Smart Alerts",
     description: "Receive perfectly timed notifications telling you exactly when to leave for optimal arrival.",
-    step: "03",
+    step: "3",
     color: "from-orange-500 to-red-500",
     glowColor: "rgba(251, 146, 60, 0.4)"
   },
@@ -34,7 +34,7 @@ const steps = [
     icon: CheckCircle,
     title: "Arrive On Time",
     description: "Follow the alert and arrive at your destination right on time, stress-free and prepared.",
-    step: "04",
+    step: "4",
     color: "from-purple-500 to-violet-500",
     glowColor: "rgba(139, 92, 246, 0.4)"
   }
@@ -213,17 +213,17 @@ export function HowItWorks() {
                 <CardContent className="relative p-6 sm:p-8 text-center h-full flex flex-col">
                   {/* Step Number */}
                   <motion.div 
-                    className="absolute -top-4 left-1/2 transform -translate-x-1/2"
+                    className="mb-6 flex justify-center"
                     whileHover={{ scale: 1.2, rotate: 5 }}
                   >
-                    <div className={`w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r ${step.color} text-white rounded-full flex items-center justify-center font-bold shadow-2xl border-2 border-white/20`}>
-                      <span className="text-sm sm:text-base">{step.step}</span>
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r ${step.color} text-white rounded-full flex items-center justify-center font-bold shadow-2xl border-2 border-white/20`}>
+                      <span className="text-lg sm:text-xl font-bold">{step.step}</span>
                     </div>
                   </motion.div>
                   
                   {/* Icon */}
                   <motion.div 
-                    className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 mt-6 sm:mt-8 shadow-2xl`}
+                    className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-2xl`}
                     whileHover={{ 
                       rotate: [0, -10, 10, 0],
                       scale: 1.1

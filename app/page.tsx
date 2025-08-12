@@ -5,7 +5,7 @@ import { Hero } from "@/components/HeroSection";
 import { Features as FeaturesSection } from "@/components/FeaturesSection";
 import { HowItWorks } from "@/components/HowItWorksSection";
 import { Download } from "@/components/Download";
-import ImageDemoSection from "@/components/ImageDemoSection";
+
 import AccordionDemoSection from "@/components/AccordionDemoSection";
 import { Footer } from "@/components/Footer";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
@@ -163,7 +163,7 @@ export default function Home() {
         <Hero />
         <FeaturesSection />
         <HowItWorks />
-        <ImageDemoSection />
+
         <AccordionDemoSection />
         <Download />
       </main>

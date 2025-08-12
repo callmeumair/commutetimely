@@ -132,7 +132,7 @@ export function Hero() {
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <span className="text-sm sm:font-semibold text-white">Launching September 2024</span>
+                <span className="text-sm sm:font-semibold text-white">Launching September 2025</span>
               </motion.div>
 
               <div className="space-y-6 sm:space-y-8">
@@ -291,69 +291,13 @@ export function Hero() {
                 <div className="relative w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-800 rounded-[2.5rem] p-2 shadow-2xl border border-white/10">
                   {/* Screen */}
                   <div className="w-full h-full bg-black rounded-[2.2rem] overflow-hidden relative border border-white/5">
-                    {/* Mobile App Interface Mockup */}
-                    <div className="w-full h-full bg-gradient-to-br from-blue-900 via-purple-900 to-cyan-900 rounded-[2.2rem] p-4">
-                      {/* Status Bar */}
-                      <div className="flex items-center justify-between text-white text-xs mb-4">
-                        <span>6:20</span>
-                        <div className="flex items-center space-x-1">
-                          <div className="w-3 h-3 border border-white rounded-sm"></div>
-                          <div className="w-1 h-2 bg-white rounded-full"></div>
-                        </div>
-                        <div className="w-12 h-1 bg-white rounded-full"></div>
-                      </div>
-
-                      {/* App Content */}
-                      <div className="text-center text-white">
-                        <h2 className="text-lg font-bold mb-2">CommuteTimely</h2>
-                        <p className="text-sm mb-1">Today's Commute</p>
-                        <p className="text-sm mb-6">to Work</p>
-
-                        <div className="mb-6">
-                          <p className="text-sm mb-1">Leave at</p>
-                          <p className="text-3xl font-bold text-cyan-400">8:20 AM</p>
-                        </div>
-
-                        <div className="flex items-center justify-center space-x-2 mb-6">
-                          <Clock className="w-4 h-4 text-blue-400" />
-                          <span className="text-sm">39m commute</span>
-                        </div>
-
-                        {/* Commute Mode Selection */}
-                        <div className="mb-6">
-                          <p className="text-sm mb-3">Commute Mode</p>
-                          <div className="flex space-x-2">
-                            <button className="flex-1 bg-blue-500 text-white py-2 px-3 rounded-lg text-xs">
-                              Car
-                            </button>
-                            <button className="flex-1 bg-gray-700 text-white py-2 px-3 rounded-lg text-xs border border-gray-600">
-                              Transit
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Traffic Status */}
-                        <div className="mb-6">
-                          <p className="text-sm mb-3">Traffic Status</p>
-                          <div className="bg-gray-800 rounded-lg p-3 flex items-center justify-between">
-                            <div className="w-5 h-5 bg-orange-400 rounded-sm"></div>
-                            <div className="text-right">
-                              <span className="text-sm">Moderate</span>
-                              <p className="text-gray-400 text-xs">Traffic conditions</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="space-y-3">
-                          <button className="w-full bg-blue-500 text-white py-3 px-4 rounded-lg text-sm">
-                            Re-calculate
-                          </button>
-                          <button className="w-full bg-gray-700 text-white py-3 px-4 rounded-lg text-sm border border-gray-600">
-                            Notifications On
-                          </button>
-                        </div>
-                      </div>
+                    {/* Mobile App Interface - Using Actual Image */}
+                    <div className="w-full h-full rounded-[2.2rem] overflow-hidden">
+                      <img 
+                        src="/images/IMG_750E9EF883FD-1.jpeg" 
+                        alt="CommuteTimely mobile app interface showing commute details, traffic status, and navigation"
+                        className="w-full h-full object-cover object-center"
+                      />
                     </div>
                     
                     {/* Subtle overlay for extra glow effect */}
