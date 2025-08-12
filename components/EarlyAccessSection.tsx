@@ -107,6 +107,7 @@ export default function EarlyAccessSection() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
               className="btn-primary text-lg px-8 py-4"
+              onClick={() => window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank')}
             >
               Get Early Access
             </motion.button>

@@ -142,6 +142,7 @@ export function Header() {
             >
               <Button 
                 className="relative group bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 hover:from-blue-700 hover:via-cyan-600 hover:to-purple-700 text-white font-semibold px-6 xl:px-8 py-2.5 xl:py-3 rounded-xl shadow-2xl overflow-hidden"
+                onClick={() => window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank')}
               >
                 {/* Shimmer Effect */}
                 <motion.div
@@ -241,7 +242,10 @@ export function Header() {
                 >
                   <Button 
                     className="w-full bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 hover:from-blue-700 hover:via-cyan-600 hover:to-purple-700 text-white font-semibold py-4 rounded-xl shadow-2xl relative overflow-hidden"
-                    onClick={closeMobileMenu}
+                    onClick={() => {
+                      closeMobileMenu();
+                      window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank');
+                    }}
                   >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"

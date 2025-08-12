@@ -184,6 +184,7 @@ export function Hero() {
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto group relative bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 hover:from-blue-700 hover:via-cyan-600 hover:to-purple-700 text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-2xl overflow-hidden rounded-xl"
+                  onClick={() => window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank')}
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
