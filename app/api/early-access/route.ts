@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { isSupabaseConfigured, dbOperations } from '@/lib/supabase';
 import { logger } from '@/lib/logger';
-
-// Request timeout in milliseconds
-const REQUEST_TIMEOUT = 30000; // 30 seconds
 
 // Helper function to create consistent response headers
 const createResponseHeaders = () => ({
@@ -62,6 +59,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Test database connectivity first
+    const connectionTest = await dbOperations.testConnection();
+    if (!connectionTest.connected) {
+      logger.error('Database connection test failed', connectionTest);
+      return createErrorResponse(
+        'Database connection failed. Please try again later.',
+        503,
+        { 
+          errorCode: 'DB_CONNECTION_FAILED',
+          details: connectionTest.error,
+          latency: connectionTest.latency
+        }
+      );
+    }
+
     // Parse request body
     let requestBody;
     try {
@@ -110,52 +122,46 @@ export async function POST(request: NextRequest) {
     // Sanitize and validate optional fields
     const sanitizedData = {
       email: email.trim().toLowerCase(),
-      name: name && typeof name === 'string' ? name.trim() : null,
-      useCase: useCase && typeof useCase === 'string' ? useCase.trim() : null,
-      location: location && typeof location === 'string' ? location.trim() : null,
-      commuteChallenge: commuteChallenge && typeof commuteChallenge === 'string' ? commuteChallenge.trim() : null,
-      device: device && typeof device === 'string' ? device.trim() : null,
+      name: name && typeof name === 'string' ? name.trim() : undefined,
+      use_case: useCase && typeof useCase === 'string' ? useCase.trim() : undefined,
+      location: location && typeof location === 'string' ? location.trim() : undefined,
+      commute_challenge: commuteChallenge && typeof commuteChallenge === 'string' ? commuteChallenge.trim() : undefined,
+      device: device && typeof device === 'string' ? device.trim() : undefined,
     };
 
-    logger.debug('Sanitized data', { email: sanitizedData.email, hasOptionalFields: !!sanitizedData.name || !!sanitizedData.useCase });
+    logger.debug('Sanitized data', { email: sanitizedData.email, hasOptionalFields: !!sanitizedData.name || !!sanitizedData.use_case });
 
-    // Check for existing user
+    // Check for existing user using enhanced database operations
     logger.databaseOperation('SELECT', 'early_access_users', { email: sanitizedData.email });
-    let existingUser;
-    try {
-      const { data, error } = await supabase!
-        .from('early_access_users')
-        .select('email')
-        .eq('email', sanitizedData.email)
-        .single();
-
-      if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
-        logger.databaseError(error, 'SELECT', 'early_access_users');
+    const userExistsCheck = await dbOperations.checkUserExists(sanitizedData.email);
+    
+    if (!userExistsCheck.exists && userExistsCheck.error) {
+      // This could be an RLS policy issue or database error
+      logger.error('Error checking existing user', userExistsCheck);
+      
+      // Check if it's an RLS policy issue
+      if (userExistsCheck.error.includes('permission denied') || userExistsCheck.error.includes('RLS')) {
         return createErrorResponse(
-          'Failed to check existing user',
-          500,
+          'Access denied. Please check your permissions.',
+          403,
           { 
-            errorCode: 'DB_CHECK_ERROR',
-            dbError: error.message,
-            dbCode: error.code
+            errorCode: 'RLS_POLICY_DENIED',
+            details: 'Row Level Security policy blocked the request'
           }
         );
       }
-
-      existingUser = data;
-    } catch (dbError) {
-      logger.databaseError(dbError, 'SELECT', 'early_access_users');
+      
       return createErrorResponse(
-        'Database operation failed while checking existing user',
+        'Failed to check existing user',
         500,
         { 
-          errorCode: 'DB_UNEXPECTED_ERROR',
-          dbError: dbError instanceof Error ? dbError.message : 'Unknown database error'
+          errorCode: 'DB_CHECK_ERROR',
+          details: userExistsCheck.error
         }
       );
     }
 
-    if (existingUser) {
+    if (userExistsCheck.exists) {
       logger.info('User already exists', { email: sanitizedData.email });
       return createErrorResponse(
         'Email already registered for early access',
@@ -164,45 +170,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Insert new user
+    // Insert new user using enhanced database operations
     logger.databaseOperation('INSERT', 'early_access_users', { email: sanitizedData.email });
-    let newUser;
-    try {
-      const { data, error } = await supabase!
-        .from('early_access_users')
-        .insert([{
-          email: sanitizedData.email,
-          name: sanitizedData.name,
-          use_case: sanitizedData.useCase,
-          location: sanitizedData.location,
-          commute_challenge: sanitizedData.commuteChallenge,
-          device: sanitizedData.device,
-        }])
-        .select()
-        .single();
-
-      if (error) {
-        logger.databaseError(error, 'INSERT', 'early_access_users');
+    const insertResult = await dbOperations.insertUser(sanitizedData);
+    
+    if (!insertResult.user) {
+      logger.error('Failed to insert user', insertResult);
+      
+      // Check for specific database errors
+      if (insertResult.error?.includes('permission denied') || insertResult.error?.includes('RLS')) {
         return createErrorResponse(
-          'Failed to save user data',
-          500,
+          'Access denied. Please check your permissions.',
+          403,
           { 
-            errorCode: 'DB_INSERT_ERROR',
-            dbError: error.message,
-            dbCode: error.code
+            errorCode: 'RLS_POLICY_DENIED',
+            details: 'Row Level Security policy blocked the insert operation'
           }
         );
       }
-
-      newUser = data;
-    } catch (dbError) {
-      logger.databaseError(dbError, 'INSERT', 'early_access_users');
+      
+      if (insertResult.error?.includes('duplicate key') || insertResult.error?.includes('unique constraint')) {
+        return createErrorResponse(
+          'Email already registered for early access',
+          409,
+          { 
+            errorCode: 'USER_ALREADY_EXISTS',
+            details: 'Duplicate email detected during insert'
+          }
+        );
+      }
+      
       return createErrorResponse(
-        'Database operation failed while inserting user',
+        'Failed to save user data',
         500,
         { 
-          errorCode: 'DB_UNEXPECTED_ERROR',
-          dbError: dbError instanceof Error ? dbError.message : 'Unknown database error'
+          errorCode: 'DB_INSERT_ERROR',
+          details: insertResult.error
         }
       );
     }
@@ -211,17 +214,24 @@ export async function POST(request: NextRequest) {
     const processingTime = Date.now() - startTime;
     logger.performance('Early Access API', processingTime, { 
       operation: 'user_registration',
-      userId: newUser.id,
-      email: newUser.email
+      userId: insertResult.user.id,
+      email: insertResult.user.email,
+      dbLatency: connectionTest.latency
     });
 
     const response = createSuccessResponse({
       message: 'Thank you for joining our early access list!',
-      userId: newUser.id,
-      processingTimeMs: processingTime
+      userId: insertResult.user.id,
+      processingTimeMs: processingTime,
+      dbLatency: connectionTest.latency
     });
 
-    logger.apiResponse(200, processingTime, { userId: newUser.id, email: newUser.email });
+    logger.apiResponse(200, processingTime, { 
+      userId: insertResult.user.id, 
+      email: insertResult.user.email,
+      dbLatency: connectionTest.latency
+    });
+    
     return response;
 
   } catch (error) {

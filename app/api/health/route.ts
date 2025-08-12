@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isSupabaseConfigured, supabase } from '@/lib/supabase';
+import { isSupabaseConfigured, dbOperations } from '@/lib/supabase';
 import { logger } from '@/lib/logger';
 
 export async function GET(request: NextRequest) {
@@ -30,30 +30,30 @@ export async function GET(request: NextRequest) {
         status: 'unknown' as string, // Will be updated below if we can test connection
         error: undefined as string | undefined,
         code: undefined as string | undefined,
-        connectionTest: undefined as string | undefined
+        connectionTest: undefined as string | undefined,
+        latency: undefined as number | undefined
       }
     };
 
     // Test database connection if configured
-    if (isSupabaseConfigured() && supabase) {
+    if (isSupabaseConfigured()) {
       try {
-        // Simple query to test connection
-        const { data, error } = await supabase
-          .from('early_access_users')
-          .select('count')
-          .limit(1);
+        // Use enhanced database operations for connection testing
+        const connectionTest = await dbOperations.testConnection();
         
-        if (error) {
+        if (!connectionTest.connected) {
           healthChecks.database.status = 'error';
-          healthChecks.database.error = error.message;
-          healthChecks.database.code = error.code;
+          healthChecks.database.error = connectionTest.error;
+          healthChecks.database.connectionTest = 'failed';
         } else {
           healthChecks.database.status = 'healthy';
           healthChecks.database.connectionTest = 'success';
+          healthChecks.database.latency = connectionTest.latency;
         }
       } catch (dbError) {
         healthChecks.database.status = 'error';
         healthChecks.database.error = dbError instanceof Error ? dbError.message : 'Unknown error';
+        healthChecks.database.connectionTest = 'exception';
       }
     } else {
       healthChecks.database.status = 'not_configured';
