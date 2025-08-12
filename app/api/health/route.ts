@@ -16,7 +16,8 @@ export async function GET(request: NextRequest) {
         memory: process.memoryUsage(),
         nodeVersion: process.version,
         platform: process.platform,
-        arch: process.arch
+        arch: process.arch,
+        processingTimeMs: undefined as number | undefined
       },
       environment: {
         nodeEnv: process.env.NODE_ENV || 'undefined',
@@ -26,7 +27,10 @@ export async function GET(request: NextRequest) {
       },
       database: {
         configured: isSupabaseConfigured(),
-        status: 'unknown' // Will be updated below if we can test connection
+        status: 'unknown' as string, // Will be updated below if we can test connection
+        error: undefined as string | undefined,
+        code: undefined as string | undefined,
+        connectionTest: undefined as string | undefined
       }
     };
 
