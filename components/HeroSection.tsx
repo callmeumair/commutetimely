@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Clock, Bell, MapPin } from 'lucide-react'
 import { config } from '@/lib/config'
-import { fadeInUp, fadeInDown, scaleIn, float, staggerContainer, staggerItem } from '@/lib/animations'
+import { fadeInUp, scaleIn, float, staggerContainer, staggerItem } from '@/lib/animations'
 import AnimatedButton from '@/components/ui/AnimatedButton'
 
 const HeroSection = () => {

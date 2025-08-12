@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Clock, Bell, Car, Bike, Zap, Shield, Smartphone } from 'lucide-react'
+import { Clock, Bell, Car, Zap, Shield, Smartphone } from 'lucide-react'
 
 const features = [
   {

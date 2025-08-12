@@ -26,12 +26,14 @@ export const PerformanceMonitor = ({ show = false }: PerformanceMonitorProps) =>
     const updateMetrics = () => {
       // Memory usage (if available)
       if ('memory' in performance) {
-        const memory = (performance as any).memory
-        setMetrics(prev => ({
-          ...prev,
-          memory: Math.round(memory.usedJSHeapSize / 1024 / 1024), // MB
-          fps
-        }))
+        const memory = (performance as Performance & { memory?: { usedJSHeapSize: number } }).memory
+        if (memory) {
+          setMetrics(prev => ({
+            ...prev,
+            memory: Math.round(memory.usedJSHeapSize / 1024 / 1024), // MB
+            fps
+          }))
+        }
       }
 
       // DOM size

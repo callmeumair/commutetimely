@@ -97,7 +97,7 @@ export const ServiceWorkerProvider = ({ children }: ServiceWorkerProviderProps) 
         <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-600 text-white px-4 py-2 rounded-lg shadow-lg">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-            <span className="text-sm font-medium">You're offline</span>
+            <span className="text-sm font-medium">You&apos;re offline</span>
           </div>
         </div>
       )}

@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 
 interface StructuredDataProps {
   type: 'organization' | 'website' | 'webpage' | 'mobileapp'
-  data: any
+  data: Record<string, unknown>
 }
 
-export const StructuredData = ({ type, data }: StructuredDataProps) => {
+export const StructuredData = ({ data }: StructuredDataProps) => {
   useEffect(() => {
     // Add structured data to the document head
     const script = document.createElement('script')
