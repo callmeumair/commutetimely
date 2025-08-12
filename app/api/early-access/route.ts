@@ -5,6 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     // Log the incoming request
     console.log('Early access API called');
+    console.log('Request headers:', Object.fromEntries(request.headers.entries()));
     
     const { email, name, useCase, location, commuteChallenge, device } = await request.json();
 
@@ -13,7 +14,14 @@ export async function POST(request: NextRequest) {
       console.log('Validation failed: Invalid email');
       return NextResponse.json(
         { error: 'Valid email is required' },
-        { status: 400 }
+        { 
+          status: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        }
       );
     }
 
@@ -22,7 +30,14 @@ export async function POST(request: NextRequest) {
       console.error('Supabase not configured - missing environment variables');
       return NextResponse.json(
         { error: 'Database not configured. Please contact support.' },
-        { status: 500 }
+        { 
+          status: 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        }
       );
     }
 
@@ -39,7 +54,14 @@ export async function POST(request: NextRequest) {
       console.error('Error checking existing user:', checkError);
       return NextResponse.json(
         { error: 'Failed to check existing user' },
-        { status: 500 }
+        { 
+          status: 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        }
       );
     }
 
@@ -47,7 +69,14 @@ export async function POST(request: NextRequest) {
       console.log('User already exists:', email);
       return NextResponse.json(
         { error: 'Email already registered for early access' },
-        { status: 409 }
+        { 
+          status: 409,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        }
       );
     }
 
@@ -73,7 +102,14 @@ export async function POST(request: NextRequest) {
       console.error('Error inserting user:', insertError);
       return NextResponse.json(
         { error: 'Failed to save user data' },
-        { status: 500 }
+        { 
+          status: 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        }
       );
     }
 
@@ -91,7 +127,14 @@ export async function POST(request: NextRequest) {
     };
 
     console.log('Returning success response:', response);
-    return NextResponse.json(response, { status: 200 });
+    return NextResponse.json(response, { 
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
 
   } catch (error) {
     console.error('Early access API error:', error);
@@ -103,6 +146,25 @@ export async function POST(request: NextRequest) {
     };
     
     console.log('Returning error response:', errorResponse);
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { 
+      status: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
   }
+}
+
+// Handle OPTIONS request for CORS preflight
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
 }
