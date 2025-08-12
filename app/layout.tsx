@@ -3,12 +3,14 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import ServiceWorkerProvider from '@/components/providers/ServiceWorkerProvider'
 
-// Optimize font loading with display swap
-const inter = Inter({ 
+// Optimized font loading with fallbacks
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   preload: true,
-  fallback: ['system-ui', 'arial'],
+  fallback: ['system-ui', 'arial', 'sans-serif'],
+  adjustFontFallback: true,
+  variable: '--font-inter',
 })
 
 export const viewport: Viewport = {
@@ -16,76 +18,93 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+  viewportFit: 'cover',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#0ea5e9' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+    { media: '(prefers-color-scheme: dark)', color: '#0ea5e9' }
   ],
+  colorScheme: 'dark light'
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://commutetimely.com'),
   title: {
     default: 'CommuteTimely - Never Be Late Again',
     template: '%s | CommuteTimely'
   },
-  description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling. Join the waitlist for early access.',
+  description: 'Smart notifications that tell you exactly when to leave. Never be late again with AI-powered commute timing that adapts to traffic, weather, and your schedule.',
   keywords: [
-    'commute',
-    'notifications', 
-    'traffic',
-    'smart notifications',
-    'leave on time',
-    'commute app',
+    'commute timing',
+    'traffic notifications',
+    'smart commute',
+    'arrival time',
     'traffic alerts',
-    'public transport',
-    'walking',
-    'cycling',
-    'car',
-    'bus',
-    'train',
+    'commute optimization',
+    'smart notifications',
+    'traffic prediction',
     'commute planning',
-    'time management'
+    'arrival prediction',
+    'traffic monitoring',
+    'commute efficiency',
+    'smart travel',
+    'traffic intelligence',
+    'commute automation'
   ],
   authors: [{ name: 'CommuteTimely Team' }],
   creator: 'CommuteTimely',
   publisher: 'CommuteTimely',
-  category: 'Productivity',
-  classification: 'Mobile Application',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
+  metadataBase: new URL('https://commutetimely.com'),
   alternates: {
     canonical: '/',
     languages: {
       'en-US': '/en-US',
+      'en': '/en',
     },
   },
   openGraph: {
-    title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
+    type: 'website',
+    locale: 'en_US',
     url: 'https://commutetimely.com',
     siteName: 'CommuteTimely',
+    title: 'CommuteTimely - Never Be Late Again',
+    description: 'Smart notifications that tell you exactly when to leave. Never be late again with AI-powered commute timing.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CommuteTimely - Smart commute notifications app',
+        alt: 'CommuteTimely - Smart Commute Notifications',
         type: 'image/jpeg',
       },
     ],
-    locale: 'en_US',
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
-    images: ['/og-image.jpg'],
-    creator: '@commutetimely',
     site: '@commutetimely',
+    creator: '@commutetimely',
+    title: 'CommuteTimely - Never Be Late Again',
+    description: 'Smart notifications that tell you exactly when to leave. Never be late again.',
+    images: ['/og-image.jpg'],
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'apple-mobile-web-app-title': 'CommuteTimely',
+    'application-name': 'CommuteTimely',
+    'msapplication-TileColor': '#0ea5e9',
+    'msapplication-config': '/browserconfig.xml',
+    'theme-color': '#0ea5e9',
+    'color-scheme': 'dark light',
   },
   robots: {
     index: true,
@@ -98,19 +117,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-  },
-  other: {
-    'mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'CommuteTimely',
-    'application-name': 'CommuteTimely',
-    'msapplication-TileColor': '#0ea5e9',
-    'msapplication-config': '/browserconfig.xml',
-  },
+  category: 'productivity',
 }
 
 export default function RootLayout({
@@ -121,46 +128,176 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Preconnect to external domains for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://forms.gle" />
         <link rel="preconnect" href="https://forms.gle" />
         
+        {/* Critical resource preloading */}
+        <link rel="preload" href="/_next/static/css/app/globals.css" as="style" />
+        <link rel="preload" href="/_next/static/chunks/main.js" as="script" />
+        <link rel="preload" href="/_next/static/chunks/webpack.js" as="script" />
+        
         {/* PWA Meta Tags */}
         <link rel="manifest" href="/manifest.json" />
-        <meta name="application-name" content="CommuteTimely" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="CommuteTimely" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-        <meta name="msapplication-TileColor" content="#0ea5e9" />
-        <meta name="msapplication-tap-highlight" content="no" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0ea5e9" />
         
-        {/* Apple Touch Icons */}
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icon-192x192.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/icon-152x152.png" />
-        
-        {/* Favicon */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon-16x16.png" />
-        <link rel="mask-icon" href="/icon-192x192.png" color="#0ea5e9" />
-        
-        {/* Preload critical resources */}
+        {/* Favicon preloading */}
         <link rel="preload" href="/icon-192x192.png" as="image" />
         <link rel="preload" href="/icon-512x512.png" as="image" />
+        
+        {/* Critical CSS inline for faster rendering */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              /* Critical CSS for above-the-fold content */
+              body { 
+                margin: 0; 
+                font-family: system-ui, -apple-system, sans-serif;
+                background-color: #0f172a;
+                color: #ffffff;
+              }
+              .loading { 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                height: 100vh; 
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+              }
+              .spinner {
+                width: 40px;
+                height: 40px;
+                border: 3px solid #0ea5e9;
+                border-top: 3px solid transparent;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+              }
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            `,
+          }}
+        />
+        
+        {/* Performance monitoring script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Performance monitoring
+              (function() {
+                'use strict';
+                
+                // Early performance metrics
+                window.performance.mark('app-start');
+                
+                // Device capability detection
+                window.deviceCapabilities = {
+                  isLowEnd: navigator.hardwareConcurrency ? navigator.hardwareConcurrency < 4 : false,
+                  isMobile: /mobile|android|iphone|ipad|phone/i.test(navigator.userAgent.toLowerCase()),
+                  hasReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+                  connection: navigator.connection ? navigator.connection.effectiveType : 'unknown'
+                };
+                
+                // Performance budget monitoring
+                const observer = new PerformanceObserver((list) => {
+                  for (const entry of list.getEntries()) {
+                    if (entry.entryType === 'navigation') {
+                      const navEntry = entry;
+                      if (navEntry.loadEventEnd - navEntry.loadEventStart > 3000) {
+                        console.warn('⚠️ Load time exceeded 3s budget');
+                      }
+                    }
+                  }
+                });
+                
+                try {
+                  observer.observe({ entryTypes: ['navigation'] });
+                } catch (e) {
+                  // Fallback for older browsers
+                }
+                
+                // Resource hints for better performance
+                if (window.deviceCapabilities.isMobile) {
+                  const link = document.createElement('link');
+                  link.rel = 'preload';
+                  link.as = 'style';
+                  link.href = '/_next/static/css/app/globals.css';
+                  document.head.appendChild(link);
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body className={`${inter.className} antialiased bg-dark-950 text-white overflow-x-hidden`}>
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg">
+        {/* Skip to main content link for accessibility */}
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+        >
           Skip to main content
         </a>
+        
+        {/* Service Worker Provider for PWA functionality */}
         <ServiceWorkerProvider>
           {children}
         </ServiceWorkerProvider>
+        
+        {/* Main content anchor */}
         <div id="main-content" />
+        
+        {/* Performance monitoring script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Post-load performance monitoring
+              window.addEventListener('load', function() {
+                window.performance.mark('app-loaded');
+                window.performance.measure('app-load-time', 'app-start', 'app-loaded');
+                
+                const loadTime = performance.getEntriesByName('app-load-time')[0];
+                if (loadTime && loadTime.duration > 5000) {
+                  console.warn('⚠️ App load time exceeded 5s budget:', Math.round(loadTime.duration), 'ms');
+                }
+                
+                // Report performance metrics
+                if ('sendBeacon' in navigator) {
+                  const metrics = {
+                    loadTime: Math.round(loadTime?.duration || 0),
+                    deviceType: window.deviceCapabilities?.isMobile ? 'mobile' : 'desktop',
+                    connection: window.deviceCapabilities?.connection || 'unknown',
+                    timestamp: Date.now()
+                  };
+                  
+                  navigator.sendBeacon('/api/metrics', JSON.stringify(metrics));
+                }
+              });
+              
+              // Intersection Observer for lazy loading
+              if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      const img = entry.target;
+                      img.src = img.dataset.src;
+                      img.classList.remove('lazy');
+                      imageObserver.unobserve(img);
+                    }
+                  });
+                });
+                
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                  imageObserver.observe(img);
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   )

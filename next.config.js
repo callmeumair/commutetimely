@@ -9,71 +9,31 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000, // 1 year
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'forms.gle',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
-  
-  // Experimental features for better performance
+
+  // Experimental features for performance
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    optimizeCss: false, // Disabled due to critters error
   },
-  
-  // Turbopack configuration (stable)
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
-  },
-  
-  // Webpack configuration for optimization
-  webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size in production
-    if (!dev && !isServer) {
-      config.optimization.splitChunks.cacheGroups = {
-        ...config.optimization.splitChunks.cacheGroups,
-        framer: {
-          test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-          name: 'framer-motion',
-          chunks: 'all',
-          priority: 10,
-        },
-        lucide: {
-          test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
-          name: 'lucide-react',
-          chunks: 'all',
-          priority: 9,
-        },
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          priority: 5,
-        },
-      }
-      
-      // Enable tree shaking
-      config.optimization.usedExports = true
-      config.optimization.sideEffects = false
-    }
-    
-    // SVG optimization
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    })
-    
-    return config
-  },
-  
-  // Compiler options for better tree-shaking
+
+  // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  
+
   // Headers for security and performance
   async headers() {
     return [
@@ -96,14 +56,10 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
           },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
         ],
       },
       {
-        source: '/static/(.*)',
+        source: '/_next/static/(.*)',
         headers: [
           {
             key: 'Cache-Control',
@@ -111,8 +67,24 @@ const nextConfig = {
           },
         ],
       },
-    ]
+    ];
   },
-}
 
-module.exports = nextConfig
+  // TypeScript configuration
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+
+  // ESLint configuration
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+
+  // React strict mode for better development
+  reactStrictMode: true,
+  
+  // Swc minification
+  swcMinify: true,
+};
+
+module.exports = nextConfig;
