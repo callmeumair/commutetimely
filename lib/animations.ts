@@ -394,7 +394,7 @@ export const microInteractions = {
 }
 
 // Export all variants
-export default {
+const animations = {
   springConfig,
   lightSpringConfig,
   mobileSpringConfig,
@@ -420,3 +420,5 @@ export default {
   successStates,
   microInteractions
 }
+
+export default animations

@@ -51,9 +51,9 @@ const PerformanceMonitor = () => {
     // Connection detection
     let connection: 'slow-2g' | '2g' | '3g' | '4g' | '5g' | 'wifi' | 'ethernet' = 'wifi'
     if ('connection' in navigator) {
-      const conn = (navigator as any).connection
-      if (conn.effectiveType) {
-        connection = conn.effectiveType as any
+      const conn = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection
+      if (conn?.effectiveType) {
+        connection = conn.effectiveType as 'slow-2g' | '2g' | '3g' | '4g' | '5g' | 'wifi' | 'ethernet'
       }
     }
     
@@ -120,14 +120,16 @@ const PerformanceMonitor = () => {
   // Network monitoring
   const monitorNetwork = useCallback(() => {
     if ('connection' in navigator) {
-      const conn = (navigator as any).connection
-      conn.addEventListener('change', () => {
-        const connection = conn.effectiveType || 'wifi'
-        setMetrics(prev => ({
-          ...prev,
-          deviceInfo: { ...prev.deviceInfo, connection }
-        }))
-      })
+      const conn = (navigator as Navigator & { connection?: { effectiveType?: string; addEventListener: (event: string, listener: EventListener) => void } }).connection
+      if (conn) {
+        conn.addEventListener('change', () => {
+          const connection = (conn.effectiveType || 'wifi') as 'slow-2g' | '2g' | '3g' | '4g' | '5g' | 'wifi' | 'ethernet'
+          setMetrics(prev => ({
+            ...prev,
+            deviceInfo: { ...prev.deviceInfo, connection }
+          }))
+        })
+      }
     }
   }, [])
 
@@ -159,7 +161,7 @@ const PerformanceMonitor = () => {
       ...prev,
       lighthouse: { performance, accessibility, bestPractices, seo, pwa }
     }))
-  }, [metrics.fps, metrics.memory, metrics.loadTime, metrics.domSize])
+  }, [metrics])
 
   useEffect(() => {
     measurePerformance()

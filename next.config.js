@@ -83,8 +83,7 @@ const nextConfig = {
   // React strict mode for better development
   reactStrictMode: true,
   
-  // Swc minification
-  swcMinify: true,
+
 };
 
 module.exports = nextConfig;

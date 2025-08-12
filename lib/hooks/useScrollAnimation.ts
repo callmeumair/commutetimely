@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react'
-import { useInView } from 'framer-motion'
+import { useInView, Variants } from 'framer-motion'
 import { getDeviceCapabilities, getOptimizedVariants } from '@/lib/animations'
 
 // Enhanced scroll animation hook with performance monitoring
-export const useScrollAnimation = (amount = 0.1, variants?: any) => {
+export const useScrollAnimation = (amount = 0.1, variants?: Variants) => {
   const ref = useRef<HTMLElement>(null)
   const [performance, setPerformance] = useState({
     fps: 60,
@@ -11,7 +11,7 @@ export const useScrollAnimation = (amount = 0.1, variants?: any) => {
     renderTime: 0
   })
   
-  const deviceCapabilities = useMemo(() => getDeviceCapabilities(), [])
+  const deviceCapabilities = getDeviceCapabilities()
   
   const isInView = useInView(ref, {
     amount,
@@ -62,7 +62,7 @@ export const useScrollAnimation = (amount = 0.1, variants?: any) => {
       return getOptimizedVariants(variants)
     }
     return undefined
-  }, [variants, deviceCapabilities])
+  }, [variants])
 
   return { 
     ref, 
@@ -74,9 +74,9 @@ export const useScrollAnimation = (amount = 0.1, variants?: any) => {
 }
 
 // Staggered animation hook for lists
-export const useStaggerAnimation = (items: any[], staggerDelay = 0.08) => {
+export const useStaggerAnimation = (items: unknown[], staggerDelay = 0.08) => {
   const [animatedItems, setAnimatedItems] = useState<Set<number>>(new Set())
-  const deviceCapabilities = useMemo(() => getDeviceCapabilities(), [])
+  const deviceCapabilities = getDeviceCapabilities()
   
   // Adjust stagger delay based on device capabilities
   const optimizedStaggerDelay = useMemo(() => {
@@ -130,7 +130,7 @@ export const useAnimationPerformance = () => {
     deviceType: 'desktop'
   })
 
-  const deviceCapabilities = useMemo(() => getDeviceCapabilities(), [])
+  const deviceCapabilities = getDeviceCapabilities()
 
   // FPS monitoring
   useEffect(() => {
@@ -240,7 +240,8 @@ export const useIntersectionObserver = (
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (!ref.current) return
+    const currentRef = ref.current
+    if (!currentRef) return
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -254,12 +255,10 @@ export const useIntersectionObserver = (
       }
     )
 
-    observer.observe(ref.current)
+    observer.observe(currentRef)
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
-      }
+      observer.unobserve(currentRef)
     }
   }, [options])
 
@@ -267,7 +266,7 @@ export const useIntersectionObserver = (
 }
 
 // Throttled scroll hook for performance
-export const useThrottledScroll = (delay = 16) => {
+export const useThrottledScroll = () => {
   const [scrollY, setScrollY] = useState(0)
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down')
   const lastScrollY = useRef(0)
@@ -297,12 +296,12 @@ export const useThrottledScroll = (delay = 16) => {
 }
 
 // Device-aware animation hook
-export const useDeviceAwareAnimation = (variants: any) => {
-  const deviceCapabilities = useMemo(() => getDeviceCapabilities(), [])
+export const useDeviceAwareAnimation = (variants: Variants) => {
+  const deviceCapabilities = getDeviceCapabilities()
   
   const optimizedVariants = useMemo(() => {
     return getOptimizedVariants(variants)
-  }, [variants, deviceCapabilities])
+  }, [variants])
 
   const animationConfig = useMemo(() => {
     if (deviceCapabilities.hasReducedMotion) {
@@ -324,7 +323,7 @@ export const useDeviceAwareAnimation = (variants: any) => {
   }
 }
 
-export default {
+const scrollAnimationHooks = {
   useScrollAnimation,
   useStaggerAnimation,
   useAnimationPerformance,
@@ -332,4 +331,6 @@ export default {
   useThrottledScroll,
   useDeviceAwareAnimation
 }
+
+export default scrollAnimationHooks
 
