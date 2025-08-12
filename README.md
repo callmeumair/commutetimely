@@ -1,244 +1,116 @@
 # CommuteTimely
 
-A modern, minimalist landing page for CommuteTimely - the smart commute timing app that tells you exactly when to leave.
+**Never Be Late Again** - Smart notifications that tell you exactly when to leave.
 
-## 🚀 Features
+## 🚀 About
 
-- **Hero Section**: Compelling headline with app mockup
-- **How It Works**: 3-step process explanation
-- **Benefits**: Key value propositions with icons
-- **Target Users**: Perfect for office workers, university staff, and delivery drivers
-- **Email Capture**: Waitlist signup form
-- **Footer**: Links and company information
+CommuteTimely is an upcoming mobile application launching in September 2025 that helps users arrive at their destinations on time through intelligent leave-time alerts.
 
-## 🎨 Design System
+## ✨ Core Features
 
-### CSS Variables & Design Tokens
-CommuteTimely uses a comprehensive CSS variables system for consistent design and easy maintenance:
+### 🕐 Leave-Time Alerts
+- Proactive "Leave by X:XX AM" notifications
+- Helps users arrive at their destination on time
+- Adapts to real-time traffic and transit conditions
 
-#### Colors
-- **Brand Colors**: Primary teal (#2EBFA5), secondary dark (#0C3F3F), accent gold (#FFC773)
-- **Neutral Palette**: 10-step grayscale from 50-900 with improved contrast ratios
-- **Status Colors**: Success, warning, error, and info colors with accessibility compliance
+### 📱 Smart Notifications
+- Push notifications deliver leave-time alerts
+- Real-time adaptation to traffic changes
+- Weather and schedule consideration
 
-#### Spacing
-- **Consistent Scale**: 4px base unit (0.25rem) with 12 standardized spacing values
-- **Responsive Spacing**: Mobile-first approach with breakpoint-specific adjustments
-- **Component Spacing**: Predefined spacing for buttons, cards, forms, and sections
+### 🚗 Multi-Modal Support
+- **Car**: Real-time traffic data integration
+- **Public Transit**: Bus and train schedule optimization
+- **Biking**: Route and weather consideration
+- **Walking**: Pedestrian-friendly timing
 
-#### Typography
-- **Font Scale**: 12px to 96px with consistent ratios
-- **Line Heights**: Optimized for readability (1.25x to 2x)
-- **Font Weights**: Complete range from 100-900
-- **Letter Spacing**: Tighter to wider options for design flexibility
+### 🎯 Customizable Settings
+- Set regular destinations (work, home, gym, etc.)
+- Preferred arrival times
+- Notification preferences
+- Route customization
 
-#### Animation & Motion
-- **Duration Variables**: Fast (150ms), normal (300ms), slow (500ms)
-- **Motion Preferences**: Respects `prefers-reduced-motion` user settings
-- **Smooth Transitions**: Enhanced hover effects and micro-interactions
+### 📊 Real-Time Data
+- Live traffic information
+- Transit schedule updates
+- Historical pattern analysis
+- AI-powered timing calculations
 
-### Accessibility Features
-- **Enhanced Focus Styles**: Visible focus indicators for keyboard navigation
-- **High Contrast Support**: Automatic adjustments for high contrast mode
-- **Motion Preferences**: Comprehensive support for users who prefer reduced motion
-- **Touch Targets**: Minimum 44px touch targets for mobile accessibility
-- **Screen Reader Support**: ARIA labels and semantic HTML structure
-- **Keyboard Navigation**: Full keyboard accessibility with focus trapping
+## 🛠️ Technology Stack
 
-## 🛠️ Tech Stack
+- **Frontend**: Next.js 15, React 18, TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Deployment**: Ready for Vercel/Netlify
 
-- **Frontend**: React 18 + TypeScript
-- **Styling**: Tailwind CSS with custom CSS variables
-- **Fonts**: Inter (Google Fonts)
-- **Icons**: Emoji icons for simplicity
-- **Deployment**: Ready for Vercel
-- **Accessibility**: axe-core integration and WCAG compliance
+## 🚧 Development Status
 
-## 📦 Installation
+- **Current Phase**: Pre-launch development
+- **Launch Date**: September 2025
+- **Platforms**: iOS and Android
+- **Availability**: Waitlist signup open
 
-1. Clone the repository:
+## 📱 How It Works
+
+1. **Set Your Route** - Add destinations and arrival times
+2. **Get Smart Timing** - AI analyzes traffic and calculates departure time
+3. **Receive Notifications** - Get "Leave by X:XX AM" alerts
+4. **Arrive On Time** - Leave with confidence, arrive punctually
+
+## 🔗 Waitlist Signup
+
+Join our waitlist for early access: [https://forms.gle/your-waitlist-form-id](https://forms.gle/your-waitlist-form-id)
+
+## 🎨 Design Features
+
+- **Modern UI/UX**: Clean, intuitive interface
+- **Responsive Design**: Optimized for all screen sizes
+- **Accessibility**: WCAG compliant with focus management
+- **Dark Theme**: Easy on the eyes with high contrast
+- **Smooth Animations**: Subtle, purposeful motion design
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 ```bash
-git clone <your-repo-url>
-cd commutetimely
-```
+# Clone the repository
+git clone https://github.com/yourusername/commutetimely.git
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-3. Start the development server:
-```bash
-npm start
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically
-
-### Manual Build
-
-```bash
-npm run build
-```
-
-The build folder will contain your production-ready files.
-
-## 🎨 Design System Usage
-
-### CSS Variables
-The design system is built around CSS custom properties for easy theming and maintenance:
-
-```css
-/* Using CSS variables directly */
-.my-component {
-  background-color: hsl(var(--brand-primary));
-  padding: var(--space-lg);
-  border-radius: var(--radius-md);
-  transition: all var(--duration-normal) ease;
-}
-```
-
-### TypeScript Utilities
-Access design tokens programmatically:
-
-```typescript
-import { CSS_VARIABLES } from '@/lib/utils/css-variables';
-
-// Access colors, spacing, typography
-const primaryColor = CSS_VARIABLES.colors.brand.primary;
-const largeSpacing = CSS_VARIABLES.spacing.lg;
-const headingSize = CSS_VARIABLES.typography.fontSize['2xl'];
-```
-
-### Tailwind Integration
-Custom Tailwind classes that use the CSS variables:
-
-```tsx
-<div className="bg-brand text-white p-lg rounded-md transition-all duration-normal">
-  Content with design system tokens
-</div>
-```
-
-## ♿ Accessibility Implementation
-
-### Focus Management
-- **Focus-visible**: Only shows focus indicators for keyboard navigation
-- **Focus Trapping**: Modal and dropdown focus management
-- **Skip Links**: Quick navigation for screen reader users
-
-### Motion & Animation
-- **Reduced Motion**: Respects user preferences for motion sensitivity
-- **Motion-Safe Classes**: Conditional animation based on user settings
-- **High Contrast**: Automatic focus ring adjustments
-
-### Screen Reader Support
-- **Semantic HTML**: Proper heading hierarchy and landmark regions
-- **ARIA Labels**: Descriptive labels for interactive elements
-- **Live Regions**: Dynamic content announcements
-
-### Testing & Validation
-- **axe-core**: Automated accessibility testing
-- **Manual Testing**: Keyboard navigation and screen reader testing
-- **WCAG Compliance**: AA level accessibility standards
-
-## 📧 Email Integration
-
-For the email capture form, you can integrate with:
-
-- **Formspree**: Simple form handling
-- **Mailchimp**: Email marketing integration
-- **Google Sheets**: Manual email collection
-- **Custom backend**: Node.js/Express API
-
-## 🎯 Customization
-
-### Design System Updates
-1. **Colors**: Modify values in `app/globals.css` under `:root`
-2. **Spacing**: Update spacing scale in `lib/constants/spacing.ts`
-3. **Typography**: Adjust font sizes in `lib/constants/typography.ts`
-4. **Tailwind Config**: Update `tailwind.config.js` for custom utilities
-
-### Content Updates
-Edit the content in each component file:
-- `components/HeroSection.tsx`
-- `components/HowItWorksSection.tsx`
-- `components/FeaturesSection.tsx`
-- `components/FAQSection.tsx`
-
-### Accessibility Customization
-- **Focus Styles**: Modify focus ring variables in CSS
-- **Motion Preferences**: Adjust animation durations
-- **High Contrast**: Customize high contrast mode adjustments
-
-## 📱 Responsive Design
-
-The website is fully responsive and optimized for:
-- **Mobile**: 320px+ with touch-friendly interactions
-- **Tablet**: 768px+ with optimized layouts
-- **Desktop**: 1024px+ with enhanced features
-- **Large Screens**: 1280px+ with maximum content width
-
-### Responsive Utilities
-- **Container Classes**: Automatic max-width and padding adjustments
-- **Section Spacing**: Breakpoint-specific padding and margins
-- **Touch Targets**: Minimum 44px for mobile accessibility
-
-## 🔧 Development
-
-```bash
-# Start development server
-npm start
-
-# Run tests
-npm test
+# Run development server
+npm run dev
 
 # Build for production
 npm run build
-
-# Accessibility testing
-npm run test:a11y
 ```
 
-### Development Guidelines
-- **CSS Variables**: Use design system tokens instead of hardcoded values
-- **Accessibility**: Test with keyboard navigation and screen readers
-- **Motion**: Ensure animations respect user preferences
-- **Responsive**: Test across all breakpoints
-
-## 📚 Documentation
-
-- **CSS Variables**: See `CSS_VARIABLES_README.md` for detailed design system documentation
-- **Accessibility**: Check `lib/accessibility.ts` for utility functions
-- **Constants**: Review `lib/constants/` for design token definitions
-- **Utilities**: Explore `lib/utils/` for helper functions
+### Environment Setup
+Create a `.env.local` file with:
+```env
+NEXT_PUBLIC_WAITLIST_FORM_URL=https://forms.gle/your-waitlist-form-id
+```
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is proprietary software. All rights reserved.
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes following accessibility guidelines
-4. Test with keyboard navigation and screen readers
-5. Submit a pull request
+Currently accepting waitlist signups. Development contributions will open closer to launch.
 
-### Contribution Guidelines
-- **Accessibility First**: Ensure all changes maintain or improve accessibility
-- **Design System**: Use existing CSS variables and design tokens
-- **Testing**: Test across devices and assistive technologies
-- **Documentation**: Update relevant documentation for new features
+## 📞 Contact
+
+- **Website**: [commutetimely.com](https://commutetimely.com)
+- **Waitlist**: [Join our waitlist](https://forms.gle/your-waitlist-form-id)
+- **Launch**: September 2025
 
 ---
 
-Built with ❤️ by the CommuteTimely team
-
-*This project prioritizes accessibility and inclusive design, ensuring all users can navigate and interact with the application effectively.*
+**CommuteTimely** - Transforming daily commutes, one notification at a time. 🚀

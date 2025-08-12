@@ -2,101 +2,89 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Bell, CheckCircle } from 'lucide-react'
-import stepAnimation from '@/public/lottie/step-animation.json'
-import LazyLottie from './LazyLottie'
+import { config } from '@/lib/config'
 
 const steps = [
   {
     icon: MapPin,
-    title: "Set Your Routes",
-    description: "Add your regular destinations - work, home, gym, or anywhere you go frequently.",
-    color: "from-blue-500 to-cyan-500",
+    title: "Set Your Route",
+    description: "Add your regular destinations - work, home, gym, or anywhere you go frequently. Set your preferred arrival time.",
+    color: "from-primary-500 to-primary-600",
     delay: 0
   },
   {
     icon: Clock,
     title: "Get Smart Timing",
-    description: "Our AI analyzes traffic patterns and calculates the perfect departure time for you.",
-    color: "from-purple-500 to-pink-500",
+    description: "Our AI analyzes real-time traffic patterns, transit schedules, and calculates the perfect departure time for you.",
+    color: "from-accent-500 to-accent-600",
     delay: 0.2
   },
   {
     icon: Bell,
     title: "Receive Notifications",
-    description: "Get timely alerts that adapt to real-time traffic conditions and your schedule.",
-    color: "from-green-500 to-emerald-500",
+    description: "Get timely 'Leave by X:XX AM' alerts that adapt to traffic changes, weather, and your schedule.",
+    color: "from-primary-600 to-primary-700",
     delay: 0.4
   },
   {
     icon: CheckCircle,
     title: "Arrive On Time",
-    description: "Leave with confidence knowing you'll arrive exactly when you need to be there.",
-    color: "from-orange-500 to-red-500",
+    description: "Leave with confidence knowing you'll arrive exactly when you need to be there, every single time.",
+    color: "from-accent-600 to-accent-700",
     delay: 0.6
   }
 ]
 
 const HowItWorksSection = () => {
   return (
-    <motion.section 
-      className="w-full bg-black relative"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <div className="w-full h-full flex flex-col justify-center">
-        <motion.div 
-          className="text-center mb-12 sm:mb-16"
+    <section id="how-it-works" className="section-padding bg-dark-950 relative">
+      <div className="container-max">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             How It <span className="gradient-text">Works</span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-dark-300 max-w-3xl mx-auto">
             Four simple steps to never be late again
           </p>
         </motion.div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-cyan-500 hidden lg:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-500 to-accent-500 hidden lg:block"></div>
           
-          <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+          <div className="space-y-12 lg:space-y-16">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: step.delay }}
                 viewport={{ once: true }}
+                className={`flex flex-col lg:flex-row items-center gap-8 ${
+                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                }`}
               >
-                {/* Lottie Animation */}
-                <motion.div 
+                {/* Icon */}
+                <motion.div
                   className="relative flex-shrink-0"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg p-2`}>
-                    <LazyLottie 
-                      animationData={stepAnimation} 
-                      loop={true} 
-                      className="w-full h-full"
-                      style={{ maxWidth: '80px', maxHeight: '80px' }}
-                    />
+                  <div className={`w-24 h-24 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg p-2`}>
+                    <step.icon className="w-12 h-12 text-white" />
                   </div>
                   {/* Timeline dot */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-6 sm:h-6 bg-black rounded-full border-4 border-blue-500 hidden lg:block"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-dark-950 rounded-full border-4 border-primary-500 hidden lg:block"></div>
                 </motion.div>
 
                 {/* Content */}
-                <motion.div 
+                <motion.div
                   className={`text-center lg:text-left flex-1 ${
                     index % 2 === 0 ? 'lg:text-left' : 'lg:text-right'
                   }`}
@@ -105,11 +93,11 @@ const HowItWorksSection = () => {
                   transition={{ duration: 0.8, delay: step.delay + 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 hover:bg-white/10 transition-all duration-300">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+                  <div className="glass p-6 sm:p-8 hover:bg-white/15 transition-all duration-300">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
+                    <p className="text-lg text-dark-300 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -120,30 +108,31 @@ const HowItWorksSection = () => {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div 
-          className="text-center mt-12 sm:mt-16"
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           viewport={{ once: true }}
+          className="text-center mt-16 sm:mt-20"
         >
-          <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-6 sm:p-8 border border-blue-500/20">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+          <div className="glass p-8 sm:p-10 border border-primary-500/20 max-w-3xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
               Ready to Get Started?
             </h3>
-            <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
-              Download CommuteTimely today and experience the difference
+            <p className="text-lg text-dark-300 mb-6">
+              Join our waitlist and be one of the first to experience the future of commute planning
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base">
-                Download Now
-              </button>
-            </div>
+            <button 
+              onClick={() => window.open(config.WAITLIST_FORM_URL, '_blank')}
+              className="btn-primary text-lg px-8 py-4"
+            >
+              Join Waitlist
+            </button>
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 
-export default HowItWorksSection 
+export default HowItWorksSection

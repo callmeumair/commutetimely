@@ -1,25 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import './critical.css'
-import ResponsiveHeader from '@/components/ResponsiveHeader'
-import Footer from '@/components/Footer'
-import { Analytics } from '@vercel/analytics/react'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-  preload: true,
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: {
-    default: 'CommuteTimely - Never Be Late Again',
-    template: '%s | CommuteTimely'
-  },
-  description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling. Join the waitlist for early access.',
-  keywords: ['commute', 'notifications', 'traffic', 'smart notifications', 'leave on time', 'commute app', 'traffic alerts', 'public transport', 'walking', 'cycling', 'waitlist'],
+  title: 'CommuteTimely - Never Be Late Again',
+  description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling.',
+  keywords: 'commute, notifications, traffic, smart notifications, leave on time, commute app, traffic alerts, public transport, walking, cycling, car, bus, train',
   authors: [{ name: 'CommuteTimely Team' }],
   creator: 'CommuteTimely',
   publisher: 'CommuteTimely',
@@ -33,26 +21,27 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://commutetimely.com',
     title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling.',
+    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
+    url: 'https://commutetimely.com',
     siteName: 'CommuteTimely',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CommuteTimely - Smart commute notifications',
+        alt: 'CommuteTimely - Smart commute notifications app',
       },
     ],
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CommuteTimely - Never Be Late Again',
-    description: 'Smart notifications that tell you exactly when to leave. Works with car, bus, train, walking, and cycling.',
+    description: 'Smart notifications that tell you exactly when to leave. Works with all transport modes.',
     images: ['/og-image.jpg'],
+    creator: '@commutetimely',
   },
   robots: {
     index: true,
@@ -65,9 +54,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
 }
 
 export default function RootLayout({
@@ -76,282 +62,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <head>
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://via.placeholder.com" />
-        
-        {/* DNS prefetch for additional performance */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="//images.unsplash.com" />
-        
-        {/* Preload critical resources */}
-        <link rel="preload" href="/critical.css" as="style" />
-        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        
-        {/* Prefetch non-critical resources */}
-        <link rel="prefetch" href="/non-critical.css" as="style" />
-        
-        {/* Critical CSS inlining for above-the-fold content */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            /* Critical above-the-fold styles */
-            :root {
-              --background: 0 0% 100%;
-              --foreground: 222.2 84% 4.9%;
-              --brand-primary: 174 64% 41%;
-              --brand-primary-light: 174 64% 51%;
-              --brand-secondary: 180 67% 15%;
-              --brand-accent: 39 100% 71%;
-            }
-            * { box-sizing: border-box; }
-            body {
-              margin: 0;
-              padding: 0;
-              min-height: 100vh;
-              background-color: hsl(var(--background));
-              color: hsl(var(--foreground));
-              font-family: 'Inter', system-ui, -apple-system, sans-serif;
-              line-height: 1.5;
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-            }
-            h1, h2, h3, h4, h5, h6 {
-              margin: 0 0 1rem 0;
-              font-weight: 700;
-              line-height: 1.2;
-            }
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.25rem; }
-            h3 { font-size: 1.875rem; }
-            .container-max {
-              width: 100%;
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 1rem;
-            }
-            @media (min-width: 640px) {
-              .container-max { padding: 0 1.5rem; }
-            }
-            @media (min-width: 768px) {
-              .container-max { padding: 0 2rem; }
-            }
-            @media (min-width: 1024px) {
-              .container-max { padding: 0 3rem; }
-            }
-            .btn-primary {
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              padding: 1rem 2rem;
-              background: hsl(var(--brand-primary));
-              color: white;
-              border: none;
-              border-radius: 0.375rem;
-              font-size: 1.125rem;
-              font-weight: 600;
-              text-decoration: none;
-              cursor: pointer;
-            }
-            .btn-primary:hover {
-              background: hsl(var(--brand-primary-light));
-            }
-            *:focus-visible {
-              outline: 2px solid hsl(var(--brand-primary));
-              outline-offset: 2px;
-            }
-          `
-        }} />
-        
-        {/* Performance monitoring and error logging */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Performance monitoring
-              if ('performance' in window) {
-                window.addEventListener('load', () => {
-                  setTimeout(() => {
-                    const perfData = performance.getEntriesByType('navigation')[0];
-                    if (perfData) {
-                      const metrics = {
-                        'Time to First Byte': perfData.responseStart - perfData.requestStart + 'ms',
-                        'DOM Content Loaded': perfData.domContentLoadedEventEnd - perfData.navigationStart + 'ms',
-                        'Load Complete': perfData.loadEventEnd - perfData.navigationStart + 'ms'
-                      };
-                      console.log('Performance Metrics:', metrics);
-                      
-                      // Send to analytics if available
-                      if (window.gtag) {
-                        window.gtag('event', 'performance_metrics', metrics);
-                      }
-                    }
-                  }, 0);
-                });
-              }
-              
-              // CLS monitoring
-              let clsValue = 0;
-              let clsEntries = [];
-              
-              function updateCLS() {
-                clsValue = clsEntries.reduce((sum, entry) => sum + entry.value, 0);
-                console.log('Current CLS:', clsValue);
-                
-                // Send to analytics if available
-                if (window.gtag && clsValue > 0.1) {
-                  window.gtag('event', 'high_cls', { value: clsValue });
-                }
-              }
-              
-              if ('PerformanceObserver' in window) {
-                const observer = new PerformanceObserver((list) => {
-                  for (const entry of list.getEntries()) {
-                    if (entry.entryType === 'layout-shift' && !entry.hadRecentInput) {
-                      clsEntries.push(entry);
-                      updateCLS();
-                    }
-                  }
-                });
-                observer.observe({ entryTypes: ['layout-shift'] });
-              }
-              
-              // Error logging and monitoring
-              window.addEventListener('error', (event) => {
-                console.error('JavaScript Error:', event.error);
-                
-                // Send to analytics if available
-                if (window.gtag) {
-                  window.gtag('event', 'exception', {
-                    description: event.error?.message || 'Unknown error',
-                    fatal: false
-                  });
-                }
-              });
-              
-              // Unhandled promise rejection monitoring
-              window.addEventListener('unhandledrejection', (event) => {
-                console.error('Unhandled Promise Rejection:', event.reason);
-                
-                // Send to analytics if available
-                if (window.gtag) {
-                  window.gtag('event', 'exception', {
-                    description: 'Unhandled promise rejection: ' + (event.reason?.message || 'Unknown'),
-                    fatal: false
-                  });
-                }
-              });
-              
-              // Core Web Vitals monitoring
-              if ('PerformanceObserver' in window) {
-                // LCP monitoring
-                const lcpObserver = new PerformanceObserver((list) => {
-                  const entries = list.getEntries();
-                  const lastEntry = entries[entries.length - 1];
-                  console.log('LCP:', lastEntry.startTime + 'ms');
-                  
-                  if (window.gtag) {
-                    window.gtag('event', 'lcp', { value: lastEntry.startTime });
-                  }
-                });
-                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-                
-                // FID monitoring
-                const fidObserver = new PerformanceObserver((list) => {
-                  const entries = list.getEntries();
-                  entries.forEach(entry => {
-                    console.log('FID:', entry.processingStart - entry.startTime + 'ms');
-                    
-                    if (window.gtag) {
-                      window.gtag('event', 'fid', { value: entry.processingStart - entry.startTime });
-                    }
-                  });
-                });
-                fidObserver.observe({ entryTypes: ['first-input'] });
-              }
-            `
-          }}
-        />
-      </head>
-      <body className={inter.className}>
-        {/* Skip link for accessibility */}
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        
-        <ResponsiveHeader />
-        
-        <main id="main-content" role="main">
-          {children}
-        </main>
-        
-        <Footer />
-        
-        {/* Analytics */}
-        <Analytics />
-        
-        {/* Performance optimization: Lazy load non-critical resources */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Lazy load non-critical resources
-              function lazyLoadCSS(href) {
-                const link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = href;
-                document.head.appendChild(link);
-              }
-              
-              // Load non-critical CSS after page load
-              window.addEventListener('load', () => {
-                setTimeout(() => {
-                  lazyLoadCSS('/non-critical.css');
-                }, 1000);
-              });
-              
-              // Load non-critical CSS when user starts interacting
-              let userInteracted = false;
-              const interactionEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-              
-              function handleUserInteraction() {
-                if (!userInteracted) {
-                  userInteracted = true;
-                  lazyLoadCSS('/non-critical.css');
-                  // Remove event listeners after first interaction
-                  interactionEvents.forEach(event => {
-                    document.removeEventListener(event, handleUserInteraction);
-                  });
-                }
-              }
-              
-              interactionEvents.forEach(event => {
-                document.addEventListener(event, handleUserInteraction, { passive: true });
-              });
-              
-              // Intersection Observer for lazy loading images
-              if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                  entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                      const img = entry.target;
-                      img.src = img.dataset.src;
-                      img.classList.remove('lazy');
-                      observer.unobserve(img);
-                    }
-                  });
-                });
-                
-                document.querySelectorAll('img[data-src]').forEach(img => {
-                  imageObserver.observe(img);
-                });
-              }
-            `
-          }}
-        />
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} antialiased bg-dark-950 text-white overflow-x-hidden`}>
+        {children}
       </body>
     </html>
   )
-} 
+}

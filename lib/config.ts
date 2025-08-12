@@ -1,23 +1,25 @@
-// Configuration file for CommuteTimely
 export const config = {
-  // App Store URLs
-  PLAY_STORE_URL: 'https://play.google.com/store/apps/details?id=commute.timely.app',
-  APP_STORE_URL: 'https://apps.apple.com/app/id1234567890',
+  // Waitlist form URL - update this with your actual Google Forms or other form URL
+  WAITLIST_FORM_URL: process.env.NEXT_PUBLIC_WAITLIST_FORM_URL || 'https://forms.gle/your-waitlist-form-id',
   
-  // Google Form URL for waitlist signups
-  GOOGLE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeRJwfZSSbOO9Wk1KXyNA76KUxX7z5u1e6OffhpedktAjRzTA/viewform?usp=sharing&ouid=110482851055122385002',
-  
-  // App settings
+  // App information
   APP_NAME: 'CommuteTimely',
-  APP_DESCRIPTION: 'Your commute, optimized.',
+  APP_DESCRIPTION: 'Smart notifications that tell you exactly when to leave',
+  LAUNCH_DATE: 'September 2025',
   
-  // Social links
-  TWITTER_URL: 'https://twitter.com/commutetimely',
-  GITHUB_URL: 'https://github.com/commutetimely',
+  // Contact information
+  WEBSITE_URL: 'https://commutetimely.com',
+  SUPPORT_EMAIL: 'support@commutetimely.com',
   
-  // Email settings
-  EMAIL_SOURCE: 'CommuteTimely Website',
+  // Social media (update with actual URLs when available)
+  TWITTER_HANDLE: '@commutetimely',
+  LINKEDIN_URL: 'https://linkedin.com/company/commutetimely',
+  
+  // Features
+  SUPPORTED_TRANSPORT_MODES: ['car', 'bus', 'train', 'biking', 'walking'],
+  SUPPORTED_PLATFORMS: ['iOS', 'Android'],
   
   // Analytics (optional)
-  GOOGLE_ANALYTICS_ID: '', // Add your GA4 ID here if needed
-} 
+  GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GA_ID,
+  MIXPANEL_TOKEN: process.env.NEXT_PUBLIC_MIXPANEL_TOKEN,
+} as const

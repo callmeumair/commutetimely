@@ -1,12 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { config } from '../lib/config'
-import AnimatedButton from './AnimatedButton'
+import { Clock, Bell, MapPin } from 'lucide-react'
+import { config } from '@/lib/config'
 
 const HeroSection = () => {
   const handleJoinWaitlist = () => {
-    window.open(config.GOOGLE_FORM_URL, '_blank')
+    // Open the waitlist form in a new tab
+    window.open(config.WAITLIST_FORM_URL, '_blank')
   }
 
   const handleLearnMore = () => {
@@ -14,89 +15,107 @@ const HeroSection = () => {
   }
 
   return (
-    <motion.section 
-      className="w-full min-h-screen flex items-center justify-center py-16 sm:py-20 md:py-24 relative overflow-hidden hero-section"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      {/* Hero animated background shapes */}
-      <div className="absolute -top-32 -left-32 w-[40vw] h-[40vw] bg-[#0f3d3e]/20 rounded-full blur-3xl z-0 animate-blob1 hero-bg-element" />
-      <div className="absolute -bottom-32 -right-32 w-[30vw] h-[30vw] bg-[#FFC773]/15 rounded-full blur-2xl z-0 animate-blob2 hero-bg-element" />
-      <div className="absolute inset-0 bg-gradient-radial from-[#FFC773]/10 via-transparent to-transparent z-0 pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center py-16 sm:py-20 md:py-24 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-950 to-dark-900" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.1),transparent_50%)]" />
       
-      {/* Additional subtle background elements */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#2EBFA5]/5 rounded-full blur-2xl z-0 hero-bg-element" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FFC773]/5 rounded-full blur-3xl z-0 hero-bg-element" />
+      {/* Floating Icons */}
+      <motion.div
+        className="absolute top-20 left-10 text-primary-400/20"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Clock className="w-16 h-16" />
+      </motion.div>
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-8 sm:space-y-10 lg:space-y-12 xl:space-y-16">
-          
+      <motion.div
+        className="absolute top-32 right-20 text-accent-400/20"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Bell className="w-12 h-12" />
+      </motion.div>
+      
+      <motion.div
+        className="absolute bottom-32 left-20 text-primary-400/20"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <MapPin className="w-14 h-14" />
+      </motion.div>
+
+      <div className="relative z-10 container-max text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="space-y-6 sm:space-y-8 lg:space-y-10"
+        >
           {/* Main Headline */}
-          <motion.div 
-            className="space-y-4 sm:space-y-6 lg:space-y-8"
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
           >
-            <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white leading-tight max-w-5xl mx-auto hero-headline"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            >
-              Never Be Late
-              <span className="block gradient-text mt-2 sm:mt-3 lg:mt-4">Again.</span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-300 leading-relaxed max-w-4xl mx-auto hero-subheadline"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            >
-              One smart notification that tells you exactly when to leave. 
-              <span className="block text-[#2EBFA5] font-semibold mt-2">
-                Transform your daily commute with AI-powered timing.
-              </span>
-            </motion.p>
-          </motion.div>
-          
+            Never Be Late
+            <span className="block gradient-text mt-2">Again</span>
+          </motion.h1>
+
+          {/* Subheadline */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-dark-300 max-w-4xl mx-auto leading-relaxed"
+          >
+            Smart notifications that tell you exactly when to leave. 
+            <span className="block text-primary-400 font-semibold mt-2">
+              Works with car, bus, train, walking, and cycling.
+            </span>
+          </motion.p>
+
           {/* CTA Buttons */}
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center items-center"
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
           >
-            <AnimatedButton 
+            <button
               onClick={handleJoinWaitlist}
-              variant="primary"
-              size="lg"
-              withSparkle={true}
-              className="flex items-center justify-center space-x-3 w-full sm:w-auto touch-target text-base sm:text-lg lg:text-xl px-8 sm:px-10 lg:px-12 py-4 sm:py-5 lg:py-6 hero-cta-button"
-              aria-label="Get started with CommuteTimely - Join waitlist for early access"
+              className="btn-primary text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
             >
-              <span className="text-xl sm:text-2xl lg:text-3xl">🚀</span>
-              <span>Get Started</span>
-            </AnimatedButton>
-            
-            <AnimatedButton 
+              <span className="text-2xl">🚀</span>
+              <span>Join Waitlist</span>
+            </button>
+
+            <button
               onClick={handleLearnMore}
-              variant="outline"
-              size="lg"
-              className="flex items-center justify-center space-x-3 w-full sm:w-auto touch-target text-base sm:text-lg lg:text-xl px-8 sm:px-10 lg:px-12 py-4 sm:py-5 lg:py-6 hero-cta-button"
-              aria-label="Learn more about CommuteTimely features and benefits"
+              className="btn-secondary text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 flex items-center gap-3"
             >
-              <span className="text-xl sm:text-2xl lg:text-3xl">ℹ️</span>
+              <span className="text-2xl">ℹ️</span>
               <span>Learn More</span>
-            </AnimatedButton>
+            </button>
           </motion.div>
-        </div>
+
+          {/* Launch Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            className="mt-8 sm:mt-12"
+          >
+            <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-500/30 rounded-full px-6 py-3 text-primary-300">
+              <span className="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></span>
+              <span className="text-sm sm:text-base font-medium">Launching September 2025</span>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 
-export default HeroSection 
+export default HeroSection

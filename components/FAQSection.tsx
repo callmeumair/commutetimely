@@ -1,12 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
+import { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 
 const faqs = [
   {
@@ -44,38 +40,38 @@ const faqs = [
 ]
 
 const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
   return (
-    <motion.section 
-      className="w-full bg-black relative py-12 sm:py-16 md:py-20"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <div className="w-full flex flex-col justify-center">
-        <motion.div 
-          className="text-center mb-8 sm:mb-12"
+    <section id="faq" className="section-padding bg-dark-950 relative">
+      <div className="container-max">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Frequently Asked <span className="gradient-text">Questions</span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-dark-300 max-w-3xl mx-auto">
             Everything you need to know about CommuteTimely
           </p>
         </motion.div>
 
-        <motion.div 
-          className="max-w-4xl mx-auto"
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
         >
-          <Accordion type="single" collapsible className="space-y-3">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -83,48 +79,63 @@ const FAQSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="glass border border-white/10 hover:border-white/20 transition-all duration-300"
               >
-                <AccordionItem 
-                  value={`item-${index}`}
-                  className="glass border border-white/10 hover:border-white/20 transition-all duration-200"
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full text-left text-white hover:text-primary-400 transition-colors duration-300 px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark-950"
                 >
-                  <AccordionTrigger className="text-left text-white hover:text-brand-accent transition-colors duration-200 px-4 sm:px-6 py-3 sm:py-4">
-                    <span className="text-base sm:text-lg font-semibold">{faq.question}</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 sm:px-6 pb-3 sm:pb-4">
-                    <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-semibold">{faq.question}</span>
+                    {openIndex === index ? (
+                      <ChevronUp className="w-5 h-5 text-primary-400" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-dark-300" />
+                    )}
+                  </div>
+                </button>
+                
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-6 pb-4"
+                  >
+                    <p className="text-dark-300 leading-relaxed">
                       {faq.answer}
                     </p>
-                  </AccordionContent>
-                </AccordionItem>
+                  </motion.div>
+                )}
               </motion.div>
             ))}
-          </Accordion>
+          </div>
         </motion.div>
 
         {/* Contact CTA */}
-        <motion.div 
-          className="text-center mt-8 sm:mt-12"
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
+          className="text-center mt-16 sm:mt-20"
         >
-          <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl p-4 sm:p-6 border border-blue-500/20">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">
+          <div className="glass p-8 border border-primary-500/20 max-w-3xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
               Still Have Questions?
             </h3>
-            <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">
+            <p className="text-lg text-dark-300 mb-6">
               Our support team is here to help you get the most out of CommuteTimely
             </p>
-            <button className="btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base">
+            <button className="btn-primary text-lg px-8 py-4">
               Contact Support
             </button>
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 
-export default FAQSection 
+export default FAQSection

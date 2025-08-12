@@ -1,187 +1,117 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Twitter, Github, Mail, Heart } from 'lucide-react'
-import { config } from '../lib/config'
+import Link from 'next/link'
+import { Heart } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="fullscreen-section bg-black border-t border-gray-800">
-      <div className="container-max w-full h-full flex flex-col justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {/* Brand */}
-          <motion.div 
-            className="sm:col-span-2"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+    <footer className="bg-dark-900 border-t border-dark-700">
+      <div className="container-max py-12 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Logo and Description */}
+          <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#0f3d3e] to-[#2EBFA5] rounded-xl flex items-center justify-center" aria-hidden="true">
+              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center">
                 <span className="text-white font-bold text-lg">CT</span>
               </div>
               <span className="text-2xl font-bold text-white">CommuteTimely</span>
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-dark-300 text-lg leading-relaxed max-w-md">
               Your commute, optimized. Never be late again with smart notifications that adapt to traffic conditions.
             </p>
-            <div className="flex space-x-4">
-              <motion.a
-                href={config.TWITTER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#2EBFA5] transition-all duration-[var(--duration-normal)] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black touch-target"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Follow us on Twitter"
-              >
-                <Twitter className="w-5 h-5" aria-hidden="true" />
-              </motion.a>
-              <motion.a
-                href={config.GITHUB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#2EBFA5] transition-all duration-[var(--duration-normal)] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black touch-target"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="View our GitHub repository"
-              >
-                <Github className="w-5 h-5" aria-hidden="true" />
-              </motion.a>
-              <motion.a
-                href="mailto:support@commutetimely.com"
-                className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-gray-400 hover:text-[#2EBFA5] transition-all duration-[var(--duration-normal)] focus:outline-none focus:ring-2 focus:ring-[#2EBFA5]/50 focus:ring-offset-2 focus:ring-offset-black touch-target"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Contact us via email"
-              >
-                <Mail className="w-5 h-5" aria-hidden="true" />
-              </motion.a>
-            </div>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-3">
+          <div>
+            <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
+            <ul className="space-y-2">
               <li>
-                <a href="/features" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="#features" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   Features
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/how-it-works" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="#how-it-works" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   How It Works
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/faq" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="#faq" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   FAQ
-                </a>
+                </Link>
               </li>
-            </ul>
-          </motion.div>
-
-          {/* Legal */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-lg font-semibold text-white mb-4">Legal</h3>
-            <ul className="space-y-3">
               <li>
-                <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="/privacy-policy" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/terms-of-service" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="/terms-of-service" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="/support" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
-                  Support
-                </a>
+                </Link>
               </li>
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Contact */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
-            <ul className="space-y-3">
+          {/* Support */}
+          <div>
+            <h3 className="text-white font-semibold text-lg mb-4">Support</h3>
+            <ul className="space-y-2">
               <li>
-                <a href="/contact" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
-                  Contact Us
-                </a>
+                <Link href="/contact" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
+                  Contact
+                </Link>
               </li>
               <li>
-                <a href="/testimonials" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="/testimonials" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   Testimonials
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/blog" className="text-gray-400 hover:text-white transition-colors duration-[var(--duration-normal)] hover:translate-x-1 inline-block">
+                <Link href="/blog" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Bottom section */}
-        <motion.div 
-          className="mt-12 pt-8 border-t border-gray-800 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-            <p className="text-gray-400 text-sm">
+        {/* Bottom Section */}
+        <div className="border-t border-dark-700 mt-12 pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-dark-300 text-sm">
               © {currentYear} CommuteTimely. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-2 text-gray-400 text-sm">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 animate-pulse" aria-hidden="true" />
-              <span>for commuters</span>
+            </div>
+            
+            <div className="flex items-center space-x-4 text-sm">
+              <Link href="/sitemap" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
+                Sitemap
+              </Link>
+              <span className="text-dark-500">•</span>
+              <Link href="/accessibility" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
+                Accessibility
+              </Link>
+              <span className="text-dark-500">•</span>
+              <Link href="/cookies" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
+                Cookie Policy
+              </Link>
             </div>
           </div>
-          
-          {/* Additional links */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs text-gray-500">
-            <a href="/sitemap" className="hover:text-gray-300 transition-colors duration-[var(--duration-normal)]">
-              Sitemap
-            </a>
-            <span>•</span>
-            <a href="/accessibility" className="hover:text-gray-300 transition-colors duration-[var(--duration-normal)]">
-              Accessibility
-            </a>
-            <span>•</span>
-            <a href="/cookies" className="hover:text-gray-300 transition-colors duration-[var(--duration-normal)]">
-              Cookie Policy
-            </a>
+
+          {/* Made with love */}
+          <div className="text-center mt-6">
+            <p className="text-dark-400 text-sm flex items-center justify-center gap-2">
+              Made with
+              <Heart className="w-4 h-4 text-red-500 fill-current" />
+              for commuters
+            </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   )
 }
 
-export default Footer 
+export default Footer
