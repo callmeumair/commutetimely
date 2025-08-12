@@ -4,12 +4,18 @@ import { Button } from "./button";
 import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu } from "lucide-react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 import { motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Prevent hydration issues
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,7 +61,7 @@ export function Hero() {
   ];
 
   return (
-    <section ref={ref} className="relative min-h-screen bg-black overflow-hidden pt-20">
+    <section ref={ref} className="relative min-h-screen bg-black overflow-hidden pt-20" suppressHydrationWarning>
       {/* Hero Background Effects */}
       <div className="absolute inset-0">
         {/* Cyber Grid */}
@@ -122,12 +128,10 @@ export function Hero() {
                 animate={{
                   boxShadow: [
                     "0 0 20px rgba(37, 99, 235, 0.3)",
-                    "0 0 40px rgba(6, 182, 212, 0.3)",
-                    "0 0 20px rgba(139, 92, 246, 0.3)",
-                    "0 0 20px rgba(37, 99, 235, 0.3)"
+                    "0 0 40px rgba(6, 182, 212, 0.4)"
                   ]
                 }}
-                transition={{ duration: 4, repeat: Infinity }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
                 <motion.div 
                   className="w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full"

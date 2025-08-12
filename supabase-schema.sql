@@ -46,4 +46,3 @@ CREATE TRIGGER update_early_access_users_updated_at
 -- Grant necessary permissions
 GRANT USAGE ON SCHEMA public TO anon, authenticated;
 GRANT ALL ON public.early_access_users TO anon, authenticated;
-GRANT USAGE, SELECT ON SEQUENCE public.early_access_users_id_seq TO anon, authenticated;

@@ -127,12 +127,10 @@ export function HowItWorks() {
               animate={{
                 boxShadow: [
                   "0 0 20px rgba(37, 99, 235, 0.3)",
-                  "0 0 40px rgba(6, 182, 212, 0.3)",
-                  "0 0 20px rgba(139, 92, 246, 0.3)",
-                  "0 0 20px rgba(37, 99, 235, 0.3)"
+                  "0 0 40px rgba(6, 182, 212, 0.4)"
                 ]
               }}
-              transition={{ duration: 4, repeat: Infinity }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
               <span className="text-sm sm:font-semibold text-white">How It Works</span>

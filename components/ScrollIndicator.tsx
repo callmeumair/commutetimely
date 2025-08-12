@@ -19,12 +19,10 @@ export function ScrollIndicator() {
         animate={{
           boxShadow: [
             "0 0 10px rgba(37, 99, 235, 0.5)",
-            "0 0 20px rgba(6, 182, 212, 0.7)",
-            "0 0 15px rgba(139, 92, 246, 0.6)",
-            "0 0 10px rgba(37, 99, 235, 0.5)"
+            "0 0 20px rgba(6, 182, 212, 0.7)"
           ]
         }}
-        transition={{ duration: 2, repeat: Infinity }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       />
       
       {/* Glow Effect */}

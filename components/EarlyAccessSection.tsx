@@ -2,8 +2,12 @@
 
 import { ArrowRight, Check, Calendar, Smartphone, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { EarlyAccessModal } from './EarlyAccessModal'
 
 export default function EarlyAccessSection() {
+  const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -107,13 +111,19 @@ export default function EarlyAccessSection() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
               className="btn-primary text-lg px-8 py-4"
-              onClick={() => window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank')}
+              onClick={() => setIsEarlyAccessModalOpen(true)}
             >
               Get Early Access
             </motion.button>
           </motion.div>
         </div>
       </div>
+      
+      {/* Early Access Modal */}
+      <EarlyAccessModal 
+        isOpen={isEarlyAccessModalOpen}
+        onClose={() => setIsEarlyAccessModalOpen(false)}
+      />
     </section>
   )
 }

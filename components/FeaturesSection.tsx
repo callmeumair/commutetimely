@@ -145,17 +145,15 @@ export function Features() {
         >
           <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
             <motion.div 
-              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500/10 via-cyan-400/10 to-purple-500/10 backdrop-blur-sm rounded-full border border-white/10 mb-4 sm:mb-6"
+              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500/10 via-cyan-400/10 to-purple-500/10 backdrop-blur-sm rounded-full border border-white/10"
               whileHover={{ scale: 1.05 }}
               animate={{
                 boxShadow: [
                   "0 0 20px rgba(37, 99, 235, 0.3)",
-                  "0 0 40px rgba(6, 182, 212, 0.3)",
-                  "0 0 20px rgba(139, 92, 246, 0.3)",
-                  "0 0 20px rgba(37, 99, 235, 0.3)"
+                  "0 0 40px rgba(6, 182, 212, 0.4)"
                 ]
               }}
-              transition={{ duration: 4, repeat: Infinity }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
               <span className="text-sm sm:font-semibold text-white">Powerful Features</span>
@@ -208,12 +206,10 @@ export function Features() {
                 animate={{
                   boxShadow: [
                     "0 0 20px rgba(255, 255, 255, 0.05)",
-                    "0 0 40px rgba(37, 99, 235, 0.1)",
-                    "0 0 20px rgba(6, 182, 212, 0.1)",
-                    "0 0 20px rgba(255, 255, 255, 0.05)"
+                    "0 0 40px rgba(37, 99, 235, 0.15)"
                   ]
                 }}
-                transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
               >
                 <motion.div 
                   className="relative w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4"
@@ -279,11 +275,10 @@ export function Features() {
                   animate={{
                     boxShadow: [
                       `0 0 20px ${feature.glowColor.replace('0.4', '0.1')}`,
-                      `0 0 40px ${feature.glowColor.replace('0.4', '0.2')}`,
-                      `0 0 20px ${feature.glowColor.replace('0.4', '0.1')}`
+                      `0 0 40px ${feature.glowColor.replace('0.4', '0.3')}`
                     ]
                   }}
-                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
                 />
                 
                 <div className="relative h-full p-6 sm:p-8">

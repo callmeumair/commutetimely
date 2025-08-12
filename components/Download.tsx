@@ -5,10 +5,12 @@ import { Smartphone, Mail, Calendar, ArrowRight, CheckCircle, Star } from "lucid
 import { useState } from "react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import { EarlyAccessModal } from "./EarlyAccessModal";
 
 export function Download() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -218,9 +220,10 @@ export function Download() {
                           whileTap={{ scale: 0.98 }}
                         >
                           <Button 
-                            type="submit"
-                            aria-label="Submit email for early access"
+                            type="button"
+                            aria-label="Open early access form"
                             className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+                            onClick={() => setIsEarlyAccessModalOpen(true)}
                           >
                             Get Early Access
                             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -287,6 +290,12 @@ export function Download() {
           </motion.div>
         </motion.div>
       </div>
+      
+      {/* Early Access Modal */}
+      <EarlyAccessModal 
+        isOpen={isEarlyAccessModalOpen}
+        onClose={() => setIsEarlyAccessModalOpen(false)}
+      />
     </section>
   );
 }

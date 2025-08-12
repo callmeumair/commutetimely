@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Mail, User, MapPin, Clock, Smartphone, CheckCircle } from 'lucide-react';
 import { Button } from './button';
@@ -14,6 +14,7 @@ interface EarlyAccessModalProps {
 
 export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
   const { isLoading, isSubmitted, error, submitEarlyAccess, reset } = useEarlyAccess();
+  const [isMounted, setIsMounted] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -22,6 +23,13 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
     commuteChallenge: '',
     device: ''
   });
+
+  // Prevent hydration issues
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,12 +70,14 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <motion.div
+        key={isOpen ? 'open' : 'closed'}
         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        suppressHydrationWarning
       >
         <motion.div
           className="relative w-full max-w-md bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-white/10 shadow-2xl overflow-hidden"

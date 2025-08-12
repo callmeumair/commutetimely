@@ -11,6 +11,7 @@ import { Footer } from "@/components/Footer";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { motion } from "motion/react";
 import { useEffect } from "react";
+import { ClientOnlyParticles } from "@/components/ClientOnlyParticles";
 
 export default function Home() {
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
+      suppressHydrationWarning
     >
       {/* Animated Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -133,28 +135,10 @@ export default function Home() {
           }}
         />
         
-        {/* Particle System - Reduced for mobile */}
-        {Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 768 ? 8 : 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-0.5 h-0.5 sm:w-1 sm:h-1 bg-blue-400 rounded-full opacity-60 sm:opacity-100"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -50, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+        {/* Client-only Particle System - Temporarily disabled to fix hydration */}
+        {/* <div suppressHydrationWarning>
+          <ClientOnlyParticles />
+        </div> */}
       </div>
 
       <ScrollIndicator />

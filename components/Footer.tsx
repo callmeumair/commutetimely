@@ -75,9 +75,7 @@ export function Footer() {
                   animate={{
                     boxShadow: [
                       "0 0 20px rgba(37, 99, 235, 0.3)",
-                      "0 0 40px rgba(6, 182, 212, 0.4)",
-                      "0 0 20px rgba(139, 92, 246, 0.3)",
-                      "0 0 20px rgba(37, 99, 235, 0.3)"
+                      "0 0 40px rgba(6, 182, 212, 0.4)"
                     ]
                   }}
                 >
@@ -130,11 +128,10 @@ export function Footer() {
                   animate={{
                     boxShadow: [
                       "0 0 10px rgba(255, 255, 255, 0.05)",
-                      "0 0 20px rgba(37, 99, 235, 0.1)",
-                      "0 0 10px rgba(255, 255, 255, 0.05)"
+                      "0 0 20px rgba(37, 99, 235, 0.15)"
                     ]
                   }}
-                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
                   aria-label={`Visit our ${social.name} page`}
                 >
                   <social.icon className="w-5 h-5" />

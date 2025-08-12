@@ -4,16 +4,23 @@ import { Button } from "./button";
 import { MapPin, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { EarlyAccessModal } from "./EarlyAccessModal";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
+    // Set initial scroll state after mounting
+    handleScroll();
+    setIsMounted(true);
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -63,9 +70,7 @@ export function Header() {
                 animate={{
                   boxShadow: [
                     "0 0 20px rgba(37, 99, 235, 0.3)",
-                    "0 0 40px rgba(6, 182, 212, 0.4)",
-                    "0 0 20px rgba(139, 92, 246, 0.3)",
-                    "0 0 20px rgba(37, 99, 235, 0.3)"
+                    "0 0 40px rgba(6, 182, 212, 0.4)"
                   ]
                 }}
               >
@@ -142,7 +147,7 @@ export function Header() {
             >
               <Button 
                 className="relative group bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 hover:from-blue-700 hover:via-cyan-600 hover:to-purple-700 text-white font-semibold px-6 xl:px-8 py-2.5 xl:py-3 rounded-xl shadow-2xl overflow-hidden"
-                onClick={() => window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank')}
+                onClick={() => setIsEarlyAccessModalOpen(true)}
               >
                 {/* Shimmer Effect */}
                 <motion.div
@@ -244,7 +249,7 @@ export function Header() {
                     className="w-full bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 hover:from-blue-700 hover:via-cyan-600 hover:to-purple-700 text-white font-semibold py-4 rounded-xl shadow-2xl relative overflow-hidden"
                     onClick={() => {
                       closeMobileMenu();
-                      window.open('https://forms.gle/zFuKctQGXTVjKT967', '_blank');
+                      setIsEarlyAccessModalOpen(true);
                     }}
                   >
                     <motion.div
@@ -267,6 +272,12 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Early Access Modal */}
+      <EarlyAccessModal 
+        isOpen={isEarlyAccessModalOpen}
+        onClose={() => setIsEarlyAccessModalOpen(false)}
+      />
     </motion.header>
   );
 }
