@@ -78,7 +78,7 @@ export const metadata: Metadata = {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'CommuteTimely - Know exactly when to leave',
+        alt: 'CommuteTimely - Know exactly when to leave for your commute',
         type: 'image/svg+xml',
       },
     ],
