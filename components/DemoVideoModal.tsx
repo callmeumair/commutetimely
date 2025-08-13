@@ -14,6 +14,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -52,6 +53,30 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         e.preventDefault();
         handleFullscreen();
       }
+      if (e.key === ' ') {
+        e.preventDefault();
+        handlePlayPause();
+      }
+      if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
+        handleMuteToggle();
+      }
+      if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        handleRestart();
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (videoRef.current) {
+          videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
+        }
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (videoRef.current) {
+          videoRef.current.currentTime = Math.min(videoRef.current.duration, videoRef.current.currentTime + 10);
+        }
+      }
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
@@ -85,6 +110,21 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+      if (newVolume === 0) {
+        setIsMuted(true);
+        videoRef.current.muted = true;
+      } else if (isMuted) {
+        setIsMuted(false);
+        videoRef.current.muted = false;
+      }
     }
   };
 
@@ -183,6 +223,11 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 <div className="min-w-0 flex-1">
                   <h2 className="text-base sm:text-lg font-bold text-white truncate">CommuteTimely Demo</h2>
                   <p className="text-xs sm:text-sm text-gray-400 truncate">See how it works in action</p>
+                  <div className="hidden sm:flex items-center space-x-2 mt-1">
+                    <span className="text-xs text-gray-500">Space: Play/Pause</span>
+                    <span className="text-xs text-gray-500">M: Mute</span>
+                    <span className="text-xs text-gray-500">F: Fullscreen</span>
+                  </div>
                 </div>
               </div>
               
@@ -203,7 +248,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
               <video
                 ref={videoRef}
                 src="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4"
-                controls
                 muted={isMuted}
                 className="w-full h-full object-cover rounded-none sm:rounded-lg touch-manipulation"
                 onTimeUpdate={handleTimeUpdate}
@@ -211,6 +255,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={() => setIsPlaying(false)}
+                onVolumeChange={(e) => setIsMuted(e.currentTarget.muted)}
                 poster="/images/IMG_750E9EF883FD-1.jpeg"
                 playsInline
                 preload="metadata"
@@ -222,30 +267,61 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 Your browser does not support the video tag.
               </video>
               
+              {/* Click to Play Overlay */}
+              {!isPlaying && (
+                <div 
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer"
+                  onClick={handlePlayPause}
+                >
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 sm:p-6 border border-white/30">
+                    <Play className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
+                  </div>
+                </div>
+              )}
+
               {/* Custom Video Controls Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pointer-events-auto">
                   <div className="flex items-center justify-center space-x-2 sm:space-x-4">
                     <Button
                       onClick={handlePlayPause}
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm"
+                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm min-w-[80px] sm:min-w-[100px]"
+                      title={isPlaying ? 'Pause video (Space)' : 'Play video (Space)'}
                     >
                       {isPlaying ? <Pause className="w-3 h-3 sm:w-4 sm:h-4" /> : <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
                       <span className="hidden sm:inline ml-1">{isPlaying ? 'Pause' : 'Play'}</span>
                     </Button>
                     
-                    <Button
-                      onClick={handleMuteToggle}
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm"
-                    >
-                      {isMuted ? <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" /> : <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />}
-                    </Button>
+                    <div className="flex items-center space-x-2 group/volume">
+                      <Button
+                        onClick={handleMuteToggle}
+                        variant="outline"
+                        className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm"
+                        title={isMuted ? 'Unmute video (M)' : 'Mute video (M)'}
+                      >
+                        {isMuted ? <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" /> : <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />}
+                      </Button>
+                      
+                      {/* Volume Slider */}
+                      <div className="hidden group-hover/volume:block sm:block w-16 sm:w-20">
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.1"
+                          value={isMuted ? 0 : volume}
+                          onChange={handleVolumeChange}
+                          className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                          title="Volume control"
+                        />
+                      </div>
+                    </div>
                     
                     <Button
                       onClick={handleRestart}
                       variant="outline"
                       className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm"
+                      title="Restart video (R)"
                     >
                       <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4" />
                     </Button>
