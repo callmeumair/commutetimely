@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isSupabaseConfigured, dbOperations } from '@/lib/supabase';
+import { isSupabaseConfigured, isSupabaseAdminConfigured, dbOperations } from '@/lib/supabase';
 import { logger } from '@/lib/logger';
 
 export async function GET(request: NextRequest) {
@@ -23,15 +23,24 @@ export async function GET(request: NextRequest) {
         nodeEnv: process.env.NODE_ENV || 'undefined',
         hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
         hasSupabaseKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-        hasServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY
+        hasServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+        supabaseUrlLength: process.env.NEXT_PUBLIC_SUPABASE_URL?.length || 0,
+        supabaseKeyLength: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.length || 0,
+        serviceKeyLength: process.env.SUPABASE_SERVICE_ROLE_KEY?.length || 0
       },
       database: {
         configured: isSupabaseConfigured(),
+        adminConfigured: isSupabaseAdminConfigured(),
         status: 'unknown' as string, // Will be updated below if we can test connection
         error: undefined as string | undefined,
         code: undefined as string | undefined,
         connectionTest: undefined as string | undefined,
-        latency: undefined as number | undefined
+        latency: undefined as number | undefined,
+        capabilities: {
+          basicOperations: isSupabaseConfigured(),
+          adminOperations: isSupabaseAdminConfigured(),
+          bypassRLS: isSupabaseAdminConfigured()
+        }
       }
     };
 
@@ -45,6 +54,7 @@ export async function GET(request: NextRequest) {
           healthChecks.database.status = 'error';
           healthChecks.database.error = connectionTest.error;
           healthChecks.database.connectionTest = 'failed';
+          healthChecks.database.code = connectionTest.details?.errorCode;
         } else {
           healthChecks.database.status = 'healthy';
           healthChecks.database.connectionTest = 'success';

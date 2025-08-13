@@ -50,26 +50,52 @@ export async function POST(request: NextRequest) {
     // Log the incoming request
     logger.apiRequest(request.method, request.url, Object.fromEntries(request.headers.entries()));
     
-    // Check if Supabase is configured
+    // Check if Supabase is configured with enhanced error reporting
     if (!isSupabaseConfigured()) {
+      // Get detailed configuration status
+      const configStatus = {
+        hasUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+        hasKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+        urlLength: process.env.NEXT_PUBLIC_SUPABASE_URL?.length || 0,
+        keyLength: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.length || 0,
+        urlFormat: process.env.NEXT_PUBLIC_SUPABASE_URL?.startsWith('https://') && process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('.supabase.co'),
+        keyFormat: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.startsWith('eyJ')
+      };
+      
+      logger.error('Supabase configuration check failed', configStatus);
+      
       return createErrorResponse(
-        'Database not configured. Please contact support.',
+        'Database not configured. Please check environment variables and contact support.',
         500,
-        { errorCode: 'SUPABASE_NOT_CONFIGURED' }
+        { 
+          errorCode: 'SUPABASE_NOT_CONFIGURED',
+          configStatus,
+          instructions: 'Ensure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are properly set in .env.local'
+        }
       );
     }
 
-    // Test database connectivity first
+    // Test database connectivity first with enhanced error reporting
     const connectionTest = await dbOperations.testConnection();
     if (!connectionTest.connected) {
-      logger.error('Database connection test failed', connectionTest);
+      logger.error('Database connection test failed', {
+        error: connectionTest.error,
+        latency: connectionTest.latency,
+        timestamp: new Date().toISOString()
+      });
+      
       return createErrorResponse(
         'Database connection failed. Please try again later.',
         503,
         { 
           errorCode: 'DB_CONNECTION_FAILED',
           details: connectionTest.error,
-          latency: connectionTest.latency
+          latency: connectionTest.latency,
+          suggestions: [
+            'Check if Supabase service is running',
+            'Verify network connectivity',
+            'Check RLS policies and table permissions'
+          ]
         }
       );
     }
