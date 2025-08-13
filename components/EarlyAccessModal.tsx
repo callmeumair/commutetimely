@@ -217,7 +217,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
       // Show full screen animation immediately
       setShowFullScreenAnimation(true);
       
-      // Close modal and reset after 3 seconds
+      // Close modal and reset after 5 seconds
       setTimeout(() => {
         setShowFullScreenAnimation(false);
         onClose();
@@ -230,7 +230,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
           commuteChallenge: '',
           device: ''
         });
-      }, 3000);
+      }, 5000);
     }
   };
 
