@@ -207,7 +207,6 @@ export function Download() {
                           <Input
                             id="email-input"
                             type="email"
-                            placeholder="Enter your email address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
