@@ -224,16 +224,16 @@ export function Hero() {
             </motion.div>
             
             <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center lg:justify-start">
+              <div className="grid grid-cols-1 sm:flex sm:flex-row gap-3 sm:gap-6 lg:gap-8 justify-center lg:justify-start">
                 {trustIndicators.map((item, index) => (
                   <motion.div 
                     key={item.text}
-                    className="flex items-center space-x-2 sm:space-x-3 justify-center lg:justify-start"
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="flex items-center justify-center sm:justify-start space-x-2 sm:space-x-3"
+                    whileHover={{ scale: 1.05, y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   >
                     <motion.div 
-                      className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center"
+                      className="w-8 h-8 sm:w-10 sm:h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0"
                       whileHover={{ 
                         rotate: 5,
                         boxShadow: "0 0 20px rgba(37, 99, 235, 0.3)"
@@ -250,20 +250,20 @@ export function Hero() {
                     >
                       <item.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${item.color}`} />
                     </motion.div>
-                    <span className="text-sm sm:font-semibold text-white">{item.text}</span>
+                    <span className="text-sm sm:text-base font-medium sm:font-semibold text-white text-center sm:text-left">{item.text}</span>
                   </motion.div>
                 ))}
               </div>
               
               <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 pt-2 sm:pt-4 justify-center lg:justify-start">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-                  <span className="text-sm sm:text-gray-300 font-medium">iOS & Android</span>
+                <div className="flex items-center justify-center sm:justify-start space-x-2 sm:space-x-3">
+                  <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-gray-300 font-medium text-center sm:text-left">iOS & Android</span>
                 </div>
                 <div className="w-2 h-2 bg-gray-600 rounded-full hidden sm:block" />
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-                  <span className="text-sm sm:text-gray-300 font-medium">Free Download</span>
+                <div className="flex items-center justify-center sm:justify-start space-x-2 sm:space-x-3">
+                  <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-gray-300 font-medium text-center sm:text-left">Free Download</span>
                 </div>
               </div>
             </motion.div>

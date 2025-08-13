@@ -202,7 +202,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
             <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] group">
               <video
                 ref={videoRef}
-                src="/videos/ScreenRecording_08-13-2025 18-09-49_1.mov"
+                src="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4"
                 controls
                 muted={isMuted}
                 className="w-full h-full object-cover rounded-none sm:rounded-lg touch-manipulation"
