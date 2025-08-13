@@ -41,19 +41,46 @@ const createSuccessResponse = (data: any, status: number = 200) => {
 };
 
 // Check if database is available
-const isDatabaseAvailable = () => {
-  return !!process.env.DATABASE_URL;
+const isDatabaseAvailable = async () => {
+  const hasDbUrl = !!process.env.DATABASE_URL;
+  console.log('Database availability check:', {
+    hasDbUrl,
+    dbUrlLength: process.env.DATABASE_URL?.length || 0,
+    nodeEnv: process.env.NODE_ENV,
+    timestamp: new Date().toISOString()
+  });
+  
+  if (!hasDbUrl) {
+    return false;
+  }
+  
+  // Test actual database connection
+  try {
+    const testResult = await DatabaseOperations.testConnection();
+    return testResult.connected;
+  } catch (error) {
+    console.error('Database connection test failed:', error);
+    return false;
+  }
 };
 
 // POST: Create new early access user
 export async function POST(request: NextRequest) {
   try {
     // Check if database is available
-    if (!isDatabaseAvailable()) {
+    if (!(await isDatabaseAvailable())) {
+      console.error('Database not available - environment check failed');
       return createErrorResponse(
-        'Database not available',
+        'Database not available - please check environment configuration',
         503,
-        { errorCode: 'DATABASE_UNAVAILABLE' }
+        { 
+          errorCode: 'DATABASE_UNAVAILABLE',
+          details: {
+            hasDbUrl: !!process.env.DATABASE_URL,
+            nodeEnv: process.env.NODE_ENV,
+            timestamp: new Date().toISOString()
+          }
+        }
       );
     }
 
@@ -149,7 +176,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   try {
     // Check if database is available
-    if (!isDatabaseAvailable()) {
+    if (!(await isDatabaseAvailable())) {
       return createErrorResponse(
         'Database not available',
         503,

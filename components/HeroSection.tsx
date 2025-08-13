@@ -3,6 +3,7 @@
 import { Button } from "./button";
 import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu } from "lucide-react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
+import { DemoVideoModal } from "./DemoVideoModal";
 import { motion, useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 
@@ -10,6 +11,7 @@ export function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
+  const [isDemoVideoModalOpen, setIsDemoVideoModalOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   // Prevent hydration issues
@@ -213,6 +215,7 @@ export function Hero() {
                   variant="outline" 
                   size="lg" 
                   className="w-full sm:w-auto group border-2 border-white/20 hover:border-cyan-400/50 bg-black/50 backdrop-blur-sm px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold hover:bg-white/5 transition-all duration-300 text-white rounded-xl"
+                  onClick={() => setIsDemoVideoModalOpen(true)}
                 >
                   <Play className="mr-2 sm:mr-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
                   Watch Demo
@@ -348,6 +351,12 @@ export function Hero() {
       <EarlyAccessModal 
         isOpen={isEarlyAccessModalOpen}
         onClose={() => setIsEarlyAccessModalOpen(false)}
+      />
+      
+      {/* Demo Video Modal */}
+      <DemoVideoModal 
+        isOpen={isDemoVideoModalOpen}
+        onClose={() => setIsDemoVideoModalOpen(false)}
       />
     </section>
   );

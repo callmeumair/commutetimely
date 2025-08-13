@@ -21,6 +21,12 @@ export async function GET() {
       uptime: process.uptime(),
       environment: process.env.NODE_ENV || 'unknown',
       version: process.env.npm_package_version || 'unknown',
+      environmentInfo: {
+        hasDatabaseUrl: !!process.env.DATABASE_URL,
+        databaseUrlLength: process.env.DATABASE_URL?.length || 0,
+        nodeEnv: process.env.NODE_ENV,
+        appUrl: process.env.NEXT_PUBLIC_APP_URL
+      },
       services: {
         api: 'operational',
         database: dbTest.connected ? 'operational' : 'error',
