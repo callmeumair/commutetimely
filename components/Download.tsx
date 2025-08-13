@@ -269,8 +269,8 @@ export function Download() {
             <div className="flex justify-center space-x-6 sm:space-x-8">
               {[
                 { name: "Twitter", href: "#" },
-                { name: "LinkedIn", href: "#" },
-                { name: "Blog", href: "#" }
+                { name: "LinkedIn", href: "https://www.linkedin.com/company/commutetimely/" },
+                { name: "GitHub", href: "https://github.com/CommuteTimely" }
               ].map((social, index) => (
                 <motion.a
                   key={social.name}

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "./button";
-import { MapPin, Menu, X } from "lucide-react";
+import { MapPin, Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
@@ -137,6 +137,46 @@ export function Header() {
                 />
               </motion.a>
             ))}
+
+            {/* Social Links */}
+            <div className="flex items-center space-x-4">
+              <motion.a
+                href="https://github.com/CommuteTimely"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                title="Visit our GitHub"
+                aria-label="Visit our GitHub repository"
+              >
+                <Github className="w-5 h-5" />
+              </motion.a>
+              
+              <motion.a
+                href="https://www.linkedin.com/company/commutetimely/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                title="Visit our LinkedIn"
+                aria-label="Visit our LinkedIn company page"
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+              
+              <motion.a
+                href="mailto:umerpatel1540@gmail.com"
+                className="text-white/60 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                title="Send us an email"
+                aria-label="Send us an email"
+              >
+                <Mail className="w-5 h-5" />
+              </motion.a>
+            </div>
             
 
 
@@ -273,6 +313,54 @@ export function Header() {
                     />
                     <span className="relative z-10">Get Early Access</span>
                   </Button>
+                </motion.div>
+
+                {/* Mobile Social Links */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="pt-6 border-t border-white/10"
+                >
+                  <p className="text-white/60 text-sm mb-4 text-center">Connect with us</p>
+                  <div className="flex justify-center space-x-6">
+                    <motion.a
+                      href="https://github.com/CommuteTimely"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white transition-colors p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      title="Visit our GitHub"
+                      aria-label="Visit our GitHub repository"
+                    >
+                      <Github className="w-6 h-6" />
+                    </motion.a>
+                    
+                    <motion.a
+                      href="https://www.linkedin.com/company/commutetimely/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white transition-colors p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      title="Visit our LinkedIn"
+                      aria-label="Visit our LinkedIn company page"
+                    >
+                      <Linkedin className="w-6 h-6" />
+                    </motion.a>
+                    
+                    <motion.a
+                      href="mailto:umerpatel1540@gmail.com"
+                      className="text-white/60 hover:text-white transition-colors p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      title="Send us an email"
+                      aria-label="Send us an email"
+                    >
+                      <Mail className="w-6 h-6" />
+                    </motion.a>
+                  </div>
                 </motion.div>
               </nav>
             </div>

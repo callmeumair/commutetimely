@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "./button";
-import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu } from "lucide-react";
+import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Github, Linkedin, Mail } from "lucide-react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 import { DemoVideoModal } from "./DemoVideoModal";
 import { motion, useInView } from "motion/react";
@@ -255,6 +255,55 @@ export function Hero() {
                 ))}
               </div>
               
+              {/* Contact Links */}
+              <motion.div 
+                variants={itemVariants}
+                className="pt-4 sm:pt-6 border-t border-white/10"
+              >
+                <p className="text-sm sm:text-base text-gray-400 text-center lg:text-left mb-3 sm:mb-4">Connect with us</p>
+                <div className="flex justify-center lg:justify-start space-x-4 sm:space-x-6">
+                  <motion.a
+                    href="https://github.com/CommuteTimely"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors p-2 sm:p-3 rounded-lg hover:bg-white/5 border border-white/10 hover:border-white/20"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    title="Visit our GitHub"
+                    aria-label="Visit our GitHub repository"
+                  >
+                    <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-xs sm:text-sm font-medium hidden sm:inline">GitHub</span>
+                  </motion.a>
+                  
+                  <motion.a
+                    href="https://www.linkedin.com/company/commutetimely/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors p-2 sm:p-3 rounded-lg hover:bg-white/5 border border-white/10 hover:border-white/20"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    title="Visit our LinkedIn"
+                    aria-label="Visit our LinkedIn company page"
+                  >
+                    <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-xs sm:text-sm font-medium hidden sm:inline">LinkedIn</span>
+                  </motion.a>
+                  
+                  <motion.a
+                    href="mailto:umerpatel1540@gmail.com"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors p-2 sm:p-3 rounded-lg hover:bg-white/5 border border-white/10 hover:border-white/20"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    title="Send us an email"
+                    aria-label="Send us an email"
+                  >
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-xs sm:text-sm font-medium hidden sm:inline">Email</span>
+                  </motion.a>
+                </div>
+              </motion.div>
+
               <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 pt-2 sm:pt-4 justify-center lg:justify-start">
                 <div className="flex items-center justify-center sm:justify-start space-x-2 sm:space-x-3">
                   <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />

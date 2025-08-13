@@ -115,9 +115,9 @@ export function Footer() {
             <div className="flex items-center space-x-6">
               {[
                 { icon: Twitter, name: "Twitter", href: "#", color: "hover:text-blue-400" },
-                { icon: Linkedin, name: "LinkedIn", href: "#", color: "hover:text-blue-500" },
-                { icon: Github, name: "GitHub", href: "#", color: "hover:text-gray-300" },
-                { icon: Mail, name: "Email", href: "#", color: "hover:text-cyan-400" }
+                { icon: Linkedin, name: "LinkedIn", href: "https://www.linkedin.com/company/commutetimely/", color: "hover:text-blue-500" },
+                { icon: Github, name: "GitHub", href: "https://github.com/CommuteTimely", color: "hover:text-gray-300" },
+                { icon: Mail, name: "Email", href: "mailto:umerpatel1540@gmail.com", color: "hover:text-cyan-400" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
