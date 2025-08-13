@@ -1,71 +1,6 @@
-# CommuteTimely - Smart Commute Alerts
+# CommuteTimely
 
-A modern, responsive landing page for CommuteTimely, built with Next.js 15, TypeScript, and Tailwind CSS. This project replicates the exact design from Figma with pixel-perfect accuracy.
-
-## 🚀 Features
-
-- **Pixel-Perfect Design**: Exact replication of the Figma design
-- **Fully Responsive**: Optimized for all device sizes
-- **Modern Tech Stack**: Next.js 15, TypeScript, Tailwind CSS
-- **Performance Optimized**: Fast loading with modern best practices
-- **Accessibility**: Semantic HTML and proper ARIA labels
-- **Interactive Elements**: Hover states, animations, and smooth transitions
-
-## 🎨 Design Elements
-
-### Header
-- Logo with gradient background
-- Navigation menu (Features, How It Works, Download)
-- "Get Early Access" CTA button
-- Mobile-responsive hamburger menu
-
-### Hero Section
-- "Never Be Late Again" headline with blue accent
-- Launch tag (September 2025)
-- Feature highlights (Privacy First, Real-time Data, AI Powered, etc.)
-- Interactive mobile app mockup
-- Dual CTA buttons
-
-### Features Section
-- "Why Choose CommuteTimely?" section
-- 6 feature cards with colored icons
-- Hover effects and animations
-
-### How It Works
-- 4-step process with numbered badges
-- Platform availability (iOS & Android)
-- "Join the Beta" CTA
-
-### Stats Section
-- Key metrics (99.9% Accuracy, 45min Time Saved, etc.)
-- Visual statistics with icons
-
-### Early Access
-- Launch information
-- Platform details
-- CTA for early access
-
-### Footer
-- Company information
-- Product and company links
-- Social media icons
-- Copyright and legal links
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **Animations**: Framer Motion
-- **Font**: Inter (Google Fonts)
-
-## 📱 Responsive Design
-
-- **Mobile First**: Optimized for mobile devices
-- **Tablet**: Responsive grid layouts
-- **Desktop**: Full-width layouts with proper spacing
-- **Breakpoints**: Tailwind's responsive utilities
+A modern web application for managing commute times and transportation challenges.
 
 ## 🚀 Getting Started
 
@@ -73,121 +8,100 @@ A modern, responsive landing page for CommuteTimely, built with Next.js 15, Type
 
 - Node.js 18+ 
 - npm or yarn
+- Neon database account (free at [console.neon.tech](https://console.neon.tech/))
 
 ### Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/commutetimely.git
-cd commutetimely
-```
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd commutetimely
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3. Run the development server:
-```bash
-npm run dev
-```
+3. **Set up environment variables**
+   ```bash
+   cp env.example .env.local
+   # Edit .env.local with your Neon database credentials
+   ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-### Build for Production
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-```bash
-npm run build
-npm start
-```
+## 🗄️ Database Setup
 
-## 📁 Project Structure
+This project is configured to use **Neon** (PostgreSQL) as the database. Follow the [Neon Setup Guide](./NEON_SETUP.md) for detailed instructions.
+
+### Quick Database Setup
+
+1. Create a Neon account at [console.neon.tech](https://console.neon.tech/)
+2. Create a new project
+3. Copy your connection string
+4. Add it to `.env.local` as `DATABASE_URL`
+5. Install database dependencies: `npm install @neondatabase/serverless drizzle-orm`
+6. Follow the setup guide for schema creation
+
+## 🏗️ Project Structure
 
 ```
 commutetimely/
-├── app/
-│   ├── globals.css          # Global styles and Tailwind imports
-│   ├── layout.tsx           # Root layout component
-│   └── page.tsx             # Main landing page
-├── components/
-│   ├── Header.tsx           # Navigation header
-│   ├── HeroSection.tsx      # Hero section with mobile mockup
-│   ├── FeaturesSection.tsx  # Features grid
-│   ├── HowItWorksSection.tsx # 4-step process
-│   ├── StatsSection.tsx     # Statistics and metrics
-│   ├── EarlyAccessSection.tsx # Early access CTA
-│   └── Footer.tsx           # Footer with links
-├── public/                   # Static assets
-├── tailwind.config.js       # Tailwind configuration
-├── next.config.js           # Next.js configuration
-└── package.json             # Dependencies and scripts
+├── app/                    # Next.js app directory
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/             # React components
+├── lib/                    # Utility libraries
+├── public/                 # Static assets
+├── NEON_SETUP.md          # Database setup guide
+└── env.example            # Environment template
 ```
 
-## 🎯 Design System
+## 🛠️ Available Scripts
 
-### Colors
-- **Primary**: Blue (#0ea5e9)
-- **Secondary**: Purple (#8b5cf6)
-- **Accents**: Teal, Green, Orange, Pink
-- **Backgrounds**: Dark (#0a0a0a, #111111, #1a1a1a)
-- **Text**: White, Gray variations
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-### Typography
-- **Font Family**: Inter
-- **Headings**: Bold weights (700-900)
-- **Body**: Regular weight (400)
-- **Responsive**: Fluid typography scaling
+## 🔧 Configuration
 
-### Spacing
-- **Consistent**: 8px base unit system
-- **Responsive**: Tailwind's spacing scale
-- **Section Padding**: 80px (mobile) to 128px (desktop)
+### Environment Variables
 
-## 🔧 Customization
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DATABASE_URL` | Neon database connection string | Yes |
+| `NEXT_PUBLIC_APP_URL` | Your application URL | Yes |
+| `NODE_ENV` | Environment (development/production) | Yes |
 
-### Adding New Sections
-1. Create component in `components/` directory
-2. Import and add to `app/page.tsx`
-3. Follow existing component patterns
+### Database Configuration
 
-### Modifying Colors
-1. Update `tailwind.config.js` color palette
-2. Modify `app/globals.css` custom properties
-3. Update component classes
+The project uses:
+- **Neon** - Serverless PostgreSQL
+- **Drizzle ORM** - Type-safe database operations
+- **TypeScript** - Full type safety
 
-### Changing Content
-1. Edit text content in component files
-2. Update metadata in `app/layout.tsx`
-3. Modify images and icons as needed
+## 🚀 Deployment
 
-## 📱 Mobile Optimization
+### Vercel (Recommended)
 
-- Touch-friendly button sizes
-- Proper spacing for mobile devices
-- Optimized typography scaling
-- Responsive grid layouts
-- Mobile-first navigation
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
 
-## ♿ Accessibility
+### Other Platforms
 
-- Semantic HTML structure
-- Proper heading hierarchy
-- Alt text for images
-- Keyboard navigation support
-- Screen reader compatibility
-- High contrast ratios
-
-## 🚀 Performance
-
-- Next.js 15 optimizations
-- Tailwind CSS purging
-- Optimized images
-- Minimal JavaScript bundle
-- Fast loading times
-
-## 📄 License
-
-This project is licensed under the MIT License.
+- **Netlify**: Configure build command and environment variables
+- **Railway**: Add environment variables and deploy
+- **Self-hosted**: Build and serve the static files
 
 ## 🤝 Contributing
 
@@ -197,10 +111,19 @@ This project is licensed under the MIT License.
 4. Test thoroughly
 5. Submit a pull request
 
-## 📞 Support
+## 📝 License
 
-For support or questions, please contact the development team.
+This project is licensed under the MIT License.
 
----
+## 🆘 Support
 
-Built with ❤️ by the CommuteTimely team
+- **Database Issues**: Check [Neon Setup Guide](./NEON_SETUP.md)
+- **General Issues**: Open an issue on GitHub
+- **Feature Requests**: Submit a feature request
+
+## 🔗 Links
+
+- [Neon Database](https://neon.tech/)
+- [Drizzle ORM](https://orm.drizzle.team/)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/)
