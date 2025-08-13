@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, ArrowUp } from "lucide-react";
+import { MapPin, Github, Twitter, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { motion } from "motion/react";
 
 export function Footer() {
@@ -112,7 +112,32 @@ export function Footer() {
               <span className="text-blue-300 font-medium"> Launching September 2025</span> on iOS and Android.
             </p>
             
-
+            <div className="flex items-center space-x-6">
+              {[
+                { icon: Twitter, name: "Twitter", href: "#", color: "hover:text-blue-400" },
+                { icon: Linkedin, name: "LinkedIn", href: "https://www.linkedin.com/company/commutetimely/", color: "hover:text-blue-500" },
+                { icon: Github, name: "GitHub", href: "https://github.com/CommuteTimely", color: "hover:text-gray-300" },
+                { icon: Mail, name: "Email", href: "mailto:umerpatel1540@gmail.com", color: "hover:text-cyan-400" }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  className={`text-gray-400 ${social.color} transition-colors p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 10px rgba(255, 255, 255, 0.05)",
+                      "0 0 20px rgba(37, 99, 235, 0.15)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
+                  aria-label={`Visit our ${social.name} page`}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
+            </div>
           </div>
           
           {/* Product Links */}
