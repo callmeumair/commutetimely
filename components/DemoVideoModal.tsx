@@ -101,13 +101,32 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
       setIsLoading(true);
       setVideoError(false);
       
-      // Force video to load
+      // Force video to load and attempt to play
       const video = videoRef.current;
       if (video.readyState === 0) {
         video.load();
       }
+      
+      // Try to autoplay after a short delay
+      setTimeout(() => {
+        if (videoRef.current && !isPlaying) {
+          const playPromise = videoRef.current.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                setIsPlaying(true);
+                console.log('Video autoplay successful');
+              })
+              .catch((error) => {
+                console.log('Autoplay failed, user interaction required:', error);
+                // Don't show error, just wait for user interaction
+                setIsLoading(false);
+              });
+          }
+        }
+      }, 500);
     }
-  }, [isOpen]);
+  }, [isOpen, isPlaying]);
 
   // Auto-hide controls on mobile after inactivity
   useEffect(() => {
@@ -233,14 +252,32 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     }
   };
 
-  const handlePlayPause = () => {
+  const handlePlayPause = async () => {
     if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        videoRef.current.play();
-        setIsPlaying(true);
+      try {
+        if (isPlaying) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        } else {
+          const playPromise = videoRef.current.play();
+          if (playPromise !== undefined) {
+            await playPromise;
+            setIsPlaying(true);
+          }
+        }
+      } catch (error) {
+        console.error('Play/Pause error:', error);
+        // If autoplay fails, try to unmute first (mobile browsers require this)
+        if (videoRef.current.muted) {
+          videoRef.current.muted = false;
+          setIsMuted(false);
+          try {
+            await videoRef.current.play();
+            setIsPlaying(true);
+          } catch (retryError) {
+            console.error('Retry play failed:', retryError);
+          }
+        }
       }
     }
   };
@@ -252,11 +289,18 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     }
   };
 
-  const handleRestart = () => {
+  const handleRestart = async () => {
     if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-      setIsPlaying(true);
+      try {
+        videoRef.current.currentTime = 0;
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          await playPromise;
+          setIsPlaying(true);
+        }
+      } catch (error) {
+        console.error('Restart error:', error);
+      }
     }
   };
 
@@ -435,12 +479,11 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 className="w-full h-full object-contain rounded-none sm:rounded-lg touch-manipulation"
                 poster="/images/IMG_750E9EF883FD-1.jpeg"
                 playsInline
-                preload="metadata"
+                preload="auto"
                 webkit-playsinline="true"
                 x5-playsinline="true"
                 x5-video-player="true"
                 x5-video-player-type="h5"
-                autoPlay={false}
                 onPlay={handleVideoPlay}
                 onPause={handleVideoPause}
                 onClick={handleVideoClick}
