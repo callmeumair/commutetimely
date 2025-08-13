@@ -60,7 +60,7 @@ export function Header() {
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" as const }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
@@ -243,7 +243,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
             className="lg:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl"
           >
             <div className="container mx-auto px-4 py-6">

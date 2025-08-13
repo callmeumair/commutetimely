@@ -41,7 +41,7 @@ function PartyPopperAnimation() {
         className="absolute left-1/2 top-1/2 w-4 h-4 bg-yellow-400 rounded-full"
         initial={{ scale: 0, opacity: 1 }}
         animate={{ scale: [0, 3, 0], opacity: [1, 0.8, 0] }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" as const }}
       />
       
       {confetti.map((particle) => (
@@ -72,7 +72,7 @@ function PartyPopperAnimation() {
           transition={{
             duration: 2.5 + Math.random() * 1.5,
             delay: Math.random() * 0.8,
-            ease: "easeOut",
+            ease: "easeOut" as const,
           }}
         />
       ))}

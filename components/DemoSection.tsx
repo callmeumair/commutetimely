@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
-import { Car, Train, Bike, Walking, Clock, MapPin, Zap, Users } from "lucide-react";
+import { Car, Train, Bike, Footprints, Clock, MapPin, Zap, Users } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
 import { Switch } from "./switch";
@@ -35,7 +35,7 @@ const commuteScenarios = [
     glowColor: "rgba(107, 114, 128, 0.4)"
   },
   {
-    icon: Walking,
+    icon: Footprints,
     title: "Pedestrian Routes",
     description: "Test walking path optimizations",
     baseTime: "15 min",
@@ -136,7 +136,7 @@ export function DemoSection() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   };
