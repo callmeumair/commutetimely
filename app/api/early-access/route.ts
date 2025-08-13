@@ -40,9 +40,33 @@ const createSuccessResponse = (data: any, status: number = 200) => {
   );
 };
 
+// Check if database is available
+const isDatabaseAvailable = () => {
+  return !!process.env.DATABASE_URL;
+};
+
 // POST: Create new early access user
 export async function POST(request: NextRequest) {
   try {
+    // Check if database is available
+    if (!isDatabaseAvailable()) {
+      return createErrorResponse(
+        'Database not available',
+        503,
+        { errorCode: 'DATABASE_UNAVAILABLE' }
+      );
+    }
+
+    // Initialize database (create table if it doesn't exist)
+    const initResult = await DatabaseOperations.initializeDatabase();
+    if (!initResult.success) {
+      return createErrorResponse(
+        'Database initialization failed',
+        500,
+        { errorCode: 'DB_INIT_ERROR', details: initResult.error }
+      );
+    }
+
     // Parse request body
     const body = await request.json();
     const { email, name, useCase, location, commuteChallenge, device } = body;
@@ -124,6 +148,15 @@ export async function POST(request: NextRequest) {
 // GET: Retrieve all early access users (for admin purposes)
 export async function GET() {
   try {
+    // Check if database is available
+    if (!isDatabaseAvailable()) {
+      return createErrorResponse(
+        'Database not available',
+        503,
+        { errorCode: 'DATABASE_UNAVAILABLE' }
+      );
+    }
+
     const result = await DatabaseOperations.getAllUsers();
     
     if (result.error) {

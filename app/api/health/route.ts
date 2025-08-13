@@ -3,8 +3,17 @@ import { DatabaseOperations } from '@/lib/db-operations';
 
 export async function GET() {
   try {
-    // Test database connection
-    const dbTest = await DatabaseOperations.testConnection();
+    let dbTest: { connected: boolean; error: string } = { connected: false, error: 'Database check skipped during build' };
+    
+    // Only test database connection if we're in runtime (not build time)
+    if (process.env.DATABASE_URL) {
+      try {
+        const result = await DatabaseOperations.testConnection();
+        dbTest = { connected: result.connected, error: result.error || 'Unknown error' };
+      } catch (dbError) {
+        dbTest = { connected: false, error: String(dbError) };
+      }
+    }
     
     const healthStatus = {
       status: dbTest.connected ? 'healthy' : 'degraded',
