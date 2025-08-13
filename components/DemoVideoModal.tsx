@@ -94,6 +94,21 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     }
   }, [isOpen, isMobile]);
 
+  // Ensure video loads when modal opens
+  useEffect(() => {
+    if (isOpen && videoRef.current) {
+      // Reset loading state when modal opens
+      setIsLoading(true);
+      setVideoError(false);
+      
+      // Force video to load
+      const video = videoRef.current;
+      if (video.readyState === 0) {
+        video.load();
+      }
+    }
+  }, [isOpen]);
+
   // Auto-hide controls on mobile after inactivity
   useEffect(() => {
     if (isMobile && showControls) {
@@ -114,6 +129,18 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
       }
     };
   }, [isMobile, showControls]);
+
+  // Loading timeout to prevent stuck loading state
+  useEffect(() => {
+    if (isLoading) {
+      const loadingTimeout = setTimeout(() => {
+        setIsLoading(false);
+        console.log('Loading timeout reached, video should be ready');
+      }, 10000); // 10 second timeout
+      
+      return () => clearTimeout(loadingTimeout);
+    }
+  }, [isLoading]);
 
   // Listen for fullscreen changes and keyboard shortcuts
   useEffect(() => {
@@ -248,17 +275,18 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
 
   const handleVideoPlay = () => setIsPlaying(true);
   const handleVideoPause = () => setIsPlaying(false);
-  const handleVideoLoadStart = () => setIsLoading(true);
-  const handleVideoCanPlay = () => setIsLoading(false);
+  const handleVideoLoadStart = () => {
+    setIsLoading(true);
+    setVideoError(false);
+  };
+  const handleVideoCanPlay = () => {
+    setIsLoading(false);
+    setVideoError(false);
+  };
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setIsLoading(false);
     setVideoError(true);
-    // Fallback to original video if mobile version fails to load
-    const target = e.target as HTMLVideoElement;
-    if (target.src.includes('mobile')) {
-      target.src = '/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4';
-      setVideoError(false);
-    }
+    console.error('Video loading error:', e);
   };
 
   // Touch gesture handlers for mobile
@@ -402,12 +430,12 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
             }`}>
               <video
                 ref={videoRef}
-                src="/videos/ScreenRecording_mobile.mp4"
+                src="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4"
                 muted={isMuted}
                 className="w-full h-full object-contain rounded-none sm:rounded-lg touch-manipulation"
                 poster="/images/IMG_750E9EF883FD-1.jpeg"
                 playsInline
-                preload="none"
+                preload="metadata"
                 webkit-playsinline="true"
                 x5-playsinline="true"
                 x5-video-player="true"
@@ -426,21 +454,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 Your browser does not support the video tag.
               </video>
 
-              {/* Loading Overlay */}
-              {isLoading && (
-                <motion.div 
-                  className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <div className="text-center">
-                    <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
-                    <p className="text-white text-sm">Loading video...</p>
-                  </div>
-                </motion.div>
-              )}
-
               {/* Error Overlay */}
               {videoError && (
                 <motion.div 
@@ -458,14 +471,30 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                         setVideoError(false);
                         setIsLoading(true);
                         if (videoRef.current) {
-                          videoRef.current.src = '/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4';
+                          videoRef.current.load();
                         }
                       }}
                       variant="outline"
                       className="border-white/20 text-white hover:bg-white/10"
                     >
-                      Retry with original video
+                      Retry Loading
                     </Button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Loading Overlay with Progress */}
+              {isLoading && (
+                <motion.div 
+                  className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="text-center">
+                    <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
+                    <p className="text-white text-sm mb-2">Loading video...</p>
+                    <p className="text-white/60 text-xs">This may take a few seconds</p>
                   </div>
                 </motion.div>
               )}
