@@ -68,41 +68,91 @@ export default function PricingPage() {
   const selectedPlanData = plans.find(plan => plan.id === selectedPlan)
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-cyan-900/10" />
+    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* Animated Starfield Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {/* Fallback gradient for browsers that don't support animations */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-cyan-900/20" />
         
-        {/* Abstract shapes */}
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-        
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-24 h-24 bg-cyan-500/5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        />
+        {/* Large distant stars - slow twinkle */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={`large-${i}`}
+              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: '4s',
+                opacity: 0.3 + Math.random() * 0.4,
+                boxShadow: '0 0 4px rgba(255, 255, 255, 0.8)'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Medium stars - medium twinkle */}
+        <div className="absolute inset-0">
+          {[...Array(35)].map((_, i) => (
+            <div
+              key={`medium-${i}`}
+              className="absolute w-0.5 h-0.5 bg-cyan-300 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: '3s',
+                opacity: 0.2 + Math.random() * 0.3,
+                boxShadow: '0 0 3px rgba(103, 232, 249, 0.6)'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Small stars - fast twinkle */}
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={`small-${i}`}
+              className="absolute w-0.5 h-0.5 bg-blue-300 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: '2s',
+                opacity: 0.1 + Math.random() * 0.2,
+                boxShadow: '0 0 2px rgba(147, 197, 253, 0.5)'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Shooting stars - occasional streaks */}
+        <div className="absolute inset-0">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={`shooting-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white rounded-full animate-ping"
+              style={{
+                left: `${20 + i * 30}%`,
+                top: `${10 + i * 20}%`,
+                animationDelay: `${i * 8}s`,
+                animationDuration: '1s',
+                opacity: 0.6,
+                boxShadow: '0 0 6px rgba(255, 255, 255, 0.9)'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Subtle nebula-like clouds */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-cyan-500/5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style={{ animationDuration: '12s', animationDelay: '4s' }} />
       </div>
 
+      {/* Content with semi-transparent backgrounds */}
       <div className="relative z-10">
         {/* Hero Section */}
         <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
@@ -127,7 +177,7 @@ export default function PricingPage() {
           <div className="max-w-6xl mx-auto">
             {/* Plan Selector */}
             <div className="flex justify-center mb-12">
-              <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-2 border border-white/10">
+              <div className="bg-gray-900/60 backdrop-blur-md rounded-2xl p-2 border border-white/20 shadow-xl">
                 <div className="flex space-x-2">
                   {plans.map((plan) => (
                     <button
@@ -136,7 +186,7 @@ export default function PricingPage() {
                       className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                         selectedPlan === plan.id
                           ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25'
-                          : 'text-gray-400 hover:text-white hover:bg-white/5'
+                          : 'text-gray-400 hover:text-white hover:bg-white/10'
                       }`}
                     >
                       {plan.name}
@@ -154,7 +204,7 @@ export default function PricingPage() {
               transition={{ duration: 0.3 }}
               className="max-w-2xl mx-auto"
             >
-              <div className="relative bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+              <div className="relative bg-gray-900/70 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
                 {/* Popular Badge */}
                 {selectedPlanData?.popular && (
                   <div className="absolute top-6 right-6 z-10">
@@ -249,7 +299,7 @@ export default function PricingPage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <div className="bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-3xl border border-white/10 p-8 sm:p-12">
+              <div className="bg-blue-900/30 backdrop-blur-md rounded-3xl border border-white/20 p-8 sm:p-12 shadow-xl">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Clock className="w-8 h-8 text-white" />
                 </div>
@@ -262,7 +312,7 @@ export default function PricingPage() {
                   Experience every premium feature with no limits. Cancel anytime before your trial ends.
                 </p>
                 
-                <div className="bg-gray-900/50 rounded-2xl p-4 border border-white/10">
+                <div className="bg-gray-900/60 rounded-2xl p-4 border border-white/20">
                   <p className="text-sm text-gray-400">
                     After trial, just <span className="text-white font-semibold">$5.99/month</span>, billed automatically unless cancelled.
                   </p>
@@ -315,7 +365,7 @@ export default function PricingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-white/10 p-6 text-left"
+                  className="bg-gray-900/50 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-left shadow-lg"
                 >
                   <h3 className="font-semibold text-white mb-3">{faq.question}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{faq.answer}</p>
@@ -351,6 +401,29 @@ export default function PricingPage() {
           </div>
         </section>
       </div>
+
+      {/* Custom CSS for enhanced star animations */}
+      <style jsx>{`
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.1; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          25% { transform: translateY(-2px) translateX(1px); }
+          50% { transform: translateY(-1px) translateX(-1px); }
+          75% { transform: translateY(1px) translateX(2px); }
+        }
+        
+        .animate-pulse {
+          animation: twinkle 3s ease-in-out infinite;
+        }
+        
+        .animate-ping {
+          animation: float 8s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   )
 }
