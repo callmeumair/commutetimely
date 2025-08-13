@@ -7,8 +7,8 @@ import { Button } from './button';
 import { Input } from './input';
 import { useEarlyAccess } from './use-early-access';
 
-// Party Popper Animation Component
-function PartyPopperAnimation() {
+// Full Screen Party Popper Animation Component
+function FullScreenPartyAnimation() {
   const [confetti, setConfetti] = useState<Array<{
     id: number;
     x: number;
@@ -20,14 +20,14 @@ function PartyPopperAnimation() {
   }>>([]);
 
   useEffect(() => {
-    // Create confetti particles with different shapes
-    const particles = Array.from({ length: 80 }, (_, i) => ({
+    // Create more confetti particles for full screen effect
+    const particles = Array.from({ length: 150 }, (_, i) => ({
       id: i,
-      x: Math.random() * 120 - 60, // -60 to 60
-      y: Math.random() * 120 - 60, // -60 to 60
+      x: Math.random() * 200 - 100, // -100 to 100 for full screen coverage
+      y: Math.random() * 200 - 100, // -100 to 100 for full screen coverage
       rotation: Math.random() * 360,
-      scale: Math.random() * 0.8 + 0.3,
-      color: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'][Math.floor(Math.random() * 10)],
+      scale: Math.random() * 1.2 + 0.4, // Larger particles
+      color: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9', '#FF8E53', '#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4'][Math.floor(Math.random() * 15)],
       shape: Math.random() > 0.5 ? 'circle' : 'square'
     }));
     
@@ -35,15 +35,28 @@ function PartyPopperAnimation() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      {/* Central burst effect */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 w-4 h-4 bg-yellow-400 rounded-full"
-        initial={{ scale: 0, opacity: 1 }}
-        animate={{ scale: [0, 3, 0], opacity: [1, 0.8, 0] }}
-        transition={{ duration: 0.8, ease: "easeOut" as const }}
-      />
+    <div className="fixed inset-0 z-[60] pointer-events-none bg-black/20 backdrop-blur-sm">
+      {/* Multiple central burst effects */}
+      {Array.from({ length: 3 }).map((_, burstIndex) => (
+        <motion.div
+          key={burstIndex}
+          className="absolute left-1/2 top-1/2 w-6 h-6 bg-yellow-400 rounded-full"
+          initial={{ scale: 0, opacity: 1 }}
+          animate={{ 
+            scale: [0, 4, 0], 
+            opacity: [1, 0.8, 0],
+            x: (burstIndex - 1) * 20,
+            y: (burstIndex - 1) * 20
+          }}
+          transition={{ 
+            duration: 1.2, 
+            delay: burstIndex * 0.2,
+            ease: "easeOut" as const 
+          }}
+        />
+      ))}
       
+      {/* Confetti particles */}
       {confetti.map((particle) => (
         <motion.div
           key={particle.id}
@@ -52,8 +65,8 @@ function PartyPopperAnimation() {
             left: '50%',
             top: '50%',
             backgroundColor: particle.color,
-            width: particle.shape === 'circle' ? '8px' : '6px',
-            height: particle.shape === 'circle' ? '8px' : '6px',
+            width: particle.shape === 'circle' ? '12px' : '8px',
+            height: particle.shape === 'circle' ? '12px' : '8px',
           }}
           initial={{
             x: 0,
@@ -70,35 +83,103 @@ function PartyPopperAnimation() {
             rotate: particle.rotation,
           }}
           transition={{
-            duration: 2.5 + Math.random() * 1.5,
-            delay: Math.random() * 0.8,
+            duration: 3 + Math.random() * 2, // Longer duration for full screen
+            delay: Math.random() * 1.2,
             ease: "easeOut" as const,
           }}
         />
       ))}
       
-      {/* Sparkle effects */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {/* Enhanced sparkle effects */}
+      {Array.from({ length: 40 }).map((_, i) => (
         <motion.div
           key={`sparkle-${i}`}
-          className="absolute w-1 h-1 bg-white rounded-full"
+          className="absolute w-2 h-2 bg-white rounded-full"
           style={{
-            left: `${50 + (Math.random() * 100 - 50)}%`,
-            top: `${50 + (Math.random() * 100 - 50)}%`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
           }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ 
-            scale: [0, 1, 0], 
+            scale: [0, 1.5, 0], 
             opacity: [0, 1, 0] 
           }}
           transition={{
-            duration: 1 + Math.random(),
-            delay: 0.5 + Math.random() * 1,
-            repeat: 2,
+            duration: 1.5 + Math.random(),
+            delay: Math.random() * 2,
+            repeat: 3,
             ease: "easeInOut"
           }}
         />
       ))}
+      
+      {/* Floating emojis */}
+      {['🎉', '🎊', '✨', '🚀', '⭐', '🎯', '🔥', '💫'].map((emoji, index) => (
+        <motion.div
+          key={`emoji-${index}`}
+          className="absolute text-4xl"
+          style={{
+            left: `${20 + (index * 10)}%`,
+            top: `${20 + (index * 5)}%`,
+          }}
+          initial={{ 
+            scale: 0, 
+            rotate: -180, 
+            opacity: 0,
+            y: 0 
+          }}
+          animate={{ 
+            scale: [0, 1.2, 1], 
+            rotate: [0, 360], 
+            opacity: [0, 1, 1],
+            y: [-20, 0, -20]
+          }}
+          transition={{
+            duration: 3,
+            delay: index * 0.3,
+            repeat: Infinity,
+            repeatType: "reverse" as const,
+            ease: "easeInOut"
+          }}
+        >
+          {emoji}
+        </motion.div>
+      ))}
+      
+      {/* Success message overlay */}
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
+        <div className="text-center bg-black/40 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+          <motion.div
+            className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.8, type: "spring", stiffness: 300 }}
+          >
+            <CheckCircle className="w-10 h-10 text-white" />
+          </motion.div>
+          <motion.h2 
+            className="text-3xl font-bold text-white mb-4"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1, type: "spring", stiffness: 300 }}
+          >
+            🎉 Welcome to Early Access! 🎉
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-200"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1.2, type: "spring", stiffness: 300 }}
+          >
+            Thank you for joining! We'll notify you as soon as CommuteTimely launches.
+          </motion.p>
+        </div>
+      </motion.div>
     </div>
   );
 }
@@ -111,6 +192,7 @@ interface EarlyAccessModalProps {
 export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
   const { isLoading, isSubmitted, error, submitEarlyAccess, reset } = useEarlyAccess();
   const [isMounted, setIsMounted] = useState(false);
+  const [showFullScreenAnimation, setShowFullScreenAnimation] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -132,8 +214,12 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
     
     const result = await submitEarlyAccess(formData);
     if (result.success) {
-      // Form submitted successfully
+      // Show full screen animation immediately
+      setShowFullScreenAnimation(true);
+      
+      // Close modal and reset after 3 seconds
       setTimeout(() => {
+        setShowFullScreenAnimation(false);
         onClose();
         reset();
         setFormData({
@@ -144,7 +230,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
           commuteChallenge: '',
           device: ''
         });
-      }, 2000);
+      }, 3000);
     }
   };
 
@@ -337,9 +423,6 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                {/* Party Popper Animation */}
-                <PartyPopperAnimation />
-                
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
@@ -388,6 +471,13 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
           </div>
         </motion.div>
       </motion.div>
+      
+      {/* Full Screen Party Animation */}
+      <AnimatePresence>
+        {showFullScreenAnimation && (
+          <FullScreenPartyAnimation />
+        )}
+      </AnimatePresence>
     </AnimatePresence>
   );
 }
