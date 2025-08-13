@@ -148,7 +148,7 @@ export function Footer() {
                 { name: "Features", href: "#features" },
                 { name: "How It Works", href: "#how-it-works" },
                 { name: "Download", href: "#download" },
-                { name: "Pricing", href: "#" }
+                { name: "Pricing", href: "/pricing" }
               ].map((link, index) => (
                 <li key={index}>
                   <motion.a
