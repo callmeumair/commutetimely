@@ -214,15 +214,17 @@ export function Footer() {
             </p>
             <div className="flex space-x-6 justify-center sm:justify-start">
               {[
-                { name: "Privacy Policy", href: "#" },
-                { name: "Terms of Service", href: "#" },
-                { name: "Support", href: "#" }
+                { name: "Privacy Policy", href: "/privacy-policy" },
+                { name: "Terms of Service", href: "/terms-of-service" },
+                { name: "Support", href: "mailto:umerpatel1540@gmail.com?subject=Contacting%20for%20Support" }
               ].map((link, index) => (
                 <motion.a
                   key={index}
                   href={link.href}
-                  className="text-gray-500 hover:text-gray-300 transition-colors text-sm"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                   whileHover={{ y: -1 }}
+                  target={link.href.startsWith('mailto:') ? undefined : undefined}
+                  rel={link.href.startsWith('mailto:') ? undefined : undefined}
                 >
                   {link.name}
                 </motion.a>
