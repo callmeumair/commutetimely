@@ -206,34 +206,7 @@ export function Download() {
             </Card>
           </motion.div>
           
-          {/* Social Links */}
-          <motion.div 
-            className="mt-12 sm:mt-16 text-center"
-            variants={itemVariants}
-          >
-            <p className="text-blue-200 mb-4 sm:mb-6 text-sm sm:text-base">Follow our journey:</p>
-            <div className="flex justify-center space-x-6 sm:space-x-8">
-              {[
-                { name: "Twitter", href: "#" },
-                { name: "LinkedIn", href: "https://www.linkedin.com/company/commutetimely/" },
-                { name: "GitHub", href: "https://github.com/CommuteTimely" }
-              ].map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  className="text-blue-200 hover:text-white transition-colors font-medium text-sm sm:text-base"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: index * 0.1 + 0.8 }}
-                  aria-label={`Follow us on ${social.name}`}
-                >
-                  {social.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
+
         </motion.div>
       </div>
       
