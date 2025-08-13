@@ -42,14 +42,14 @@ export function Download() {
   ];
 
   return (
-    <section id="download" ref={ref} className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+    <section id="download" ref={ref} className="relative py-16 sm:py-24 lg:py-32 bg-black overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <motion.div 
-          className="absolute top-0 left-0 w-full h-full opacity-30"
+          className="absolute top-0 left-0 w-full h-full opacity-20"
           style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)`
+            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                             radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)`
           }}
           animate={{
             backgroundPosition: ["0% 0%", "100% 100%"],
@@ -63,7 +63,7 @@ export function Download() {
         
         {/* Floating Elements */}
         <motion.div 
-          className="absolute top-10 sm:top-20 left-10 sm:left-20 w-24 h-24 sm:w-32 sm:h-32 bg-blue-500/10 rounded-full blur-xl"
+          className="absolute top-10 sm:top-20 left-10 sm:left-20 w-24 h-24 sm:w-32 sm:h-32 bg-white/5 rounded-full blur-xl"
           animate={{ 
             y: [0, -15, 0],
             scale: [1, 1.1, 1]
@@ -71,7 +71,7 @@ export function Download() {
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-32 h-32 sm:w-40 sm:h-40 bg-indigo-500/10 rounded-full blur-xl"
+          className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-32 h-32 sm:w-40 sm:h-40 bg-white/5 rounded-full blur-xl"
           animate={{ 
             y: [0, 15, 0],
             x: [0, -10, 0]
@@ -94,7 +94,7 @@ export function Download() {
               whileHover={{ scale: 1.05 }}
             >
               <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
-              <span className="text-xs sm:text-sm font-medium text-blue-100">Join the Beta</span>
+              <span className="text-xs sm:text-sm font-medium text-white">Join the Beta</span>
             </motion.div>
             
             <motion.h2 
@@ -108,7 +108,7 @@ export function Download() {
             </motion.h2>
             
             <motion.p 
-              className="text-base sm:text-lg lg:text-xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
               Join thousands of early users who will get exclusive access to CommuteTimely 
@@ -141,8 +141,8 @@ export function Download() {
                       <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </motion.div>
                     <h3 className="text-base sm:text-lg font-semibold mb-1 text-white">{item.title}</h3>
-                    <p className="text-blue-200 font-medium mb-2 text-sm sm:text-base">{item.subtitle}</p>
-                    <p className="text-blue-300 text-xs sm:text-sm">{item.description}</p>
+                    <p className="text-gray-200 font-medium mb-2 text-sm sm:text-base">{item.subtitle}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -163,7 +163,7 @@ export function Download() {
                 >
                     <div className="text-center mb-4 sm:mb-6">
                       <h3 id="early-access-title" className="text-xl sm:text-2xl font-bold text-white mb-2">Get Early Access</h3>
-                      <p className="text-blue-200 text-sm sm:text-base">Join our exclusive beta program</p>
+                      <p className="text-gray-300 text-sm sm:text-base">Join our exclusive beta program</p>
                     </div>
 
                     {/* Features List */}
@@ -171,7 +171,7 @@ export function Download() {
                       {features.map((feature, index) => (
                         <motion.div 
                           key={feature}
-                          className="flex items-center space-x-2 sm:space-x-3 text-blue-100"
+                          className="flex items-center space-x-2 sm:space-x-3 text-gray-200"
                           initial={{ opacity: 0, x: -20 }}
                           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                           transition={{ delay: index * 0.1 + 0.5 }}
@@ -190,7 +190,7 @@ export function Download() {
                       <Button 
                         type="button"
                         aria-label="Open early access form"
-                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+                        className="w-full bg-white hover:bg-gray-100 text-black font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base group"
                         onClick={() => setIsEarlyAccessModalOpen(true)}
                       >
                         Get Early Access
@@ -198,7 +198,7 @@ export function Download() {
                       </Button>
                     </motion.div>
                     
-                    <p className="text-xs sm:text-sm text-blue-300 text-center">
+                    <p className="text-xs sm:text-sm text-gray-400 text-center">
                       We'll notify you as soon as CommuteTimely is available. No spam, ever.
                     </p>
                   </motion.div>
