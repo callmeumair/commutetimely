@@ -6,6 +6,7 @@ import { EarlyAccessModal } from "./EarlyAccessModal";
 import { DemoVideoModal } from "./DemoVideoModal";
 import { motion, useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 export function Hero() {
   const ref = useRef(null);
@@ -304,11 +305,14 @@ export function Hero() {
                   {/* Screen */}
                   <div className="w-full h-full bg-black rounded-[2.2rem] overflow-hidden relative border border-white/5">
                     {/* Mobile App Interface - Using Actual Image */}
-                    <div className="w-full h-full rounded-[2.2rem] overflow-hidden">
-                      <img 
+                    <div className="w-full h-full rounded-[2.2rem] overflow-hidden relative">
+                      <Image 
                         src="/images/IMG_750E9EF883FD-1.jpeg" 
                         alt="CommuteTimely mobile app interface showing commute details, traffic status, and navigation"
-                        className="w-full h-full object-cover object-center"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
                     

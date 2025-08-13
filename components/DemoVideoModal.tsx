@@ -52,6 +52,8 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
   const [controlsTimeout, setControlsTimeout] = useState<NodeJS.Timeout | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [videoError, setVideoError] = useState(false);
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+  const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Prevent hydration issues
@@ -126,8 +128,12 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isFullscreen) {
-        handleFullscreen();
+      if (e.key === 'Escape') {
+        if (isFullscreen) {
+          handleFullscreen();
+        } else {
+          onClose();
+        }
       }
       if (e.key === 'f' || e.key === 'F') {
         e.preventDefault();
@@ -140,6 +146,10 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
       if (e.key === 'm') {
         e.preventDefault();
         handleMute();
+      }
+      if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        handleRestart();
       }
     };
 
@@ -156,7 +166,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
       document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isFullscreen]);
+  }, [isFullscreen, onClose]);
 
   if (!isMounted) return null;
 
@@ -229,6 +239,13 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     }
   };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    // Close modal when clicking on backdrop (but not on video content)
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   const handleVideoPlay = () => setIsPlaying(true);
   const handleVideoPause = () => setIsPlaying(false);
   const handleVideoLoadStart = () => setIsLoading(true);
@@ -244,6 +261,37 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     }
   };
 
+  // Touch gesture handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY,
+    });
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY,
+    });
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distanceX = touchStart.x - touchEnd.x;
+    const distanceY = touchStart.y - touchEnd.y;
+    const isSwipeDown = distanceY < -50 && Math.abs(distanceY) > Math.abs(distanceX);
+    
+    // Swipe down to close on mobile
+    if (isMobile && isSwipeDown) {
+      onClose();
+    }
+    
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -257,6 +305,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         suppressHydrationWarning
+        onClick={handleBackdropClick}
       >
         <motion.div
           className={`relative bg-black rounded-none sm:rounded-2xl border border-white/10 shadow-2xl overflow-hidden ${
@@ -269,8 +318,8 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          {/* Header - Hidden on mobile when in fullscreen */}
-          {(!isMobile || !isFullscreen) && (
+          {/* Header - Always visible on mobile, hidden on desktop when fullscreen */}
+          {(!isDesktop || !isFullscreen || isMobile) && (
             <div className={`relative p-3 sm:p-4 border-b border-white/10 bg-gradient-to-r from-gray-900 to-black ${
               isMobile ? 'p-2' : ''
             }`}>
@@ -293,7 +342,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                     )}
                     {isMobile && (
                       <div className="flex items-center space-x-2 mt-1">
-                        <span className="text-xs text-blue-400">Mobile optimized • Tap to show controls</span>
+                        <span className="text-xs text-blue-400">Tap for controls • Swipe down to close</span>
                       </div>
                     )}
                   </div>
@@ -302,14 +351,45 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 <button
                   onClick={onClose}
                   className={`text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10 flex-shrink-0 ml-2 ${
-                    isMobile ? 'p-1.5' : 'p-2 sm:p-3'
+                    isMobile ? 'p-2' : 'p-2 sm:p-3'
                   }`}
                   aria-label="Close demo video"
                 >
-                  <X className={`${isMobile ? 'w-4 h-4' : 'w-4 h-4 sm:w-5 sm:h-5'}`} />
+                  <X className={`${isMobile ? 'w-5 h-5' : 'w-4 h-4 sm:w-5 sm:h-5'}`} />
                 </button>
               </div>
             </div>
+          )}
+
+          {/* Mobile Close Button Overlay - Always visible when header is hidden */}
+          {isMobile && isFullscreen && (
+            <motion.button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-50 p-3 bg-black/50 backdrop-blur-sm text-white rounded-full border border-white/20 hover:bg-black/70 transition-colors"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Close demo video"
+            >
+              <X className="w-5 h-5" />
+            </motion.button>
+          )}
+
+          {/* Mobile Swipe Indicator */}
+          {isMobile && (
+            <motion.div
+              className="absolute top-20 left-1/2 transform -translate-x-1/2 z-40 text-center"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 0.7, y: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+            >
+              <div className="flex items-center space-x-2 text-white/70 text-xs">
+                <div className="w-4 h-4 border-t-2 border-l-2 border-white/50 transform rotate-45"></div>
+                <span>Swipe down to close</span>
+                <div className="w-4 h-4 border-t-2 border-l-2 border-white/50 transform rotate-45"></div>
+              </div>
+            </motion.div>
           )}
 
           {/* Video Container */}
@@ -327,18 +407,21 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 className="w-full h-full object-contain rounded-none sm:rounded-lg touch-manipulation"
                 poster="/images/IMG_750E9EF883FD-1.jpeg"
                 playsInline
-                preload="metadata"
+                preload="none"
                 webkit-playsinline="true"
                 x5-playsinline="true"
                 x5-video-player="true"
                 x5-video-player-type="h5"
-                autoPlay
+                autoPlay={false}
                 onPlay={handleVideoPlay}
                 onPause={handleVideoPause}
                 onClick={handleVideoClick}
                 onError={handleVideoError}
                 onLoadStart={handleVideoLoadStart}
                 onCanPlay={handleVideoCanPlay}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
               >
                 Your browser does not support the video tag.
               </video>
@@ -486,6 +569,19 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                         <span className="ml-1.5 text-xs">
                           {isFullscreen ? 'Exit' : 'Fullscreen'}
                         </span>
+                      )}
+                    </Button>
+
+                    {/* Close Button - Always visible in controls */}
+                    <Button
+                      onClick={onClose}
+                      variant="outline"
+                      className="border-red-500/30 text-red-400 hover:bg-red-500/20 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-sm sm:text-base"
+                      title="Close video"
+                    >
+                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                      {isMobile && (
+                        <span className="ml-1.5 text-xs">Close</span>
                       )}
                     </Button>
                   </div>

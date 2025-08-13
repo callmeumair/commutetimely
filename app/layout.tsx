@@ -57,17 +57,29 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <head>
+        {/* DNS and connection preconnect for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" href="/images/IMG_750E9EF883FD-1.jpeg" as="image" type="image/jpeg" />
-        <link rel="preload" href="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4" as="video" type="video/mp4" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Critical resources preload */}
+        <link rel="preload" href="/images/IMG_750E9EF883FD-1.jpeg" as="image" type="image/jpeg" />
+        
+        {/* Defer video loading - only preload when needed */}
+        <link rel="prefetch" href="/videos/ScreenRecording_mobile.mp4" as="video" type="video/mp4" />
+        <link rel="prefetch" href="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4" as="video" type="video/mp4" />
+        
+        {/* PWA and mobile optimizations */}
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="CommuteTimely" />
         <link rel="apple-touch-icon" href="/images/IMG_750E9EF883FD-1.jpeg" />
+        
+        {/* Performance optimizations */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       </head>
       <body className={`${inter.className} antialiased bg-dark-950 text-white overflow-x-hidden`}>
         {children}
