@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw } from 'lucide-react';
 import { Button } from './button';
@@ -17,6 +17,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Prevent hydration issues
   useEffect(() => {
@@ -34,20 +35,40 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
   if (!isMounted) return null;
 
   const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+    }
   };
 
   const handleMuteToggle = () => {
-    setIsMuted(!isMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
   };
 
   const handleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
+    if (videoRef.current) {
+      if (!document.fullscreenElement) {
+        videoRef.current.requestFullscreen();
+        setIsFullscreen(true);
+      } else {
+        document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    }
   };
 
   const handleRestart = () => {
-    setCurrentTime(0);
-    setIsPlaying(false);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      setCurrentTime(0);
+      setIsPlaying(false);
+    }
   };
 
   const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
@@ -58,8 +79,10 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = parseFloat(e.target.value);
+    if (videoRef.current) {
+      videoRef.current.currentTime = time;
+    }
     setCurrentTime(time);
-    // In a real implementation, you'd also update the video element
   };
 
   const formatTime = (time: number) => {
@@ -114,52 +137,59 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
 
           {/* Video Container */}
           <div className="relative bg-black">
-            {/* Placeholder Video - Replace with actual video source */}
-            <div className="relative w-full h-96 sm:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20 flex items-center justify-center">
-              {/* Video Placeholder */}
-              <div className="text-center">
-                <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                  <Play className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Demo Video</h3>
-                <p className="text-gray-400 max-w-md mx-auto">
-                  This is where your actual demo video will be displayed. 
-                  Upload your video file to the public/videos folder and update the source.
-                </p>
-                
-                {/* Video Controls */}
-                <div className="mt-8 flex items-center justify-center space-x-4">
-                  <Button
-                    onClick={handlePlayPause}
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl"
-                  >
-                    {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                    {isPlaying ? 'Pause' : 'Play'}
-                  </Button>
-                  
-                  <Button
-                    onClick={handleMuteToggle}
-                    variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10 px-4 py-3 rounded-xl"
-                  >
-                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                  </Button>
-                  
-                  <Button
-                    onClick={handleRestart}
-                    variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10 px-4 py-3 rounded-xl"
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                  </Button>
-                  
-                  <Button
-                    onClick={handleFullscreen}
-                    variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10 px-4 py-3 rounded-xl"
-                  >
-                    <Maximize2 className="w-4 h-4" />
-                  </Button>
+            {/* Actual Video Player */}
+            <div className="relative w-full h-96 sm:h-[500px] lg:h-[600px]">
+              <video
+                ref={videoRef}
+                src="/videos/ScreenRecording_08-13-2025 18-09-49_1.mov"
+                controls
+                muted={isMuted}
+                className="w-full h-full object-cover rounded-lg"
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onEnded={() => setIsPlaying(false)}
+                poster="/images/IMG_750E9EF883FD-1.jpeg"
+              >
+                Your browser does not support the video tag.
+              </video>
+              
+              {/* Custom Video Controls Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-auto">
+                  <div className="flex items-center justify-center space-x-4">
+                    <Button
+                      onClick={handlePlayPause}
+                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg"
+                    >
+                      {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                    </Button>
+                    
+                    <Button
+                      onClick={handleMuteToggle}
+                      variant="outline"
+                      className="border-white/20 text-white hover:bg-white/10 px-3 py-2 rounded-lg"
+                    >
+                      {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                    </Button>
+                    
+                    <Button
+                      onClick={handleRestart}
+                      variant="outline"
+                      className="border-white/20 text-white hover:bg-white/10 px-3 py-2 rounded-lg"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                    </Button>
+                    
+                    <Button
+                      onClick={handleFullscreen}
+                      variant="outline"
+                      className="border-white/20 text-white hover:bg-white/10 px-3 py-2 rounded-lg"
+                    >
+                      <Maximize2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
