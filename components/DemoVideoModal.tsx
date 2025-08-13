@@ -5,12 +5,45 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw } from 'lucide-react';
 import { Button } from './button';
 
+// Device detection hook
+const useDeviceType = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setIsMobile(true);
+        setIsTablet(false);
+        setIsDesktop(false);
+      } else if (width < 1024) {
+        setIsMobile(false);
+        setIsTablet(true);
+        setIsDesktop(false);
+      } else {
+        setIsMobile(false);
+        setIsTablet(false);
+        setIsDesktop(true);
+      }
+    };
+
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+
+  return { isMobile, isTablet, isDesktop };
+};
+
 interface DemoVideoModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
+  const { isMobile, isTablet, isDesktop } = useDeviceType();
   const [isMounted, setIsMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -25,13 +58,66 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     setIsMounted(true);
   }, []);
 
-  // Reset video state when modal opens
+  // Reset video state and auto-fullscreen when modal opens
   useEffect(() => {
     if (isOpen) {
       setIsPlaying(false);
       setCurrentTime(0);
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.pause();
+      }
+      
+      // Auto-fullscreen based on device type
+      const autoFullscreen = async () => {
+        try {
+          if (isMobile || isTablet) {
+            // For mobile/tablet, try to enter fullscreen after a short delay
+            setTimeout(async () => {
+              if (videoRef.current) {
+                try {
+                  if (videoRef.current.requestFullscreen) {
+                    await videoRef.current.requestFullscreen();
+                  } else if ((videoRef.current as any).webkitRequestFullscreen) {
+                    await (videoRef.current as any).webkitRequestFullscreen();
+                  } else if ((videoRef.current as any).mozRequestFullScreen) {
+                    await (videoRef.current as any).mozRequestFullScreen();
+                  } else if ((videoRef.current as any).msRequestFullscreen) {
+                    await (videoRef.current as any).msRequestFullscreen();
+                  }
+                  setIsFullscreen(true);
+                } catch (error) {
+                  console.log('Auto-fullscreen failed:', error);
+                }
+              }
+            }, 500);
+          } else if (isDesktop) {
+            // For desktop, enter fullscreen immediately
+            if (videoRef.current) {
+              try {
+                if (videoRef.current.requestFullscreen) {
+                  await videoRef.current.requestFullscreen();
+                } else if ((videoRef.current as any).webkitRequestFullscreen) {
+                  await (videoRef.current as any).webkitRequestFullscreen();
+                } else if ((videoRef.current as any).mozRequestFullScreen) {
+                  await (videoRef.current as any).mozRequestFullScreen();
+                } else if ((videoRef.current as any).msRequestFullscreen) {
+                  await (videoRef.current as any).msRequestFullscreen();
+                }
+                setIsFullscreen(true);
+              } catch (error) {
+                console.log('Auto-fullscreen failed:', error);
+              }
+            }
+          }
+        } catch (error) {
+          console.log('Auto-fullscreen error:', error);
+        }
+      };
+      
+      autoFullscreen();
     }
-  }, [isOpen]);
+  }, [isOpen, isMobile, isTablet, isDesktop]);
 
   // Listen for fullscreen changes and keyboard shortcuts
   useEffect(() => {
@@ -241,56 +327,70 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
             </div>
           </div>
 
-          {/* Video Container */}
-          <div className="relative bg-black">
-            {/* Actual Video Player */}
-            <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] group">
-              <video
-                ref={videoRef}
-                src="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4"
-                muted={isMuted}
-                className="w-full h-full object-cover rounded-none sm:rounded-lg touch-manipulation"
-                onTimeUpdate={handleTimeUpdate}
-                onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onEnded={() => setIsPlaying(false)}
-                onVolumeChange={(e) => setIsMuted(e.currentTarget.muted)}
-                poster="/images/IMG_750E9EF883FD-1.jpeg"
-                playsInline
-                preload="metadata"
-                webkit-playsinline="true"
-                x5-playsinline="true"
-                x5-video-player="true"
-                x5-video-player-type="h5"
-              >
+                           {/* Video Container */}
+                 <div className="relative bg-black">
+                   {/* Actual Video Player */}
+                   <div className={`relative w-full group ${
+                     isMobile ? 'h-80' : 
+                     isTablet ? 'h-96' : 
+                     isDesktop ? 'h-[600px]' : 'h-80'
+                   }`}>
+                                   <video
+                       ref={videoRef}
+                       src="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4"
+                       muted={isMuted}
+                       className="w-full h-full object-cover rounded-none sm:rounded-lg touch-manipulation"
+                       onTimeUpdate={handleTimeUpdate}
+                       onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+                       onPlay={() => setIsPlaying(true)}
+                       onPause={() => setIsPlaying(false)}
+                       onEnded={() => setIsPlaying(false)}
+                       onVolumeChange={(e) => setIsMuted(e.currentTarget.muted)}
+                       poster="/images/IMG_750E9EF883FD-1.jpeg"
+                       playsInline
+                       preload="none"
+                       webkit-playsinline="true"
+                       x5-playsinline="true"
+                       x5-video-player="true"
+                       x5-video-player-type="h5"
+                     >
                 Your browser does not support the video tag.
               </video>
               
-              {/* Click to Play Overlay */}
-              {!isPlaying && (
-                <div 
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer"
-                  onClick={handlePlayPause}
-                >
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 sm:p-6 border border-white/30">
-                    <Play className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
-                  </div>
-                </div>
-              )}
+                             {/* Click to Play Overlay */}
+               {!isPlaying && (
+                 <div 
+                   className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer"
+                   onClick={handlePlayPause}
+                 >
+                   <div className={`bg-white/20 backdrop-blur-sm rounded-full border border-white/30 ${
+                     isMobile ? 'p-6' : 'p-4 sm:p-6'
+                   }`}>
+                     <Play className={`text-white ${
+                       isMobile ? 'w-12 h-12' : 'w-8 h-8 sm:w-12 sm:h-12'
+                     }`} />
+                   </div>
+                 </div>
+               )}
 
-              {/* Custom Video Controls Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pointer-events-auto">
-                  <div className="flex items-center justify-center space-x-2 sm:space-x-4">
-                    <Button
-                      onClick={handlePlayPause}
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm min-w-[80px] sm:min-w-[100px]"
-                      title={isPlaying ? 'Pause video (Space)' : 'Play video (Space)'}
-                    >
-                      {isPlaying ? <Pause className="w-3 h-3 sm:w-4 sm:h-4" /> : <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
-                      <span className="hidden sm:inline ml-1">{isPlaying ? 'Pause' : 'Play'}</span>
-                    </Button>
+                                 {/* Custom Video Controls Overlay */}
+                   <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 pointer-events-none ${
+                     isMobile ? 'opacity-100' : 'opacity-0 hover:opacity-100 sm:group-hover:opacity-100'
+                   }`}>
+                     <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pointer-events-auto">
+                       <div className={`flex items-center justify-center ${
+                         isMobile ? 'space-x-3' : 'space-x-2 sm:space-x-4'
+                       }`}>
+                                         <Button
+                       onClick={handlePlayPause}
+                       className={`bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-lg ${
+                         isMobile ? 'px-4 py-2 text-sm min-w-[100px]' : 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm min-w-[80px] sm:min-w-[100px]'
+                       }`}
+                       title={isPlaying ? 'Pause video (Space)' : 'Play video (Space)'}
+                     >
+                       {isPlaying ? <Pause className="w-4 h-4 sm:w-4 sm:h-4" /> : <Play className="w-4 h-4 sm:w-4 sm:h-4" />}
+                       <span className={`${isMobile ? 'inline' : 'hidden sm:inline'} ml-1`}>{isPlaying ? 'Pause' : 'Play'}</span>
+                     </Button>
                     
                     <div className="flex items-center space-x-2 group/volume">
                       <Button
@@ -302,8 +402,10 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                         {isMuted ? <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" /> : <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />}
                       </Button>
                       
-                      {/* Volume Slider */}
-                      <div className="hidden group-hover/volume:block sm:block w-16 sm:w-20">
+                                           {/* Volume Slider */}
+                     <div className={`${
+                       isMobile ? 'block' : 'hidden group-hover/volume:block sm:block'
+                     } w-16 sm:w-20`}>
                         <input
                           type="range"
                           min="0"
@@ -345,32 +447,42 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
               </div>
             </div>
 
-            {/* Progress Bar */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 sm:p-4">
-              <div className="flex items-center space-x-2 sm:space-x-4">
-                <span className="text-xs sm:text-sm text-white font-mono flex-shrink-0">
-                  {formatTime(currentTime)}
-                </span>
-                
-                <div className="flex-1 relative min-w-0">
-                  <input
-                    type="range"
-                    min="0"
-                    max={duration || 100}
-                    value={currentTime}
-                    onChange={handleSeek}
-                    className="w-full h-1.5 sm:h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
-                    style={{
-                      background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / (duration || 100)) * 100}%, rgba(255,255,255,0.2) ${(currentTime / (duration || 100)) * 100}%, rgba(255,255,255,0.2) 100%)`
-                    }}
-                  />
-                </div>
-                
-                <span className="text-xs sm:text-sm text-white font-mono flex-shrink-0">
-                  {formatTime(duration)}
-                </span>
-              </div>
-            </div>
+                               {/* Progress Bar */}
+                   <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent ${
+                     isMobile ? 'p-3' : 'p-2 sm:p-4'
+                   }`}>
+                     <div className={`flex items-center ${
+                       isMobile ? 'space-x-3' : 'space-x-2 sm:space-x-4'
+                     }`}>
+                       <span className={`text-white font-mono flex-shrink-0 ${
+                         isMobile ? 'text-sm' : 'text-xs sm:text-sm'
+                       }`}>
+                         {formatTime(currentTime)}
+                       </span>
+                       
+                       <div className="flex-1 relative min-w-0">
+                         <input
+                           type="range"
+                           min="0"
+                           max={duration || 100}
+                           value={currentTime}
+                           onChange={handleSeek}
+                           className={`w-full rounded-lg appearance-none cursor-pointer slider ${
+                             isMobile ? 'h-2' : 'h-1.5 sm:h-2'
+                           } bg-white/20`}
+                           style={{
+                             background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / (duration || 100)) * 100}%, rgba(255,255,255,0.2) ${(currentTime / (duration || 100)) * 100}%, rgba(255,255,255,0.2) 100%)`
+                           }}
+                         />
+                       </div>
+                       
+                       <span className={`text-white font-mono flex-shrink-0 ${
+                         isMobile ? 'text-sm' : 'text-xs sm:text-sm'
+                       }`}>
+                         {formatTime(duration)}
+                       </span>
+                     </div>
+                   </div>
           </div>
 
 
