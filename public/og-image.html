@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommuteTimely OG Image Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .og-container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #000000 0%, #1e1b4b 50%, #312e81 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 60px;
+            box-sizing: border-box;
+        }
+        
+        /* Stars pattern */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+                radial-gradient(1px 1px at 130px 80px, #ffffff, transparent),
+                radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+                radial-gradient(1px 1px at 200px 60px, #ffffff, transparent),
+                radial-gradient(2px 2px at 240px 90px, #ffffff, transparent),
+                radial-gradient(1px 1px at 280px 40px, #ffffff, transparent),
+                radial-gradient(2px 2px at 320px 70px, #ffffff, transparent),
+                radial-gradient(1px 1px at 360px 20px, #ffffff, transparent),
+                radial-gradient(2px 2px at 400px 80px, #ffffff, transparent),
+                radial-gradient(1px 1px at 440px 50px, #ffffff, transparent),
+                radial-gradient(2px 2px at 480px 90px, #ffffff, transparent),
+                radial-gradient(1px 1px at 520px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 560px 70px, #ffffff, transparent),
+                radial-gradient(1px 1px at 600px 40px, #ffffff, transparent),
+                radial-gradient(2px 2px at 640px 80px, #ffffff, transparent),
+                radial-gradient(1px 1px at 680px 20px, #ffffff, transparent),
+                radial-gradient(2px 2px at 720px 60px, #ffffff, transparent),
+                radial-gradient(1px 1px at 760px 90px, #ffffff, transparent),
+                radial-gradient(2px 2px at 800px 30px, #ffffff, transparent),
+                radial-gradient(1px 1px at 840px 70px, #ffffff, transparent),
+                radial-gradient(2px 2px at 880px 50px, #ffffff, transparent),
+                radial-gradient(1px 1px at 920px 80px, #ffffff, transparent),
+                radial-gradient(2px 2px at 960px 20px, #ffffff, transparent),
+                radial-gradient(1px 1px at 1000px 60px, #ffffff, transparent),
+                radial-gradient(2px 2px at 1040px 90px, #ffffff, transparent),
+                radial-gradient(1px 1px at 1080px 40px, #ffffff, transparent),
+                radial-gradient(2px 2px at 1120px 70px, #ffffff, transparent),
+                radial-gradient(1px 1px at 1160px 30px, #ffffff, transparent);
+            opacity: 0.3;
+        }
+        
+        .left-content {
+            flex: 1;
+            z-index: 2;
+        }
+        
+        .main-title {
+            font-size: 72px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 32px;
+            font-weight: 400;
+            color: #a1a1aa;
+            margin: 0;
+            line-height: 1.3;
+            max-width: 500px;
+        }
+        
+        .right-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, #1f2937, #374151);
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 2px #4b5563,
+                inset 0 2px 4px rgba(255, 255, 255, 0.1);
+            transform: rotate(15deg) translateY(-20px);
+            position: relative;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffffff, #f3f4f6);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .logo {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .status-bar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: white;
+        }
+        
+        .time {
+            font-weight: 600;
+        }
+        
+        .battery {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 2px;
+            width: 2px;
+            height: 6px;
+            background: white;
+            border-radius: 0 1px 1px 0;
+        }
+        
+        .battery-level {
+            width: 14px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 1px;
+            margin: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-container">
+        <div class="stars"></div>
+        
+        <div class="left-content">
+            <h1 class="main-title">CommuteTimely</h1>
+            <p class="subtitle">Smarter Commutes, Less Stress</p>
+        </div>
+        
+        <div class="right-content">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span class="time">9:41</span>
+                        <div class="battery">
+                            <div class="battery-icon">
+                                <div class="battery-level"></div>
+                            </div>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="app-icon">⏰</div>
+                    <div>CommuteTimely</div>
+                    <div style="font-size: 14px; margin-top: 10px; opacity: 0.8;">
+                        Smart commute tracking
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="logo">CT</div>
+    </div>
+</body>
+</html>

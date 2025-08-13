@@ -1,0 +1,18 @@
+# This is a placeholder for og-image.png
+# 
+# To generate the actual og-image.png file:
+# 1. Use the HTML design: public/og-image.html
+# 2. Run: npm run generate:og-image
+# 3. Or follow instructions in: public/OG_IMAGE_INSTRUCTIONS.md
+#
+# The og-image.png should be:
+# - 1200×630 pixels (optimal for social media)
+# - PNG format with transparency support
+# - Under 1MB for optimal web performance
+# - Designed according to the specifications in og-image.html
+#
+# This image will be used for:
+# - Open Graph (Facebook, LinkedIn)
+# - Twitter Cards
+# - WhatsApp, Discord, Slack sharing
+# - Any other social media platform

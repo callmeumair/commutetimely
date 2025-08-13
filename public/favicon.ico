@@ -1,0 +1,13 @@
+# This is a placeholder for favicon.ico
+# 
+# To generate the actual favicon.ico file:
+# 1. Use the SVG source: public/favicon.svg
+# 2. Run: npm run generate:favicons
+# 3. Or follow instructions in: public/FAVICON_INSTRUCTIONS.md
+#
+# The favicon.ico should be a multi-size ICO file containing:
+# - 16x16 pixels
+# - 32x32 pixels  
+# - 48x48 pixels
+#
+# This ensures compatibility across all browsers and devices.

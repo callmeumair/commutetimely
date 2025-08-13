@@ -10,8 +10,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://commutetimely.vercel.app'),
-  title: 'CommuteTimely - Smart Commute Alerts',
-  description: 'Intelligent leave alerts using real-time traffic data to help you arrive on time, every time. Launching September 2025 on iOS and Android.',
+  title: 'CommuteTimely – Smarter Commutes, Less Stress',
+  description: 'Real-time commute tracking and smart notifications so you always leave at the perfect time.',
   keywords: ['commute timing', 'traffic notifications', 'smart commute', 'arrival time', 'traffic alerts', 'traffic app', 'commute app'],
   authors: [{ name: 'CommuteTimely Team' }],
   creator: 'CommuteTimely',
@@ -21,15 +21,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://commutetimely.vercel.app',
     siteName: 'CommuteTimely',
-    title: 'CommuteTimely - Smart Commute Alerts',
-    description: 'Intelligent leave alerts using real-time traffic data to help you arrive on time, every time.',
+    title: 'CommuteTimely – Smarter Commutes, Less Stress',
+    description: 'Real-time commute tracking and smart notifications so you always leave at the perfect time.',
     images: [
       {
-        url: '/images/IMG_750E9EF883FD-1.jpeg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'CommuteTimely - Smart Commute Alerts',
-        type: 'image/jpeg',
+        alt: 'CommuteTimely – Smarter Commutes, Less Stress',
+        type: 'image/png',
       },
     ],
   },
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@commutetimely',
     creator: '@commutetimely',
-    title: 'CommuteTimely - Smart Commute Alerts',
-    description: 'Intelligent leave alerts using real-time traffic data to help you arrive on time, every time.',
-    images: ['/images/IMG_750E9EF883FD-1.jpeg'],
+    title: 'CommuteTimely – Smarter Commutes, Less Stress',
+    description: 'Real-time commute tracking and smart notifications so you always leave at the perfect time.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -80,6 +80,12 @@ export default function RootLayout({
         {/* Performance optimizations */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
       <body className={`${inter.className} antialiased bg-dark-950 text-white overflow-x-hidden`}>
         {children}
