@@ -32,6 +32,43 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     }
   }, [isOpen]);
 
+  // Listen for fullscreen changes and keyboard shortcuts
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const isFullscreenActive = !!(
+        document.fullscreenElement || 
+        (document as any).webkitFullscreenElement || 
+        (document as any).mozFullScreenElement || 
+        (document as any).msFullscreenElement
+      );
+      setIsFullscreen(isFullscreenActive);
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        handleFullscreen();
+      }
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        handleFullscreen();
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFullscreen]);
+
   if (!isMounted) return null;
 
   const handlePlayPause = () => {
@@ -53,12 +90,36 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
 
   const handleFullscreen = () => {
     if (videoRef.current) {
-      if (!document.fullscreenElement) {
-        videoRef.current.requestFullscreen();
-        setIsFullscreen(true);
-      } else {
-        document.exitFullscreen();
-        setIsFullscreen(false);
+      try {
+        if (!document.fullscreenElement && !(document as any).webkitFullscreenElement && !(document as any).mozFullScreenElement) {
+          // Request fullscreen with cross-browser support
+          if (videoRef.current.requestFullscreen) {
+            videoRef.current.requestFullscreen();
+          } else if ((videoRef.current as any).webkitRequestFullscreen) {
+            (videoRef.current as any).webkitRequestFullscreen();
+          } else if ((videoRef.current as any).mozRequestFullScreen) {
+            (videoRef.current as any).mozRequestFullScreen();
+          } else if ((videoRef.current as any).msRequestFullscreen) {
+            (videoRef.current as any).msRequestFullscreen();
+          }
+          setIsFullscreen(true);
+        } else {
+          // Exit fullscreen with cross-browser support
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if ((document as any).webkitExitFullscreen) {
+            (document as any).webkitExitFullscreen();
+          } else if ((document as any).mozCancelFullScreen) {
+            (document as any).mozCancelFullScreen();
+          } else if ((document as any).msExitFullscreen) {
+            (document as any).msExitFullscreen();
+          }
+          setIsFullscreen(false);
+        }
+      } catch (error) {
+        console.log('Fullscreen not supported:', error);
+        // Fallback: toggle modal size for mobile
+        setIsFullscreen(!isFullscreen);
       }
     }
   };
@@ -105,7 +166,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
       >
         <motion.div
           className={`relative bg-black rounded-2xl border border-white/10 shadow-2xl overflow-hidden ${
-            isFullscreen ? 'w-full h-full' : 'w-full max-w-4xl max-h-[90vh]'
+            isFullscreen ? 'w-full h-full' : 'w-full max-w-[95vw] sm:max-w-4xl max-h-[95vh] sm:max-h-[90vh] mx-2 sm:mx-0'
           }`}
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -113,24 +174,24 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {/* Header */}
-          <div className="relative p-4 border-b border-white/10 bg-gradient-to-r from-gray-900 to-black">
+          <div className="relative p-3 sm:p-4 border-b border-white/10 bg-gradient-to-r from-gray-900 to-black">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                  <Play className="w-4 h-4 text-white" />
+              <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Play className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                 </div>
-                <div>
-                  <h2 className="text-lg font-bold text-white">CommuteTimely Demo</h2>
-                  <p className="text-sm text-gray-400">See how it works in action</p>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-base sm:text-lg font-bold text-white truncate">CommuteTimely Demo</h2>
+                  <p className="text-xs sm:text-sm text-gray-400 truncate">See how it works in action</p>
                 </div>
               </div>
               
               <button
                 onClick={onClose}
-                className="p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+                className="p-2 sm:p-3 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10 flex-shrink-0 ml-2"
                 aria-label="Close demo video"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -138,56 +199,70 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           {/* Video Container */}
           <div className="relative bg-black">
             {/* Actual Video Player */}
-            <div className="relative w-full h-96 sm:h-[500px] lg:h-[600px]">
+            <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] group">
               <video
                 ref={videoRef}
                 src="/videos/ScreenRecording_08-13-2025 18-09-49_1.mov"
                 controls
                 muted={isMuted}
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-none sm:rounded-lg touch-manipulation"
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={() => setIsPlaying(false)}
                 poster="/images/IMG_750E9EF883FD-1.jpeg"
+                playsInline
+                preload="metadata"
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                x5-video-player="true"
+                x5-video-player-type="h5"
               >
                 Your browser does not support the video tag.
               </video>
               
               {/* Custom Video Controls Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-auto">
-                  <div className="flex items-center justify-center space-x-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pointer-events-auto">
+                  <div className="flex items-center justify-center space-x-2 sm:space-x-4">
                     <Button
                       onClick={handlePlayPause}
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg"
+                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm"
                     >
-                      {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                      {isPlaying ? <Pause className="w-3 h-3 sm:w-4 sm:h-4" /> : <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
+                      <span className="hidden sm:inline ml-1">{isPlaying ? 'Pause' : 'Play'}</span>
                     </Button>
                     
                     <Button
                       onClick={handleMuteToggle}
                       variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-3 py-2 rounded-lg"
+                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm"
                     >
-                      {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                      {isMuted ? <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" /> : <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />}
                     </Button>
                     
                     <Button
                       onClick={handleRestart}
                       variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-3 py-2 rounded-lg"
+                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm"
                     >
-                      <RotateCcw className="w-4 h-4" />
+                      <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4" />
                     </Button>
                     
                     <Button
                       onClick={handleFullscreen}
                       variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-3 py-2 rounded-lg"
+                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm"
+                      title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
                     >
-                      <Maximize2 className="w-4 h-4" />
+                      {isFullscreen ? (
+                        <div className="w-3 h-3 sm:w-4 sm:h-4 flex items-center justify-center">
+                          <div className="w-2 h-2 sm:w-3 sm:h-3 border border-white rounded-sm"></div>
+                        </div>
+                      ) : (
+                        <Maximize2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                      )}
                     </Button>
                   </div>
                 </div>
@@ -195,48 +270,34 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
             </div>
 
             {/* Progress Bar */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-white font-mono">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 sm:p-4">
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <span className="text-xs sm:text-sm text-white font-mono flex-shrink-0">
                   {formatTime(currentTime)}
                 </span>
                 
-                <div className="flex-1 relative">
+                <div className="flex-1 relative min-w-0">
                   <input
                     type="range"
                     min="0"
                     max={duration || 100}
                     value={currentTime}
                     onChange={handleSeek}
-                    className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                    className="w-full h-1.5 sm:h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
                     style={{
                       background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / (duration || 100)) * 100}%, rgba(255,255,255,0.2) ${(currentTime / (duration || 100)) * 100}%, rgba(255,255,255,0.2) 100%)`
                     }}
                   />
                 </div>
                 
-                <span className="text-sm text-white font-mono">
+                <span className="text-xs sm:text-sm text-white font-mono flex-shrink-0">
                   {formatTime(duration)}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="p-4 border-t border-white/10 bg-gradient-to-r from-gray-900 to-black">
-            <div className="flex items-center justify-between text-sm text-gray-400">
-              <div className="flex items-center space-x-4">
-                <span>🎥 Interactive Demo</span>
-                <span>•</span>
-                <span>2:45 Duration</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>HD Quality</span>
-                <span>•</span>
-                <span>Auto-play ready</span>
-              </div>
-            </div>
-          </div>
+
         </motion.div>
       </motion.div>
     </AnimatePresence>

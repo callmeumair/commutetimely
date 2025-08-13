@@ -241,6 +241,24 @@
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Mobile-specific video slider improvements */
+@media (max-width: 640px) {
+  .slider {
+    height: 6px;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .slider::-webkit-slider-thumb {

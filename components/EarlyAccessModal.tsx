@@ -255,47 +255,48 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
     <AnimatePresence mode="wait">
       <motion.div
         key={isOpen ? 'open' : 'closed'}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         suppressHydrationWarning
       >
         <motion.div
-          className="relative w-full max-w-md bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+          className="relative w-full max-w-[95vw] sm:max-w-md bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl overflow-hidden max-h-[95vh] overflow-y-auto"
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {/* Header */}
-          <div className="relative p-6 border-b border-white/10">
+          <div className="relative p-4 sm:p-6 border-b border-white/10">
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
               disabled={isLoading}
+              aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             
             <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Join Early Access</h2>
-              <p className="text-gray-300 text-sm">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Join Early Access</h2>
+              <p className="text-xs sm:text-sm text-gray-300">
                 Be among the first to experience CommuteTimely
               </p>
             </div>
           </div>
 
           {/* Content */}
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                     Email Address *
                   </label>
                   <Input
@@ -305,13 +306,13 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="your@email.com"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-400 h-10 sm:h-11 text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                     Name
                   </label>
                   <Input
@@ -320,20 +321,20 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your name"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-400 h-10 sm:h-11 text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Use Case */}
                 <div>
-                  <label htmlFor="useCase" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="useCase" className="block text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                     How will you use CommuteTimely?
                   </label>
                   <select
                     id="useCase"
                     value={formData.useCase}
                     onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-                    className="w-full bg-white/10 border border-white/20 text-white rounded-lg px-3 py-2 focus:border-blue-400 focus:ring-blue-400/20"
+                    className="w-full bg-white/10 border border-white/20 text-white rounded-lg px-3 py-2 focus:border-blue-400 focus:ring-blue-400/20 h-10 sm:h-11 text-sm sm:text-base"
                   >
                     <option value="">Select an option</option>
                     <option value="office-worker">Office worker</option>
@@ -346,7 +347,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
 
                 {/* Location/Commute Type */}
                 <div>
-                  <label htmlFor="location" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="location" className="block text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                     Location/Commute Type
                   </label>
                   <Input
@@ -355,13 +356,13 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     placeholder="e.g., Downtown, Suburbs, Rural"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-400 h-10 sm:h-11 text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Biggest Challenge */}
                 <div>
-                  <label htmlFor="commuteChallenge" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="commuteChallenge" className="block text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                     What's your biggest commute challenge?
                   </label>
                   <textarea
@@ -370,25 +371,25 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                     onChange={(e) => setFormData({ ...formData, commuteChallenge: e.target.value })}
                     placeholder="Tell us about your commute struggles..."
                     rows={3}
-                    className="w-full bg-white/10 border border-white/20 text-white rounded-lg px-3 py-2 focus:border-blue-400 focus:ring-blue-400/20 resize-none"
+                    className="w-full bg-white/10 border border-white/20 text-white rounded-lg px-3 py-2 focus:border-blue-400 focus:ring-blue-400/20 resize-none text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Device */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                     What device will you use?
                   </label>
-                  <div className="flex space-x-3">
+                  <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
                     {['Android', 'iOS', 'Both'].map((device) => (
-                      <label key={device} className="flex items-center space-x-2">
+                      <label key={device} className="flex items-center space-x-2 cursor-pointer">
                         <input
                           type="radio"
                           name="device"
                           value={device}
                           checked={formData.device === device}
                           onChange={(e) => setFormData({ ...formData, device: e.target.value })}
-                          className="text-blue-500 focus:ring-blue-400"
+                          className="text-blue-500 focus:ring-blue-400 w-4 h-4"
                         />
                         <span className="text-sm text-gray-300">{device}</span>
                       </label>
@@ -411,23 +412,23 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-2.5 sm:py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base h-11 sm:h-12"
                 >
                   {isLoading ? 'Submitting...' : 'Join Early Access'}
                 </Button>
               </form>
             ) : (
               <motion.div
-                className="text-center py-8 relative overflow-hidden"
+                className="text-center py-6 sm:py-8 relative overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <motion.h3 
-                  className="text-xl font-bold text-white mb-2"
+                  className="text-lg sm:text-xl font-bold text-white mb-2"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.3, type: "spring", stiffness: 300 }}
@@ -435,7 +436,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                   🎉 Welcome to Early Access! 🎉
                 </motion.h3>
                 <motion.p 
-                  className="text-gray-300 text-sm"
+                  className="text-gray-300 text-xs sm:text-sm"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
@@ -445,7 +446,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                 
                 {/* Celebration Emojis */}
                 <motion.div 
-                  className="flex justify-center space-x-2 mt-4"
+                  className="flex justify-center space-x-1 sm:space-x-2 mt-3 sm:mt-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, type: "spring", stiffness: 300 }}
@@ -453,7 +454,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
                   {['🚀', '⭐', '🎯', '🔥', '💫'].map((emoji, index) => (
                     <motion.span
                       key={index}
-                      className="text-2xl"
+                      className="text-xl sm:text-2xl"
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ 
