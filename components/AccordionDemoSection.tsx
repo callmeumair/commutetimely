@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/accordion'
 
 export default function AccordionDemoSection() {
   const faqItems = [

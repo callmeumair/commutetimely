@@ -11,7 +11,7 @@ import { Footer } from "@/components/Footer";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { motion } from "motion/react";
 import { useEffect } from "react";
-import { ClientOnlyParticles } from "@/components/ClientOnlyParticles";
+
 
 export default function Home() {
   useEffect(() => {
@@ -135,10 +135,7 @@ export default function Home() {
           }}
         />
         
-        {/* Client-only Particle System - Temporarily disabled to fix hydration */}
-        {/* <div suppressHydrationWarning>
-          <ClientOnlyParticles />
-        </div> */}
+
       </div>
 
       <ScrollIndicator />

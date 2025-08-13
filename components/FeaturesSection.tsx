@@ -3,7 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
 import { Bell, Clock, MapPin, Smartphone, Navigation, Users, ArrowRight, CheckCircle, Zap } from "lucide-react";
 import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Switch } from "./switch";
 
 const features = [
   {
@@ -66,6 +67,21 @@ const stats = [
 export function Features() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [enabledFeatures, setEnabledFeatures] = useState<{ [key: string]: boolean }>({
+    "Smart Leave Alerts": true,
+    "Real-Time Traffic Data": true,
+    "Multiple Commute Modes": false,
+    "Push Notifications": true,
+    "Arrival Time Optimization": false,
+    "Multi-Destination Support": false
+  });
+
+  const toggleFeature = (featureTitle: string) => {
+    setEnabledFeatures(prev => ({
+      ...prev,
+      [featureTitle]: !prev[featureTitle]
+    }));
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -317,6 +333,20 @@ export function Features() {
                     <CardDescription className="text-center text-gray-300 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base lg:text-lg">
                       {feature.description}
                     </CardDescription>
+                    
+                    {/* Feature Toggle */}
+                    <motion.div 
+                      className="flex items-center justify-center space-x-3 mb-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                    >
+                      <span className="text-sm text-gray-400">Enable feature</span>
+                      <Switch
+                        checked={enabledFeatures[feature.title]}
+                        onCheckedChange={() => toggleFeature(feature.title)}
+                        className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-600"
+                      />
+                    </motion.div>
                     
                     <motion.div 
                       className="flex items-center justify-center text-cyan-400 group-hover:text-cyan-300 transition-colors opacity-0 group-hover:opacity-100"

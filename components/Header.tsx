@@ -1,16 +1,18 @@
 'use client'
 
 import { Button } from "./button";
-import { MapPin, Menu, X } from "lucide-react";
+import { MapPin, Menu, X, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
+import { Switch } from "./switch";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,16 @@ export function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    // You can add actual theme switching logic here
+    if (!isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const navItems = [
     { href: "#features", label: "Features" },
@@ -135,6 +147,24 @@ export function Header() {
               </motion.a>
             ))}
             
+            {/* Theme Toggle */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center space-x-3"
+            >
+              <div className="flex items-center space-x-2">
+                <Sun className="w-4 h-4 text-yellow-400" />
+                <Switch
+                  checked={isDarkMode}
+                  onCheckedChange={toggleTheme}
+                  className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-600"
+                />
+                <Moon className="w-4 h-4 text-blue-400" />
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -239,6 +269,24 @@ export function Header() {
                   </motion.a>
                 ))}
                 
+                {/* Mobile Theme Toggle */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="flex items-center justify-between py-4 px-4 rounded-xl bg-white/5 border border-white/10"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Sun className="w-5 h-5 text-yellow-400" />
+                    <span className="text-white/80 font-medium">Theme</span>
+                  </div>
+                  <Switch
+                    checked={isDarkMode}
+                    onCheckedChange={toggleTheme}
+                    className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-600"
+                  />
+                </motion.div>
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
