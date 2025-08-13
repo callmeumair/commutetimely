@@ -1,7 +1,6 @@
 import { Button } from "./button";
-import { Input } from "./input";
 import { Card, CardContent } from "./card";
-import { Smartphone, Mail, Calendar, ArrowRight, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, Calendar, Smartphone, Mail } from "lucide-react";
 import { useState } from "react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
