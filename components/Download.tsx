@@ -8,22 +8,9 @@ import { useRef } from "react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 
 export function Download() {
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setEmail("");
-        setIsSubmitted(false);
-      }, 3000);
-    }
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -170,12 +157,11 @@ export function Download() {
           >
             <Card className="bg-white/10 backdrop-blur-lg border-white/20 overflow-hidden">
               <CardContent className="p-6 sm:p-8">
-                {!isSubmitted ? (
-                  <motion.div 
-                    className="space-y-4 sm:space-y-6"
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 1 }}
-                  >
+                <motion.div 
+                  className="space-y-4 sm:space-y-6"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                >
                     <div className="text-center mb-4 sm:mb-6">
                       <h3 id="early-access-title" className="text-xl sm:text-2xl font-bold text-white mb-2">Get Early Access</h3>
                       <p className="text-blue-200 text-sm sm:text-base">Join our exclusive beta program</p>
@@ -197,64 +183,26 @@ export function Download() {
                       ))}
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" aria-labelledby="early-access-title">
-                      <div className="flex flex-col gap-3">
-                        <motion.div 
-                          className="flex-1"
-                          whileFocus={{ scale: 1.02 }}
-                        >
-                          <label htmlFor="email-input" className="sr-only">Email address</label>
-                          <Input
-                            id="email-input"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            aria-label="Email address for early access"
-                            className="bg-white/10 border-white/20 text-white placeholder:text-blue-200 focus:border-blue-400 focus:ring-blue-400/20 h-11 sm:h-12 text-sm sm:text-base"
-                          />
-                        </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <Button 
-                            type="button"
-                            aria-label="Open early access form"
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
-                            onClick={() => setIsEarlyAccessModalOpen(true)}
-                          >
-                            Get Early Access
-                            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </Button>
-                        </motion.div>
-                      </div>
-                      
-                      <p className="text-xs sm:text-sm text-blue-300 text-center">
-                        We'll notify you as soon as CommuteTimely is available. No spam, ever.
-                      </p>
-                    </form>
-                  </motion.div>
-                ) : (
-                  <motion.div 
-                    className="text-center py-6 sm:py-8"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
                     <motion.div
-                      className="w-12 h-12 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4"
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full"
                     >
-                      <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      <Button 
+                        type="button"
+                        aria-label="Open early access form"
+                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+                        onClick={() => setIsEarlyAccessModalOpen(true)}
+                      >
+                        Get Early Access
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
                     </motion.div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">You're In!</h3>
-                    <p className="text-blue-200 text-sm sm:text-base">
-                      Thanks for joining! We'll notify you when CommuteTimely launches in September.
+                    
+                    <p className="text-xs sm:text-sm text-blue-300 text-center">
+                      We'll notify you as soon as CommuteTimely is available. No spam, ever.
                     </p>
                   </motion.div>
-                )}
               </CardContent>
             </Card>
           </motion.div>

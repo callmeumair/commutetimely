@@ -291,9 +291,9 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         suppressHydrationWarning
       >
         <motion.div
-          className={`relative bg-black rounded-2xl border border-white/10 shadow-2xl overflow-hidden ${
-            isFullscreen ? 'w-full h-full' : 'w-full max-w-[95vw] sm:max-w-4xl max-h-[95vh] sm:max-h-[90vh] mx-2 sm:mx-0'
-          }`}
+                           className={`relative bg-black rounded-2xl border border-white/10 shadow-2xl overflow-hidden ${
+                   isFullscreen ? 'w-full h-full' : 'w-full max-w-[95vw] sm:max-w-5xl max-h-[95vh] sm:max-h-[90vh] mx-2 sm:mx-0'
+                 }`}
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -328,18 +328,18 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           </div>
 
                            {/* Video Container */}
-                 <div className="relative bg-black">
+                 <div className="relative bg-gray-900">
                    {/* Actual Video Player */}
                    <div className={`relative w-full group ${
-                     isMobile ? 'h-80' : 
-                     isTablet ? 'h-96' : 
-                     isDesktop ? 'h-[600px]' : 'h-80'
+                     isMobile ? 'min-h-[300px] h-[calc(100vw*0.5625)]' : 
+                     isTablet ? 'min-h-[400px] h-[calc(100vw*0.4)]' : 
+                     isDesktop ? 'min-h-[500px] h-[calc(100vh*0.6)]' : 'min-h-[300px] h-[calc(100vw*0.5625)]'
                    }`}>
                                    <video
                        ref={videoRef}
                        src="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4"
                        muted={isMuted}
-                       className="w-full h-full object-cover rounded-none sm:rounded-lg touch-manipulation"
+                       className="w-full h-full object-contain rounded-none sm:rounded-lg touch-manipulation"
                        onTimeUpdate={handleTimeUpdate}
                        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
                        onPlay={() => setIsPlaying(true)}
