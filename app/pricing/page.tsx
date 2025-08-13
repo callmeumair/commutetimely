@@ -282,7 +282,7 @@ export default function PricingPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-lg text-gray-400">
@@ -334,7 +334,7 @@ export default function PricingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent mb-6">
                 Ready to transform your commute?
               </h2>
               <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
