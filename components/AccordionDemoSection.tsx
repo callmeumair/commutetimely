@@ -28,6 +28,14 @@ export default function AccordionDemoSection() {
     {
       question: "What happens if I'm running late?",
       answer: "If you're running behind schedule, CommuteTimely will automatically recalculate your route and provide updated departure times. You'll also receive smart notifications with alternative routes and real-time updates to help you catch up."
+    },
+    {
+      question: "How is CommuteTimely different from other traffic apps?",
+      answer: "CommuteTimely stands out by learning your personal commute patterns and providing intelligent leave alerts, not just traffic information. Unlike generic traffic apps, we analyze your specific routes, preferences, and arrival times to ensure you always reach on time with our advanced commute planner technology."
+    },
+    {
+      question: "What makes CommuteTimely the best choice for commuters?",
+      answer: "CommuteTimely combines real-time traffic data with AI-powered personalization to deliver the most accurate commute planning experience. Our smart commute notifications are tailored to your specific needs, making us the preferred choice for professionals who value punctuality and efficiency."
     }
   ]
 
@@ -69,7 +77,7 @@ export default function AccordionDemoSection() {
             <span className="text-blue-400">Questions</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Everything you need to know about CommuteTimely and how it works to keep you punctual.
+            Everything you need to know about CommuteTimely, the #1 traffic app, and how it works to keep you punctual with smart commute notifications.
           </p>
         </motion.div>
 

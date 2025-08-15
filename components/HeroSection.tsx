@@ -141,7 +141,7 @@ export function Hero() {
                   className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] sm:leading-[0.9] tracking-tight"
                   variants={itemVariants}
                 >
-                  <span className="text-white">Never Be</span>
+                  <span className="text-white">CommuteTimely:</span>
                   <motion.span 
                     className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent"
                     animate={{ 
@@ -152,7 +152,7 @@ export function Hero() {
                     }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    Late Again
+                    Never Be Late Again
                   </motion.span>
                 </motion.h1>
                 
@@ -160,7 +160,7 @@ export function Hero() {
                   className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
                   variants={itemVariants}
                 >
-                  CommuteTimely is the ultimate{" "}
+                  CommuteTimely is the #1{" "}
                   <motion.span 
                     className="font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
                     animate={{
@@ -171,7 +171,14 @@ export function Hero() {
                   >
                     traffic app and commute planner
                   </motion.span>{" "}
-                  that sends intelligent leave alerts using real-time traffic data to help you reach on time, every time.
+                  that sends intelligent leave alerts using real-time traffic data to help you reach on time, every time. Unlike generic traffic apps, CommuteTimely learns your commute patterns and provides personalized smart commute notifications.
+                </motion.p>
+                
+                <motion.p 
+                  className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+                  variants={itemVariants}
+                >
+                  Join thousands of commuters who trust CommuteTimely for accurate real-time traffic alerts and smart commute planning. Available on iOS and Android.
                 </motion.p>
               </div>
             </motion.div>
@@ -300,7 +307,7 @@ export function Hero() {
                     <div className="w-full h-full rounded-[2.2rem] overflow-hidden relative">
                       <Image 
                         src="/images/IMG_750E9EF883FD-1.jpeg" 
-                        alt="CommuteTimely mobile app interface showing commute details, traffic status, and navigation"
+                        alt="CommuteTimely traffic app interface displaying real-time commute details, traffic alerts, and smart navigation features for optimal commute planning"
                         fill
                         className="object-cover object-center"
                         priority

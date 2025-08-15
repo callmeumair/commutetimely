@@ -153,12 +153,20 @@ export function HowItWorks() {
               </motion.span>
             </motion.h2>
             
+            <motion.h3 
+              className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-4 sm:mb-6 font-semibold"
+              variants={itemVariants}
+            >
+              How CommuteTimely's Traffic App Works
+            </motion.h3>
+            
             <motion.p 
               className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
               Transform your daily commute with CommuteTimely's intelligent traffic app alerts that ensure you never arrive late again. 
-              Our smart commute notifications make it that simple to reach on time, every time.
+              Our smart commute notifications make it that simple to reach on time, every time. 
+              CommuteTimely's advanced algorithms analyze real-time traffic data to provide the most accurate departure times for your specific route.
             </motion.p>
           </motion.div>
         </motion.div>

@@ -192,12 +192,20 @@ export function Features() {
               </motion.span>
             </motion.h2>
             
+            <motion.h3 
+              className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-4 sm:mb-6 font-semibold"
+              variants={itemVariants}
+            >
+              The Most Advanced Traffic App for Smart Commute Planning
+            </motion.h3>
+            
             <motion.p 
               className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
               CommuteTimely is built for the modern commuter who values punctuality and efficiency. 
-              Our intelligent traffic app learns your commute patterns and adapts to changing conditions with real-time traffic alerts, ensuring you always reach on time.
+              Our intelligent traffic app learns your commute patterns and adapts to changing conditions with real-time traffic alerts, ensuring you always reach on time. 
+              Unlike basic traffic apps, CommuteTimely provides personalized smart commute notifications based on your unique travel patterns and preferences.
             </motion.p>
           </motion.div>
         </motion.div>

@@ -11,6 +11,7 @@ import { Footer } from '@/components/Footer';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { PerformanceOptimizer } from '@/components/PerformanceOptimizer';
 import { LazyLoad } from '@/components/PerformanceOptimizer';
+import { UniqueAdvantagesSection } from '@/components/UniqueAdvantagesSection';
 
 export default function Home() {
   // Removed duplicate preload - already handled in layout.tsx
@@ -58,6 +59,10 @@ export default function Home() {
         
         <LazyLoad>
           <HowItWorks />
+        </LazyLoad>
+
+        <LazyLoad>
+          <UniqueAdvantagesSection />
         </LazyLoad>
 
         <LazyLoad>

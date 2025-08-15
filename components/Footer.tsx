@@ -83,7 +83,7 @@ export function Footer() {
             </motion.div>
             
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm sm:text-base">
-              Intelligent leave alerts using real-time traffic data to help you arrive on time, every time. 
+              CommuteTimely is the #1 traffic app with intelligent leave alerts using real-time traffic data to help you reach on time, every time. 
               <span className="text-blue-300 font-medium"> Launching September 2025</span> on iOS and Android.
             </p>
             
@@ -123,6 +123,7 @@ export function Footer() {
               {[
                 { name: "Features", href: "#features" },
                 { name: "How It Works", href: "#how-it-works" },
+                { name: "Why CommuteTimely", href: "#unique-advantages" },
                 { name: "Download", href: "#download" },
                 { name: "Pricing", href: "/pricing" }
               ].map((link, index) => (
