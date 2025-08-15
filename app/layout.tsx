@@ -66,9 +66,14 @@ export default function RootLayout({
         {/* Critical resources preload */}
         <link rel="preload" href="/images/IMG_750E9EF883FD-1.jpeg" as="image" type="image/jpeg" />
         
-        {/* Defer video loading - only preload when needed */}
+        {/* Defer video loading - only prefetch when needed */}
         <link rel="prefetch" href="/videos/ScreenRecording_mobile.mp4" as="video" type="video/mp4" />
         <link rel="prefetch" href="/videos/ScreenRecording_08-13-2025 18-45-18_1.MP4" as="video" type="video/mp4" />
+        
+        {/* Performance optimizations */}
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         
         {/* PWA and mobile optimizations */}
         <meta name="theme-color" content="#000000" />

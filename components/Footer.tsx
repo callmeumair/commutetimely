@@ -12,8 +12,8 @@ export function Footer() {
     <footer className="relative bg-black border-t border-white/10 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        {/* Subtle Grid */}
-        <motion.div 
+        {/* Static Grid for better performance */}
+        <div 
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
@@ -22,36 +22,11 @@ export function Footer() {
             `,
             backgroundSize: '40px 40px'
           }}
-          animate={{
-            backgroundPosition: ['0px 0px', '40px 40px'],
-          }}
-          transition={{
-            duration: 50,
-            repeat: Infinity,
-            ease: "linear"
-          }}
         />
 
-        {/* Floating Orbs */}
-        <motion.div 
-          className="absolute top-10 left-1/4 w-32 h-32 bg-blue-600/5 rounded-full blur-2xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            x: [0, 20, 0],
-            y: [0, -10, 0]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        <motion.div 
-          className="absolute bottom-10 right-1/4 w-24 h-24 bg-purple-600/5 rounded-full blur-2xl"
-          animate={{ 
-            scale: [1, 1.3, 1],
-            x: [0, -15, 0],
-            y: [0, 15, 0]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {/* Static Orbs for better performance */}
+        <div className="absolute top-10 left-1/4 w-32 h-32 bg-blue-600/5 rounded-full blur-2xl" />
+        <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-purple-600/5 rounded-full blur-2xl" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10">

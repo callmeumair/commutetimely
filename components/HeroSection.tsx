@@ -67,22 +67,14 @@ export function Hero() {
     <section ref={ref} className="relative min-h-screen bg-black overflow-hidden pt-20" suppressHydrationWarning>
       {/* Hero Background Effects */}
       <div className="absolute inset-0">
-        {/* Cyber Grid */}
-        <motion.div 
+        {/* Static Cyber Grid for better performance */}
+        <div 
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
               radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1) 1px, transparent 1px)
             `,
             backgroundSize: '40px 40px'
-          }}
-          animate={{
-            backgroundPosition: ['0px 0px', '40px 40px'],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
           }}
         />
 

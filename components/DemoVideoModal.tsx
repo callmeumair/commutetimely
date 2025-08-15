@@ -479,7 +479,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 className="w-full h-full object-contain rounded-none sm:rounded-lg touch-manipulation"
                 poster="/images/IMG_750E9EF883FD-1.jpeg"
                 playsInline
-                preload="auto"
+                preload="metadata"
                 webkit-playsinline="true"
                 x5-playsinline="true"
                 x5-video-player="true"

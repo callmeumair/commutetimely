@@ -6,6 +6,8 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    optimizeCss: true,
+    scrollRestoration: true,
   },
 
   // Image optimization
@@ -26,6 +28,10 @@ const nextConfig = {
       // Enable tree shaking
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
+      
+      // Aggressive optimization
+      config.optimization.minimize = true;
+      config.optimization.minimizer = config.optimization.minimizer || [];
       
       // Split chunks for better caching
       config.optimization.splitChunks = {
