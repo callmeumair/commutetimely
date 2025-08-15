@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/HeroSection';
@@ -14,28 +13,7 @@ import { PerformanceOptimizer } from '@/components/PerformanceOptimizer';
 import { LazyLoad } from '@/components/PerformanceOptimizer';
 
 export default function Home() {
-  useEffect(() => {
-    // Performance optimization: preload critical resources
-    if (typeof window !== 'undefined') {
-      // Use requestIdleCallback for non-critical operations
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          // Preload critical images
-          const criticalImages = [
-            '/images/IMG_750E9EF883FD-1.jpeg'
-          ];
-          
-          criticalImages.forEach(src => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = 'image';
-            link.href = src;
-            document.head.appendChild(link);
-          });
-        }, { timeout: 2000 });
-      }
-    }
-  }, []);
+  // Removed duplicate preload - already handled in layout.tsx
 
   return (
     <motion.div 

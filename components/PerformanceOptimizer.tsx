@@ -2,6 +2,41 @@
 
 import { useEffect, useState } from 'react';
 
+// Performance API types
+interface LayoutShift extends PerformanceEntry {
+  value: number;
+  sources?: Array<{
+    node?: Node;
+    currentRect?: DOMRectReadOnly;
+    previousRect?: DOMRectReadOnly;
+  }>;
+}
+
+interface LargestContentfulPaint extends PerformanceEntry {
+  value: number;
+  size: number;
+  id: string;
+  url: string;
+}
+
+interface FirstInput extends PerformanceEntry {
+  value: number;
+  processingStart: number;
+  processingEnd: number;
+  target?: Node;
+}
+
+interface PerformanceEventTiming extends PerformanceEntry {
+  processingStart: number;
+  processingEnd: number;
+  target?: Node;
+}
+
+interface PerformanceResourceTiming extends PerformanceEntry {
+  name: string;
+  duration: number;
+}
+
 interface PerformanceOptimizerProps {
   children: React.ReactNode;
   threshold?: number;
