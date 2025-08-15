@@ -58,17 +58,17 @@ const puppeteer = require('puppeteer');
 
 ### Twitter Card Validator
 1. Go to [Twitter Card Validator](https://cards-dev.twitter.com/validator)
-2. Enter your URL: `https://commutetimely.vercel.app`
+2. Enter your URL: `https://commutetimely.com`
 3. Check the preview and ensure the image displays correctly
 
 ### Facebook Sharing Debugger
 1. Go to [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
-2. Enter your URL: `https://commutetimely.vercel.app`
+2. Enter your URL: `https://commutetimely.com`
 3. Click "Debug" and check the preview
 
 ### LinkedIn Post Inspector
 1. Go to [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
-2. Enter your URL: `https://commutetimely.vercel.app`
+2. Enter your URL: `https://commutetimely.com`
 3. Check the preview
 
 ## File Structure
