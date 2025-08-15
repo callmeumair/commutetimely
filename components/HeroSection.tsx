@@ -25,34 +25,63 @@ export function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
         delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 80, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.8,
-        ease: "easeOut" as const
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94] // Custom cubic-bezier for smooth motion
       }
     }
   };
 
   const phoneVariants = {
-    hidden: { opacity: 0, scale: 0.7, rotateY: 30 },
+    hidden: { opacity: 0, scale: 0.6, rotateY: 45, y: 100 },
     visible: {
       opacity: 1,
       scale: 1,
       rotateY: 0,
+      y: 0,
       transition: {
-        duration: 1.2,
-        ease: "easeOut" as const,
-        delay: 0.3
+        duration: 1.5,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.4
+      }
+    }
+  };
+
+  // Enhanced floating animation variants
+  const floatingVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Parallax scroll effect
+  const parallaxVariants = {
+    hidden: { y: 0 },
+    visible: {
+      y: [-20, 20, -20],
+      transition: {
+        duration: 8,
+        repeat: Infinity,
+        ease: "easeInOut"
       }
     }
   };
