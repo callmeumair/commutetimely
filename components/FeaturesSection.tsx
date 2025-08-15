@@ -10,7 +10,7 @@ const features = [
   {
     icon: Bell,
     title: "Smart Leave Alerts",
-    description: "Get perfectly timed notifications telling you exactly when to leave based on real-time traffic conditions.",
+    description: "CommuteTimely sends perfectly timed notifications telling you exactly when to leave based on real-time traffic conditions, ensuring you reach on time every day.",
     color: "from-blue-500 to-cyan-500",
     glowColor: "rgba(37, 99, 235, 0.4)",
     delay: 0.1
@@ -18,7 +18,7 @@ const features = [
   {
     icon: Navigation,
     title: "Real-Time Traffic Data", 
-    description: "Our advanced algorithms analyze live traffic patterns to provide the most accurate departure times.",
+    description: "Our advanced traffic app algorithms analyze live traffic patterns to provide the most accurate departure times and smart commute notifications.",
     color: "from-green-500 to-emerald-500",
     glowColor: "rgba(34, 197, 94, 0.4)",
     delay: 0.2
@@ -26,7 +26,7 @@ const features = [
   {
     icon: MapPin,
     title: "Multiple Commute Modes",
-    description: "Whether you drive, take public transit, walk, or bike - we've got your commute covered.",
+    description: "Whether you drive, take public transit, walk, or bike - CommuteTimely has your commute covered with intelligent planning for every mode.",
     color: "from-purple-500 to-violet-500",
     glowColor: "rgba(139, 92, 246, 0.4)",
     delay: 0.3
@@ -34,7 +34,7 @@ const features = [
   {
     icon: Smartphone,
     title: "Push Notifications",
-    description: "Never miss an alert with reliable push notifications that work even when the app is closed.",
+    description: "Never miss a traffic alert with reliable push notifications that work even when the app is closed, keeping you informed about your commute.",
     color: "from-orange-500 to-red-500",
     glowColor: "rgba(251, 146, 60, 0.4)",
     delay: 0.4
@@ -42,7 +42,7 @@ const features = [
   {
     icon: Clock,
     title: "Arrival Time Optimization",
-    description: "Arrive exactly when you need to, not too early or too late. Perfect timing, every time.",
+    description: "Arrive exactly when you need to, not too early or too late. CommuteTimely ensures perfect timing, every time with our intelligent commute planner.",
     color: "from-cyan-500 to-blue-500",
     glowColor: "rgba(6, 182, 212, 0.4)",
     delay: 0.5
@@ -50,7 +50,7 @@ const features = [
   {
     icon: Users,
     title: "Multi-Destination Support",
-    description: "Set up multiple regular destinations like work, gym, appointments, and social events.",
+    description: "Set up multiple regular destinations like work, gym, appointments, and social events with CommuteTimely's comprehensive commute planning system.",
     color: "from-pink-500 to-rose-500",
     glowColor: "rgba(236, 72, 153, 0.4)",
     delay: 0.6
@@ -58,10 +58,10 @@ const features = [
 ];
 
 const stats = [
-  { number: "99.9%", label: "Accuracy Rate", description: "Precise arrival predictions", icon: CheckCircle },
-  { number: "45min", label: "Time Saved", description: "Average weekly savings", icon: Clock },
-  { number: "24/7", label: "Monitoring", description: "Continuous traffic analysis", icon: Zap },
-  { number: "5+", label: "Transport Modes", description: "Car, transit, bike, walk, etc.", icon: Navigation }
+  { number: "99.9%", label: "Accuracy Rate", description: "Precise arrival predictions with CommuteTimely", icon: CheckCircle },
+  { number: "45min", label: "Time Saved", description: "Average weekly time savings", icon: Clock },
+  { number: "24/7", label: "Monitoring", description: "Continuous real-time traffic analysis", icon: Zap },
+  { number: "5+", label: "Transport Modes", description: "Car, transit, bike, walk, and more", icon: Navigation }
 ];
 
 export function Features() {
@@ -196,8 +196,8 @@ export function Features() {
               className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
-              Built for the modern commuter who values punctuality and efficiency. 
-              Our intelligent system learns your patterns and adapts to changing conditions in real-time.
+              CommuteTimely is built for the modern commuter who values punctuality and efficiency. 
+              Our intelligent traffic app learns your commute patterns and adapts to changing conditions with real-time traffic alerts, ensuring you always reach on time.
             </motion.p>
           </motion.div>
         </motion.div>
@@ -392,7 +392,7 @@ export function Features() {
               transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
             />
             
-            <span className="relative z-10">Ready to transform your commute?</span>
+            <span className="relative z-10">Ready to transform your commute with CommuteTimely?</span>
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
           </motion.button>
         </motion.div>

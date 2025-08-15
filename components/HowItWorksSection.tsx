@@ -9,7 +9,7 @@ const steps = [
   {
     icon: MapPin,
     title: "Set Your Destinations",
-    description: "Add your regular destinations like work, gym, or appointments with your preferred arrival times.",
+    description: "Add your regular destinations like work, gym, or appointments with your preferred arrival times using CommuteTimely's intuitive interface.",
     step: "1",
     color: "from-blue-500 to-cyan-500",
     glowColor: "rgba(37, 99, 235, 0.4)"
@@ -17,7 +17,7 @@ const steps = [
   {
     icon: Clock,
     title: "We Monitor Traffic",
-    description: "Our system continuously monitors real-time traffic conditions and learns your commute patterns.",
+    description: "CommuteTimely continuously monitors real-time traffic conditions and learns your commute patterns to provide accurate traffic alerts.",
     step: "2",
     color: "from-green-500 to-emerald-500",
     glowColor: "rgba(34, 197, 94, 0.4)"
@@ -25,7 +25,7 @@ const steps = [
   {
     icon: Bell,
     title: "Get Smart Alerts",
-    description: "Receive perfectly timed notifications telling you exactly when to leave for optimal arrival.",
+    description: "Receive perfectly timed smart commute notifications telling you exactly when to leave for optimal arrival with our traffic app.",
     step: "3",
     color: "from-orange-500 to-red-500",
     glowColor: "rgba(251, 146, 60, 0.4)"
@@ -33,7 +33,7 @@ const steps = [
   {
     icon: CheckCircle,
     title: "Arrive On Time",
-    description: "Follow the alert and arrive at your destination right on time, stress-free and prepared.",
+    description: "Follow CommuteTimely's alert and arrive at your destination right on time, stress-free and prepared with our commute planner.",
     step: "4",
     color: "from-purple-500 to-violet-500",
     glowColor: "rgba(139, 92, 246, 0.4)"
@@ -157,8 +157,8 @@ export function HowItWorks() {
               className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
-              Transform your daily commute with intelligent alerts that ensure you never arrive late again. 
-              It's that simple.
+              Transform your daily commute with CommuteTimely's intelligent traffic app alerts that ensure you never arrive late again. 
+              Our smart commute notifications make it that simple to reach on time, every time.
             </motion.p>
           </motion.div>
         </motion.div>

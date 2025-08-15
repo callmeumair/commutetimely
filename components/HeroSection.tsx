@@ -160,7 +160,7 @@ export function Hero() {
                   className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
                   variants={itemVariants}
                 >
-                  CommuteTimely sends{" "}
+                  CommuteTimely is the ultimate{" "}
                   <motion.span 
                     className="font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
                     animate={{
@@ -169,9 +169,9 @@ export function Hero() {
                     style={{ backgroundSize: "200% 100%" }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
-                    intelligent leave alerts
+                    traffic app and commute planner
                   </motion.span>{" "}
-                  using real-time traffic data to help you arrive perfectly on time, every time.
+                  that sends intelligent leave alerts using real-time traffic data to help you reach on time, every time.
                 </motion.p>
               </div>
             </motion.div>

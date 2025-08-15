@@ -11,8 +11,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://commutetimely.vercel.app'),
   title: 'CommuteTimely – Smarter Commutes, Less Stress',
-  description: 'Real-time commute tracking and smart notifications so you always leave at the perfect time.',
-  keywords: ['commute timing', 'traffic notifications', 'smart commute', 'arrival time', 'traffic alerts', 'traffic app', 'commute app'],
+  description: 'CommuteTimely: Real-time traffic app with smart commute notifications. Never be late again with intelligent leave alerts.',
+  keywords: ['CommuteTimely', 'traffic app', 'commute planner', 'real-time traffic alerts', 'reach on time', 'smart commute notifications', 'traffic notifications', 'smart commute', 'arrival time', 'commute app'],
   authors: [{ name: 'CommuteTimely Team' }],
   creator: 'CommuteTimely',
   publisher: 'CommuteTimely',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: 'https://commutetimely.vercel.app',
     siteName: 'CommuteTimely',
     title: 'CommuteTimely – Smarter Commutes, Less Stress',
-    description: 'Real-time commute tracking and smart notifications so you always leave at the perfect time.',
+    description: 'CommuteTimely: Real-time traffic app with smart commute notifications. Never be late again with intelligent leave alerts.',
     images: [
       {
         url: '/og-image.png',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     site: '@commutetimely',
     creator: '@commutetimely',
     title: 'CommuteTimely – Smarter Commutes, Less Stress',
-    description: 'Real-time commute tracking and smart notifications so you always leave at the perfect time.',
+    description: 'CommuteTimely: Real-time traffic app with smart commute notifications. Never be late again with intelligent leave alerts.',
     images: ['/og-image.png'],
   },
   robots: {
