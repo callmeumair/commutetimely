@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Github, Twitter, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { MapPin, Github, Twitter, Linkedin, Mail, ArrowUp, Instagram } from "lucide-react";
 import { motion } from "motion/react";
 
 export function Footer() {
@@ -114,10 +114,11 @@ export function Footer() {
             
             <div className="flex items-center space-x-6">
               {[
-                { icon: Twitter, name: "Twitter", href: "#", color: "hover:text-blue-400" },
+                { icon: Twitter, name: "Twitter", href: "https://x.com/CommuteTimely", color: "hover:text-blue-400" },
+                { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/commutetimely/", color: "hover:text-pink-400" },
                 { icon: Linkedin, name: "LinkedIn", href: "https://www.linkedin.com/company/commutetimely/", color: "hover:text-blue-500" },
                 { icon: Github, name: "GitHub", href: "https://github.com/CommuteTimely", color: "hover:text-gray-300" },
-                { icon: Mail, name: "Email", href: "mailto:umerpatel1540@gmail.com", color: "hover:text-cyan-400" }
+                { icon: Mail, name: "Email", href: "mailto:hello@commutetimely.com", color: "hover:text-cyan-400" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
