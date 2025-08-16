@@ -128,7 +128,7 @@ export function Features() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "premium"
+        ease: "easeOut" as const
       }
     }
   };
@@ -141,7 +141,7 @@ export function Features() {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: "premium"
+        ease: "easeOut" as const
       }
     }
   };
@@ -161,7 +161,7 @@ export function Features() {
           className="text-center mb-16 sm:mb-20 lg:mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "premium" }}
+          transition={{ duration: 0.6, ease: "easeOut" as const }}
         >
           <motion.div 
             className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-500/10 border border-blue-400/20 rounded-full text-blue-400 text-sm font-medium mb-6"

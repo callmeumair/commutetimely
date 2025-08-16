@@ -123,7 +123,7 @@
 @layer utilities {
   /* Enhanced Glass Morphism Effects */
   .glass-primary {
-    @apply bg-white/8 border border-white/15 backdrop-blur-2xl;
+    @apply bg-white/10 border border-white/20 backdrop-blur-2xl;
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -320,10 +320,14 @@
   
   /* Premium Button Styles with Enhanced Interactions */
   .btn-premium {
-    @apply relative overflow-hidden bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-glow-strong focus:ring-2 focus:ring-blue-500/70 focus:ring-offset-2 focus:ring-offset-black;
+    @apply relative overflow-hidden bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-500 transform focus:ring-2 focus:ring-blue-500/70 focus:ring-offset-2 focus:ring-offset-black;
     box-shadow: 
       0 4px 16px rgba(59, 130, 246, 0.3),
       0 0 0 1px rgba(59, 130, 246, 0.1);
+  }
+  
+  .btn-premium:hover {
+    @apply scale-105 shadow-glow-strong;
   }
   
   .btn-premium::before {
@@ -349,8 +353,12 @@
   }
   
   .btn-secondary {
-    @apply bg-transparent border-2 border-white/25 text-white font-semibold py-4 px-8 rounded-2xl hover:bg-white/10 hover:border-white/40 transition-all duration-500 transform hover:scale-105 hover:shadow-glow focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-black;
+    @apply bg-transparent border-2 border-white/30 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-500 transform focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-black;
     backdrop-filter: blur(10px);
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-white/20 border-white/40 scale-105 shadow-glow;
   }
   
   .btn-secondary:hover {
@@ -360,8 +368,12 @@
   }
   
   .btn-accent {
-    @apply relative overflow-hidden bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-glow focus:ring-2 focus:ring-orange-500/70 focus:ring-offset-2 focus:ring-offset-black;
+    @apply relative overflow-hidden bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-500 transform focus:ring-2 focus:ring-orange-500/70 focus:ring-offset-2 focus:ring-offset-black;
     box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  }
+  
+  .btn-accent:hover {
+    @apply scale-105 shadow-glow;
   }
   
   .btn-accent:hover {
@@ -371,10 +383,14 @@
   
   /* Premium Card Styles with Enhanced Depth */
   .card-premium {
-    @apply bg-gray-900/60 backdrop-blur-2xl rounded-3xl p-8 border border-white/15 hover:border-blue-500/40 transition-all duration-700 hover:shadow-glow hover:scale-[1.02] hover:-translate-y-2;
+    @apply bg-gray-900/60 backdrop-blur-2xl rounded-3xl p-8 border border-white/20 transition-all duration-700;
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.3),
       0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  
+  .card-premium:hover {
+    @apply border-blue-500/40 shadow-glow scale-[1.02] -translate-y-2;
   }
   
   .card-premium:hover {
@@ -386,10 +402,14 @@
   }
   
   .card-glass {
-    @apply bg-white/8 backdrop-blur-2xl rounded-3xl p-8 border border-white/15 hover:border-white/25 transition-all duration-500 hover:bg-white/12;
+    @apply bg-white/10 backdrop-blur-2xl rounded-3xl p-8 border border-white/20 transition-all duration-500;
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.2),
       0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  
+  .card-glass:hover {
+    @apply border-white/30 bg-white/20;
   }
   
   .card-glass:hover {
@@ -399,10 +419,14 @@
   }
   
   .card-feature {
-    @apply bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-2xl rounded-3xl p-8 border border-white/10 hover:border-blue-500/30 transition-all duration-700 hover:shadow-glow hover:scale-[1.03] hover:-translate-y-3;
+    @apply bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-2xl rounded-3xl p-8 border border-white/10 transition-all duration-700;
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.3),
       0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  
+  .card-feature:hover {
+    @apply border-blue-500/30 shadow-glow scale-[1.03] -translate-y-3;
   }
   
   .card-feature:hover {
@@ -485,23 +509,43 @@
   
   /* Enhanced Hover Effects for Premium Interactions */
   .hover-lift {
-    @apply hover:scale-105 hover:-translate-y-3 hover:shadow-glow transition-all duration-500;
+    @apply transition-all duration-500;
+  }
+  
+  .hover-lift:hover {
+    @apply scale-105 -translate-y-3 shadow-glow;
   }
   
   .hover-lift-strong {
-    @apply hover:scale-110 hover:-translate-y-4 hover:shadow-glow-strong transition-all duration-700;
+    @apply transition-all duration-700;
+  }
+  
+  .hover-lift-strong:hover {
+    @apply scale-110 -translate-y-4 shadow-glow-strong;
   }
   
   .hover-glow {
-    @apply hover:shadow-glow transition-all duration-500;
+    @apply transition-all duration-500;
+  }
+  
+  .hover-glow:hover {
+    @apply shadow-glow;
   }
   
   .hover-glow-strong {
-    @apply hover:shadow-glow-strong transition-all duration-700;
+    @apply transition-all duration-700;
+  }
+  
+  .hover-glow-strong:hover {
+    @apply shadow-glow-strong;
   }
   
   .hover-border-glow {
-    @apply hover:border-blue-500/50 hover:shadow-glow transition-all duration-500;
+    @apply transition-all duration-500;
+  }
+  
+  .hover-border-glow:hover {
+    @apply border-blue-500/50 shadow-glow;
   }
   
   /* Premium Loading States */
@@ -544,8 +588,12 @@
   
   /* Enhanced Navigation with Premium Interactions */
   .nav-link {
-    @apply relative text-white/80 hover:text-white transition-all duration-500 py-3 px-2 group font-semibold;
+    @apply relative text-white/80 transition-all duration-500 py-3 px-2 font-semibold;
     text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  
+  .nav-link:hover {
+    @apply text-white;
   }
   
   .nav-link::after {
@@ -570,10 +618,14 @@
   
   /* Premium Feature Icons with Enhanced Animations */
   .feature-icon {
-    @apply w-16 h-16 rounded-3xl flex items-center justify-center bg-gradient-to-br from-blue-500/25 to-purple-500/25 border border-blue-400/40 transition-all duration-700 group-hover:scale-110 group-hover:shadow-glow;
+    @apply w-16 h-16 rounded-3xl flex items-center justify-center bg-gradient-to-br from-blue-500/25 to-purple-500/25 border border-blue-400/40 transition-all duration-700;
     box-shadow: 
       0 8px 24px rgba(59, 130, 246, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .group:hover .feature-icon {
+    @apply scale-110 shadow-glow;
   }
   
   .feature-icon:hover {
@@ -887,7 +939,7 @@
   
   .card-premium,
   .card-feature {
-    @apply hover:scale-none hover:-translate-y-0;
+    @apply scale-100 translate-y-0;
   }
   
   .btn-premium,

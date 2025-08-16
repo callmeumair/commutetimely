@@ -19,7 +19,7 @@ export default function Home() {
       className="min-h-screen bg-black relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: "premium" }}
+      transition={{ duration: 1, ease: "easeOut" as const }}
     >
       {/* Premium Background Effects - Enhanced Performance & Visual Appeal */}
       <div className="fixed inset-0 pointer-events-none">
@@ -38,7 +38,7 @@ export default function Home() {
           transition={{
             duration: 10,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
         />
         
@@ -51,7 +51,7 @@ export default function Home() {
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
             delay: 5
           }}
         />
@@ -102,60 +102,60 @@ export default function Home() {
         </PerformanceOptimizer>
         
         {/* Enhanced Lazy Loading with Premium Spacing & Animations */}
-        <LazyLoad threshold={0.1}>
+        <LazyLoad>
           <motion.div 
             className="section-padding"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "premium" }}
+            transition={{ duration: 0.8, ease: "easeOut" as const }}
             viewport={{ once: true, margin: "-100px" }}
           >
             <FeaturesSection />
           </motion.div>
         </LazyLoad>
         
-        <LazyLoad threshold={0.1}>
+        <LazyLoad>
           <motion.div 
             className="section-padding"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "premium", delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.2 }}
             viewport={{ once: true, margin: "-100px" }}
           >
             <HowItWorks />
           </motion.div>
         </LazyLoad>
 
-        <LazyLoad threshold={0.1}>
+        <LazyLoad>
           <motion.div 
             className="section-padding"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "premium", delay: 0.4 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.4 }}
             viewport={{ once: true, margin: "-100px" }}
           >
             <UniqueAdvantagesSection />
           </motion.div>
         </LazyLoad>
 
-        <LazyLoad threshold={0.1}>
+        <LazyLoad>
           <motion.div 
             className="section-padding"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "premium", delay: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.6 }}
             viewport={{ once: true, margin: "-100px" }}
           >
             <AccordionDemoSection />
-          </motion.div>
+        </motion.div>
         </LazyLoad>
         
-        <LazyLoad threshold={0.1}>
+        <LazyLoad>
           <motion.div 
             className="section-padding"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "premium", delay: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.8 }}
             viewport={{ once: true, margin: "-100px" }}
           >
             <Download />
@@ -168,7 +168,9 @@ export default function Home() {
       
       {/* Enhanced Performance Monitoring */}
       <div className="hidden">
-        <PerformanceOptimizer threshold={0.01} />
+        <PerformanceOptimizer threshold={0.01}>
+          <div />
+        </PerformanceOptimizer>
       </div>
     </motion.div>
   );

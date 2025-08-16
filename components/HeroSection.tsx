@@ -49,7 +49,7 @@ export function Hero() {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "premium"
+        ease: "easeOut" as const
       }
     }
   };
@@ -63,7 +63,7 @@ export function Hero() {
       y: 0,
       transition: {
         duration: 1.2,
-        ease: "premium"
+        ease: "easeOut" as const
       }
     }
   };
@@ -77,7 +77,7 @@ export function Hero() {
       y: 0,
       transition: {
         duration: 1.2,
-        ease: "premium"
+        ease: "easeOut" as const
       }
     }
   };
@@ -90,7 +90,7 @@ export function Hero() {
       transition: {
         duration: 12,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };

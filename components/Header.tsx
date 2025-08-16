@@ -65,7 +65,7 @@ export function Header() {
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: "premium" }}
+              transition={{ duration: 1, ease: "easeOut" as const }}
     >
       <div className="container mx-auto container-padding">
         <div className="flex items-center justify-between h-20 sm:h-24">
@@ -86,7 +86,6 @@ export function Header() {
                   scale: 1.15,
                   boxShadow: "0 0 50px rgba(59, 130, 246, 0.8), 0 0 100px rgba(6, 182, 212, 0.6)"
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 animate={{
                   boxShadow: isHoveringLogo 
                     ? "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(6, 182, 212, 0.4)"
@@ -97,7 +96,14 @@ export function Header() {
                         "0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(6, 182, 212, 0.3)"
                       ]
                 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 15,
+                  duration: 4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" as const
+                }}
               >
                 <MapPin className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </motion.div>
@@ -145,7 +151,7 @@ export function Header() {
                 animate={{
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                 }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" as const }}
               >
                 CommuteTimely
               </motion.span>
@@ -209,7 +215,7 @@ export function Header() {
                         initial={{ opacity: 0, y: -15, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -15, scale: 0.95 }}
-                        transition={{ duration: 0.3, ease: "premium" }}
+                        transition={{ duration: 0.3, ease: "easeOut" as const }}
                         onMouseEnter={() => setActiveDropdown(item.label)}
                         onMouseLeave={() => setActiveDropdown(null)}
                         role="menu"
@@ -323,7 +329,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "premium" }}
+            transition={{ duration: 0.4, ease: "easeOut" as const }}
             className="lg:hidden border-t border-white/15 bg-black/95 backdrop-blur-3xl"
             role="navigation"
             aria-label="Mobile navigation"
