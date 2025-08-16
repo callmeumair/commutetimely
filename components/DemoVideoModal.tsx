@@ -61,98 +61,61 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     setIsMounted(true);
   }, []);
 
-  // Auto-fullscreen when modal opens (only for mobile)
-  useEffect(() => {
-    if (isOpen && isMobile) {
-      // For mobile, try to enter fullscreen after a short delay
-      const autoFullscreen = async () => {
-        try {
-          setTimeout(async () => {
-            if (videoRef.current) {
-              try {
-                if (videoRef.current.requestFullscreen) {
-                  await videoRef.current.requestFullscreen();
-                } else if ((videoRef.current as any).webkitRequestFullscreen) {
-                  await (videoRef.current as any).webkitRequestFullscreen();
-                } else if ((videoRef.current as any).mozRequestFullScreen) {
-                  await (videoRef.current as any).mozRequestFullScreen();
-                } else if ((videoRef.current as any).msRequestFullscreen) {
-                  await (videoRef.current as any).msRequestFullscreen();
-                }
-                setIsFullscreen(true);
-              } catch (error) {
-                console.log('Auto-fullscreen failed:', error);
-              }
-            }
-          }, 300);
-        } catch (error) {
-          console.log('Auto-fullscreen error:', error);
-        }
-      };
-      
-      autoFullscreen();
-    }
-  }, [isOpen, isMobile]);
-
-  // Ensure video loads when modal opens
+  // Simplified video loading and autoplay logic
   useEffect(() => {
     if (isOpen && videoRef.current) {
-      // Reset loading state when modal opens
+      const video = videoRef.current;
+      
+      // Reset states
       setIsLoading(true);
       setVideoError(false);
+      setIsPlaying(false);
       
-      // Force video to load and attempt to play
-      const video = videoRef.current;
+      // Ensure video is muted for autoplay (required by browsers)
+      video.muted = true;
+      setIsMuted(true);
+      
+      // Load video if not already loaded
       if (video.readyState === 0) {
         video.load();
       }
       
-      // For mobile, try to autoplay with muted state first
-      if (isMobile) {
-        video.muted = true;
-        setIsMuted(true);
+      // Try to autoplay after video is ready
+      const handleCanPlay = () => {
+        setIsLoading(false);
         
-        // Try to autoplay after a short delay
-        setTimeout(() => {
-          if (videoRef.current && !isPlaying) {
-            const playPromise = videoRef.current.play();
-            if (playPromise !== undefined) {
-              playPromise
-                .then(() => {
-                  setIsPlaying(true);
-                  setIsLoading(false);
-                  console.log('Mobile video autoplay successful');
-                })
-                .catch((error) => {
-                  console.log('Mobile autoplay failed, waiting for user interaction:', error);
-                  setIsLoading(false);
-                  // Show play button overlay for user interaction
-                });
-            }
-          }
-        }, 300);
+        // Attempt autoplay
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+              console.log('Video autoplay successful');
+            })
+            .catch((error) => {
+              console.log('Autoplay failed, waiting for user interaction:', error);
+              // Don't show error, just wait for user to click play
+            });
+        }
+        
+        // Remove event listener
+        video.removeEventListener('canplay', handleCanPlay);
+      };
+      
+      if (video.readyState >= 3) {
+        // Video is already loaded
+        handleCanPlay();
       } else {
-        // For desktop, try to autoplay after a short delay
-        setTimeout(() => {
-          if (videoRef.current && !isPlaying) {
-            const playPromise = videoRef.current.play();
-            if (playPromise !== undefined) {
-              playPromise
-                .then(() => {
-                  setIsPlaying(true);
-                  setIsLoading(false);
-                  console.log('Desktop video autoplay successful');
-                })
-                .catch((error) => {
-                  console.log('Desktop autoplay failed, user interaction required:', error);
-                  setIsLoading(false);
-                });
-            }
-          }
-        }, 500);
+        // Wait for video to be ready
+        video.addEventListener('canplay', handleCanPlay);
       }
+      
+      // Cleanup
+      return () => {
+        video.removeEventListener('canplay', handleCanPlay);
+      };
     }
-  }, [isOpen, isPlaying, isMobile]);
+  }, [isOpen]);
 
   // Auto-hide controls on mobile after inactivity
   useEffect(() => {
@@ -175,18 +138,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     };
   }, [isMobile, showControls]);
 
-  // Loading timeout to prevent stuck loading state
-  useEffect(() => {
-    if (isLoading) {
-      const loadingTimeout = setTimeout(() => {
-        setIsLoading(false);
-        console.log('Loading timeout reached, video should be ready');
-      }, 10000); // 10 second timeout
-      
-      return () => clearTimeout(loadingTimeout);
-    }
-  }, [isLoading]);
-
   // Listen for fullscreen changes and keyboard shortcuts
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -200,15 +151,11 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Only capture keyboard shortcuts when the video modal is focused or when in fullscreen
-      // This prevents interference with input fields in other components
       const isVideoFocused = document.activeElement === videoRef.current || 
                             document.activeElement?.closest('[data-video-modal]') ||
                             isFullscreen;
       
-      if (!isVideoFocused) {
-        return; // Don't capture keys if video modal is not focused
-      }
+      if (!isVideoFocused) return;
 
       if (e.key === 'Escape') {
         if (isFullscreen) {
@@ -256,7 +203,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     if (videoRef.current) {
       try {
         if (!document.fullscreenElement && !(document as any).webkitFullscreenElement && !(document as any).mozFullScreenElement) {
-          // Request fullscreen with cross-browser support
           if (videoRef.current.requestFullscreen) {
             videoRef.current.requestFullscreen();
           } else if ((videoRef.current as any).webkitRequestFullscreen) {
@@ -268,7 +214,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           }
           setIsFullscreen(true);
         } else {
-          // Exit fullscreen with cross-browser support
           if (document.exitFullscreen) {
             document.exitFullscreen();
           } else if ((document as any).webkitExitFullscreen) {
@@ -282,7 +227,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         }
       } catch (error) {
         console.log('Fullscreen not supported:', error);
-        // Fallback: toggle modal size for mobile
         setIsFullscreen(!isFullscreen);
       }
     }
@@ -303,7 +247,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         }
       } catch (error) {
         console.error('Play/Pause error:', error);
-        // If autoplay fails, try to unmute first (mobile browsers require this)
+        // If autoplay fails, try to unmute first
         if (videoRef.current.muted) {
           videoRef.current.muted = false;
           setIsMuted(false);
@@ -347,7 +291,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
-    // Close modal when clicking on backdrop (but not on video content)
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -391,7 +334,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     const distanceY = touchStart.y - touchEnd.y;
     const isSwipeDown = distanceY < -50 && Math.abs(distanceY) > Math.abs(distanceX);
     
-    // Swipe down to close on mobile
     if (isMobile && isSwipeDown) {
       onClose();
     }
@@ -428,7 +370,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           data-video-modal
         >
-          {/* Header - Always visible on mobile, hidden on desktop when fullscreen */}
+          {/* Header */}
           {(!isDesktop || !isFullscreen || isMobile) && (
             <div className={`relative p-3 sm:p-4 border-b border-white/10 bg-gradient-to-r from-gray-900 to-black ${
               isMobile ? 'p-2' : ''
@@ -471,7 +413,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
             </div>
           )}
 
-          {/* Mobile Close Button Overlay - Always visible when header is hidden */}
+          {/* Mobile Close Button Overlay */}
           {isMobile && isFullscreen && (
             <motion.button
               onClick={onClose}
@@ -568,7 +510,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 </motion.div>
               )}
 
-              {/* Loading Overlay with Progress */}
+              {/* Loading Overlay */}
               {isLoading && (
                 <motion.div 
                   className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm"
@@ -583,8 +525,8 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 </motion.div>
               )}
 
-              {/* Mobile Play Button Overlay */}
-              {isMobile && !isPlaying && !isLoading && !videoError && (
+              {/* Play Button Overlay - Show when not playing and not loading */}
+              {!isPlaying && !isLoading && !videoError && (
                 <motion.div 
                   className="absolute inset-0 flex items-center justify-center bg-black/40"
                   initial={{ opacity: 0 }}
@@ -602,104 +544,69 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 </motion.div>
               )}
 
-              {/* Custom Video Controls Overlay */}
-              <motion.div 
-                className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 pointer-events-none ${
-                  isMobile ? (showControls && !isLoading && !videoError ? 'opacity-100' : 'opacity-0') : 'opacity-0 hover:opacity-100 sm:group-hover:opacity-100'
-                }`}
-                animate={{ opacity: isMobile ? (showControls && !isLoading && !videoError ? 1 : 0) : 0 }}
-              >
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pointer-events-auto">
-                  <div className={`flex items-center justify-center ${
-                    isMobile ? 'space-x-2' : 'space-x-2 sm:space-x-4'
-                  }`}>
+              {/* Video Controls Overlay */}
+              {showControls && (
+                <motion.div 
+                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                >
+                  <div className="flex items-center justify-center space-x-4">
                     {/* Play/Pause Button */}
-                    <Button
+                    <button
                       onClick={handlePlayPause}
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-sm sm:text-base"
-                      title={isPlaying ? 'Pause' : 'Play'}
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center hover:bg-white/30 transition-colors"
+                      aria-label={isPlaying ? 'Pause video' : 'Play video'}
                     >
                       {isPlaying ? (
-                        <Pause className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <Pause className="w-6 h-6 text-white" />
                       ) : (
-                        <Play className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <Play className="w-6 h-6 text-white ml-1" />
                       )}
-                      {isMobile && (
-                        <span className="ml-1.5 text-xs">
-                          {isPlaying ? 'Pause' : 'Play'}
-                        </span>
-                      )}
-                    </Button>
+                    </button>
 
-                    {/* Mute Button */}
-                    <Button
+                    {/* Mute/Unmute Button */}
+                    <button
                       onClick={handleMute}
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-sm sm:text-base"
-                      title={isMuted ? 'Unmute' : 'Mute'}
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center hover:bg-white/30 transition-colors"
+                      aria-label={isMuted ? 'Unmute video' : 'Mute video'}
                     >
                       {isMuted ? (
-                        <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <VolumeX className="w-6 h-6 text-white" />
                       ) : (
-                        <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <Volume2 className="w-6 h-6 text-white" />
                       )}
-                      {isMobile && (
-                        <span className="ml-1.5 text-xs">
-                          {isMuted ? 'Unmute' : 'Mute'}
-                        </span>
-                      )}
-                    </Button>
+                    </button>
 
                     {/* Restart Button */}
-                    <Button
+                    <button
                       onClick={handleRestart}
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-sm sm:text-base"
-                      title="Restart video"
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center hover:bg-white/30 transition-colors"
+                      aria-label="Restart video"
                     >
-                      <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5" />
-                      {isMobile && (
-                        <span className="ml-1.5 text-xs">Restart</span>
-                      )}
-                    </Button>
+                      <RotateCcw className="w-6 h-6 text-white" />
+                    </button>
 
                     {/* Fullscreen Button */}
-                    <Button
+                    <button
                       onClick={handleFullscreen}
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-sm sm:text-base"
-                      title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center hover:bg-white/30 transition-colors"
+                      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
                     >
-                      {isFullscreen ? (
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
-                          <div className="w-3 h-3 sm:w-4 sm:h-4 border border-white rounded-sm"></div>
-                        </div>
-                      ) : (
-                        <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                      )}
-                      {isMobile && (
-                        <span className="ml-1.5 text-xs">
-                          {isFullscreen ? 'Exit' : 'Fullscreen'}
-                        </span>
-                      )}
-                    </Button>
-
-                    {/* Close Button - Always visible in controls */}
-                    <Button
-                      onClick={onClose}
-                      variant="outline"
-                      className="border-red-500/30 text-red-400 hover:bg-red-500/20 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-sm sm:text-base"
-                      title="Close video"
-                    >
-                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
-                      {isMobile && (
-                        <span className="ml-1.5 text-xs">Close</span>
-                      )}
-                    </Button>
+                      <Maximize2 className="w-6 h-6 text-white" />
+                    </button>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              )}
+
+              {/* Mobile Touch Area for Controls */}
+              {isMobile && (
+                <div 
+                  className="absolute inset-0 z-10"
+                  onClick={() => setShowControls(!showControls)}
+                />
+              )}
             </div>
           </div>
         </motion.div>
