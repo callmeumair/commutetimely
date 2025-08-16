@@ -107,26 +107,52 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         video.load();
       }
       
-      // Try to autoplay after a short delay
-      setTimeout(() => {
-        if (videoRef.current && !isPlaying) {
-          const playPromise = videoRef.current.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                setIsPlaying(true);
-                console.log('Video autoplay successful');
-              })
-              .catch((error) => {
-                console.log('Autoplay failed, user interaction required:', error);
-                // Don't show error, just wait for user interaction
-                setIsLoading(false);
-              });
+      // For mobile, try to autoplay with muted state first
+      if (isMobile) {
+        video.muted = true;
+        setIsMuted(true);
+        
+        // Try to autoplay after a short delay
+        setTimeout(() => {
+          if (videoRef.current && !isPlaying) {
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  setIsPlaying(true);
+                  setIsLoading(false);
+                  console.log('Mobile video autoplay successful');
+                })
+                .catch((error) => {
+                  console.log('Mobile autoplay failed, waiting for user interaction:', error);
+                  setIsLoading(false);
+                  // Show play button overlay for user interaction
+                });
+            }
           }
-        }
-      }, 500);
+        }, 300);
+      } else {
+        // For desktop, try to autoplay after a short delay
+        setTimeout(() => {
+          if (videoRef.current && !isPlaying) {
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  setIsPlaying(true);
+                  setIsLoading(false);
+                  console.log('Desktop video autoplay successful');
+                })
+                .catch((error) => {
+                  console.log('Desktop autoplay failed, user interaction required:', error);
+                  setIsLoading(false);
+                });
+            }
+          }
+        }, 500);
+      }
     }
-  }, [isOpen, isPlaying]);
+  }, [isOpen, isPlaying, isMobile]);
 
   // Auto-hide controls on mobile after inactivity
   useEffect(() => {
@@ -174,6 +200,16 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Only capture keyboard shortcuts when the video modal is focused or when in fullscreen
+      // This prevents interference with input fields in other components
+      const isVideoFocused = document.activeElement === videoRef.current || 
+                            document.activeElement?.closest('[data-video-modal]') ||
+                            isFullscreen;
+      
+      if (!isVideoFocused) {
+        return; // Don't capture keys if video modal is not focused
+      }
+
       if (e.key === 'Escape') {
         if (isFullscreen) {
           handleFullscreen();
@@ -378,6 +414,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
         exit={{ opacity: 0 }}
         suppressHydrationWarning
         onClick={handleBackdropClick}
+        data-video-modal
       >
         <motion.div
           className={`relative bg-black rounded-none sm:rounded-2xl border border-white/10 shadow-2xl overflow-hidden ${
@@ -389,6 +426,7 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          data-video-modal
         >
           {/* Header - Always visible on mobile, hidden on desktop when fullscreen */}
           {(!isDesktop || !isFullscreen || isMobile) && (
@@ -484,6 +522,10 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                 x5-playsinline="true"
                 x5-video-player="true"
                 x5-video-player-type="h5"
+                x5-video-orientation="landscape"
+                x5-video-player-fullscreen="true"
+                controls={false}
+                disablePictureInPicture
                 onPlay={handleVideoPlay}
                 onPause={handleVideoPause}
                 onClick={handleVideoClick}
@@ -537,7 +579,6 @@ export function DemoVideoModal({ isOpen, onClose }: DemoVideoModalProps) {
                   <div className="text-center">
                     <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
                     <p className="text-white text-sm mb-2">Loading video...</p>
-                    <p className="text-white/60 text-xs">This may take a few seconds</p>
                   </div>
                 </motion.div>
               )}
