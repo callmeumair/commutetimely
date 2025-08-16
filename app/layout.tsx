@@ -99,9 +99,36 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         
+        {/* Preload critical fonts for better performance */}
+        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        
+        {/* Resource hints for better performance */}
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
+        
+        {/* Performance monitoring */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Performance monitoring
+              if (typeof window !== 'undefined') {
+                window.addEventListener('load', () => {
+                  if ('performance' in window) {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    if (perfData) {
+                      console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+                      console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+                    }
+                  }
+                });
+              }
+            `,
+          }}
+        />
         
         {/* Viewport and mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -109,8 +136,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         
-        {/* Performance hints */}
-        <link rel="preload" href="/images/IMG_750E9EF883FD-1.jpeg" as="image" />
+        {/* Performance hints - removed unused image preload to fix console warning */}
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}
