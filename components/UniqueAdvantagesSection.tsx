@@ -276,49 +276,7 @@ export function UniqueAdvantagesSection() {
           ))}
         </motion.div>
 
-        {/* Bottom CTA */}
-        <motion.div 
-          className="text-center mt-12 sm:mt-16 lg:mt-24"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-        >
-          <motion.div className="space-y-6">
-            <motion.p 
-              className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 1.4, duration: 0.8 }}
-            >
-              Ready to experience the difference that makes CommuteTimely the #1 choice for smart commute planning?
-            </motion.p>
-            
-            <motion.button
-              className="inline-flex items-center space-x-3 sm:space-x-4 bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 text-white px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl shadow-2xl cursor-pointer text-base sm:text-lg font-semibold overflow-hidden relative"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Get early access to CommuteTimely"
-              animate={{
-                boxShadow: [
-                  "0 0 40px rgba(37, 99, 235, 0.3)",
-                  "0 0 60px rgba(6, 182, 212, 0.4)",
-                  "0 0 40px rgba(139, 92, 246, 0.3)",
-                  "0 0 40px rgba(37, 99, 235, 0.3)"
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              {/* Shimmer Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                animate={{ x: ['-200%', '200%'] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
-              />
-              
-              <span className="relative z-10">Get Early Access to CommuteTimely</span>
-            </motion.button>
-          </motion.div>
-        </motion.div>
+        {/* Bottom CTA removed per request */}
       </div>
     </section>
   );
