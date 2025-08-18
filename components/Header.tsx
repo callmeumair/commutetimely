@@ -267,16 +267,16 @@ export function Header() {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
-                className="btn-premium px-8 xl:px-10 py-3 xl:py-4 text-base xl:text-lg"
-                onClick={() => setIsEarlyAccessModalOpen(true)}
-                aria-label="Get early access to CommuteTimely"
-              >
-                <span className="relative z-10 flex items-center space-x-2">
-                  <Sparkles className="w-4 h-4" />
-                  <span>Get Early Access</span>
-                </span>
-              </Button>
+              <a href="/early-access" aria-label="Get early access to CommuteTimely">
+                <Button 
+                  className="btn-premium px-8 xl:px-10 py-3 xl:py-4 text-base xl:text-lg"
+                >
+                  <span className="relative z-10 flex items-center space-x-2">
+                    <Sparkles className="w-4 h-4" />
+                    <span>Get Early Access</span>
+                  </span>
+                </Button>
+              </a>
             </motion.div>
           </nav>
 
@@ -439,11 +439,7 @@ export function Header() {
         )}
       </AnimatePresence>
       
-      {/* Early Access Modal */}
-      <EarlyAccessModal 
-        isOpen={isEarlyAccessModalOpen}
-        onClose={() => setIsEarlyAccessModalOpen(false)}
-      />
+      {/* Early Access Modal no longer used here; CTA routes to /early-access */}
     </motion.header>
   );
 }

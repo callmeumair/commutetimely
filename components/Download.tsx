@@ -187,15 +187,15 @@ export function Download() {
                       whileTap={{ scale: 0.98 }}
                       className="w-full"
                     >
-                      <Button 
-                        type="button"
-                        aria-label="Open early access form"
-                        className="w-full bg-white hover:bg-gray-100 text-black font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base group"
-                        onClick={() => setIsEarlyAccessModalOpen(true)}
-                      >
-                        Get Early Access
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                      <a href="/early-access" aria-label="Open early access form">
+                        <Button 
+                          type="button"
+                          className="w-full bg-white hover:bg-gray-100 text-black font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base group"
+                        >
+                          Get Early Access
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
                     </motion.div>
                     
                     <p className="text-xs sm:text-sm text-gray-400 text-center">
@@ -210,11 +210,7 @@ export function Download() {
         </motion.div>
       </div>
       
-      {/* Early Access Modal */}
-      <EarlyAccessModal 
-        isOpen={isEarlyAccessModalOpen}
-        onClose={() => setIsEarlyAccessModalOpen(false)}
-      />
+      {/* Early Access Modal not used here anymore; CTA routes to /early-access */}
     </section>
   );
 }

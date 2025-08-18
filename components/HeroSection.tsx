@@ -310,33 +310,33 @@ export function Hero() {
                 onHoverStart={() => setIsHoveringCTA(true)}
                 onHoverEnd={() => setIsHoveringCTA(false)}
               >
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto btn-premium px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-black shadow-glow-strong"
-                  onClick={() => setIsEarlyAccessModalOpen(true)}
-                  aria-label="Get early access to CommuteTimely - Start your journey to never being late again"
-                >
-                  <span className="relative z-10 flex items-center justify-center space-x-3">
-                    <motion.div
-                      animate={{
-                        rotate: isHoveringCTA ? 360 : 0,
-                        scale: isHoveringCTA ? 1.2 : 1
-                      }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <Sparkles className="w-6 h-7 sm:w-7 sm:h-8" />
-                    </motion.div>
-                    <span>Get Early Access</span>
-                    <motion.div
-                      animate={{
-                        x: isHoveringCTA ? 5 : 0
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ArrowRight className="w-6 h-7 sm:w-7 sm:h-8 group-hover:translate-x-1 transition-transform" />
-                    </motion.div>
-                  </span>
-                </Button>
+                <a href="/early-access" aria-label="Get early access to CommuteTimely - Start your journey to never being late again">
+                  <Button 
+                    size="lg" 
+                    className="w-full sm:w-auto btn-premium px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-black shadow-glow-strong"
+                  >
+                    <span className="relative z-10 flex items-center justify-center space-x-3">
+                      <motion.div
+                        animate={{
+                          rotate: isHoveringCTA ? 360 : 0,
+                          scale: isHoveringCTA ? 1.2 : 1
+                        }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <Sparkles className="w-6 h-7 sm:w-7 sm:h-8" />
+                      </motion.div>
+                      <span>Get Early Access</span>
+                      <motion.div
+                        animate={{
+                          x: isHoveringCTA ? 5 : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ArrowRight className="w-6 h-7 sm:w-7 sm:h-8 group-hover:translate-x-1 transition-transform" />
+                      </motion.div>
+                    </span>
+                  </Button>
+                </a>
               </motion.div>
               
               <motion.div 
@@ -532,11 +532,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Early Access Modal */}
-      <EarlyAccessModal 
-        isOpen={isEarlyAccessModalOpen}
-        onClose={() => setIsEarlyAccessModalOpen(false)}
-      />
+      {/* Early Access Modal no longer used on this page; CTA routes to /early-access */}
       
       {/* Demo Video Modal */}
       <DemoVideoModal 
