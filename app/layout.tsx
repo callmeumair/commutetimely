@@ -142,7 +142,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         {/* Google Analytics 4 */}
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-SWX3M644X0`}
           strategy="afterInteractive"
         />
         <Script id="ga4-init" strategy="afterInteractive">
@@ -150,7 +150,8 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);} 
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}');
+
+            gtag('config', 'G-SWX3M644X0');
           `}
         </Script>
         {children}
