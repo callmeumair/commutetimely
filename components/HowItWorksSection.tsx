@@ -68,7 +68,7 @@ export function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" ref={ref} className="py-16 sm:py-20 lg:py-24 bg-black relative overflow-hidden">
+    <section id="how-it-works" ref={ref} className="py-12 sm:py-16 lg:py-20 bg-black relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         {/* Animated Grid */}
@@ -115,7 +115,7 @@ export function HowItWorks() {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div 
-          className="text-center mb-12 sm:mb-16 lg:mb-20"
+          className="text-center mb-8 sm:mb-10 lg:mb-12"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -173,7 +173,7 @@ export function HowItWorks() {
         
         {/* Steps Grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-12 sm:mb-16"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-8 sm:mb-10"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

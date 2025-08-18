@@ -115,7 +115,7 @@ export default function AccordionDemoSection() {
   }
 
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 relative overflow-hidden">
+    <section className="py-12 lg:py-16 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl faq-bg-element"></div>
@@ -128,7 +128,7 @@ export default function AccordionDemoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-20"
+          className="text-center mb-10"
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -278,7 +278,7 @@ export default function AccordionDemoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-16"
+          className="text-center mt-10"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}

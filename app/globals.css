@@ -479,7 +479,7 @@
   
   /* Enhanced Spacing System */
   .section-padding {
-    @apply py-20 sm:py-24 lg:py-32 xl:py-40;
+    @apply py-12 sm:py-16 lg:py-20 xl:py-24;
   }
   
   .container-padding {
@@ -487,7 +487,7 @@
   }
   
   .section-margin {
-    @apply my-20 sm:my-24 lg:my-32 xl:my-40;
+    @apply my-12 sm:my-16 lg:my-20 xl:my-24;
   }
   
   /* Premium Transitions with Enhanced Easing */

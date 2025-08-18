@@ -84,7 +84,7 @@ export function UniqueAdvantagesSection() {
   };
 
   return (
-    <section id="unique-advantages" ref={ref} className="py-16 sm:py-24 lg:py-32 bg-black relative overflow-hidden">
+    <section id="unique-advantages" ref={ref} className="py-12 sm:py-16 lg:py-20 bg-black relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         {/* Animated Grid */}
@@ -131,7 +131,7 @@ export function UniqueAdvantagesSection() {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div 
-          className="text-center mb-12 sm:mb-16 lg:mb-24"
+          className="text-center mb-8 sm:mb-10 lg:mb-12"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

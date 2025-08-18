@@ -214,7 +214,7 @@ export function Hero() {
         />
       </motion.div>
 
-      <div className="container mx-auto container-padding py-16 sm:py-24 relative z-10">
+      <div className="container mx-auto container-padding py-10 sm:py-14 relative z-10">
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center min-h-[calc(100vh-12rem)] sm:min-h-[calc(100vh-14rem)]"
           variants={containerVariants}

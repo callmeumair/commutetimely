@@ -142,7 +142,7 @@ export function DemoSection() {
   };
 
   return (
-    <section id="demo" ref={ref} className="py-16 sm:py-24 lg:py-32 bg-black relative overflow-hidden">
+    <section id="demo" ref={ref} className="py-12 sm:py-16 lg:py-20 bg-black relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <motion.div 
@@ -161,7 +161,7 @@ export function DemoSection() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16 sm:mb-20"
+          className="text-center mb-10 sm:mb-12"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
@@ -188,7 +188,7 @@ export function DemoSection() {
 
         {/* Live Demo Results */}
         <motion.div 
-          className="mb-16 sm:mb-20"
+          className="mb-10 sm:mb-12"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -235,7 +235,7 @@ export function DemoSection() {
 
         {/* Commute Scenarios */}
         <motion.div 
-          className="mb-16 sm:mb-20"
+          className="mb-10 sm:mb-12"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -365,7 +365,7 @@ export function DemoSection() {
 
         {/* Demo CTA */}
         <motion.div 
-          className="text-center mt-16 sm:mt-20"
+          className="text-center mt-10 sm:mt-12"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ delay: 1.2, duration: 0.8 }}

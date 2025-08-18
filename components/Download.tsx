@@ -42,7 +42,7 @@ export function Download() {
   ];
 
   return (
-    <section id="download" ref={ref} className="relative py-16 sm:py-24 lg:py-32 bg-black overflow-hidden">
+    <section id="download" ref={ref} className="relative py-12 sm:py-16 lg:py-20 bg-black overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <motion.div 
@@ -88,7 +88,7 @@ export function Download() {
           animate={isInView ? "visible" : "hidden"}
         >
           {/* Header Section */}
-          <motion.div variants={itemVariants} className="mb-12 sm:mb-16">
+          <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
             <motion.div 
               className="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6"
               whileHover={{ scale: 1.05 }}
@@ -118,7 +118,7 @@ export function Download() {
           
           {/* Info Cards */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10"
             variants={containerVariants}
           >
             {[
