@@ -344,16 +344,16 @@ export function Hero() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full sm:w-auto btn-secondary px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-bold"
-                  onClick={() => setIsDemoVideoModalOpen(true)}
-                  aria-label="Watch demo video to see CommuteTimely in action"
-                >
-                  <Play className="mr-3 sm:mr-4 w-6 h-7 sm:w-7 sm:h-8 group-hover:scale-110 transition-transform" />
-                  Watch Demo
-                </Button>
+                <a href="/demo-video" aria-label="Watch demo video to see CommuteTimely in action">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full sm:w-auto btn-secondary px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-bold"
+                  >
+                    <Play className="mr-3 sm:mr-4 w-6 h-7 sm:w-7 sm:h-8 group-hover:scale-110 transition-transform" />
+                    Watch Demo
+                  </Button>
+                </a>
               </motion.div>
             </motion.div>
             
@@ -534,11 +534,7 @@ export function Hero() {
 
       {/* Early Access Modal no longer used on this page; CTA routes to /early-access */}
       
-      {/* Demo Video Modal */}
-      <DemoVideoModal 
-        isOpen={isDemoVideoModalOpen}
-        onClose={() => setIsDemoVideoModalOpen(false)}
-      />
+      {/* Demo video now has a dedicated page at /demo-video */}
     </section>
   );
 }
