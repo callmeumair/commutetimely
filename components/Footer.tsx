@@ -193,7 +193,7 @@ export function Footer() {
               {[
                 { name: "Privacy Policy", href: "/privacy-policy" },
                 { name: "Terms of Service", href: "/terms-of-service" },
-                { name: "Support", href: "mailto:umerpatel1540@gmail.com?subject=Contacting%20for%20Support" }
+                { name: "Support", href: "mailto:hello@commutetimely.com?subject=Contacting%20for%20Support" }
               ].map((link, index) => (
                 <motion.a
                   key={index}

@@ -39,7 +39,7 @@ export function Header() {
       ]
     },
     { href: "#how-it-works", label: "How It Works" },
-    { href: "#pricing", label: "Pricing" },
+    { href: "/pricing", label: "Pricing" },
     { href: "#download", label: "Download" }
   ];
 

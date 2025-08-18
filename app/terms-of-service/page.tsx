@@ -251,7 +251,7 @@ export default function TermsOfService() {
                 </p>
                 <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
                   <p className="text-gray-300">
-                    <strong>Email:</strong> umerpatel1540@gmail.com
+                    <strong>Email:</strong> hello@commutetimely.com
                   </p>
                 </div>
               </section>
