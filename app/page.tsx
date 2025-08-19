@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from 'motion/react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/HeroSection';
-import { Features as FeaturesSection } from '@/components/FeaturesSection';
-import { HowItWorks } from '@/components/HowItWorksSection';
-import AccordionDemoSection from '@/components/AccordionDemoSection';
-import { Download } from '@/components/Download';
+const FeaturesSection = dynamic(() => import('@/components/FeaturesSection').then(m => m.Features), { ssr: false });
+const HowItWorks = dynamic(() => import('@/components/HowItWorksSection').then(m => m.HowItWorks), { ssr: false });
+const AccordionDemoSection = dynamic(() => import('@/components/AccordionDemoSection'), { ssr: false });
+const Download = dynamic(() => import('@/components/Download').then(m => m.Download), { ssr: false });
 import { Footer } from '@/components/Footer';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { PerformanceOptimizer } from '@/components/PerformanceOptimizer';
@@ -58,7 +59,7 @@ export default function Home() {
         
         {/* Premium floating particles for enhanced visual appeal */}
         <motion.div
-          className="absolute top-1/6 right-1/6 w-2 h-2 bg-blue-400/60 rounded-full"
+          className="hidden sm:block absolute top-1/6 right-1/6 w-2 h-2 bg-blue-400/60 rounded-full"
           animate={{
             scale: [0, 1, 0],
             opacity: [0, 1, 0],
@@ -68,7 +69,7 @@ export default function Home() {
           transition={{ duration: 6, repeat: Infinity, delay: 0 }}
         />
         <motion.div
-          className="absolute top-2/3 left-1/6 w-1.5 h-1.5 bg-purple-400/60 rounded-full"
+          className="hidden sm:block absolute top-2/3 left-1/6 w-1.5 h-1.5 bg-purple-400/60 rounded-full"
           animate={{
             scale: [0, 1, 0],
             opacity: [0, 1, 0],
@@ -78,7 +79,7 @@ export default function Home() {
           transition={{ duration: 8, repeat: Infinity, delay: 2 }}
         />
         <motion.div
-          className="absolute bottom-1/3 left-1/2 w-1 h-1 bg-cyan-400/60 rounded-full"
+          className="hidden sm:block absolute bottom-1/3 left-1/2 w-1 h-1 bg-cyan-400/60 rounded-full"
           animate={{
             scale: [0, 1, 0],
             opacity: [0, 1, 0],
@@ -104,7 +105,7 @@ export default function Home() {
         {/* Enhanced Lazy Loading with Premium Spacing & Animations */}
         <LazyLoad>
           <motion.div 
-            className="section-padding"
+            className="section-padding cv-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" as const }}
@@ -116,7 +117,7 @@ export default function Home() {
         
         <LazyLoad>
           <motion.div 
-            className="section-padding"
+            className="section-padding cv-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.2 }}
@@ -128,7 +129,7 @@ export default function Home() {
 
         <LazyLoad>
           <motion.div 
-            className="section-padding"
+            className="section-padding cv-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.4 }}
@@ -140,7 +141,7 @@ export default function Home() {
 
         <LazyLoad>
           <motion.div 
-            className="section-padding"
+            className="section-padding cv-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.6 }}
@@ -152,7 +153,7 @@ export default function Home() {
         
         <LazyLoad>
           <motion.div 
-            className="section-padding"
+            className="section-padding cv-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.8 }}

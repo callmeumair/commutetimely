@@ -87,8 +87,6 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         {/* Preload critical resources */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -97,11 +95,8 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         
         {/* DNS prefetch for performance */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         
-        {/* Preload critical fonts for better performance */}
-        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Using next/font for Inter; no external font preload needed */}
         
         {/* Resource hints for better performance */}
         <link rel="preconnect" href="https://www.google-analytics.com" />

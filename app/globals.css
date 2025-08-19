@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Font Stack - Inter with fallbacks and enhanced font features */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap&text=CommuteTimelySmartCommuteAlerts');
+/* Premium Font Stack - Inter provided via next/font; remove external @import to reduce render-blocking */
 
 @layer base {
   * {
@@ -14,6 +13,8 @@
     @apply scroll-smooth;
     font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1, 'ss02' 1, 'ss03' 1, 'cv01' 1, 'cv02' 1;
     scroll-behavior: smooth;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1080px;
   }
 
   body {
@@ -121,6 +122,11 @@
 
 /* Premium Design System Utilities */
 @layer utilities {
+  /* Content-visibility helper for below-the-fold sections */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
   /* Enhanced Glass Morphism Effects */
   .glass-primary {
     @apply bg-white/10 border border-white/20 backdrop-blur-2xl;
