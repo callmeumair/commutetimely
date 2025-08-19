@@ -254,7 +254,7 @@ export function Hero() {
               <div className="space-y-10 sm:space-y-16">
                 {/* Enhanced Headline with Premium Typography */}
                 <motion.h1 
-                  className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tight"
+                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight"
                   variants={itemVariants}
                 >
                   <span className="text-white">CommuteTimely:</span>
@@ -274,7 +274,7 @@ export function Hero() {
                 
                 {/* Enhanced Subheadline with Premium Styling */}
                 <motion.p 
-                  className="text-2xl sm:text-3xl lg:text-4xl text-gray-300 max-w-4xl mx-auto lg:mx-0 leading-relaxed"
+                  className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
                   variants={itemVariants}
                 >
                   The #1{" "}
