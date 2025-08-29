@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "./button";
-import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Star, Users, TrendingUp, Sparkles, CheckCircle, Globe, Smartphone as PhoneIcon } from "lucide-react";
+import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Sparkles, CheckCircle, Globe, Smartphone as PhoneIcon } from "lucide-react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 import { DemoVideoModal } from "./DemoVideoModal";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
@@ -101,11 +101,7 @@ export function Hero() {
     { icon: Cpu, text: "AI Powered", color: "text-purple-400", description: "Smart predictions", bgColor: "from-purple-500/20 to-pink-500/20", borderColor: "border-purple-400/40" }
   ];
 
-  const socialProof = [
-    { icon: Users, text: "10K+", description: "Active Users", color: "text-cyan-400" },
-    { icon: Star, text: "4.9/5", description: "App Store Rating", color: "text-yellow-400" },
-    { icon: TrendingUp, text: "95%", description: "On-time Rate", color: "text-green-400" }
-  ];
+  // Removed social proof stats per request
 
   const features = [
     { icon: Globe, text: "Global Coverage", description: "Works worldwide" },
@@ -393,25 +389,7 @@ export function Hero() {
                 ))}
               </div>
               
-              {/* Enhanced Social Proof with Premium Layout */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-6 sm:space-y-0 sm:space-x-12 pt-6 sm:pt-8">
-                {socialProof.map((item, index) => (
-                  <motion.div 
-                    key={item.text}
-                    className="flex items-center space-x-3 sm:space-x-4"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.15 + 1 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                  >
-                    <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.color} flex-shrink-0`} />
-                    <div className="text-center sm:text-left">
-                      <div className="font-black text-white text-xl sm:text-2xl">{item.text}</div>
-                      <div className="text-base text-gray-400">{item.description}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              {/* Social proof stats removed from both mobile and desktop views */}
 
               {/* Enhanced Platform Info with Premium Styling */}
               <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 pt-6 sm:pt-8 justify-center lg:justify-start">
