@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "./button";
-import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Sparkles, CheckCircle, Globe, Smartphone as PhoneIcon, Apple, Download } from "lucide-react";
+import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Sparkles, CheckCircle, Globe, Smartphone as PhoneIcon, Apple, Download, Mail } from "lucide-react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 import { DemoVideoModal } from "./DemoVideoModal";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
@@ -115,12 +115,12 @@ export function Hero() {
   return (
     <section ref={ref} className="relative min-h-screen bg-black overflow-hidden pt-24 sm:pt-28" suppressHydrationWarning>
       {/* Premium Hero Background Effects with Enhanced Depth */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0"
         style={{ y, opacity }}
       >
         {/* Enhanced Grid Pattern with Premium Aesthetics */}
-        <div 
+        <div
           className="absolute inset-0 opacity-15"
           style={{
             backgroundImage: `
@@ -143,7 +143,7 @@ export function Hero() {
             ease: "easeInOut"
           }}
         />
-        
+
         <motion.div
           className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"
           animate={{
@@ -171,7 +171,7 @@ export function Hero() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         />
-        
+
         {/* Additional Premium Background Elements */}
         <motion.div
           className="absolute top-1/2 left-1/2 w-32 h-32 bg-cyan-500/6 rounded-full blur-2xl animate-float-slow"
@@ -179,7 +179,7 @@ export function Hero() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         />
-        
+
         {/* Premium Particle System */}
         <motion.div
           className="absolute top-1/6 right-1/6 w-2 h-2 bg-blue-400 rounded-full"
@@ -214,7 +214,7 @@ export function Hero() {
       </motion.div>
 
       <div className="container mx-auto container-padding py-10 sm:py-14 relative z-10">
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center min-h-[calc(100vh-12rem)] sm:min-h-[calc(100vh-14rem)]"
           variants={containerVariants}
           initial="hidden"
@@ -224,7 +224,7 @@ export function Hero() {
           <div className="lg:col-span-6 space-y-10 sm:space-y-16 text-center lg:text-left">
             <motion.div variants={itemVariants} className="space-y-10 sm:space-y-16">
               {/* Premium Launch Badge with Enhanced Effects */}
-              <motion.div 
+              <motion.div
                 className="inline-flex items-center space-x-4 sm:space-x-5 px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-blue-500/15 via-cyan-400/15 to-purple-500/15 backdrop-blur-2xl rounded-full border border-white/25 hover:border-white/40 transition-all duration-700"
                 whileHover={{ scale: 1.05, y: -3 }}
                 animate={{
@@ -237,7 +237,7 @@ export function Hero() {
                 }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <motion.div 
+                <motion.div
                   className="w-4 h-4 sm:w-5 sm:h-5 bg-green-400 rounded-full"
                   animate={{ scale: [1, 1.4, 1] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
@@ -252,15 +252,15 @@ export function Hero() {
 
               <div className="space-y-10 sm:space-y-16">
                 {/* Enhanced Headline with Premium Typography */}
-                <motion.h1 
+                <motion.h1
                   className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight"
                   variants={itemVariants}
                 >
                   <span className="text-white">CommuteTimely:</span>
-                  <motion.span 
+                  <motion.span
                     className="block gradient-text-primary"
-                    animate={{ 
-                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] 
+                    animate={{
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                     }}
                     style={{
                       backgroundSize: "200% 100%"
@@ -270,14 +270,14 @@ export function Hero() {
                     Never Be Late Again
                   </motion.span>
                 </motion.h1>
-                
+
                 {/* Enhanced Subheadline with Premium Styling */}
-                <motion.p 
+                <motion.p
                   className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
                   variants={itemVariants}
                 >
                   The #1{" "}
-                  <motion.span 
+                  <motion.span
                     className="font-bold gradient-text-secondary"
                     animate={{
                       backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
@@ -289,9 +289,9 @@ export function Hero() {
                   </motion.span>{" "}
                   — now live on iOS. Get smart leave alerts using real-time traffic data to reach on time, every time.
                 </motion.p>
-                
+
                 {/* Enhanced Description with Premium Content */}
-                <motion.p 
+                <motion.p
                   className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
                   variants={itemVariants}
                 >
@@ -299,19 +299,19 @@ export function Hero() {
                 </motion.p>
               </div>
             </motion.div>
-            
+
             {/* Enhanced CTA Buttons with Premium Interactions */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center lg:justify-start">
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -3 }} 
+              <motion.div
+                whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
                 onHoverStart={() => setIsHoveringCTA(true)}
                 onHoverEnd={() => setIsHoveringCTA(false)}
               >
                 <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight - Download CommuteTimely now">
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="w-full sm:w-auto btn-premium px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-black shadow-glow-strong"
                   >
                     <span className="relative z-10 flex items-center justify-center space-x-3">
@@ -337,38 +337,39 @@ export function Hero() {
                   </Button>
                 </a>
               </motion.div>
-              
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -3 }} 
+
+              <motion.div
+                whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <a href="/demo-video" aria-label="Watch demo video to see CommuteTimely in action">
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
+                <a href="/early-access" aria-label="Join waitlist for Android and get early access updates">
+                  <Button
+                    variant="outline"
+                    size="lg"
                     className="w-full sm:w-auto btn-secondary px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-bold"
                   >
-                    <Play className="mr-3 sm:mr-4 w-6 h-7 sm:w-7 sm:h-8 group-hover:scale-110 transition-transform" />
-                    Watch Demo
+                    <Mail className="mr-3 sm:mr-4 w-6 h-7 sm:w-7 sm:h-8 group-hover:scale-110 transition-transform" />
+                    Join Waitlist
                   </Button>
                 </a>
               </motion.div>
             </motion.div>
-            
+
+
             {/* Enhanced Trust Indicators with Premium Styling */}
             <motion.div variants={itemVariants} className="space-y-8 sm:space-y-12">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 justify-center lg:justify-start">
                 {trustIndicators.map((item, index) => (
-                  <motion.div 
+                  <motion.div
                     key={item.text}
                     className="flex flex-col items-center sm:items-start space-y-4 text-center sm:text-left group"
                     whileHover={{ scale: 1.05, y: -3 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   >
-                    <motion.div 
+                    <motion.div
                       className={`w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br ${item.bgColor} backdrop-blur-2xl border ${item.borderColor} rounded-3xl flex items-center justify-center flex-shrink-0`}
-                      whileHover={{ 
+                      whileHover={{
                         rotate: 8,
                         boxShadow: "0 0 40px rgba(59, 130, 246, 0.5)"
                       }}
@@ -391,13 +392,13 @@ export function Hero() {
                   </motion.div>
                 ))}
               </div>
-              
+
               {/* Social proof stats removed from both mobile and desktop views */}
 
               {/* Enhanced Platform Info with Premium Styling */}
               <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 pt-6 sm:pt-8 justify-center lg:justify-start">
                 {features.map((feature, index) => (
-                  <motion.div 
+                  <motion.div
                     key={feature.text}
                     className="flex items-center space-x-3 sm:space-x-4"
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -416,19 +417,19 @@ export function Hero() {
               </div>
             </motion.div>
           </div>
-          
+
           {/* Enhanced Phone Mockup Column with Premium Effects */}
           <div className="lg:col-span-6 flex justify-center order-first lg:order-last">
-            <motion.div 
+            <motion.div
               className="relative"
               variants={phoneVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
               {/* Enhanced Phone Container with Premium Styling */}
-              <motion.div 
+              <motion.div
                 className="relative w-80 h-[640px] sm:w-96 sm:h-[720px] lg:w-[360px] lg:h-[760px] mx-auto"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.03,
                   rotateY: -10,
                   rotateX: 5
@@ -452,8 +453,8 @@ export function Hero() {
                   <div className="w-full h-full bg-black rounded-[2.7rem] overflow-hidden relative border border-white/8">
                     {/* Mobile App Interface - Using Actual Image */}
                     <div className="w-full h-full rounded-[2.7rem] overflow-hidden relative">
-                      <Image 
-                        src="/images/IMG_750E9EF883FD-1.jpeg" 
+                      <Image
+                        src="/images/IMG_750E9EF883FD-1.jpeg"
                         alt="CommuteTimely traffic app interface displaying real-time commute details, traffic alerts, and smart navigation features for optimal commute planning"
                         fill
                         className="object-cover object-center"
@@ -464,7 +465,7 @@ export function Hero() {
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAwv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       />
                     </div>
-                    
+
                     {/* Enhanced overlay for premium glow effect */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-blue-500/8 via-transparent to-cyan-500/8 rounded-[2.7rem] pointer-events-none"
@@ -477,14 +478,14 @@ export function Hero() {
                 </div>
 
                 {/* Enhanced Floating Elements with Premium Animation */}
-                <motion.div 
+                <motion.div
                   className="absolute -top-16 -left-16 w-32 h-32 bg-blue-500/15 rounded-full backdrop-blur-2xl border border-blue-400/40 animate-float"
                   variants={floatingVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 />
-                
-                <motion.div 
+
+                <motion.div
                   className="absolute -bottom-24 -right-24 w-36 h-36 bg-purple-500/15 rounded-full backdrop-blur-2xl border border-purple-400/40 animate-float-delayed"
                   variants={floatingVariants}
                   initial="hidden"
@@ -492,15 +493,15 @@ export function Hero() {
                 />
 
                 {/* Additional Premium Floating Elements */}
-                <motion.div 
+                <motion.div
                   className="absolute top-1/2 -right-12 w-20 h-20 bg-cyan-500/12 rounded-full backdrop-blur-xl border border-cyan-400/25 animate-float-slow"
                   variants={floatingVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   style={{ animationDelay: '-2s' }}
                 />
-                
-                <motion.div 
+
+                <motion.div
                   className="absolute top-1/4 -left-8 w-16 h-16 bg-green-500/10 rounded-full backdrop-blur-lg border border-green-400/20 animate-float"
                   variants={floatingVariants}
                   initial="hidden"
@@ -514,7 +515,7 @@ export function Hero() {
       </div>
 
       {/* Early Access Modal no longer used on this page; CTA routes to /early-access */}
-      
+
       {/* Demo video now has a dedicated page at /demo-video */}
     </section>
   );

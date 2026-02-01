@@ -201,8 +201,26 @@ export function Download() {
                     </a>
                   </motion.div>
 
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full"
+                  >
+                    <a href="/early-access" aria-label="Join waitlist for Android and updates">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="w-full border-gray-600 hover:border-gray-500 text-white font-semibold px-6 sm:px-8 h-11 sm:h-12 transition-all duration-300 text-sm sm:text-base group"
+                      >
+                        <Mail className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform" />
+                        Join Waitlist (Android)
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </a>
+                  </motion.div>
+
                   <p className="text-xs sm:text-sm text-gray-400 text-center">
-                    Free public beta. No credit  card required. Android coming soon.
+                    iOS beta live now via TestFlight. Android waitlist open.
                   </p>
                 </motion.div>
               </CardContent>
