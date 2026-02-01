@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   variable: '--font-inter',
@@ -11,21 +11,24 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "CommuteTimely - Smart Traffic App & Commute Planner | Never Be Late Again",
+    default: "CommuteTimely - Smart Traffic App | Live on iOS Beta",
     template: "%s | CommuteTimely"
   },
-  description: "CommuteTimely is the #1 intelligent traffic app that sends smart leave alerts using real-time traffic data. AI-powered commute planning for iOS & Android. Get early access now!",
+  description: "CommuteTimely is live on iOS. The #1 intelligent traffic app with AI-powered leave alerts using real-time traffic data. Download the public beta on TestFlight today!",
   keywords: [
     "traffic app",
-    "commute planner", 
+    "commute planner",
     "traffic alerts",
     "real-time traffic",
     "smart commute",
     "traffic prediction",
     "route optimization",
     "iOS traffic app",
-    "Android traffic app",
-    "commute notifications"
+    "TestFlight",
+    "iOS beta",
+    "live now",
+    "commute notifications",
+    "beta testing"
   ],
   authors: [{ name: "CommuteTimely Team" }],
   creator: "CommuteTimely",
@@ -40,8 +43,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "CommuteTimely - Smart Traffic App & Commute Planner",
-    description: "The #1 intelligent traffic app that sends smart leave alerts using real-time traffic data. Never be late again with AI-powered commute planning.",
+    title: "CommuteTimely - Smart Traffic App | Live on iOS Beta",
+    description: "The #1 intelligent traffic app is live on iOS. Get smart leave alerts using real-time traffic data. Download the public beta on TestFlight today.",
     url: 'https://commutetimely.com',
     siteName: 'CommuteTimely',
     images: [
@@ -57,8 +60,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CommuteTimely - Smart Traffic App & Commute Planner',
-    description: 'The #1 intelligent traffic app that sends smart leave alerts using real-time traffic data. Never be late again!',
+    title: 'CommuteTimely - Smart Traffic App | Live on iOS Beta',
+    description: 'The  #1 intelligent traffic app is live. Download the iOS beta on TestFlight and never be late again!',
     images: ['/og-image.png'],
     creator: '@commutetimely',
   },
@@ -87,25 +90,25 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         {/* Preload critical resources */}
-        
+
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        
+
         {/* DNS prefetch for performance */}
-        
+
         {/* Using next/font for Inter; no external font preload needed */}
-        
+
         {/* Resource hints for better performance */}
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        
+
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
-        
+
         {/* Performance monitoring */}
         <script
           dangerouslySetInnerHTML={{
@@ -125,13 +128,13 @@ export default function RootLayout({
             `,
           }}
         />
-        
+
         {/* Viewport and mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        
+
         {/* Performance hints - removed unused image preload to fix console warning */}
       </head>
       <body className={`${inter.className} antialiased`}>

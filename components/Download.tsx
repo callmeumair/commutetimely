@@ -1,10 +1,13 @@
 import { Button } from "./button";
 import { Card, CardContent } from "./card";
-import { ArrowRight, CheckCircle, Star, Calendar, Smartphone, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, Calendar, Smartphone, Mail, Apple } from "lucide-react";
 import { useState } from "react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
+
+// TestFlight URL for iOS Beta
+const TESTFLIGHT_URL = "https://testflight.apple.com/join/nuu9uYcX";
 
 export function Download() {
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
@@ -35,17 +38,17 @@ export function Download() {
   };
 
   const features = [
-    "Early access before public launch",
-    "Exclusive beta features",
+    "Download iOS beta via TestFlight",
+    "Exclusive beta features and updates",
     "Priority customer support",
-    "No ads during beta period"
+    "Help shape the future of CommuteTimely"
   ];
 
   return (
     <section id="download" ref={ref} className="relative py-12 sm:py-16 lg:py-20 bg-black overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="absolute top-0 left-0 w-full h-full opacity-20"
           style={{
             backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
@@ -60,19 +63,19 @@ export function Download() {
             repeatType: "reverse"
           }}
         />
-        
+
         {/* Floating Elements */}
-        <motion.div 
+        <motion.div
           className="absolute top-10 sm:top-20 left-10 sm:left-20 w-24 h-24 sm:w-32 sm:h-32 bg-white/5 rounded-full blur-xl"
-          animate={{ 
+          animate={{
             y: [0, -15, 0],
             scale: [1, 1.1, 1]
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-32 h-32 sm:w-40 sm:h-40 bg-white/5 rounded-full blur-xl"
-          animate={{ 
+          animate={{
             y: [0, 15, 0],
             x: [0, -10, 0]
           }}
@@ -81,7 +84,7 @@ export function Download() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div 
+        <motion.div
           className="max-w-5xl mx-auto text-center text-white"
           variants={containerVariants}
           initial="hidden"
@@ -89,15 +92,15 @@ export function Download() {
         >
           {/* Header Section */}
           <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
-            <motion.div 
+            <motion.div
               className="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6"
               whileHover={{ scale: 1.05 }}
             >
               <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
               <span className="text-xs sm:text-sm font-medium text-white">Join the Beta</span>
             </motion.div>
-            
-            <motion.h2 
+
+            <motion.h2
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
               variants={itemVariants}
             >
@@ -106,25 +109,24 @@ export function Download() {
                 Your Daily Commute?
               </span>
             </motion.h2>
-            
-            <motion.p 
+
+            <motion.p
               className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
-              Join thousands of early users who will get exclusive access to CommuteTimely 
-              when we launch in September 2025. Be part of the revolution in smart commuting.
+              Join beta testers already using CommuteTimely. Download the iOS beta on TestFlight and experience the future of smart commuting today.
             </motion.p>
           </motion.div>
-          
+
           {/* Info Cards */}
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10"
             variants={containerVariants}
           >
             {[
-              { icon: Calendar, title: "Launch Date", subtitle: "September 2025", description: "Mark your calendar" },
-              { icon: Smartphone, title: "Platforms", subtitle: "iOS & Android", description: "Universal compatibility" },
-              { icon: Mail, title: "Early Access", subtitle: "Limited Spots", description: "Be among the first" }
+              { icon: Apple, title: "iOS Beta", subtitle: "Live Now", description: "Download on TestFlight" },
+              { icon: Smartphone, title: "Platforms", subtitle: "iOS (Live) & Android (Soon)", description: "Coming to all devices" },
+              { icon: Mail, title: "Beta Access", subtitle: "Public Beta", description: "Join today" }
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -134,7 +136,7 @@ export function Download() {
               >
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300">
                   <CardContent className="p-6 sm:p-8 text-center">
-                    <motion.div 
+                    <motion.div
                       className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4"
                       whileHover={{ rotate: 5 }}
                     >
@@ -148,68 +150,69 @@ export function Download() {
               </motion.div>
             ))}
           </motion.div>
-          
+
           {/* Main CTA Section */}
-          <motion.div 
+          <motion.div
             className="max-w-2xl mx-auto"
             variants={itemVariants}
           >
             <Card className="bg-white/10 backdrop-blur-lg border-white/20 overflow-hidden">
               <CardContent className="p-6 sm:p-8">
-                <motion.div 
+                <motion.div
                   className="space-y-4 sm:space-y-6"
                   initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
                 >
-                    <div className="text-center mb-4 sm:mb-6">
-                      <h3 id="early-access-title" className="text-xl sm:text-2xl font-bold text-white mb-2">Get Early Access</h3>
-                      <p className="text-gray-300 text-sm sm:text-base">Join our exclusive beta program</p>
-                    </div>
+                  <div className="text-center mb-4 sm:mb-6">
+                    <h3 id="early-access-title" className="text-xl sm:text-2xl font-bold text-white mb-2">Join iOS Beta</h3>
+                    <p className="text-gray-300 text-sm sm:text-base">Download on TestFlight—get started in minutes</p>
+                  </div>
 
-                    {/* Features List */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
-                      {features.map((feature, index) => (
-                        <motion.div 
-                          key={feature}
-                          className="flex items-center space-x-2 sm:space-x-3 text-gray-200"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                          transition={{ delay: index * 0.1 + 0.5 }}
-                        >
-                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
-                          <span className="text-xs sm:text-sm">{feature}</span>
-                        </motion.div>
-                      ))}
-                    </div>
+                  {/* Features List */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
+                    {features.map((feature, index) => (
+                      <motion.div
+                        key={feature}
+                        className="flex items-center space-x-2 sm:space-x-3 text-gray-200"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                        transition={{ delay: index * 0.1 + 0.5 }}
+                      >
+                        <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
 
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full"
-                    >
-                      <a href="/early-access" aria-label="Open early access form">
-                        <Button 
-                          type="button"
-                          className="w-full bg-white hover:bg-gray-100 text-black font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base group"
-                        >
-                          Get Early Access
-                          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                      </a>
-                    </motion.div>
-                    
-                    <p className="text-xs sm:text-sm text-gray-400 text-center">
-                      We'll notify you as soon as CommuteTimely is available. No spam, ever.
-                    </p>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full"
+                  >
+                    <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight">
+                      <Button
+                        type="button"
+                        className="w-full bg-white hover:bg-gray-100 text-black font-semibold px-6 sm:px-8 h-11 sm:h-12 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base group"
+                      >
+                        <Apple className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform" />
+                        Join iOS Beta
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </a>
                   </motion.div>
+
+                  <p className="text-xs sm:text-sm text-gray-400 text-center">
+                    Free public beta. No credit  card required. Android coming soon.
+                  </p>
+                </motion.div>
               </CardContent>
             </Card>
           </motion.div>
-          
+
 
         </motion.div>
       </div>
-      
+
       {/* Early Access Modal not used here anymore; CTA routes to /early-access */}
     </section>
   );

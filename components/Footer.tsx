@@ -14,7 +14,7 @@ export function Footer() {
       {/* Background Effects */}
       <div className="absolute inset-0">
         {/* Static Grid for better performance */}
-        <div 
+        <div
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
@@ -34,15 +34,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
           {/* Brand Section */}
           <div className="md:col-span-2">
-            <motion.div 
+            <motion.div
               className="flex items-center space-x-3 sm:space-x-4 mb-6"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <div className="relative">
-                <motion.div 
+                <motion.div
                   className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 via-cyan-400 to-purple-500 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-2xl"
-                  whileHover={{ 
+                  whileHover={{
                     rotate: [0, -5, 5, 0],
                     scale: 1.1,
                     boxShadow: "0 0 30px rgba(37, 99, 235, 0.6)"
@@ -57,9 +57,9 @@ export function Footer() {
                 >
                   <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </motion.div>
-                
+
                 {/* Glowing Ring */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-blue-400/50"
                   animate={{
                     scale: [1, 1.1, 1],
@@ -68,9 +68,9 @@ export function Footer() {
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </div>
-              
+
               <div>
-                <motion.span 
+                <motion.span
                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent"
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
@@ -82,12 +82,12 @@ export function Footer() {
                 <div className="text-xs sm:text-sm text-blue-300/70">Smart Commute Alerts</div>
               </div>
             </motion.div>
-            
+
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm sm:text-base">
-              CommuteTimely is the #1 traffic app with intelligent leave alerts using real-time traffic data to help you reach on time, every time. 
-              <span className="text-blue-300 font-medium"> Launching September 2025</span> on iOS and Android.
+              CommuteTimely is the #1 traffic app with intelligent leave alerts using real-time traffic data to help you reach on time, every time.
+              <span className="text-blue-300 font-medium"> Live on iOS (Public Beta)</span> — Android coming soon.
             </p>
-            
+
             <div className="flex items-center space-x-6">
               {[
                 { icon: Twitter, name: "Twitter", href: "https://x.com/CommuteTimely", color: "hover:text-blue-400" },
@@ -117,7 +117,7 @@ export function Footer() {
               ))}
             </div>
           </div>
-          
+
           {/* Product Links */}
           <div>
             <h3 className="text-white font-semibold mb-6 text-lg">Product</h3>
@@ -148,7 +148,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
-          
+
           {/* Company Links */}
           <div>
             <h3 className="text-white font-semibold mb-6 text-lg">Company</h3>
@@ -179,9 +179,9 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        
+
         {/* Bottom Section */}
-        <motion.div 
+        <motion.div
           className="border-t border-white/10 mt-12 pt-8 sm:pt-12 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -210,7 +210,7 @@ export function Footer() {
               ))}
             </div>
           </div>
-          
+
           {/* Back to Top Button */}
           <motion.button
             onClick={scrollToTop}

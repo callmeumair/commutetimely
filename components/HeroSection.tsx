@@ -1,12 +1,15 @@
 'use client'
 
 import { Button } from "./button";
-import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Sparkles, CheckCircle, Globe, Smartphone as PhoneIcon } from "lucide-react";
+import { Clock, MapPin, Smartphone, ArrowRight, Play, Shield, Zap, Cpu, Sparkles, CheckCircle, Globe, Smartphone as PhoneIcon, Apple, Download } from "lucide-react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 import { DemoVideoModal } from "./DemoVideoModal";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+
+// TestFlight URL for iOS Beta
+const TESTFLIGHT_URL = "https://testflight.apple.com/join/nuu9uYcX";
 
 export function Hero() {
   const ref = useRef(null);
@@ -96,9 +99,9 @@ export function Hero() {
   };
 
   const trustIndicators = [
-    { icon: Shield, text: "Privacy First", color: "text-green-400", description: "Your data stays private", bgColor: "from-green-500/20 to-emerald-500/20", borderColor: "border-green-400/40" },
-    { icon: Zap, text: "Real-time Data", color: "text-yellow-400", description: "Live traffic updates", bgColor: "from-yellow-500/20 to-orange-500/20", borderColor: "border-yellow-400/40" },
-    { icon: Cpu, text: "AI Powered", color: "text-purple-400", description: "Smart predictions", bgColor: "from-purple-500/20 to-pink-500/20", borderColor: "border-purple-400/40" }
+    { icon: Apple, text: "Live iOS Beta", color: "text-blue-400", description: "Download on TestFlight", bgColor: "from-blue-500/20 to-cyan-500/20", borderColor: "border-blue-400/40" },
+    { icon: Zap, text: "Real-time Alerts", color: "text-yellow-400", description: "Traffic-aware notifications", bgColor: "from-yellow-500/20 to-orange-500/20", borderColor: "border-yellow-400/40" },
+    { icon: Shield, text: "Built for Commuters", color: "text-green-400", description: "Daily reliability", bgColor: "from-green-500/20 to-emerald-500/20", borderColor: "border-green-400/40" }
   ];
 
   // Removed social proof stats per request
@@ -239,7 +242,7 @@ export function Hero() {
                   animate={{ scale: [1, 1.4, 1] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
                 />
-                <span className="text-base sm:text-lg font-bold text-white">Launching September 2025</span>
+                <span className="text-base sm:text-lg font-bold text-white">Live on iOS — Public Beta</span>
                 <motion.div
                   className="w-2 h-2 bg-cyan-400 rounded-full"
                   animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
@@ -284,7 +287,7 @@ export function Hero() {
                   >
                     intelligent traffic app
                   </motion.span>{" "}
-                  that sends smart leave alerts using real-time traffic data to help you reach on time, every time.
+                  — now live on iOS. Get smart leave alerts using real-time traffic data to reach on time, every time.
                 </motion.p>
                 
                 {/* Enhanced Description with Premium Content */}
@@ -292,7 +295,7 @@ export function Hero() {
                   className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
                   variants={itemVariants}
                 >
-                  Unlike generic traffic apps, CommuteTimely learns your commute patterns and provides personalized smart notifications. Join thousands of commuters who trust CommuteTimely for accurate real-time traffic alerts.
+                  Unlike generic traffic apps, CommuteTimely learns your commute patterns and provides personalized smart notifications. Join beta testers already using CommuteTimely for accurate real-time traffic alerts.
                 </motion.p>
               </div>
             </motion.div>
@@ -306,7 +309,7 @@ export function Hero() {
                 onHoverStart={() => setIsHoveringCTA(true)}
                 onHoverEnd={() => setIsHoveringCTA(false)}
               >
-                <a href="/early-access" aria-label="Get early access to CommuteTimely - Start your journey to never being late again">
+                <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight - Download CommuteTimely now">
                   <Button 
                     size="lg" 
                     className="w-full sm:w-auto btn-premium px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-black shadow-glow-strong"
@@ -319,16 +322,16 @@ export function Hero() {
                         }}
                         transition={{ duration: 0.6 }}
                       >
-                        <Sparkles className="w-6 h-7 sm:w-7 sm:h-8" />
+                        <Apple className="w-6 h-7 sm:w-7 sm:h-8" />
                       </motion.div>
-                      <span>Get Early Access</span>
+                      <span>Join iOS Beta</span>
                       <motion.div
                         animate={{
                           x: isHoveringCTA ? 5 : 0
                         }}
                         transition={{ duration: 0.3 }}
                       >
-                        <ArrowRight className="w-6 h-7 sm:w-7 sm:h-8 group-hover:translate-x-1 transition-transform" />
+                        <Download className="w-6 h-7 sm:w-7 sm:h-8 group-hover:translate-y-1 transition-transform" />
                       </motion.div>
                     </span>
                   </Button>

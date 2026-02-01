@@ -1,10 +1,13 @@
 'use client'
 
 import { Button } from "./button";
-import { MapPin, Menu, X, ChevronDown, Sparkles, Zap } from "lucide-react";
+import { MapPin, Menu, X, ChevronDown, Sparkles, Zap, Apple } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
+
+// TestFlight URL for iOS Beta
+const TESTFLIGHT_URL = "https://testflight.apple.com/join/nuu9uYcX";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,14 +25,14 @@ export function Header() {
     // Set initial scroll state after mounting
     handleScroll();
     setIsMounted(true);
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { 
-      href: "#features", 
+    {
+      href: "#features",
       label: "Features",
       hasDropdown: true,
       dropdownItems: [
@@ -57,20 +60,19 @@ export function Header() {
   };
 
   return (
-    <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        isScrolled 
-          ? 'bg-black/95 backdrop-blur-3xl border-b border-white/15 shadow-premium' 
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled
+          ? 'bg-black/95 backdrop-blur-3xl border-b border-white/15 shadow-premium'
           : 'bg-transparent'
-      }`}
+        }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut" as const }}
+      transition={{ duration: 1, ease: "easeOut" as const }}
     >
       <div className="container mx-auto container-padding">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Premium Logo with Enhanced Interactions */}
-          <motion.div 
+          <motion.div
             className="flex items-center space-x-4 sm:space-x-5"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -79,37 +81,37 @@ export function Header() {
           >
             <div className="relative">
               {/* Enhanced Logo Container with Premium Effects */}
-              <motion.div 
+              <motion.div
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 via-cyan-400 to-purple-500 rounded-3xl sm:rounded-[2rem] flex items-center justify-center shadow-glow-strong"
-                whileHover={{ 
+                whileHover={{
                   rotate: [0, -8, 8, 0],
                   scale: 1.15,
                   boxShadow: "0 0 50px rgba(59, 130, 246, 0.8), 0 0 100px rgba(6, 182, 212, 0.6)"
                 }}
                 animate={{
-                  boxShadow: isHoveringLogo 
+                  boxShadow: isHoveringLogo
                     ? "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(6, 182, 212, 0.4)"
                     : [
-                        "0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(6, 182, 212, 0.3)",
-                        "0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(6, 182, 212, 0.4)",
-                        "0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.3)",
-                        "0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(6, 182, 212, 0.3)"
-                      ]
+                      "0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(6, 182, 212, 0.3)",
+                      "0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(6, 182, 212, 0.4)",
+                      "0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.3)",
+                      "0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(6, 182, 212, 0.3)"
+                    ]
                 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 300, 
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
                   damping: 15,
-                  duration: 4, 
-                  repeat: Infinity, 
+                  duration: 4,
+                  repeat: Infinity,
                   ease: "easeInOut" as const
                 }}
               >
                 <MapPin className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </motion.div>
-              
+
               {/* Enhanced Glowing Ring with Premium Animation */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 rounded-3xl sm:rounded-[2rem] border-2 border-blue-400/60"
                 animate={{
                   scale: [1, 1.15, 1],
@@ -123,7 +125,7 @@ export function Header() {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-              
+
               {/* Floating Particles Effect */}
               <motion.div
                 className="absolute -top-2 -right-2 w-3 h-3 bg-cyan-400 rounded-full"
@@ -144,9 +146,9 @@ export function Header() {
                 transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <motion.span 
+              <motion.span
                 className="text-xl sm:text-2xl lg:text-3xl font-black gradient-text-primary leading-none"
                 animate={{
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
@@ -155,7 +157,7 @@ export function Header() {
               >
                 CommuteTimely
               </motion.span>
-              <motion.span 
+              <motion.span
                 className="text-xs sm:text-sm text-cyan-300/80 leading-none hidden sm:block font-semibold"
                 animate={{
                   opacity: [0.8, 1, 0.8]
@@ -166,7 +168,7 @@ export function Header() {
               </motion.span>
             </div>
           </motion.div>
-          
+
           {/* Enhanced Desktop Navigation with Premium Interactions */}
           <nav className="hidden lg:flex items-center space-x-10 xl:space-x-12" role="navigation" aria-label="Main navigation">
             {navItems.map((item, index) => (
@@ -261,19 +263,19 @@ export function Header() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 boxShadow: "0 0 50px rgba(59, 130, 246, 0.7), 0 0 100px rgba(6, 182, 212, 0.5)"
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <a href="/early-access" aria-label="Get early access to CommuteTimely">
-                <Button 
+              <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight">
+                <Button
                   className="btn-premium px-8 xl:px-10 py-3 xl:py-4 text-base xl:text-lg"
                 >
                   <span className="relative z-10 flex items-center space-x-2">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Get Early Access</span>
+                    <Apple className="w-4 h-4" />
+                    <span>Join iOS Beta</span>
                   </span>
                 </Button>
               </a>
@@ -286,8 +288,8 @@ export function Header() {
             onClick={toggleMobileMenu}
             whileTap={{ scale: 0.95 }}
             animate={{
-              boxShadow: isMobileMenuOpen 
-                ? "0 0 30px rgba(59, 130, 246, 0.5)" 
+              boxShadow: isMobileMenuOpen
+                ? "0 0 30px rgba(59, 130, 246, 0.5)"
                 : "0 0 15px rgba(255, 255, 255, 0.1)"
             }}
             aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -358,7 +360,7 @@ export function Header() {
                             </motion.div>
                           </div>
                         </button>
-                        
+
                         {/* Mobile Dropdown with Enhanced Styling */}
                         <AnimatePresence>
                           {activeDropdown === item.label && (
@@ -419,26 +421,23 @@ export function Header() {
                   transition={{ delay: 0.4 }}
                   className="pt-6"
                 >
-                  <Button 
-                    className="w-full btn-premium py-4 text-lg"
-                    onClick={() => {
-                      closeMobileMenu();
-                      setIsEarlyAccessModalOpen(true);
-                    }}
-                    aria-label="Get early access to CommuteTimely"
-                  >
-                    <span className="relative z-10 flex items-center justify-center space-x-2">
-                      <Sparkles className="w-5 h-5" />
-                      <span>Get Early Access</span>
-                    </span>
-                  </Button>
+                  <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight">
+                    <Button
+                      className="w-full btn-premium py-4 text-lg"
+                    >
+                      <span className="relative z-10 flex items-center justify-center space-x-2">
+                        <Apple className="w-5 h-5" />
+                        <span>Join iOS Beta</span>
+                      </span>
+                    </Button>
+                  </a>
                 </motion.div>
               </nav>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       {/* Early Access Modal no longer used here; CTA routes to /early-access */}
     </motion.header>
   );
