@@ -189,7 +189,7 @@ export function Footer() {
         >
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 text-center sm:text-left">
             <p className="text-gray-500 text-sm">
-              © 2025 CommuteTimely. All rights reserved.
+              © 2026 CommuteTimely. All rights reserved.
             </p>
             <div className="flex space-x-6 justify-center sm:justify-start">
               {[
