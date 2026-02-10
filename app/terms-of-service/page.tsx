@@ -115,42 +115,27 @@ export default function TermsOfService() {
                   Use of the App
                 </h2>
                 <p className="text-gray-300 leading-relaxed">
-                  CommuteTimely provides intelligent commute alerts using real-time traffic data.
-                  You may use our services for personal, non-commercial purposes in accordance
-                  with these terms and applicable laws.
+                  CommuteTimely provides intelligent commute alerts using real-time traffic data processing
+                  locally on your device. You may use our services for personal, non-commercial purposes
+                  in accordance with these terms and applicable laws.
                 </p>
                 <p className="text-gray-300 leading-relaxed mt-4">
                   You agree not to use the app for any unlawful purpose or in any way that could
-                  damage, disable, overburden, or impair our servers or networks.
+                  damage, disable, overburden, or impair our services.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-semibold text-blue-300 mb-4">
-                  User Accounts and Responsibilities
+                  Privacy and Data Protection
                 </h2>
                 <p className="text-gray-300 leading-relaxed">
-                  You are responsible for maintaining the confidentiality of your account credentials
-                  and for all activities that occur under your account.
+                  Your privacy is paramount. CommuteTimely is designed to process data locally on your device.
+                  We do not collect, store, or sell your personal information.
                 </p>
                 <p className="text-gray-300 leading-relaxed mt-4">
-                  You must provide accurate and complete information when creating your account
-                  and keep it updated. You are responsible for any loss or damage resulting from
-                  unauthorized use of your account.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-2xl font-semibold text-blue-300 mb-4">
-                  Privacy and Data
-                </h2>
-                <p className="text-gray-300 leading-relaxed">
-                  Your privacy is important to us. Our collection and use of personal information
-                  is governed by our Privacy Policy, which is incorporated into these Terms by reference.
-                </p>
-                <p className="text-gray-300 leading-relaxed mt-4">
-                  By using our services, you consent to the collection and use of information
-                  as described in our Privacy Policy.
+                  By using our services, you acknowledge that our data practices are governed by our
+                  Privacy Policy, which confirms that no personal data is transmitted to our servers.
                 </p>
               </section>
 
@@ -204,13 +189,9 @@ export default function TermsOfService() {
                   Termination
                 </h2>
                 <p className="text-gray-300 leading-relaxed">
-                  You may terminate your account at any time by deleting the app or contacting us.
-                  We may terminate or suspend your access to our services immediately, without prior
-                  notice, for any reason.
-                </p>
-                <p className="text-gray-300 leading-relaxed mt-4">
-                  Upon termination, your right to use our services will cease immediately, and
-                  we may delete your account and data.
+                  You may stop using our services at any time by deleting the app from your device.
+                  We may terminate or suspend access to our services immediately, without prior
+                  notice, for any reason, including violation of these Terms.
                 </p>
               </section>
 
