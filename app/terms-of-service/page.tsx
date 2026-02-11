@@ -227,7 +227,7 @@ export default function TermsOfService() {
                 <h2 className="text-2xl font-semibold text-blue-300 mb-4">
                   Contact Information
                 </h2>
-                <p className="text-gray-300 leading-relaxed">If you have any questions about these Terms, please contact us at <a href="mailto:commutetimely@gmail.com" className="text-blue-400 hover:text-blue-300 transition-colors">commutetimely@gmail.com</a>.</p>
+                <p className="text-gray-300 leading-relaxed">If you have any questions about these Terms, please contact us at <a href="mailto:hello@commutetimely.com" className="text-blue-400 hover:text-blue-300 transition-colors">hello@commutetimely.com</a>.</p>
               </section>
 
               <div className="text-center text-gray-400 text-sm mt-12 pt-8 border-t border-white/10">

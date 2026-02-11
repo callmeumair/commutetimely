@@ -95,7 +95,7 @@ export function Footer() {
                 { icon: Linkedin, name: "LinkedIn", href: "https://www.linkedin.com/company/commutetimely/", color: "hover:text-blue-500" },
                 { icon: Github, name: "GitHub", href: "https://github.com/CommuteTimely", color: "hover:text-gray-300" },
                 { icon: DiscordIcon, name: "Discord", href: "https://discord.gg/u9rvTaD5", color: "hover:text-indigo-400" },
-                { icon: Mail, name: "Email", href: "mailto:commutetimely@gmail.com", color: "hover:text-cyan-400" }
+                { icon: Mail, name: "Email", href: "mailto:hello@commutetimely.com", color: "hover:text-cyan-400" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
@@ -195,7 +195,7 @@ export function Footer() {
               {[
                 { name: "Privacy Policy", href: "/privacy-policy" },
                 { name: "Terms of Service", href: "/terms-of-service" },
-                { name: "Support", href: "mailto:commutetimely@gmail.com?subject=Contacting%20for%20Support" }
+                { name: "Support", href: "mailto:hello@commutetimely.com?subject=Contacting%20for%20Support" }
               ].map((link, index) => (
                 <motion.a
                   key={index}

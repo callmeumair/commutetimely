@@ -173,7 +173,7 @@ export default function PrivacyPolicy() {
                 </p>
                 <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
                   <p className="text-gray-300">
-                    If you have any questions about this Privacy Policy, please contact us at <a href="mailto:commutetimely@gmail.com" className="text-blue-400 hover:text-blue-300 transition-colors">commutetimely@gmail.com</a>.
+                    If you have any questions about this Privacy Policy, please contact us at <a href="mailto:hello@commutetimely.com" className="text-blue-400 hover:text-blue-300 transition-colors">hello@commutetimely.com</a>.
                   </p>
                 </div>
               </section>
