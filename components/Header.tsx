@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { EarlyAccessModal } from "./EarlyAccessModal";
 
-// TestFlight URL for iOS Beta
-const TESTFLIGHT_URL = "https://testflight.apple.com/join/nuu9uYcX";
+// App Store URL
+const APP_STORE_URL = "https://apps.apple.com/in/app/commutetimely/id6752309705";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,8 +62,8 @@ export function Header() {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled
-          ? 'bg-black/95 backdrop-blur-3xl border-b border-white/15 shadow-premium'
-          : 'bg-transparent'
+        ? 'bg-black/95 backdrop-blur-3xl border-b border-white/15 shadow-premium'
+        : 'bg-transparent'
         }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -269,13 +269,13 @@ export function Header() {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight">
+              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Download CommuteTimely on the App Store">
                 <Button
                   className="btn-premium px-8 xl:px-10 py-3 xl:py-4 text-base xl:text-lg"
                 >
                   <span className="relative z-10 flex items-center space-x-2">
                     <Apple className="w-4 h-4" />
-                    <span>Join iOS Beta</span>
+                    <span>Live on App Store</span>
                   </span>
                 </Button>
               </a>
@@ -421,13 +421,13 @@ export function Header() {
                   transition={{ delay: 0.4 }}
                   className="pt-6"
                 >
-                  <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight">
+                  <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Download CommuteTimely on the App Store">
                     <Button
                       className="w-full btn-premium py-4 text-lg"
                     >
                       <span className="relative z-10 flex items-center justify-center space-x-2">
                         <Apple className="w-5 h-5" />
-                        <span>Join iOS Beta</span>
+                        <span>Live on App Store</span>
                       </span>
                     </Button>
                   </a>

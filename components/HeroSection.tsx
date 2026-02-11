@@ -8,8 +8,8 @@ import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
-// TestFlight URL for iOS Beta
-const TESTFLIGHT_URL = "https://testflight.apple.com/join/nuu9uYcX";
+// App Store URL
+const APP_STORE_URL = "https://apps.apple.com/in/app/commutetimely/id6752309705";
 
 export function Hero() {
   const ref = useRef(null);
@@ -242,7 +242,7 @@ export function Hero() {
                   animate={{ scale: [1, 1.4, 1] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
                 />
-                <span className="text-base sm:text-lg font-bold text-white">Live on iOS — Public Beta</span>
+                <span className="text-base sm:text-lg font-bold text-white">Live on App Store</span>
                 <motion.div
                   className="w-2 h-2 bg-cyan-400 rounded-full"
                   animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
@@ -309,7 +309,7 @@ export function Hero() {
                 onHoverStart={() => setIsHoveringCTA(true)}
                 onHoverEnd={() => setIsHoveringCTA(false)}
               >
-                <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" aria-label="Join iOS Beta on TestFlight - Download CommuteTimely now">
+                <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Download CommuteTimely on the App Store">
                   <Button
                     size="lg"
                     className="w-full sm:w-auto btn-premium px-10 sm:px-16 py-5 sm:py-6 text-xl sm:text-2xl font-black shadow-glow-strong"
@@ -324,7 +324,7 @@ export function Hero() {
                       >
                         <Apple className="w-6 h-7 sm:w-7 sm:h-8" />
                       </motion.div>
-                      <span>Join iOS Beta</span>
+                      <span>Live on App Store</span>
                       <motion.div
                         animate={{
                           x: isHoveringCTA ? 5 : 0

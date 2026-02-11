@@ -5,6 +5,9 @@ import { Car, Train, Bike, Footprints, Clock, MapPin, Zap, Users } from "lucide-
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
 import { Switch } from "./switch";
+import { Apple, Download } from "lucide-react";
+
+const APP_STORE_URL = "https://apps.apple.com/in/app/commutetimely/id6752309705";
 
 const commuteScenarios = [
   {
@@ -75,7 +78,7 @@ const optimizationFeatures = [
 export function DemoSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   const [activeScenarios, setActiveScenarios] = useState<{ [key: string]: boolean }>({
     "Rush Hour Traffic": false,
     "Public Transit Delays": false,
@@ -145,7 +148,7 @@ export function DemoSection() {
     <section id="demo" ref={ref} className="py-12 sm:py-16 lg:py-20 bg-black relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="absolute inset-0 opacity-20"
           animate={{
             background: [
@@ -160,53 +163,53 @@ export function DemoSection() {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-10 sm:mb-12"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div 
+          <motion.div
             className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl mb-6 sm:mb-8"
             whileHover={{ rotate: 360, scale: 1.1 }}
             transition={{ duration: 0.6 }}
           >
             <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
           </motion.div>
-          
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6">
             Interactive
             <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
               Demo
             </span>
           </h2>
-          
+
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Experience how CommuteTimely adapts to different scenarios. Toggle various conditions and see how our smart algorithms optimize your route in real-time.
           </p>
         </motion.div>
 
         {/* Live Demo Results */}
-        <motion.div 
+        <motion.div
           className="mb-10 sm:mb-12"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <Card className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 overflow-hidden rounded-3xl">
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"
               animate={{
                 opacity: [0.1, 0.2, 0.1]
               }}
               transition={{ duration: 4, repeat: Infinity }}
             />
-            
+
             <CardHeader className="text-center pb-6 pt-8">
               <CardTitle className="text-2xl sm:text-3xl text-white mb-4">
                 Live Route Simulation
               </CardTitle>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="text-3xl sm:text-4xl font-bold text-cyan-400 mb-2">
@@ -214,14 +217,14 @@ export function DemoSection() {
                   </div>
                   <div className="text-gray-300 text-sm">Active Scenarios</div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2">
                     {getTotalDelay()}+
                   </div>
                   <div className="text-gray-300 text-sm">Minutes Delay</div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-3xl sm:text-4xl font-bold text-purple-400 mb-2">
                     {Object.values(optimizationStates).filter(Boolean).length}
@@ -234,19 +237,19 @@ export function DemoSection() {
         </motion.div>
 
         {/* Commute Scenarios */}
-        <motion.div 
+        <motion.div
           className="mb-10 sm:mb-12"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.h3 
+          <motion.h3
             className="text-2xl sm:text-3xl font-bold text-white mb-8 sm:mb-10 text-center"
             variants={itemVariants}
           >
             Toggle Commute Scenarios
           </motion.h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {commuteScenarios.map((scenario, index) => (
               <motion.div
@@ -255,41 +258,39 @@ export function DemoSection() {
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
-                <Card className={`relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden rounded-2xl ${
-                  activeScenarios[scenario.title] ? 'ring-2 ring-cyan-400/50' : ''
-                }`}>
-                  <motion.div 
-                    className={`absolute inset-0 bg-gradient-to-r ${scenario.color} opacity-0 transition-opacity duration-500 ${
-                      activeScenarios[scenario.title] ? 'opacity-10' : ''
-                    }`}
+                <Card className={`relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden rounded-2xl ${activeScenarios[scenario.title] ? 'ring-2 ring-cyan-400/50' : ''
+                  }`}>
+                  <motion.div
+                    className={`absolute inset-0 bg-gradient-to-r ${scenario.color} opacity-0 transition-opacity duration-500 ${activeScenarios[scenario.title] ? 'opacity-10' : ''
+                      }`}
                   />
-                  
+
                   <CardHeader className="pb-4">
                     <div className="flex items-center justify-between mb-3">
-                      <motion.div 
+                      <motion.div
                         className={`w-12 h-12 bg-gradient-to-br ${scenario.color} rounded-xl flex items-center justify-center`}
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.6 }}
                       >
                         <scenario.icon className="w-6 h-6 text-white" />
                       </motion.div>
-                      
+
                       <div className="text-right">
                         <div className="text-xs text-gray-400">Base: {scenario.baseTime}</div>
                         <div className="text-xs text-red-400">Delay: {scenario.delayTime}</div>
                       </div>
                     </div>
-                    
+
                     <CardTitle className="text-lg text-white mb-2">
                       {scenario.title}
                     </CardTitle>
                   </CardHeader>
-                  
+
                   <CardContent>
                     <CardDescription className="text-gray-300 mb-6 text-sm leading-relaxed">
                       {scenario.description}
                     </CardDescription>
-                    
+
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-400">Simulate</span>
                       <Switch
@@ -306,18 +307,18 @@ export function DemoSection() {
         </motion.div>
 
         {/* Optimization Features */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.h3 
+          <motion.h3
             className="text-2xl sm:text-3xl font-bold text-white mb-8 sm:mb-10 text-center"
             variants={itemVariants}
           >
             Route Optimization Features
           </motion.h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {optimizationFeatures.map((feature, index) => (
               <motion.div
@@ -326,28 +327,27 @@ export function DemoSection() {
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
-                <Card className={`relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden rounded-2xl ${
-                  optimizationStates[feature.title] ? 'ring-2 ring-blue-400/50' : ''
-                }`}>
+                <Card className={`relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden rounded-2xl ${optimizationStates[feature.title] ? 'ring-2 ring-blue-400/50' : ''
+                  }`}>
                   <CardHeader className="pb-4 text-center">
-                    <motion.div 
+                    <motion.div
                       className={`w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-3`}
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
                       <feature.icon className="w-6 h-6 text-white" />
                     </motion.div>
-                    
+
                     <CardTitle className="text-lg text-white mb-2">
                       {feature.title}
                     </CardTitle>
                   </CardHeader>
-                  
+
                   <CardContent className="text-center">
                     <CardDescription className="text-gray-300 mb-6 text-sm leading-relaxed">
                       {feature.description}
                     </CardDescription>
-                    
+
                     <div className="flex items-center justify-center space-x-3">
                       <span className="text-sm text-gray-400">Enable</span>
                       <Switch
@@ -364,7 +364,7 @@ export function DemoSection() {
         </motion.div>
 
         {/* Demo CTA */}
-        <motion.div 
+        <motion.div
           className="text-center mt-10 sm:mt-12"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -381,7 +381,7 @@ export function DemoSection() {
               animate={{ x: ['-200%', '200%'] }}
               transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
             />
-            
+
             <span className="relative z-10">Try Full Demo</span>
             <Zap className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
           </motion.button>
