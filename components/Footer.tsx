@@ -85,7 +85,7 @@ export function Footer() {
 
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm sm:text-base">
               CommuteTimely is the #1 traffic app with intelligent leave alerts using real-time traffic data to help you reach on time, every time.
-              <span className="text-blue-300 font-medium"> Live on iOS (Public Beta)</span> — Android coming soon.
+              <span className="text-blue-300 font-medium"> Live on App Store</span> — Android coming soon.
             </p>
 
             <div className="flex items-center space-x-6">
