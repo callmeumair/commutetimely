@@ -1,0 +1,18 @@
+[00:00:03.232] Server  LOG     ✓ Ready in 3s
+[00:00:11.712] Server  LOG     ○ Compiling / ...
+[00:00:13.974] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:07:58.046] Server  LOG     ✓ Compiled in 429ms
+[00:08:26.850] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:11:08.862] Server  LOG     ✓ Compiled in 79ms
+[00:11:28.784] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:11:31.280] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:11:52.758] Browser WARN    'oklab(1 0 0 / 0.7)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable
+[00:13:57.094] Server  LOG     ✓ Compiled in 254ms
+[00:14:11.054] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:14:18.301] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:25:32.464] Browser WARN    'oklab(1 0 0 / 0.7)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable
+[00:25:35.278] Browser WARN    'oklab(1 0 0 / 0.7)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable
+[00:25:39.434] Browser WARN    'oklab(1 0 0 / 0.7)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable
+[00:26:58.565] Browser WARN    'oklab(1 0 0 / 0.7)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable
+[00:31:09.580] Server  LOG     ✓ Compiled in 255ms
+[00:31:28.726] Server  LOG     ✓ Compiled in 256ms

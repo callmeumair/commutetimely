@@ -6,27 +6,27 @@ import AppStoreBadge from "@/components/AppStoreBadge";
 import BrandLogo from "@/components/BrandLogo";
 
 /* ── Spring configs ── */
-const SPRING       = { type: "spring" as const, stiffness: 120, damping: 20 };
-const SPRING_SLOW  = { type: "spring" as const, stiffness: 80,  damping: 24 };
+const SPRING = { type: "spring" as const, stiffness: 120, damping: 20 };
+const SPRING_SLOW = { type: "spring" as const, stiffness: 80, damping: 24 };
 /** Heavy entrance spring — mass: 1, feels weighty and final */
 const HEAVY_SPRING = { type: "spring" as const, mass: 1, stiffness: 80, damping: 15 };
 
 /* ── Trig helpers — pre-computed at module level so SSR and browser V8
    produce byte-for-byte identical attribute values (no hydration mismatch) ── */
 function _rad(deg: number) { return (deg - 90) * (Math.PI / 180); }
-function _px(v: number)    { return Math.round(v * 1000) / 1000; }
+function _px(v: number) { return Math.round(v * 1000) / 1000; }
 
 /* ── Ghost nodes scattered around outer orbit ── */
 const GHOST_NODES = (
   [
-    { angle: 32,  r: 136, size: 3,   dur: "2.8s", delay: "0s"   },
-    { angle: 107, r: 148, size: 5,   dur: "3.6s", delay: "0.5s" },
+    { angle: 32, r: 136, size: 3, dur: "2.8s", delay: "0s" },
+    { angle: 107, r: 148, size: 5, dur: "3.6s", delay: "0.5s" },
     { angle: 162, r: 139, size: 2.5, dur: "2.2s", delay: "1.1s" },
-    { angle: 228, r: 128, size: 4,   dur: "4.1s", delay: "0.3s" },
+    { angle: 228, r: 128, size: 4, dur: "4.1s", delay: "0.3s" },
     { angle: 278, r: 153, size: 3.5, dur: "2.7s", delay: "1.4s" },
-    { angle: 320, r: 131, size: 2,   dur: "3.3s", delay: "0.8s" },
-    { angle: 56,  r: 156, size: 4.5, dur: "3.9s", delay: "0.2s" },
-    { angle: 193, r: 145, size: 3,   dur: "2.5s", delay: "0.6s" },
+    { angle: 320, r: 131, size: 2, dur: "3.3s", delay: "0.8s" },
+    { angle: 56, r: 156, size: 4.5, dur: "3.9s", delay: "0.2s" },
+    { angle: 193, r: 145, size: 3, dur: "2.5s", delay: "0.6s" },
     { angle: 340, r: 144, size: 2.5, dur: "3.0s", delay: "1.7s" },
   ] as const
 ).map(gn => ({
@@ -38,20 +38,20 @@ const GHOST_NODES = (
 /* ── Data node definition ── */
 const DATA_NODES = (
   [
-    { id: "traffic",  label: "Live Traffic",    color: "#3A7BFF", angle: 0,   r: 112, icon: "◈" },
-    { id: "calendar", label: "Calendar Sync",   color: "#6E5CFF", angle: 72,  r: 112, icon: "◉" },
-    { id: "weather",  label: "Weather Layer",   color: "#00D4FF", angle: 144, r: 112, icon: "◎" },
-    { id: "transit",  label: "Transit API",     color: "#10B981", angle: 216, r: 112, icon: "◇" },
-    { id: "history",  label: "Pattern History", color: "#F59E0B", angle: 288, r: 112, icon: "◆" },
+    { id: "traffic", label: "Live Traffic", color: "#3A7BFF", angle: 0, r: 112, icon: "◈" },
+    { id: "calendar", label: "Calendar Sync", color: "#6E5CFF", angle: 72, r: 112, icon: "◉" },
+    { id: "weather", label: "Weather Layer", color: "#00D4FF", angle: 144, r: 112, icon: "◎" },
+    { id: "transit", label: "Transit API", color: "#10B981", angle: 216, r: 112, icon: "◇" },
+    { id: "history", label: "Pattern History", color: "#F59E0B", angle: 288, r: 112, icon: "◆" },
   ] as const
 ).map(node => {
   const rad = _rad(node.angle);
   return {
     ...node,
-    x:  _px(160 + node.r * Math.cos(rad)),
-    y:  _px(160 + node.r * Math.sin(rad)),
-    mx: _px(160 + 60   * Math.cos(rad)),
-    my: _px(160 + 60   * Math.sin(rad)),
+    x: _px(160 + node.r * Math.cos(rad)),
+    y: _px(160 + node.r * Math.sin(rad)),
+    mx: _px(160 + 60 * Math.cos(rad)),
+    my: _px(160 + 60 * Math.sin(rad)),
   };
 });
 
@@ -343,21 +343,12 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <motion.div
-          className="flex flex-col items-center gap-3"
+          className="flex flex-col items-center gap-4 mt-2"
           initial={{ opacity: 0, y: 24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...HEAVY_SPRING, delay: 0.45 }}
         >
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex items-center justify-center">
             <AppStoreBadge size="lg" />
-            <motion.button
-              className="px-6 py-4 rounded-xl text-sm font-medium text-white/70"
-              style={{ background: "rgba(255,255,255,0.04)", border: "0.5px solid rgba(255,255,255,0.08)" }}
-              whileHover={{ scale: 1.03, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.9)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={SPRING}
-            >
-              View Live Demo →
-            </motion.button>
           </div>
           {/* App Store rating strip */}
           <div className="flex items-center gap-2">
@@ -374,7 +365,7 @@ export default function HeroSection() {
 
         {/* ── LIVE ORBIT VISUALIZATION ── */}
         <motion.div
-          className="relative flex flex-col items-center gap-4 mt-2"
+          className="relative flex flex-col items-center gap-4 mt-8"
           initial={{ opacity: 0, scale: 0.88, y: 32 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ ...HEAVY_SPRING, delay: 0.55 }}
         >
@@ -409,14 +400,14 @@ export default function HeroSection() {
 
         {/* Stats row — App Store verified only */}
         <motion.div
-          className="flex flex-wrap justify-center gap-3 mt-2"
+          className="flex flex-wrap justify-center gap-3 mt-8"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ ...SPRING, delay: 0.9 }}
         >
-          <StatChip value="5.0★"   label="App Store" color="#F59E0B"  delay={0.9} />
-          <StatChip value="iOS 17+" label="Required" color="#6E5CFF"  delay={1.0} />
+          <StatChip value="5.0★" label="App Store" color="#F59E0B" delay={0.9} />
+          <StatChip value="iOS 17+" label="Required" color="#6E5CFF" delay={1.0} />
           <StatChip value="~20 MB" label="Lightweight" color="#10B981" delay={1.1} />
-          <StatChip value="Free"   label="No in-app purchases" color="#E2E8F0" delay={1.2} />
+          <StatChip value="Free" label="No in-app purchases" color="#E2E8F0" delay={1.2} />
         </motion.div>
       </div>
     </section>
