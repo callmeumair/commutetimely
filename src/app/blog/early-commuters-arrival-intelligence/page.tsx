@@ -11,36 +11,84 @@ export default function ArticlePage() {
             readTime="5 min"
         >
             <p>
-                Every commuter has received the same piece of advice at some point: <em>"Just leave earlier."</em> It's the standard, slightly condescending solution given by people who don't understand the realities of a painful, high-stakes commute.
+                Every commuter has heard the same advice at least once. A colleague says it casually. A manager suggests it with a shrug. Sometimes a friend offers it like it’s an obvious life hack.
+            </p>
+            <p>
+                <strong>“Just leave earlier.”</strong>
+            </p>
+            <p>
+                At first glance, the advice sounds reasonable. If traffic is unpredictable, leaving earlier should reduce the risk of being late. Problem solved. Except it isn’t.
+            </p>
+            <p>
+                For millions of commuters, “just leave earlier” doesn’t actually solve the problem of unpredictable travel. It simply shifts the cost somewhere else — into the most valuable resource we have. <strong>Time.</strong>
+            </p>
+
+            <hr className="my-12 border-white/5" />
+
+            <h2>The Myth of the Simple Commute</h2>
+            <p>
+                If commuting were perfectly predictable, leaving earlier would work beautifully. But real-world commuting behaves nothing like that. Road conditions shift minute by minute. Trains experience delays. Weather changes traffic flow.
+            </p>
+            <p>
+                A commute that normally takes 45 minutes might suddenly stretch to 75 minutes. That variability creates a dilemma: If you leave based on the average commute time, you risk being late. If you leave based on the worst-case time, you waste time on the majority of days when traffic behaves normally.
             </p>
 
             <h2>The Buffer Problem</h2>
             <p>
-                Leaving earlier doesn't actually solve unpredictability; it merely transfers the cost. It creates what we call a "time buffer." If your standard commute takes 45 minutes, but occasionally takes 75 minutes due to unaccounted-for variables, your brain unconsciously adjusts to a 75-minute expected travel time.
+                A time buffer is the invisible padding people add to their schedules to absorb uncertainty. Imagine your normal commute takes 45 minutes, but occasionally takes 75. To avoid being late, you begin leaving home as if the commute will always take 75 minutes.
             </p>
             <p>
-                That means on 9 out of 10 days, you arrive 30 minutes early. Over a year of daily commuting, that adds up to roughly <strong>130 hours</strong> of reclaimed time sitting idly in your car or in the lobby, waiting for your shift or meeting to start. That's a massive failure of tooling, not a personal time-management problem.
-            </p>
-
-            <h2>We Can Do Better</h2>
-            <p>
-                We started CommuteTimely because we firmly believe you shouldn't have to build buffers into your life. The world contains enough data to eliminate the variance.
+                This feels prudent. But on most days, traffic behaves normally, which means you arrive <strong>30 minutes early</strong>. You sit in your car, wait in a lobby, or stare at your phone. The buffer protected you from being late, but it also quietly stole half an hour from your day.
             </p>
 
-            <h2>Enter Arrival Intelligence</h2>
+            <h2>The Hidden Cost of Early Arrival</h2>
             <p>
-                CommuteTimely represents a paradigm shift from <em>Estimated Time of Arrival</em> (ETA) to a <em>Precise Departure Signal</em> (PDS). We built an engine that runs in the background, constantly calculating billions of permutations across traffic decay patterns, upcoming transit anomalies, and hyper-local weather shifts.
-            </p>
-            <p>
-                Instead of answering the question "How long will it take if I leave right now?", we answer the question "When exactly should I leave to arrive at 8:55 AM?".
+                If you arrive 30 minutes early three days a week, that’s 90 minutes per week. Over the course of a year, that becomes roughly <strong>130 hours of lost time</strong>—more than five full days of your life spent waiting unnecessarily.
             </p>
 
-            <h2>A Quiet Confident Signal</h2>
+            <h2>Why Navigation Apps Don’t Solve This</h2>
             <p>
-                CommuteTimely doesn't require you to constantly check maps or look at alternate routes. You keep working, eating breakfast, or spending time with your family. When the math determines that your probability of arriving on time drops below 99%, CommuteTimely sends a silent, confident push notification.
+                Modern navigation apps are extremely good at answering “How long will the trip take if I leave right now?” but commuters rarely want to leave immediately. They have a specific arrival time they care about.
             </p>
             <p>
-                <strong>Time to go.</strong>
+                The real question isn't how long it takes now, but: <strong>“When should I leave to arrive exactly when I need to?”</strong> This requires predicting how traffic and transit conditions will evolve into the future.
+            </p>
+
+            <h2>From ETA to Departure Intelligence</h2>
+            <p>
+                CommuteTimely was built around a simple idea: The most important piece of commute information isn’t your ETA. It’s your <strong>departure time</strong>.
+            </p>
+            <p>
+                We calculate what we call a <strong>Precise Departure Signal (PDS).</strong> This signal answers the optimal moment to leave by analyzing traffic decay patterns, transit reliability, weather, and historical patterns.
+            </p>
+
+            <h2>Eliminating the Buffer</h2>
+            <p>
+                When commuters trust the departure signal, the need for buffers disappears. Instead of planning for worst-case scenarios, users rely on continuous prediction.
+            </p>
+            <p>
+                If traffic builds earlier than expected, the signal moves forward. If congestion clears, it moves later. You no longer need to guess; you simply leave when the signal tells you to.
+            </p>
+
+            <h2>Arrival Intelligence</h2>
+            <p>
+                Navigation tools help you move through space. <strong>Arrival intelligence</strong> helps you move through time. Instead of reacting to traffic after you begin traveling, the system anticipates it before you leave.
+            </p>
+
+            <h2>The Signal</h2>
+            <p>
+                When the system determines that your probability of arriving on time is dropping, it sends a quiet notification. Not an alert filled with warnings, just a signal. A small vibration on your phone. <strong>Time to go.</strong>
+            </p>
+            <p>
+                It arrives precisely when it matters — not too early, not too late. You grab your keys and walk out the door knowing the timing is perfect.
+            </p>
+
+            <h2>Life Without Buffers</h2>
+            <p>
+                Imagine a commute without guesswork. No mental math, no refreshing maps, no leaving half an hour early “just in case.” Instead, imagine starting your morning normally and trusting that your phone will tell you when it’s time.
+            </p>
+            <p>
+                That’s the future CommuteTimely is designed to create. Because “just leave earlier” was never a real solution. It was simply the best strategy available before arrival intelligence existed.
             </p>
         </BlogPostLayout>
     );
