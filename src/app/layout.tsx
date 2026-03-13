@@ -16,11 +16,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CommuteTimely — Know Exactly When to Leave",
+  metadataBase: new URL("https://www.commutetimely.com"),
+  title: {
+    default: "CommuteTimely — Know Exactly When to Leave",
+    template: "%s | CommuteTimely",
+  },
   description:
     "CommuteTimely predicts the perfect departure time using real-time traffic data, weather signals, and machine learning so you arrive exactly when you need to.",
+  keywords: [
+    "commute tracker",
+    "departure time",
+    "traffic prediction",
+    "commute time",
+    "travel time calculator",
+    "arrival intelligence",
+  ],
+  authors: [{ name: "CommuteTimely" }],
+  creator: "CommuteTimely",
+  publisher: "CommuteTimely",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
       { url: "/logo.png", type: "image/png" },
     ],
     apple: "/logo.png",
@@ -30,8 +60,26 @@ export const metadata: Metadata = {
     title: "CommuteTimely — Arrival Intelligence",
     description:
       "Never be late again. The intelligent commute timing platform that tells you exactly when to leave.",
+    url: "https://www.commutetimely.com",
+    siteName: "CommuteTimely",
     type: "website",
-    images: [{ url: "/logo.png", width: 512, height: 512, alt: "CommuteTimely - Arrival Intelligence" }],
+    locale: "en_US",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "CommuteTimely - Arrival Intelligence",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CommuteTimely — Know Exactly When to Leave",
+    description:
+      "Never be late again. The intelligent commute timing platform that tells you exactly when to leave.",
+    creator: "@commutetimely",
+    images: ["/logo.png"],
   },
 };
 

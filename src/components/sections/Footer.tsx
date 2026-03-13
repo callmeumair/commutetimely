@@ -140,6 +140,7 @@ export default function Footer() {
                     <li key={link.label}>
                       {link.toast ? (
                         <a
+                          href="#"
                           className="text-sm text-[#E6EAF2]/40 hover:text-[#E6EAF2]/80 transition-colors duration-200 cursor-pointer"
                           onClick={(e) => {
                             e.preventDefault();

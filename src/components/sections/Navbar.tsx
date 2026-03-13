@@ -11,16 +11,16 @@ const SPRING = { type: "spring" as const, stiffness: 120, damping: 20 };
 
 /** Anchor links — smooth-scroll on /; navigate to homepage+anchor elsewhere */
 const SECTION_LINKS = [
-  { label: "Intelligence",   href: "#features"   },
-  { label: "Dashboard",      href: "#dashboard"  },
-  { label: "Infrastructure", href: "#infra"      },
-  { label: "Pricing",        href: "#pricing"    },
+  { label: "Intelligence", href: "#features" },
+  { label: "Dashboard", href: "#dashboard" },
+  { label: "Infrastructure", href: "#infra" },
+  { label: "Pricing", href: "#pricing" },
 ];
 
 /** Full-route page links */
 const ROUTE_LINKS = [
-  { label: "About",  href: "/about"  },
-  { label: "Blog",   href: "/blog"   },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
   { label: "Status", href: "/status" },
 ];
 
@@ -114,7 +114,7 @@ export default function Navbar() {
             >
               <motion.span
                 className="w-4 h-0.5 bg-white/70 rounded-full block"
-                animate={mobileOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
+                animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                 transition={SPRING}
               />
               <motion.span
@@ -124,7 +124,7 @@ export default function Navbar() {
               />
               <motion.span
                 className="w-4 h-0.5 bg-white/70 rounded-full block"
-                animate={mobileOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
+                animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                 transition={SPRING}
               />
             </button>
@@ -136,7 +136,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-x-6 top-20 z-40 rounded-2xl overflow-hidden"
+            className="fixed inset-x-6 top-20 z-40 rounded-2xl overflow-hidden md:hidden"
             style={{
               background: "rgba(2,6,23,0.95)",
               border: "0.5px solid rgba(255,255,255,0.07)",

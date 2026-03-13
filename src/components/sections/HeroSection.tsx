@@ -377,7 +377,7 @@ export default function HeroSection() {
 
           {/* App Store float card */}
           <motion.div
-            className="absolute right-0 top-1/3 glass rounded-xl px-3 py-2 flex flex-col gap-0.5"
+            className="hidden md:flex absolute right-0 top-1/3 glass rounded-xl px-3 py-2 flex-col gap-0.5"
             style={{ transform: "translateX(calc(100% + 16px))" }}
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
             transition={{ ...SPRING, delay: 1.2 }}
@@ -388,7 +388,7 @@ export default function HeroSection() {
 
           {/* iOS version float card */}
           <motion.div
-            className="absolute left-0 top-1/3 glass rounded-xl px-3 py-2 flex flex-col gap-0.5"
+            className="hidden md:flex absolute left-0 top-1/3 glass rounded-xl px-3 py-2 flex-col gap-0.5"
             style={{ transform: "translateX(calc(-100% - 16px))" }}
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
             transition={{ ...SPRING, delay: 1.4 }}

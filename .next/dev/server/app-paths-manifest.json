@@ -1,8 +1,0 @@
-{
-  "/about/page": "app/about/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/page": "app/page.js",
-  "/privacy/page": "app/privacy/page.js",
-  "/status/page": "app/status/page.js",
-  "/terms/page": "app/terms/page.js"
-}
