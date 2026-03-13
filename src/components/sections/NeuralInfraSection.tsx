@@ -3,11 +3,11 @@
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 
-const SPRING       = { type: "spring" as const, stiffness: 120, damping: 20 };
+const SPRING = { type: "spring" as const, stiffness: 120, damping: 20 };
 const HEAVY_SPRING = { type: "spring" as const, mass: 1, stiffness: 80, damping: 15 };
 
 /** Live-ping CSS class per card position (varies rhythm per card) */
-const PING_CLASSES = ["live-ping-a","live-ping-b","live-ping-c","live-ping-d","live-ping-e","live-ping-f"] as const;
+const PING_CLASSES = ["live-ping-a", "live-ping-b", "live-ping-c", "live-ping-d", "live-ping-e", "live-ping-f"] as const;
 
 /* ── Tech Stack Data ── */
 const STACK_NODES = [
@@ -43,8 +43,8 @@ const STACK_NODES = [
     color: "#6E5CFF",
     icon: (
       <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
-        <circle cx={5}  cy={5}  r={2.5} stroke="#6E5CFF" strokeWidth={1.2} />
-        <circle cx={15} cy={5}  r={2.5} stroke="#6E5CFF" strokeWidth={1.2} />
+        <circle cx={5} cy={5} r={2.5} stroke="#6E5CFF" strokeWidth={1.2} />
+        <circle cx={15} cy={5} r={2.5} stroke="#6E5CFF" strokeWidth={1.2} />
         <circle cx={10} cy={15} r={2.5} stroke="#6E5CFF" strokeWidth={1.2} />
         <path d="M7 5h6M6.5 6.5l3 7M13.5 6.5l-3 7" stroke="#6E5CFF" strokeWidth={1} opacity={0.6} />
       </svg>
@@ -89,12 +89,12 @@ const STACK_NODES = [
 
 /* ── Comparison Chart ── */
 const COMPARISON_ROWS = [
-  { feature: "Departure Prediction",     us: 96, them: 0,  note: "Legacy apps have no concept of departure windows" },
-  { feature: "Calendar-Aware Alerts",    us: 100, them: 0, note: "Google Maps/Waze are calendar-blind" },
-  { feature: "Personal Pattern Learning",us: 94, them: 18, note: "Waze has basic re-routing; no personal ML baseline" },
-  { feature: "Idle-Time Avoidance",      us: 89, them: 32, note: "Navigation starts routing after you leave" },
+  { feature: "Departure Prediction", us: 96, them: 0, note: "Legacy apps have no concept of departure windows" },
+  { feature: "Calendar-Aware Alerts", us: 100, them: 0, note: "Google Maps/Waze are calendar-blind" },
+  { feature: "Personal Pattern Learning", us: 94, them: 18, note: "Waze has basic re-routing; no personal ML baseline" },
+  { feature: "Idle-Time Avoidance", us: 89, them: 32, note: "Navigation starts routing after you leave" },
   { feature: "Precision Accuracy (90d)", us: 96, them: 72, note: "Based on independent user data study" },
-  { feature: "Drive · Bike · Transit Fusion",  us: 91, them: 45, note: "Most apps handle one mode only" },
+  { feature: "Drive · Bike · Transit Fusion", us: 91, them: 45, note: "Most apps handle one mode only" },
 ];
 
 /* ── Draggable Comparison Slider ── */
@@ -120,23 +120,26 @@ function ComparisonDragSlider() {
       onPointerUp={() => { dragging.current = false; }}
       onPointerLeave={() => { dragging.current = false; }}
     >
-      {/* ── Legacy panel (base layer — full width) ── */}
+      {/* ── Legacy panel (base layer — masked on left) ── */}
       <div className="absolute inset-0 flex flex-col"
-        style={{ background: "linear-gradient(170deg, rgba(42,8,8,0.97) 0%, rgba(22,4,4,0.99) 100%)" }}>
-        <div className="flex items-center justify-between px-6 pt-5 pb-3"
+        style={{
+          background: "linear-gradient(170deg, rgba(42,8,8,0.97) 0%, rgba(22,4,4,0.99) 100%)",
+          clipPath: `inset(0 0 0 ${splitPct}%)`
+        }}>
+        <div className="flex items-center justify-between px-6 pt-5 pb-3 whitespace-nowrap"
           style={{ borderBottom: "0.5px solid rgba(255,60,60,0.1)" }}>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <div className="w-2 h-2 rounded-full bg-red-500/60 animate-pulse" />
             <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
               Legacy Navigation · Waze / Google Maps
             </span>
           </div>
-          <span className="text-[9px] font-mono text-red-500/40">Static Routing Mode</span>
+          <span className="text-[9px] font-mono text-red-500/40 shrink-0">Static Routing Mode</span>
         </div>
         <div className="flex-1 px-6 py-4 flex flex-col gap-3 overflow-hidden">
           {COMPARISON_ROWS.map((row) => (
             <div key={row.feature} className="flex items-center gap-3">
-              <span className="text-[11px] text-white/20 font-mono shrink-0" style={{ minWidth: 182 }}>{row.feature}</span>
+              <span className="text-[11px] text-white/20 font-mono shrink-0 whitespace-nowrap" style={{ minWidth: 182 }}>{row.feature}</span>
               <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
                 {row.them > 0 && (
                   <div className="h-full rounded-full" style={{ width: `${row.them}%`, background: "rgba(255,80,80,0.3)" }} />
@@ -151,7 +154,7 @@ function ComparisonDragSlider() {
           <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
             style={{ background: "linear-gradient(0deg, rgba(42,8,8,0.95) 0%, transparent 100%)" }} />
           <div className="absolute bottom-5 left-6 right-6 flex gap-2 opacity-25 pointer-events-none">
-            {["#f55","#f84","#fc5"].map((c, i) => (
+            {["#f55", "#f84", "#fc5"].map((c, i) => (
               <div key={i} className="flex-1 h-7 rounded-lg"
                 style={{ background: `${c}18`, border: `0.5px solid ${c}30` }} />
             ))}
@@ -167,21 +170,21 @@ function ComparisonDragSlider() {
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - splitPct}% 0 0)` }}
       >
-        <div className="absolute inset-0 flex flex-col glass-heavy" style={{ borderRadius: 0 }}>
-          <div className="flex items-center justify-between px-6 pt-5 pb-3"
+        <div className="absolute inset-0 flex flex-col glass-heavy" style={{ borderRadius: 0, backgroundColor: "rgba(2, 6, 23, 0.9)" }}>
+          <div className="flex items-center justify-between px-6 pt-5 pb-3 whitespace-nowrap"
             style={{ borderBottom: "0.5px solid rgba(58,123,255,0.1)" }}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <div className="w-2 h-2 rounded-full bg-[#10B981] live-ping-a" />
               <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">
                 CommuteTimely · Arrival Intelligence
               </span>
             </div>
-            <span className="text-[9px] font-mono text-[#10B981]/50">Precision Mode</span>
+            <span className="text-[9px] font-mono text-[#10B981]/50 shrink-0">Precision Mode</span>
           </div>
           <div className="flex-1 px-6 py-4 flex flex-col gap-3">
             {COMPARISON_ROWS.map((row) => (
               <div key={row.feature} className="flex items-center gap-3">
-                <span className="text-[11px] text-white/60 font-mono shrink-0" style={{ minWidth: 182 }}>{row.feature}</span>
+                <span className="text-[11px] text-white/60 font-mono shrink-0 whitespace-nowrap" style={{ minWidth: 182 }}>{row.feature}</span>
                 <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
                   <motion.div
                     className="h-full rounded-full"
@@ -295,7 +298,7 @@ export default function NeuralInfraSection() {
                       className="text-[9px] font-mono px-2 py-1 rounded-full"
                       style={{ background: `${node.color}10`, color: node.color, border: `0.5px solid ${node.color}20` }}
                     >
-                      {["<3ms","<1ms","batch","stream","edge","live"][i]}
+                      {["<3ms", "<1ms", "batch", "stream", "edge", "live"][i]}
                     </span>
                   </div>
                 </div>
