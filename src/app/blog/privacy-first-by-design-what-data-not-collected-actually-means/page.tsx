@@ -11,34 +11,82 @@ export default function ArticlePage() {
             readTime="6 min"
         >
             <p>
-                If you check the CommuteTimely App Store page, under the Privacy Label sections, you'll see a badge that we are incredibly proud of: <strong>Data Not Collected</strong>. But how does an app that relies on location data manage to collect zero data?
+                There’s a quiet trade happening inside most modern apps.
+            </p>
+            <p>
+                You open an app to get a service — directions, recommendations, predictions — and in return the app quietly collects something from you. Your location. Your behavior. Your routines.
+            </p>
+            <p>
+                Location-based apps, in particular, sit at the center of what could reasonably be called a <strong>data harvesting industry</strong>.
+            </p>
+            <p>
+                That’s why one small line on the App Store page for <strong>CommuteTimely</strong> matters so much. Under the privacy label, it says: <span className="text-[#3A7BFF] font-bold">Data Not Collected.</span>
+            </p>
+            <p>
+                But how can an app that relies on location manage to collect none of it? The answer lies in a simple design decision. Instead of sending your data to the cloud to be processed, we moved the intelligence directly onto your phone.
             </p>
 
-            <h2>The Data Harvesting Industry</h2>
+            <hr className="my-12 border-white/5" />
+
+            <h2>The Default Model of Location Apps</h2>
             <p>
-                Most location-based apps operate on a simple, flawed model: send your raw GPS coordinates to a central server, process the data, and send an answer back down. This allows the company to build a rich, marketable profile of exactly where you live, work, and sleep. We find this model invasive.
+                Most location-based applications follow a similar architecture. Your phone gathers GPS coordinates, which are transmitted to a remote server. The server analyzes the data and sends a result back.
+            </p>
+            <p>
+                If you send raw GPS coordinates to a server every few seconds, that server quickly learns a remarkable amount about your life. It can infer where you live, work, and sleep.
             </p>
 
-            <h2>On-Device Intelligence</h2>
+            <h2>Rethinking the Architecture</h2>
             <p>
-                We inverted the model using modern silicon capabilities. CommuteTimely operates primarily on-device. Here is our architecture in a nutshell:
+                What if the server never needed your location at all?
+            </p>
+            <p>
+                CommuteTimely is designed so that the intelligence runs <strong>directly on your phone</strong>. Your device becomes the brain of the system, rather than a thin terminal for a distant server.
             </p>
 
-            <ul>
-                <li>
-                    <strong>Local Storage Only:</strong> Your home address, your work address, and your recurring destinations never leave your phone. They are stored in Apple's Secure Enclave, heavily encrypted.
-                </li>
-                <li>
-                    <strong>Anonymized Querying:</strong> When CommuteTimely needs to check traffic or transit delays for your route, it breaks the route into anonymous, disjointed segments. Our servers receive a request for "Traffic on Highway 101 Northbound" rather than "User 42's commute from 123 Main St to 456 Broad St." We have absolutely no way of tying those queries back to you.
-                </li>
-                <li>
-                    <strong>Federated Learning:</strong> To improve our historical commute models, we use federated learning. Your device downloads a machine learning model, trains it locally on your commute data, and then sends only a massive string of random-looking mathematical weights back to the server. The weights are aggregated with thousands of other users to improve the master model. Your raw route data never leaves your hand.
-                </li>
-            </ul>
-
-            <h2>If You're Not Paying for It...</h2>
+            <h2>Local Storage Only</h2>
             <p>
-                The old adage says that if a product is free, you are the product. We reject this. We charge a fair, transparent subscription fee for CommuteTimely Pro. We are sustained by our users, not by selling our users. That alignment of incentives allows us to engineer for absolute privacy from the ground up.
+                Your commute contains two extremely sensitive pieces of information: Your home location and your workplace location. In CommuteTimely, these never leave your device.
+            </p>
+            <p>
+                They are stored locally using Apple’s <strong>Secure Enclave</strong>—a specialized hardware component designed to isolate and protect sensitive information. Even our company cannot access it. Your commute belongs to you.
+            </p>
+
+            <h2>Anonymous Traffic Queries</h2>
+            <p>
+                Predicting commute timing still requires external data: traffic conditions and transit delays. The challenge is obtaining that information <strong>without revealing your personal route</strong>.
+            </p>
+            <p>
+                We use a technique called <strong>disjointed querying</strong>. The system breaks your route into small anonymous segments. The server receives fragments like "Traffic on Highway 101 Northbound," not a coherent story about your journey. The system learns about roads, but it never learns about you.
+            </p>
+
+            <h2>Federated Learning</h2>
+            <p>
+                To improve our models, we use <strong>Federated Learning</strong>. Instead of sending raw data to the server, the server sends a machine learning model to your device. Your phone trains it locally.
+            </p>
+            <p>
+                Once finished, the phone sends back only the <strong>updated mathematical parameters</strong>. These numbers contain no readable information about your commute. We learn collectively without ever seeing anyone’s personal data.
+            </p>
+
+            <h2>Privacy by Design</h2>
+            <p>
+                Real privacy doesn’t come from promises in a Terms of Service agreement. It comes from <strong>architecture</strong>. If a system is designed so that it never receives sensitive information, it cannot misuse it.
+            </p>
+
+            <h2>The Economics of Privacy</h2>
+            <p>
+                Many apps appear free because their true business model lies in advertising networks and data marketplaces. CommuteTimely takes a different path: users pay a transparent subscription for <strong>CommuteTimely Pro</strong>.
+            </p>
+            <p>
+                Our incentives align with yours. We succeed when the app is valuable to you, not when we collect more data about you.
+            </p>
+
+            <h2>A Different Kind of Smart App</h2>
+            <p>
+                Technology should make life easier without demanding unnecessary access to personal information. By moving intelligence closer to the user, we deliver sophisticated predictions without quietly building a database about your life.
+            </p>
+            <p>
+                That is what “Data Not Collected” actually means. Not just a label, but a system designed from the ground up to respect the boundary between useful technology and personal privacy.
             </p>
         </BlogPostLayout>
     );
