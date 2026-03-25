@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
+// SEO utilities
+import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,9 +19,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CommuteTimely — Know Exactly When to Leave",
+  title: "Know Exactly When to Leave for Work | CommuteTimely",
   description:
-    "CommuteTimely predicts the perfect departure time using real-time traffic data, weather signals, and machine learning so you arrive exactly when you need to.",
+    "CommuteTimely tells you exactly when to leave for work using AI traffic prediction. Never arrive early or late again. Download the iOS app.",
+  keywords: "departure time app, commute planner, traffic prediction, leave time calculator, avoid traffic",
+  alternates: {
+    canonical: "https://commutetimely.com",
+  },
   icons: {
     icon: [
       { url: "/logo.svg", type: "image/svg+xml" },
@@ -27,12 +34,16 @@ export const metadata: Metadata = {
     shortcut: "/logo.svg",
   },
   openGraph: {
-    title: "CommuteTimely — Arrival Intelligence",
+    title: "Know Exactly When to Leave for Work | CommuteTimely",
     description:
-      "Never be late again. The intelligent commute timing platform that tells you exactly when to leave.",
+      "AI-powered departure timing that predicts traffic & arrival delays. Never leave early or late.",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "CommuteTimely - Arrival Intelligence" }],
+    url: "https://commutetimely.com",
+    images: [{ url: "https://commutetimely.com/og-image.png", width: 1200, height: 630, alt: "CommuteTimely - Arrival Intelligence" }],
   },
+  twitter: {
+    card: "summary_large_image",
+  }
 };
 
 export default function RootLayout({
@@ -40,12 +51,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const orgSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebsiteSchema();
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#020617] text-[#E2E8F0]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#020617] text-[#E2E8F0] min-h-screen flex flex-col`}
       >
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

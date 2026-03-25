@@ -73,26 +73,13 @@ const TIMELINE = [
 
 const FOUNDERS = [
   {
-    name: "Jordan Lee",
-    role: "CEO & Co-Founder",
-    bio: "Lifelong commuter who got tired of leaving too early. Obsessed with making departure timing feel effortless.",
-    initials: "JL",
+    name: "Umer Patel",
+    role: "Founder",
+    bio: "Previously built AuditShield. Obsessed with data-driven precision and building intelligent systems that eliminate uncertainty from daily routines.",
+    initials: "UP",
     color: "#3A7BFF",
-  },
-  {
-    name: "Priya Nair",
-    role: "CTO & Co-Founder",
-    bio: "Mobile engineer with a background in real-time systems. Believes the best interface is one you never have to think about.",
-    initials: "PN",
-    color: "#6E5CFF",
-  },
-  {
-    name: "Marcus Osei",
-    role: "Head of Product",
-    bio: "Transit enthusiast and ex-frequent-flyer who built CommuteTimely because no existing tool told him when to leave — only where to go.",
-    initials: "MO",
-    color: "#10B981",
-  },
+    linkedin: "https://www.linkedin.com/in/umerpatel"
+  }
 ];
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -232,11 +219,17 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-white mb-3">Who we are</h2>
           <p className="text-white/35">Obsessive engineers who missed too many meetings.</p>
 
+          <a href="https://www.linkedin.com/company/commutetimely/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-[#3A7BFF] hover:underline bg-[#3A7BFF]/10 px-4 py-2 mt-4 rounded-full transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Follow CommuteTimely on LinkedIn
+          </a>
         </FadeUp>
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-1 max-w-sm mx-auto gap-6">
           {FOUNDERS.map((f, i) => (
             <FadeUp key={f.name} delay={i * 0.1}>
-              <div className="rounded-2xl p-6 h-full"
+              <div className="rounded-2xl p-6 h-full flex flex-col"
                 style={{ background: "rgba(255,255,255,0.025)", border: "0.5px solid rgba(255,255,255,0.06)" }}>
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold text-white mb-4"
                   style={{ background: `${f.color}20`, border: `1px solid ${f.color}40`, color: f.color }}>
@@ -244,7 +237,15 @@ export default function AboutPage() {
                 </div>
                 <div className="text-base font-semibold text-white mb-0.5">{f.name}</div>
                 <div className="text-[11px] font-mono text-white/35 uppercase tracking-wider mb-3">{f.role}</div>
-                <p className="text-sm text-white/40 leading-relaxed">{f.bio}</p>
+                <p className="text-sm text-white/40 leading-relaxed mb-6 flex-grow">{f.bio}</p>
+                {f.linkedin && (
+                  <a href={f.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#3A7BFF] text-sm hover:underline flex items-center gap-1.5 mt-auto pt-4 border-t border-white/10">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    View LinkedIn Profile
+                  </a>
+                )}
               </div>
             </FadeUp>
           ))}

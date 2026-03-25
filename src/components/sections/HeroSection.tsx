@@ -325,21 +325,19 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...HEAVY_SPRING, delay: 0.2 }}
         >
-          <span className="text-radial-light">Know Exactly</span>
+          <span className="text-radial-light">Know Exactly When to Leave</span>
           <br />
-          <span className="text-radial-light" style={{ filter: "brightness(0.82)" }}>When to Leave.</span>
+          <span className="text-radial-light" style={{ filter: "brightness(0.82)" }}>for Work—Not When Traffic Tells You.</span>
         </motion.h1>
 
-        {/* Sub headline */}
-        <motion.p
-          className="text-base sm:text-lg text-white/45 max-w-xl leading-relaxed font-light"
+        {/* Sub headline (H2 equivalent semantically) */}
+        <motion.h2
+          className="text-base sm:text-lg text-white/45 max-w-xl leading-relaxed font-light mt-4"
           initial={{ opacity: 0, y: 24, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...HEAVY_SPRING, delay: 0.35 }}
         >
-          Start reclaiming your time today. CommuteTimely synthesizes real-time
-          traffic, transit feeds, and 18 months of your personal commute history
-          into a single precision departure signal.
-        </motion.p>
+          AI-Powered Departure Timing for Every Commute. Stop guessing. Stop leaving 30 minutes early just in case. Start reclaiming your time today.
+        </motion.h2>
 
         {/* CTAs */}
         <motion.div
